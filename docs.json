@@ -78,10 +78,14 @@
         ]
       },
       {
-    "group": "API Reference",
-    "icon": "code",
-    "openapi": "openapi.json"
-  }
+        "group": "API Reference",
+        "icon": "code",
+        "pages": [
+          {
+            "openapi": "GET /health"
+          }
+        ]
+      }
     ]
   },
   "logo": {
