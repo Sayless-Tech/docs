@@ -4,19 +4,17 @@
   "name": "Sayless",
   "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
   "colors": {
-    "primary": "#166E3F",
+    "primary": "#FF5601",
     "light": "#26BD6C",
-    "dark": "#166E3F"
+    "dark": "#FF5601"
   },
-  "favicon": {
-    "light": "/favicon.ico",
-    "dark": "/favicon.ico"
-  },
+  "favicon": "/favicon.ico",
   "icons": {
     "library": "lucide"
   },
   "styling": {
-    "eyebrows": "breadcrumbs"
+    "eyebrows": "section",
+    "codeblocks": "dark"
   },
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
@@ -24,7 +22,7 @@
   "navigation": {
         "tabs": [
           {
-            "tab": "Docs",
+            "tab": "Guide",
             "groups": [
               {
                 "group": "Getting Started",
@@ -144,7 +142,7 @@
   },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "dark": "/images/Logomark_Dark.png"
   },
   "navbar": {
     "links": [],
@@ -165,5 +163,20 @@
   },
   "metadata": {
     "timestamp": false
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "background": {
+    "color": {
+      "dark": "#0C0C0C"
+    }
+  },
+  "fonts": {
+    "family": "Inter"
+  },
+  "thumbnails": {
+    "appearance": "dark"
   }
 }
