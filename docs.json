@@ -8,7 +8,10 @@
     "light": "#26BD6C",
     "dark": "#166E3F"
   },
-  "favicon": "/favicon.ico",
+  "favicon": {
+    "light": "/favicon.ico",
+    "dark": "/favicon.ico"
+  },
   "icons": {
     "library": "lucide"
   },
@@ -92,6 +95,17 @@
     "socials": {
       "x": "https://x.com/yourcompany",
       "linkedin": "https://linkedin.com/company/yourcompany"
+    }
+  },
+  "interaction": {
+    "drilldown": false
+  },
+  "metadata": {
+    "timestamp": false
+  },
+  "api": {
+    "playground": {
+      "display": "simple"
     }
   }
 }
