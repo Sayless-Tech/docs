@@ -9,5 +9,18 @@
       "url": "https://api.joinsayless.com"
     }
   ],
-  "paths": {}
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Check if the API is running.",
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "API is healthy"
+          }
+        }
+      }
+    }
+  }
 }
