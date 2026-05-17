@@ -1,0 +1,13 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Sayless API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.joinsayless.com"
+    }
+  ],
+  "paths": {}
+}

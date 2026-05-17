@@ -106,6 +106,7 @@
   "api": {
     "playground": {
       "display": "simple"
-    }
+    },
+    "openapi": "openapi.json"
   }
 }
