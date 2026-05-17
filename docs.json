@@ -27,41 +27,71 @@
         "language": "en",
         "tabs": [
           {
-            "tab": "Product Docs",
+            "tab": "Docs",
             "groups": [
               {
-                "group": "Platform",
-                "icon": "layers",
-                "expanded": true,
+                "group": "Getting Started",
                 "pages": [
                   "platform/quickstart",
-                  "platform/key-concepts",
-                  "platform/configuration/settings",
-                  "platform/configuration/user-management",
-                  "platform/administration/roles-permissions"
+                  "platform/key-concepts"
                 ]
               },
               {
-                "group": "Analytics",
-                "icon": "chart-bar",
-                "expanded": true,
+                "group": "Account",
                 "pages": [
-                  "analytics/quickstart",
-                  "analytics/connect-data",
-                  "analytics/dashboards/create-dashboard",
-                  "analytics/reports/scheduled-reports"
+                  "profile",
+                  "preferences",
+                  "notifications",
+                  "security-and-access"
                 ]
+              },
+              {
+                "group": "Sidebar",
+                "pages": [
+                  "conversations",
+                  "broadcasts",
+                  "records",
+                  "reports"
+                ]
+              },
+              {
+                "group": "Inbox",
+                "pages": []
+              },
+              {
+                "group": "Tickets",
+                "pages": [
+                  "create-ticket",
+                  "edit-ticket"
+                ]
+              },
+              {
+                "group": "Broadcasts",
+                "pages": []
+              },
+              {
+                "group": "Companies",
+                "pages": []
+              },
+              {
+                "group": "Contacts",
+                "pages": []
+              },
+              {
+                "group": "Metrics",
+                "pages": []
+              },
+              {
+                "group": "Reports",
+                "pages": []
               },
               {
                 "group": "Integrations",
-                "icon": "plug",
-                "expanded": true,
-                "pages": [
-                  "integrations/quickstart",
-                  "integrations/authentication",
-                  "integrations/connectors/crm",
-                  "integrations/webhooks/configure"
-                ]
+                "pages": []
+              },
+              {
+                "group": "Admin",
+                "pages": []
               }
             ]
           },
