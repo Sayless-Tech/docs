@@ -76,7 +76,12 @@
           "integrations/connectors/crm",
           "integrations/webhooks/configure"
         ]
-      }
+      },
+      {
+    "group": "API Reference",
+    "icon": "code",
+    "openapi": "openapi.json"
+  }
     ]
   },
   "logo": {
