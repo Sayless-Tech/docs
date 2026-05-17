@@ -22,9 +22,6 @@
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "navigation": {
-    "languages": [
-      {
-        "language": "en",
         "tabs": [
           {
             "tab": "Docs",
@@ -144,10 +141,7 @@
           }
         ],
         "directory": "card"
-      }
-    ]
   },
-
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
