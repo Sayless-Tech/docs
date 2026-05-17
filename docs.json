@@ -32,66 +32,109 @@
               {
                 "group": "Getting Started",
                 "pages": [
-                  "platform/quickstart",
-                  "platform/key-concepts"
+                  "getting-started/quickstart",
+                  "getting-started/key-concepts",
+                  "getting-started/keyboard-shortcuts",
+                  "getting-started/editor"
                 ]
               },
               {
                 "group": "Account",
                 "pages": [
-                  "profile",
-                  "preferences",
-                  "notifications",
-                  "security-and-access"
+                  "account/profile",
+                  "account/preferences",
+                  "account/notifications",
+                  "account/security-and-access"
                 ]
               },
               {
                 "group": "Sidebar",
                 "pages": [
-                  "conversations",
-                  "broadcasts",
-                  "records",
-                  "reports"
+                  "sidebar/conversations",
+                  "sidebar/broadcasts",
+                  "sidebar/records",
+                  "sidebar/reports"
                 ]
               },
               {
                 "group": "Inbox",
-                "pages": []
+                "pages": [
+                  "inbox/reply-conversation",
+                  "inbox/assign-conversation",
+                  "inbox/properties"
+                ]
               },
               {
                 "group": "Tickets",
                 "pages": [
-                  "create-ticket",
-                  "edit-ticket"
+                  "ticket/create-ticket",
+                  "ticket/edit-ticket",
+                  "ticket/properties",
+                  "ticket/assign-ticket",
+                  "ticket/comments"
                 ]
               },
               {
                 "group": "Broadcasts",
-                "pages": []
+                "pages": [
+                  "broadcasts/create-broadcast",
+                  "broadcasts/edit-broadcast",
+                  "broadcasts/properties"
+                ]
               },
               {
                 "group": "Companies",
-                "pages": []
+                "pages": [
+                  "companies",
+                  "companies/files-and-notes",
+                  "companies/pricing",
+                  "companies/properties"
+                ]
               },
               {
                 "group": "Contacts",
-                "pages": []
+                "pages": [
+                  "contacts",
+                  "contacts/properties"
+                ]
               },
               {
                 "group": "Metrics",
-                "pages": []
+                "pages": [
+                  "metrics",
+                  "metrics/metric-events",
+                  "metrics/metric-charts",
+                  "metrics/properties"
+                ]
               },
               {
                 "group": "Reports",
-                "pages": []
+                "pages": [
+                  "reports",
+                  "reports/dashboards"
+                ]
               },
               {
                 "group": "Integrations",
-                "pages": []
+                "pages": [
+                  "integrations/email",
+                  "integrations/slack",
+                  "integrations/microsoft-teams",
+                  "integrations/whatsapp",
+                  "integrations/telegram",
+                  "integrations/linear",
+                  "integrations/jira"
+                ]
               },
               {
                 "group": "Admin",
-                "pages": []
+                "pages": [
+                  "admin/workspaces",
+                  "admin/login-methods",
+                  "admin/members",
+                  "admin/api-and-webhooks",
+                  "admin/billing-and-plans"
+                ]
               }
             ]
           },
