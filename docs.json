@@ -108,10 +108,4 @@
   "metadata": {
     "timestamp": false
   },
-  "api": {
-    "playground": {
-      "display": "simple"
-    },
-    "openapi": "openapi.json"
-  }
 }
