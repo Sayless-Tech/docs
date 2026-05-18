@@ -1,4 +1,65 @@
----
-title: "Email integration"
-description: "Connect a custom email address to Sayless so incoming messages land in your inbox and replies send from your own domain with full threading and history."
----
+Email brings messages from a shared address into the Sayless inbox.
+
+## Overview
+
+Use Email when customers write to a support, success, sales, or team address. Admins configure email from workspace settings.
+
+Go to [Settings \> Email](https://joinsayless.com/{workspace}/settings/email).
+
+> Email is available on the Free plan and all paid plans.
+
+| Email area | Use it for |
+| --- | --- |
+| Domain Authentication | Verify sending or receiving for a domain. |
+| Email Forwarding | Route incoming email into Sayless. |
+| Domain detail | Review one domain’s records and status. |
+
+## Domain authentication
+
+Domain authentication helps Sayless verify that your workspace can send or receive email for a domain.
+
+### Add a domain
+
+Add the domain you want to authenticate from Email settings.
+
+### Verify DNS records
+
+Sayless shows DNS records that need to be added with your DNS provider.
+
+### Validation status
+
+Review the domain status to see whether authentication is complete.
+
+### Delete a domain
+
+Delete a domain when it should no longer be used by the workspace.
+
+## Email forwarding
+
+Forwarding sends incoming email into Sayless.
+
+### Forwarding address
+
+Use the forwarding address shown in settings with your email provider.
+
+### Test forwarding
+
+Send a test when you want to confirm forwarding is working.
+
+### Incoming conversations
+
+Once forwarding is active, incoming messages appear in the inbox as conversations.
+
+## Troubleshooting
+
+Most email setup issues happen outside Sayless, usually in DNS or the email provider.
+
+### DNS issues
+
+If authentication does not validate, confirm the DNS records match exactly and have had time to propagate.
+
+> DNS changes can take time to propagate. If records are correct but validation still fails, wait and retry validation before changing the records again.
+
+### Forwarding failures
+
+If messages do not appear in Sayless, check the forwarding rule, sender address, and spam settings.

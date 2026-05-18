@@ -1,4 +1,124 @@
----
-title: "Company files and notes"
-description: "Attach files, share documents, and capture internal notes on Sayless company records so your team has the context they need for each customer account."
----
+Files and notes help your team keep account context close to the company it belongs to.
+
+## Overview
+
+Use files for documents and attachments. Use notes for written context, decisions, summaries, or internal account information. For post-sales teams, this is where contracts, implementation documents, renewal notes, onboarding summaries, and handoff details stay attached to the account.
+
+Both areas live under a company record and support folder-style organization.
+
+Files and notes have separate tabs and separate folder trees. A folder in Files is not the same object as a folder in Notes.
+
+> File storage is plan-limited. The Free plan includes `1 GB`, Startup includes `500 GB`, and Business and Enterprise are unlimited in the current client policy.
+
+| Surface | Route pattern | Use it for |
+| --- | --- | --- |
+| Files | `/companies/{companySlug}/files` | Documents, contracts, uploads. |
+| File folder | `/companies/{companySlug}/files/folder/{folderUrlId}` | Grouped company files. |
+| Notes | `/companies/{companySlug}/notes` | Account context and written records. |
+| Notes folder | `/companies/{companySlug}/notes/folder/{folderUrlId}` | Grouped notes. |
+| Note detail | `/companies/{companySlug}/notes/{notePath}` | Edit a specific note. |
+
+## Company files
+
+Company files are for documents connected to an account.
+
+### Upload files
+
+Upload files from the company Files tab. Use clear names so teammates can recognize the document later.
+
+The Files area supports upload modals, file details, folder movement, and deletion confirmations.
+
+### Organize folders
+
+Create folders to group files by contract, onboarding, renewal, implementation, or another account-specific structure.
+
+Folder actions include creating, editing, moving items, and managing permissions where available.
+
+### Share folders
+
+Folders have general access and member-specific access.
+
+General access controls whether a folder is private or open to the workspace with a permission level. Member-specific access lets you invite named teammates to a folder and choose what they can do.
+
+| Folder permission | What it allows |
+| --- | --- |
+| Private | Only admins, the creator, and explicitly added members can access the folder. |
+| Read | Workspace members or added members can view. |
+| Read & Write | Members can view and update folder contents. |
+| Admin | Members can manage the folder, including sharing and destructive actions where available. |
+
+Folder share modals also include copy-link actions. Copied links use top-level app paths and open in the signed-in user’s active workspace.
+
+### Open file details
+
+Open a file to review details and available actions.
+
+Contract files can expose contract-specific status where applicable.
+
+### Delete files
+
+Delete files only when they should no longer be available from the company record.
+
+### Share files
+
+Files can be shared independently from folders. A file share menu lets teammates adjust general access, add specific people, choose a permission level, and copy a direct link.
+
+| File permission | What it allows |
+| --- | --- |
+| Read | View the file. |
+| Read & Write | View and update file details where editing is available. |
+| Admin | View, update, share, and delete the file. |
+
+Workspace admins can access files in their workspace. Non-admin teammates depend on general access or explicit membership. If a file has explicit member access configured, that membership can narrow access for non-admin users.
+
+## Company notes
+
+Company notes are for written context.
+
+### Create notes
+
+Create a note when information should stay attached to the company instead of a conversation or ticket.
+
+Notes use an editor and can be opened as their own detail page under the company.
+
+### Edit notes
+
+Open a note to update the title or content.
+
+Notes are best for durable account context: onboarding summary, renewal notes, meeting notes, or implementation details.
+
+### Share notes
+
+Notes use the same member access pattern as files. Add teammates when a note should be visible or editable by a smaller group than the whole workspace.
+
+| Note permission | What it allows |
+| --- | --- |
+| Read | View the note. |
+| Read & Write | View and edit the note. |
+| Admin | View, edit, share, and delete the note. |
+
+### Organize folders
+
+Use folders to separate notes by topic, team, project, or time period.
+
+Private note folders are useful for sensitive account context, such as escalation notes or renewal strategy. Share them deliberately so teammates can still find the context they need without exposing every internal note broadly.
+
+### Delete notes
+
+Delete notes when they are no longer useful or should be removed from the record.
+
+## Choosing between files, notes, and tickets
+
+Use the surface that matches the type of information.
+
+### Use files for documents
+
+Contracts, PDFs, exports, images, and external documents belong in Files.
+
+### Use notes for account context
+
+Summaries, internal observations, and working notes belong in Notes.
+
+### Use tickets for action
+
+If the information requires ownership, status, due date, or discussion, create a ticket instead.

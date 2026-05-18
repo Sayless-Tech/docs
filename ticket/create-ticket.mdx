@@ -1,0 +1,118 @@
+---
+title: "Create a ticket"
+description: "Create structured follow-up work from the tickets page or from a conversation."
+---
+
+Tickets turn customer follow-up into trackable work. Create a ticket when a conversation needs ownership, status, comments, due dates, or external issue links.
+
+## Overview
+
+A ticket should explain the work clearly enough that another teammate can understand what needs to happen and why. Link the source conversation when customer context matters.
+
+The ticket creation modal supports both content and properties. You can start with only the essentials, then add more properties from the detail page later.
+
+Go to [Tickets](https://joinsayless.com/tickets), or create a ticket from an open conversation.
+
+> The Free plan includes up to `250` tickets. Startup, Business, and Enterprise are unlimited in the current client policy.
+
+| Creation path | Link | What gets prefilled |
+| --- | --- | --- |
+| Tickets page | [Tickets](https://joinsayless.com/tickets) | Blank ticket fields. |
+| Conversation detail | `/inbox/message/{conversationPath}` | Current conversation link. |
+| Company page | `/companies/{companySlug}/tickets` | Company context. |
+| Contact page | `/contacts/{contactPath}/tickets` | Contact context. |
+
+## Create a ticket
+
+You can create tickets from more than one place.
+
+### From the tickets page
+
+Go to Tickets and choose **New ticket**. Add a title, description, and the initial properties needed to route the work.
+
+The Tickets page registers a new-ticket command, so you can also use the command menu when you are in the tickets area.
+
+### From a conversation
+
+Create a ticket from a conversation when the message creates work that needs tracking. This keeps the conversation linked to the ticket.
+
+The conversation detail header includes a ticket button. Tickets created from there are prefilled with the current conversation link.
+
+### From a company or contact
+
+Company and contact pages include related ticket views. Use them when the work is already tied to a specific account or person.
+
+## Add ticket content
+
+Good ticket content makes the next step obvious.
+
+### Title
+
+Use a short title that describes the task or customer issue.
+
+The title is required. If the title is missing, Sayless cannot create a useful ticket URL or list row.
+
+> New tickets use an open ticket status by default when one exists in workspace status settings. Go to [Settings \> Statuses](https://joinsayless.com/settings/statuses) to manage statuses.
+
+### Description
+
+Use the description for context, requirements, links, and expected outcome. Keep it current as the work changes.
+
+The description editor stores both rich content and markdown-style text for downstream use. You can add attachments directly in the ticket editor.
+
+### Linked conversations
+
+Link the source conversation so teammates can review the customer thread without searching.
+
+You can link one or more conversations. This is useful when several customer threads relate to the same underlying issue.
+
+## Set initial properties
+
+Properties help route and prioritize the work.
+
+### Status
+
+Set the status that matches the ticket’s current stage.
+
+New tickets default to an open ticket status when one is available in the workspace.
+
+### Assignee
+
+Assign the ticket to the teammate responsible for the next step.
+
+### Labels
+
+Apply labels so the ticket appears in the right filters and grouped views.
+
+Ticket labels use the same workspace label system as conversations.
+
+### Due date
+
+Add a due date when timing matters.
+
+The due date picker prevents selecting past dates during ticket creation.
+
+## Optional integrations
+
+Tickets can connect to external issue trackers during or after creation.
+
+### Linear
+
+Create or link a Linear issue when the ticket needs to continue in Linear.
+
+### Jira
+
+Create or link a Jira issue when the ticket needs to continue in Jira.
+
+| Optional property | Use it when |
+| --- | --- |
+| Assignee | Someone owns the next step. |
+| Labels | The ticket should appear in a category or grouped view. |
+| Due date | Timing matters. |
+| Company | The work belongs to an account. |
+| Conversation | The ticket came from customer communication. |
+| Linear/Jira | Execution continues in an external tracker. |
+
+### Companies
+
+Link companies when the ticket belongs to one or more account records.

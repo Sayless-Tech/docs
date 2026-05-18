@@ -1,4 +1,95 @@
 ---
-title: "API keys and webhooks"
-description: "Generate Sayless API keys, configure webhook endpoints, and send workspace events to external systems to build automations and integrations."
+title: "API and webhooks"
+description: "Manage API keys, OAuth apps, webhooks, and webhook deliveries."
 ---
+
+API and webhook settings connect Sayless to external systems.
+
+## Overview
+
+Admins can manage API keys, OAuth apps, webhooks, and webhook delivery failures from the API settings page.
+
+Some API features may depend on your workspace plan.
+
+> API keys, OAuth apps, and webhooks are available on the Startup plan, Business plan, and Enterprise plan.
+
+The API settings page has separate sections for API Keys, OAuth Apps, Webhooks, and Webhook delivery failures. OAuth apps and webhook detail pages have their own nested routes.
+
+Go to [Settings \> API](https://joinsayless.com/settings/api).
+
+| API area | Route pattern | Use it for |
+| --- | --- | --- |
+| API overview | `/settings/api` | Keys, apps, webhooks, failures. |
+| OAuth app detail | `/settings/api/oauth/{appId}` | Review one OAuth app. |
+| Webhook detail | `/settings/api/webhooks/{webhookId}` | Review one webhook. |
+| Delivery detail | `/settings/api/deliveries/{deliveryId}` | Inspect one failed delivery. |
+
+## API keys
+
+API keys allow external systems to access Sayless.
+
+### Create API key
+
+Create an API key when an internal tool or integration needs access.
+
+Only create keys for systems you trust. Treat API keys like passwords.
+
+### Copy API key
+
+Copy the key when it is created and store it securely.
+
+If the app only shows the secret once, store it before closing the success modal.
+
+### Revoke API key
+
+Revoke keys that are no longer needed or may be exposed.
+
+Rotating a key usually means creating a replacement, updating the external system, then revoking the old key.
+
+> API keys and OAuth secrets should be treated like passwords. Do not paste them into tickets, comments, notes, or broadcasts.
+
+## OAuth apps
+
+OAuth apps allow third-party authorization flows.
+
+### Create OAuth app
+
+Create an OAuth app when an external application needs OAuth access.
+
+### View app details
+
+Open an OAuth app to review its configuration.
+
+OAuth app detail pages are available under the API settings route.
+
+### Rotate secret
+
+Rotate the app secret when credentials need to be refreshed.
+
+After rotating a secret, update any client using the old secret.
+
+## Webhooks
+
+Webhooks send Sayless events to external systems.
+
+### Create webhook
+
+Create a webhook with a destination URL and the events your system should receive.
+
+### View webhook details
+
+Open a webhook to review configuration and deliveries.
+
+Webhook detail pages show the configuration for a single webhook.
+
+### Delivery failures
+
+Use webhook delivery failure views to investigate failed delivery attempts.
+
+Delivery failure views help distinguish configuration errors from temporary receiver outages.
+
+### Retry deliveries
+
+Retry delivery when the receiving system is ready to accept the event.
+
+Retry only after fixing the destination service; otherwise the same delivery can fail again.

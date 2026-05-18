@@ -1,6 +1,111 @@
 ---
 title: "Metric charts"
-description: "Build charts from Sayless metric events—choose chart types, apply filters and breakdowns, and pin visualizations to dashboards for your team to monitor."
+description: "Build charts from metric data and compare activity across companies."
 ---
 
-ing
+Metric charts turn event data into visual views your team can review.
+
+## Overview
+
+Open a metric chart when you want to understand trends, totals, distribution, or company-level comparisons.
+
+Metric charts use the same general chart control patterns as reports: choose a data shape, configure axes, select aggregation, choose intervals, and compare companies where relevant.
+
+Open a chart from a metric detail page or use the route pattern `https://joinsayless.com/{workspace}/metrics/{metricName}/chart`.
+
+| Control | What it changes |
+| --- | --- |
+| Chart type | The visualization format. |
+| Aggregation | How event values are summarized. |
+| Interval | How time-based data is grouped. |
+| Axis controls | Which fields appear on the chart. |
+| Company selector | Which companies are included. |
+| Sort | How chart results are ordered. |
+
+## Build a chart
+
+Chart controls let you shape the visualization.
+
+### Chart type
+
+Choose the chart format that fits the question.
+
+Changing the chart type changes which controls matter. A single-value chart needs different context than a line chart or table chart.
+
+### Aggregation
+
+Aggregation controls how event values are summarized.
+
+Use aggregation when multiple events need to become one value, such as count, sum, or another summary operation supported by the chart.
+
+### Interval
+
+Interval controls how data is grouped over time.
+
+Use shorter intervals for recent operational work and longer intervals for trend review.
+
+### Axis controls
+
+Axis controls define which fields appear on the chart.
+
+If the chart looks empty, confirm the selected fields exist in the metric events.
+
+## Chart types
+
+Available chart types include common formats used throughout the metrics and reports areas.
+
+### Line chart
+
+Use line charts for trends over time.
+
+### Bar chart
+
+Use bar charts for comparing grouped values.
+
+### Pie chart
+
+Use pie charts for part-to-whole breakdowns.
+
+### Table chart
+
+Use table charts when exact rows matter more than a visual summary.
+
+### Single value
+
+Use single-value charts for one important number.
+
+## Compare data
+
+Use comparison controls when company context matters.
+
+### Company selector
+
+Select companies to include in the chart.
+
+### Company comparison
+
+Compare companies against each other.
+
+Company comparison works best when events are consistently linked to companies.
+
+### Sorting
+
+Sort chart results when order changes the interpretation.
+
+## Troubleshooting charts
+
+Most chart issues come from missing data, incompatible chart settings, or fields that do not exist on the event data.
+
+### Empty chart
+
+Check that the metric has events, that the selected interval includes data, and that the chosen fields exist.
+
+> If a chart is empty but the metric has events, inspect [Metrics \> Events](https://joinsayless.com/{workspace}/metrics/events) to confirm the event fields match the chart controls.
+
+### Unexpected values
+
+Review aggregation and axis settings first. Then inspect raw metric events to confirm the source data.
+
+### Company comparison gaps
+
+If a company is missing from comparison, confirm the metric events are associated with that company.

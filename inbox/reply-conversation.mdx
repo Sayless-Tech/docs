@@ -1,26 +1,118 @@
 ---
 title: "Reply to a conversation"
-description: "Open a customer thread in Sayless, draft a reply with formatting, attachments, and inline images, add recipients, and send it from the inbox."
+description: "Open an inbox conversation, write a reply, add context, and send a response."
 ---
+
+Conversations are where inbound customer messages become team work. Reply from the conversation detail page when the next step is a direct response.
 
 ## Overview
 
+Open the inbox, choose a conversation, review the message history, and reply from the editor. While replying, keep the conversation properties up to date so teammates know who owns the thread and what state it is in.
+
+The conversation detail page has three main areas:
+
+- The header, where you can navigate back, move between conversations, create a ticket, open the action menu, and toggle the details panel.
+- The thread, where messages, activity entries, attachments, and the reply editor appear.
+- The details panel, where you manage status, labels, linked tickets, company, contact, and related conversations.
+
+Go to [Inbox](https://joinsayless.com/{workspace}/inbox).
+
+| Area | What you can do |
+| --- | --- |
+| Header | Navigate, create a ticket, open actions, toggle Details. |
+| Thread | Read messages, activity, attachments, and write replies. |
+| Details panel | Manage properties and relationships. |
+
 ## Reply to a conversation
+
+Use replies for customer-facing communication.
 
 ### Open a conversation
 
+Go to the inbox and choose one of the inbox views: All conversations, Assigned to me, Shared, Unassigned, or Snoozed.
+
+Open a conversation to view the thread, message history, metadata panel, related company or contact, and any linked tickets.
+
+If you open a stale or deleted conversation URL, Sayless redirects back to the inbox when it cannot load the thread.
+
+> Direct conversation URLs use the pattern `https://joinsayless.com/{workspace}/inbox/message/{conversationPath}`.
+
 ### Write a reply
+
+Use the reply editor to write the response. The editor supports formatted text, links, lists, mentions, attachments, and inline images where available.
+
+Keep replies focused on the customer-facing answer. If the message creates internal follow-up, create a ticket instead of hiding the next steps inside the reply.
 
 ### Add recipients
 
-### Send a reply
+Email conversations may show recipient fields such as To and CC. Use these when the reply needs to include additional people.
+
+For channel-based conversations such as Slack, WhatsApp, Telegram, or Microsoft Teams, recipients are generally implied by the source thread or group.
+
+### Send the reply
+
+Send the reply when the message is ready. If the conversation needs more work after the reply, create or link a ticket before moving on.
+
+If sending fails, keep the thread open until you know whether the message was delivered. Check the channel connection if messages repeatedly fail.
 
 ## Use the reply editor
 
+The reply editor is built for quick responses with enough structure for detailed answers.
+
 ### Formatting
+
+Use formatting for readability, not decoration. Lists and short paragraphs are easier for customers and teammates to scan.
 
 ### Attachments
 
-### Inline images
+Attach files when the recipient needs supporting material. Use inline images when the image is part of the explanation.
+
+Attachments upload before they can be sent. Large files or unsupported file types may fail validation.
 
 ### Drafts
+
+Sayless preserves editor state while you work in the conversation. Before navigating away from a long reply, confirm it is sent or still available as a draft.
+
+Draft state is local to the conversation workflow. Do not use an unsent reply as the only place to store important internal context.
+
+## Keep the conversation current
+
+Replying is only one part of the workflow.
+
+### Update ownership
+
+Assign the conversation to the person responsible for the next step.
+
+### Update status
+
+Change the status when the conversation moves forward, waits on a customer, or is complete.
+
+### Link follow-up work
+
+Create a ticket from the conversation when the reply creates work that needs tracking.
+
+Use the ticket button in the conversation header to create a ticket with the current conversation already linked. This is the fastest way to keep the source thread attached to the follow-up work.
+
+## Details panel
+
+Use the Details toggle in the conversation header to show or hide the metadata panel.
+
+### Details
+
+The details section contains core conversation properties, including status and assignee.
+
+### Labels
+
+Labels categorize the conversation for filtering and reporting.
+
+### Tickets
+
+The ticket section shows tickets linked to the conversation and gives the team a path from customer message to tracked follow-up.
+
+### Company and contact
+
+Company and contact sections attach the conversation to account and person records.
+
+### Related conversations
+
+Related conversations help connect separate threads that belong to the same customer issue or account context.

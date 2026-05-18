@@ -1,0 +1,104 @@
+---
+title: "Reports"
+description: "Create and review reports that help your team understand workspace activity."
+---
+
+Reports are saved views of data your team wants to inspect.
+
+## Overview
+
+Use reports when you need a repeatable view into activity, performance, or customer work. Post-sales teams commonly use reports to review open follow-up, conversation volume, account health signals, renewal activity, and operational trends.
+
+Reports share chart-building concepts with metrics, but they live in the reporting area and can be grouped into dashboards.
+
+Go to [Reports](https://joinsayless.com/reports), or use `G` then `R`.
+
+> Reports are available on Startup and higher. The Free plan has a report limit of `0`; Startup includes up to `3` reports, Business includes up to `10`, and Enterprise is unlimited in the current client policy.
+
+| Report surface | Route pattern | Use it for |
+| --- | --- | --- |
+| Report list | `/reports` | Create and manage reports. |
+| Report detail | `/reports/{reportPath}` | Review or edit one report. |
+| Dashboard detail | `/reports/dashboard/{dashboardPath}` | Review dashboards. |
+
+## Work with reports
+
+The reports area supports creating, opening, editing, clearing, sharing, and deleting reports depending on permissions.
+
+### Create a report
+
+Create a report when your team needs a new saved view.
+
+The reports page exposes a new report action, search, sort, filter, and deletion controls.
+
+### Open a report
+
+Open a report to review its charts, filters, and configured data source.
+
+Report routes have dedicated detail pages, so a report can be opened directly by URL.
+
+### Edit a report
+
+Edit a report when the name, description, or chart configuration needs to change.
+
+Edits are handled from report detail controls and menus.
+
+### Delete a report
+
+Delete a report only when it should no longer be available.
+
+If a report appears on a dashboard, consider how deletion affects that dashboard before removing it.
+
+## Report details
+
+Report details show the configured report content.
+
+### Charts
+
+Charts visualize the selected data.
+
+Available chart types include line, bar, stacked bar, pie, table, single value, summary, and circle-style visualizations where configured.
+
+| Chart type | Best for |
+| --- | --- |
+| Line | Trends over time. |
+| Bar or stacked bar | Comparisons across groups. |
+| Pie | Part-to-whole breakdowns. |
+| Table | Exact rows and values. |
+| Single value or summary | One important number. |
+
+### Filters
+
+Filters narrow the data shown in the report.
+
+### Sharing
+
+Use reports and dashboards to give teammates a consistent view of the same data.
+
+Reports support general access and member-specific access. General access determines whether the report is visible broadly in the workspace; member access gives named teammates a specific permission level.
+
+| Permission | What it allows |
+| --- | --- |
+| Read | View the report. |
+| Read & Write | View and edit report configuration. |
+| Admin | View, edit, share, and delete the report. |
+
+Workspace admins can read reports in the workspace. For private reports, non-admin teammates need explicit membership. A report creator can share their report, and teammates with Read & Write or Admin access can share when the report’s access rules allow it.
+
+> If the Share button is missing, you may not have permission to share the report. Ask the report owner or a workspace admin to update access.
+
+## Report controls
+
+Report controls help define what data appears and how it is displayed.
+
+### Data source
+
+Choose the source data the report should use.
+
+### Description
+
+Use descriptions to explain what the report is meant to answer.
+
+### Company comparison
+
+Use company comparison when the report should compare account-level activity.

@@ -1,38 +1,104 @@
 ---
 title: "Conversation properties"
-description: "Set status, assignee, labels, company, and subject on Sayless conversations, then snooze, mark as spam, or filter the inbox using these properties."
+description: "Use conversation properties to organize, route, and manage inbox work."
 ---
+
+Conversation properties describe the current state of a thread. They help your team find the right work, understand who owns it, and decide what should happen next.
 
 ## Overview
 
+Use properties as part of triage. A well-managed conversation has a clear owner, useful labels, the right status, and a company or contact link where possible.
+
+Conversation properties drive views and filters. If a property is wrong, the conversation may appear in the wrong queue or be missed during triage.
+
+Go to [Inbox](https://joinsayless.com/{workspace}/inbox), open a conversation, then select **Details**.
+
+| Property | Controls | Also affects |
+| --- | --- | --- |
+| Status | Workflow state | Filters and team triage |
+| Assignee | Owner | Assigned to me and Unassigned views |
+| Labels | Categorization | Filters and reporting |
+| Company | Account context | Company conversations |
+| Subject | Thread summary | Search and readability |
+| Snooze | Pause until later | Active vs Snoozed views |
+| Spam | Remove from normal inbox | Spam settings |
+
 ## Conversation properties
+
+Properties are available from the conversation metadata panel and related menus.
 
 ### Status
 
+Status shows where the conversation sits in your workflow. Admins can configure statuses from workspace settings.
+
+Statuses are workspace-defined, so the exact names in your workspace may differ. Use status consistently as a team; otherwise inbox filters become hard to trust.
+
 ### Assignee
+
+Assignee shows who owns the next step. Use the Unassigned inbox view to find conversations that still need an owner.
 
 ### Labels
 
+Labels categorize conversations. Use labels for themes such as billing, bug reports, onboarding, renewals, or priority customer issues.
+
+Labels are shared workspace objects. Admins can create, edit, and delete labels from settings.
+
+Go to [Settings \> Labels](https://joinsayless.com/{workspace}/settings/labels) to manage workspace labels.
+
 ### Company
+
+Company links the conversation to an account record. This keeps the conversation visible from the company page.
+
+Linking a company is especially important for WhatsApp, Telegram, Slack, and Teams group workflows where several people may participate in the same channel.
 
 ### Subject
 
+Subject clarifies what the conversation is about, especially for long or multi-channel threads.
+
+Use a subject that describes the actual customer issue, not just the channel or sender.
+
 ## Manage conversation state
+
+Conversation state controls whether the thread stays active, waits until later, or leaves normal views.
 
 ### Snooze
 
+Snooze a conversation when no action is needed until a future time. Snoozed conversations move out of active views and appear in Snoozed.
+
+Snooze is useful for “waiting on customer” or “follow up later” work. Do not snooze work that still needs an internal owner; create or assign a ticket instead.
+
 ### Mark as spam
+
+Mark spam when a conversation should be removed from normal inbox work.
+
+Spam conversations can be reviewed from settings. This gives admins a place to restore messages that were marked by mistake.
+
+Go to [Settings \> Spam](https://joinsayless.com/{workspace}/settings/spam) to review spam conversations and blocked entities.
 
 ### Restore from spam
 
+Admins and permitted users can review spam settings and restore conversations when needed.
+
 ### Delete conversation
+
+Delete conversations only when the thread should be removed. Bulk delete actions may be available from list or table views.
+
+Deletion is more final than status changes, snoozing, or spam. Use those softer states when the conversation may still matter later.
 
 ## Filtering and views
 
+Use filters and views to keep the inbox manageable.
+
 ### Search
+
+Search helps find conversations by visible content and metadata.
 
 ### Filters
 
-### Table view
+Filters narrow the inbox by properties such as status, assignee, label, company, or date fields where available.
 
-### List view
+### List and table views
+
+The inbox supports list and table-style views. Use the view that best fits your current work: list for reading threads quickly, table for comparing properties.
+
+Use list view when the message preview matters. Use table view when ownership, labels, dates, or bulk actions matter more.

@@ -1,4 +1,92 @@
 ---
 title: "Create a broadcast"
-description: "Build a new Sayless broadcast by choosing a channel, picking an audience segment, drafting your message, and scheduling when it should send."
+description: "Draft and send outbound messages through configured broadcast destinations."
 ---
+
+Broadcasts are used for outbound messages. Create one when your team needs to send an announcement or update through a configured channel.
+
+## Overview
+
+Broadcasts depend on workspace channel setup. In the current app, broadcast creation checks for a workspace Slack connection before allowing a Slack broadcast workflow.
+
+If Slack is not connected, non-admins see a setup blocker and admins can navigate to Slack settings. This prevents creating a broadcast that cannot be delivered.
+
+Go to [Broadcasts](https://joinsayless.com/broadcasts).
+
+> Slack broadcasts are available on the Enterprise plan. Slack channel setup itself starts on the Business plan, but broadcast creation uses the Enterprise-gated broadcast capability.
+
+| Requirement | Setup page |
+| --- | --- |
+| Workspace Slack connection | [Settings \> Slack](https://joinsayless.com/settings/slack) |
+| Connected Slack channels | [Settings \> Slack \> Channels](https://joinsayless.com/settings/slack/channels) |
+| Broadcast profiles | [Settings \> Slack](https://joinsayless.com/settings/slack) |
+
+## Create a broadcast
+
+Start from the Broadcasts page.
+
+### Start a new broadcast
+
+Choose **New broadcast** from the broadcast list. If the required workspace integration is missing, Sayless will direct an admin to the relevant settings page.
+
+New broadcast actions are available from the Broadcasts page and from the command menu when you are in a broadcast context.
+
+### Choose a sender profile
+
+Broadcast profiles define who or what the message is sent from. Admins can manage broadcast profiles from Slack settings.
+
+If no usable profile exists, configure one before drafting operational broadcasts.
+
+### Select a destination
+
+Choose where the broadcast should be sent. Available destinations depend on connected channels and workspace setup.
+
+For Slack, destinations come from connected workspace channels.
+
+## Compose the message
+
+Use the broadcast editor to write the message.
+
+### Editor
+
+The editor supports rich text formatting, links, lists, mentions, images, and attachments where available.
+
+### Preview
+
+Review the message before sending. Broadcasts are easier to fix before delivery than after they are sent.
+
+### Validation
+
+Sayless checks required fields before a broadcast can be sent.
+
+Common blockers include missing workspace Slack connection, missing sender profile, missing destination, or incomplete message content.
+
+> Broadcasts are outbound messages. Use inbox replies when responding inside an existing customer conversation.
+
+## Send the broadcast
+
+Only send when the destination and content are correct.
+
+### Send immediately
+
+Use send immediately when the message should go out now.
+
+### Save as draft
+
+Keep the broadcast as a draft when it needs review or more editing.
+
+### Fix setup issues
+
+If broadcast creation is blocked, check the workspace integration and broadcast profile settings.
+
+## Delivery expectations
+
+Broadcasts are not inbox replies.
+
+### Broadcasts are outbound
+
+Use broadcasts for announcements and updates. Use conversation replies when responding inside an existing customer thread.
+
+### Sent broadcasts are limited
+
+After a broadcast is sent, editing and cancellation actions may no longer be available. Duplicate the broadcast when you need a new version.

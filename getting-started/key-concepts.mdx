@@ -1,9 +1,9 @@
 ---
 title: "Key concepts"
-description: "Learn the core Sayless concepts—workspaces, inboxes, tickets, contacts, and broadcasts—so you can navigate and configure customer workflows."
+description: "Understand the core Sayless concepts so you can navigate the workspace and set up customer workflows with less guesswork."
 ---
 
-Sayless is built around the flow of customer work: messages come in as conversations, conversations create follow-up work, and records keep the customer context attached. This page explains the main concepts you will see across the app.
+Sayless is built around the flow of post-sales customer work: messages come in as conversations, conversations create follow-up work, and records keep the customer context attached. This page explains the main concepts you will see across the app.
 
 ## Overview
 
@@ -11,12 +11,23 @@ Most Sayless work starts in the inbox.
 
 A customer or partner sends a message through a connected channel such as Email, WhatsApp, Telegram, Slack, or Microsoft Teams. That message becomes a conversation. Your team can reply, assign an owner, apply labels, update the status, snooze it, or create a ticket when the work needs more structure.
 
-As the work grows, Sayless keeps the surrounding context in records:
+As the work grows, Sayless keeps the surrounding context in records. This is what makes it useful for customer success, implementation, support, renewals, and other post-sales teams that need to understand the account before acting.
 
 - **Companies** for accounts and organizations.
 - **Contacts** for people.
 - **Metrics** for event data and charts.
 - **Reports** and **dashboards** for review and visibility.
+
+| Concept | Primary page | What it is for |
+| --- | --- | --- |
+| Conversations | [Inbox](https://joinsayless.com/inbox) | Message threads from connected channels. |
+| Tickets | [Tickets](https://joinsayless.com/tickets) | Trackable follow-up work. |
+| Companies | [Companies](https://joinsayless.com/companies) | Account-level context. |
+| Contacts | [Contacts](https://joinsayless.com/contacts) | Person-level context. |
+| Metrics | [Metrics](https://joinsayless.com/metrics) | Event data and charts. |
+| Reports | [Reports](https://joinsayless.com/reports) | Saved analysis and dashboards. |
+
+> Top-level product links such as `/inbox`, `/tickets`, `/companies`, `/reports`, and `/settings` require an authenticated user. When you are signed in, Sayless opens the route in your active workspace.
 
 ## Basic concepts
 
@@ -44,6 +55,8 @@ Supported conversation channels include Email, WhatsApp, Telegram, Slack, and Mi
 
 Once a channel is connected, incoming messages appear as conversations in the inbox.
 
+> Channel settings are workspace-level. If you cannot open a channel settings page, check your role, plan, and whether the feature is enabled for the workspace.
+
 ## Conversations
 
 Conversations are inbound message threads from connected channels. They are the starting point for most customer work in Sayless.
@@ -61,6 +74,14 @@ The inbox gives you focused views for different kinds of conversation work:
 - **Snoozed** shows conversations paused until a later time.
 
 Use these views to separate team triage from your own assigned work.
+
+| View | URL | Use it when |
+| --- | --- | --- |
+| All | [Inbox \> All](https://joinsayless.com/inbox/all) | Reviewing active conversations that are not snoozed. |
+| Assigned to me | [Inbox \> Assigned to me](https://joinsayless.com/inbox/assigned-to-me) | Working through your queue. |
+| Shared | [Inbox \> Shared](https://joinsayless.com/inbox/shared) | Following conversations you participate in. |
+| Unassigned | [Inbox \> Unassigned](https://joinsayless.com/inbox/unassigned) | Triage work that needs an owner. |
+| Snoozed | [Inbox \> Snoozed](https://joinsayless.com/inbox/snoozed) | Reviewing paused conversations. |
 
 ### Conversation properties
 
@@ -97,6 +118,12 @@ Tickets are organized into views:
 - **Unassigned tickets** shows tickets without an owner.
 
 Ticket views support filtering, search, sorting, table layouts, and grouped views where available.
+
+| View | URL | Use it when |
+| --- | --- | --- |
+| All tickets | [Tickets \> All](https://joinsayless.com/tickets/all) | Reviewing team-wide follow-up. |
+| My tickets | [Tickets \> My tickets](https://joinsayless.com/tickets/my-tickets) | Working through assigned tickets. |
+| Unassigned tickets | [Tickets \> Unassigned](https://joinsayless.com/tickets/unassigned) | Triage work that needs an owner. |
 
 ### Ticket properties
 
@@ -155,7 +182,7 @@ Reports and dashboards help teams review activity and performance across the wor
 
 Reports contain the data views your team wants to inspect. Dashboards organize reports into a broader view so teams can monitor related work together.
 
-Use reports for specific analysis. Use dashboards when several reports should be reviewed together.
+Use reports for specific analysis. Use dashboards when several reports should be reviewed together, such as a customer success operating review, onboarding health review, renewal pipeline review, or support escalation review.
 
 ## Integrations
 
@@ -172,6 +199,15 @@ Conversation integrations bring messages into Sayless:
 - Microsoft Teams
 
 These integrations usually require workspace admin setup. Some also require personal account connections or plan access.
+
+| Capability | First included plan |
+| --- | --- |
+| Email | Free |
+| Linear and Jira | Free |
+| API keys, OAuth apps, and webhooks | Startup |
+| Slack, Telegram, and WhatsApp | Business |
+| Microsoft Teams | Enterprise |
+| Slack broadcasts | Enterprise |
 
 ### Work tracking integrations
 

@@ -79,7 +79,7 @@
               {
                 "group": "Companies",
                 "pages": [
-                  "companies",
+                  "companies/companies",
                   "companies/files-and-notes",
                   "companies/pricing",
                   "companies/properties"
@@ -116,8 +116,8 @@
                   "integrations/microsoft-teams",
                   "integrations/whatsapp",
                   "integrations/telegram",
-                  "integrations/linear",
-                  "integrations/jira"
+                  "integrations/jira",
+                  "integrations/linear"
                 ]
               },
               {

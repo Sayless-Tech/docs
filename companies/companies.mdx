@@ -1,0 +1,106 @@
+---
+title: "Companies"
+description: "Use companies to keep account-level context connected to conversations, tickets, contacts, files, notes, pricing, and metrics."
+---
+
+Companies represent accounts or organizations. Use them when post-sales customer work needs a shared account record instead of living only inside conversations and tickets.
+
+## Overview
+
+A company page brings together the account context your team needs before replying, investigating, or reviewing customer activity.
+
+Companies can include overview details, conversations, tickets, contacts, peers, metrics, files, notes, and pricing records.
+
+Company records are also used by channel integrations. Slack, WhatsApp, Telegram, and Microsoft Teams channel mappings can attach group or channel conversations to the right company.
+
+Go to [Companies](https://joinsayless.com/companies).
+
+| Company tab | Route pattern | What it shows |
+| --- | --- | --- |
+| Overview | `/companies/{companySlug}` | Account summary and related activity. |
+| Metrics | `/companies/{companySlug}/metrics` | Company-level metric activity. |
+| Conversations | `/companies/{companySlug}/conversations` | Linked conversations. |
+| Tickets | `/companies/{companySlug}/tickets` | Linked tickets. |
+| Contacts | `/companies/{companySlug}/contacts` | People attached to the company. |
+| Peers | `/companies/{companySlug}/peers` | Related companies. |
+| Files | `/companies/{companySlug}/files` | Company documents. |
+| Pricing | `/companies/{companySlug}/pricing` | Commercial records. |
+| Notes | `/companies/{companySlug}/notes` | Written account context. |
+
+## Work with companies
+
+Use the company list for account management.
+
+### Create a company
+
+Create a company from the company list or command menu when you need a new account record.
+
+Company creation can be limited by plan or permissions. If creation is unavailable, check billing limits and your role.
+
+> The Free plan includes up to `150` companies. Startup, Business, and Enterprise are unlimited in the current client policy. Admins can review [Settings \> Billing](https://joinsayless.com/settings/billing) when creation is unavailable.
+
+### Edit a company
+
+Edit company details when the name, owner, labels, sector, employee count, website, or other attributes change.
+
+Company edits open in a guide-style panel so you can update details without losing the surrounding list or company context.
+
+### Delete a company
+
+Delete a company only when the record should be removed. Bulk delete actions may be available from the company list.
+
+Deleting a company can remove the account-level place where related conversations, tickets, files, notes, and metrics are organized. Use labels or ownership changes when the company should remain available but be categorized differently.
+
+## Company details
+
+Open a company to review account-level context.
+
+### Overview
+
+The overview summarizes key company details and related activity.
+
+Use it before replying to a conversation from that account. It gives faster context than jumping across separate lists.
+
+### Conversations
+
+Company conversations show message threads linked to the company.
+
+You can open a conversation detail from the company page and navigate back to the company context.
+
+### Tickets
+
+Company tickets show follow-up work linked to the company.
+
+The company ticket list supports filtering, sorting, pagination, row menus, and deletion actions.
+
+### Contacts
+
+Company contacts show people associated with the account.
+
+### Peers
+
+Peers connect related companies.
+
+Use peers for parent-child accounts, partner relationships, or companies that should be reviewed together.
+
+### Metrics
+
+Company metrics show event or product activity connected to the account.
+
+## Filtering and views
+
+Use the company list to manage many records.
+
+### Search
+
+Search helps find companies by name and visible fields.
+
+### Filters and columns
+
+Filters and columns help compare owner, labels, sector, size, updated time, and other company fields.
+
+The company table includes fields for profile, labels, size, funding, tags, updated time, and other text fields where available.
+
+### Bulk actions
+
+Select multiple companies when you need to apply list-level actions such as deletion.

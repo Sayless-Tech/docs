@@ -1,22 +1,70 @@
 ---
-title: "Account security and access"
-description: "Manage Sayless login methods, password, connected accounts, and review or leave the workspaces your user has access to from one place."
+title: "Security and access"
+description: "Manage how you sign in, what workspaces you can access, and which accounts are connected to Sayless."
 ---
+
+Security and access settings help protect your account and clarify what you can do in each workspace.
 
 ## Overview
 
+Your access in Sayless is shaped by your account, your workspace memberships, and your role in each workspace.
+
+Admins manage organization-level access from workspace settings. Individual users manage personal account details from profile, access, and connected account settings.
+
+If you cannot see a setting or action, the most likely reasons are role permissions, plan availability, missing workspace setup, or missing personal account connection.
+
+| Task | Page |
+| --- | --- |
+| Review personal access | [Settings \> Access](https://joinsayless.com/settings/access) |
+| Connect personal accounts | [Settings \> Connected Accounts](https://joinsayless.com/settings/connected-accounts) |
+| Manage workspace security | [Settings \> Security](https://joinsayless.com/settings/security) |
+| Manage members | [Settings \> Members](https://joinsayless.com/settings/members) |
+
 ## Login and authentication
 
-### Password
+Use access settings when you need to review how you sign in or which identity is attached to your account.
 
-### Google login
+### Work email
+
+Use your work email when joining or creating a workspace. This makes invitations, domain-based access, and member management easier for admins.
 
 ### Connected accounts
 
-## Access management
+Connected accounts are personal integrations attached to your user account. They are different from workspace integrations, which affect the whole workspace.
 
-### Active workspaces
+For example, a workspace admin may connect Slack or Telegram for the workspace, while an individual teammate may still need to connect a personal account for actions that happen under their identity.
 
-### Workspace role
+| Connection type | Scope | Example |
+| --- | --- | --- |
+| Personal account | Your user account | Personal Slack, Telegram, Linear, or Jira connection. |
+| Workspace integration | Entire workspace | Workspace Slack, Telegram bot, WhatsApp, Email forwarding. |
+
+> If an integration says an admin connection is required, connect the workspace integration first. Personal account setup cannot replace missing workspace setup.
+
+### Email verification
+
+Some login or account flows may require email verification before you can continue.
+
+The current app includes email token routes for authentication and error states, so verification links may open directly into Sayless.
+
+## Workspace access
+
+Workspace access controls what you can see and manage.
+
+### Member role
+
+Your member role determines whether you can manage admin settings such as billing, API keys, webhooks, members, and integrations.
+
+Admin-only settings are hidden or blocked for non-admins.
+
+### Workspace switching
+
+If you belong to multiple workspaces, make sure you are in the correct workspace before making changes. Use the workspace switcher or `O` then `W` when available.
+
+Top-level app links open in your active workspace. If a link opens the wrong workspace, switch workspaces before continuing.
 
 ### Leaving a workspace
+
+If you no longer need access to a workspace, use member or access settings to leave, when permitted.
+
+Admins should make sure ownership and assignments are handed off before leaving or deactivating members.

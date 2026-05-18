@@ -1,4 +1,59 @@
 ---
 title: "Metrics"
-description: "Track product usage and customer behavior in Sayless by capturing events, defining metrics, and visualizing the results in charts and dashboards."
+description: "Create and manage metrics for event data, details, integrations, and charts."
 ---
+
+Metrics track event-style data in Sayless. Use them when customer or product activity needs to be collected, inspected, and visualized for post-sales workflows such as onboarding progress, account usage, renewals, and health reviews.
+
+## Overview
+
+A metric has details, incoming events, integration information, and chart views. Metrics can also be connected to companies for account-level analysis.
+
+Go to [Metrics](https://joinsayless.com/metrics).
+
+> Metrics are available on Startup and higher. The Free plan has a metric limit of `0`; Startup includes up to `3` metrics, Business includes up to `10`, and Enterprise is unlimited in the current client policy.
+
+| Metric page | Route pattern | Use it for |
+| --- | --- | --- |
+| Metric list | `/metrics` | Create and manage metrics. |
+| Metric events | `/metrics/events` | Inspect raw event data. |
+| Metric details | `/metrics/{metricName}` | Review one metric. |
+| Metric chart | `/metrics/{metricName}/chart` | Visualize one metric. |
+
+## Work with metrics
+
+Use the metrics list to create and manage metric definitions.
+
+### Create a metric
+
+Create a metric when you need to start collecting a new kind of event data.
+
+### Edit a metric
+
+Edit a metric when its name, description, status, or integration details change.
+
+### Delete a metric
+
+Delete a metric only when it should no longer be tracked. Bulk delete actions may be available from the metrics list.
+
+## Metric details
+
+Open a metric to review its configuration and data.
+
+### Status
+
+Status shows whether the metric is receiving data or otherwise available.
+
+### Created by
+
+Created by identifies who added the metric.
+
+### Integration endpoint
+
+Integration details show how external systems can send event data to the metric.
+
+> Metric URLs are based on the metric path. If a metric is renamed, use the app’s current link instead of an old copied URL.
+
+## Filtering and views
+
+Use search, filters, sorting, columns, and pagination to manage the metric list.
