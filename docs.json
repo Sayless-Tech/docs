@@ -8,7 +8,10 @@
     "light": "#FF5601",
     "dark": "#FF5601"
   },
-  "favicon": "/favicon.ico",
+  "favicon": {
+    "light": "/images/favicon.svg",
+    "dark": "/images/favicon.svg"
+  },
   "icons": {
     "library": "lucide"
   },
@@ -140,8 +143,8 @@
         "directory": "card"
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/SaylessLogo_1.svg",
+    "dark": "/images/SaylessLogo_1.svg"
   },
   "navbar": {
     "links": [],
