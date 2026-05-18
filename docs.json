@@ -177,5 +177,12 @@
   },
   "thumbnails": {
     "appearance": "dark"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/getting-started/quickstart",
+      "permanent": true
+    }
+  ]
 }
