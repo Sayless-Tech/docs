@@ -1,15 +1,15 @@
 ---
 title: "Reports"
-description: "Create and review reports that help your team understand workspace activity."
+description: "Create report workspaces that organize related dashboard tiles."
 ---
 
-Reports are saved views of data your team wants to inspect.
+Reports are collections of dashboard tiles. Use a report to organize related charts and data views for a workflow, team, account segment, or operating review.
 
 ## Overview
 
-Use reports when you need a repeatable view into activity, performance, or customer work. Post-sales teams commonly use reports to review open follow-up, conversation volume, account health signals, renewal activity, and operational trends.
+Use reports when several related dashboard views should live together. Post-sales teams commonly create reports for support operations, onboarding health, renewal reviews, account activity, conversation volume, and follow-up tracking.
 
-Reports share chart-building concepts with metrics, but they live in the reporting area and can be grouped into dashboards.
+Each report opens as a grid. Dashboard tiles inside the report can be arranged, resized, opened, duplicated, or removed depending on your permissions.
 
 Go to [Reports](https://joinsayless.com/reports), or use `G` then `R`.
 
@@ -17,47 +17,65 @@ Go to [Reports](https://joinsayless.com/reports), or use `G` then `R`.
 
 | Report surface | Route pattern | Use it for |
 | --- | --- | --- |
-| Report list | `/reports` | Create and manage reports. |
-| Report detail | `/reports/{reportPath}` | Review or edit one report. |
-| Dashboard detail | `/reports/dashboard/{dashboardPath}` | Review dashboards. |
+| Report list | `/reports` | Create, search, sort, filter, open, duplicate, share, or delete reports. |
+| Report detail | `/reports/{reportPath}` | Arrange and review the dashboard tiles in one report. |
+| Dashboard detail | `/reports/dashboard/{dashboardPath}` | Open and configure one dashboard tile. |
 
 ## Work with reports
 
-The reports area supports creating, opening, editing, clearing, sharing, and deleting reports depending on permissions.
+The reports area supports creating, opening, editing, duplicating, clearing, sharing, and deleting reports depending on permissions.
 
 ### Create a report
 
-Create a report when your team needs a new saved view.
+Create a report when your team needs a new place to organize related dashboard tiles.
 
-The reports page exposes a new report action, search, sort, filter, and deletion controls.
+The reports page exposes a new report action, search, sort, filter, multi-select deletion, row menus, and command menu actions.
 
 ### Open a report
 
-Open a report to review its charts, filters, and configured data source.
+Open a report to review the dashboard tiles inside it.
 
-Report routes have dedicated detail pages, so a report can be opened directly by URL.
+Report detail pages use a grid layout. Users with update access can move and resize dashboard tiles. Layout and description changes are saved from the report header.
 
 ### Edit a report
 
-Edit a report when the name, description, or chart configuration needs to change.
+Edit a report when the name, icon, description, layout, or sharing settings need to change.
 
-Edits are handled from report detail controls and menus.
+The report name can be edited from the report header. The report description can be shown in the body and saved with layout changes. The report menu also exposes edit actions where available.
+
+### Duplicate a report
+
+Duplicate a report when you want a copy of the report and its dashboards.
+
+Duplicating a report creates a new report and copies its dashboard tiles, so the new report can be adjusted without changing the original.
+
+### Clear a report
+
+Clear a report when you want to remove all dashboard tiles but keep the report itself.
+
+Clearing a report deletes the dashboards associated with the report and resets the report layout.
 
 ### Delete a report
 
 Delete a report only when it should no longer be available.
 
-If a report appears on a dashboard, consider how deletion affects that dashboard before removing it.
+Deleting a report also removes its associated dashboards and membership records.
 
 ## Report details
 
-Report details show the configured report content.
+Report details show the dashboard tiles inside the report.
 
-### Charts
+### Dashboard grid
 
-Charts visualize the selected data.
+The report body is a grid of dashboards. Each tile previews one dashboard’s configured chart or data view.
 
-Available chart types include line, bar, stacked bar, pie, table, single value, summary, and circle-style visualizations where configured.
+Users with update access can drag tiles, resize them horizontally, and save the new layout. Opening a tile takes you to the dashboard detail page.
+
+### Dashboard tiles
+
+Each dashboard tile has its own data source, filters, visualization, aggregation, interval, sorting, and description. Those settings are configured on the dashboard detail page, not directly on the report container.
+
+Available dashboard chart types include line, bar, stacked bar, pie, table, single value, summary, and circle-style visualizations where configured.
 
 | Chart type | Best for |
 | --- | --- |
@@ -67,9 +85,11 @@ Available chart types include line, bar, stacked bar, pie, table, single value, 
 | Table | Exact rows and values. |
 | Single value or summary | One important number. |
 
-### Filters
+### Report description
 
-Filters narrow the data shown in the report.
+Use the report description to explain the review or operating question the report is meant to support.
+
+The description is limited in the app and is best kept short: for example, “Weekly onboarding health review” or “Renewal risk indicators for enterprise accounts.”
 
 ### Sharing
 
@@ -89,16 +109,18 @@ Workspace admins can read reports in the workspace. For private reports, non-adm
 
 ## Report controls
 
-Report controls help define what data appears and how it is displayed.
+Report controls help manage the report container and the dashboard tiles inside it.
 
-### Data source
+### Create dashboard
 
-Choose the source data the report should use.
+Use **New dashboard** from a report detail page to add a new dashboard tile to the report.
 
-### Description
+Dashboard creation is only available when you have permission to create dashboards in that report and the workspace plan has dashboard capacity.
 
-Use descriptions to explain what the report is meant to answer.
+### Save and revert layout changes
 
-### Company comparison
+When you move or resize dashboard tiles, the report shows save and revert actions. Save updates the report layout. Revert restores the last saved layout and description.
 
-Use company comparison when the report should compare account-level activity.
+### Open raw data
+
+Dashboard actions can take you back to the underlying source data when the dashboard has a configured data source. Supported destinations include tickets, broadcasts, conversations, and metric events.

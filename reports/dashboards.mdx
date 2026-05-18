@@ -1,60 +1,80 @@
 ---
 title: "Dashboards"
-description: "Group reports into dashboards for broader review."
+description: "Configure individual dashboard tiles inside reports."
 ---
 
-Dashboards organize reports together so teams can review related data in one place.
+Dashboards are individual chart or data-view tiles inside reports.
 
 ## Overview
 
-Use dashboards when several reports should be viewed together.
+Use dashboards when you need one saved view of data: a chart, table, summary, single value, or another supported visualization.
 
-The Reports route opens the dashboard list by default. Individual report details and dashboard details have separate routes.
+Dashboards belong to reports. The Reports page opens the report list. A report detail page shows the dashboards inside that report. Opening a dashboard takes you to the dashboard detail page, where you configure the chart and save dashboard settings.
 
 Go to [Reports](https://joinsayless.com/reports).
 
 > Dashboards are available on Startup and higher. The Free plan has a dashboard limit of `0`; Startup includes up to `9` dashboards, Business includes up to `50`, and Enterprise is unlimited in the current client policy.
 
-| Dashboard action | Where |
-| --- | --- |
-| Create dashboard | Reports list |
-| Open dashboard | Dashboard card or dashboard URL |
-| Navigate dashboards | Dashboard detail header |
-| Edit or delete dashboard | Dashboard menus |
+| Dashboard surface | Route pattern | Use it for |
+| --- | --- | --- |
+| Report detail | `/reports/{reportPath}` | Review, arrange, and open dashboard tiles in a report. |
+| Dashboard detail | `/reports/dashboard/{dashboardPath}` | Configure and save one dashboard. |
+| Dashboard menus | Report tile or dashboard detail | Duplicate, edit, copy, download, delete, or open raw data where available. |
 
 ## Work with dashboards
 
-Dashboards can be created, opened, edited, navigated, and deleted depending on permissions.
+Dashboards can be created, opened, configured, saved, duplicated, copied as images, downloaded as images, edited, and deleted depending on permissions.
 
 ### Create a dashboard
 
-Create a dashboard when a team or workflow needs a shared reporting surface.
+Create a dashboard when a report needs a new chart or saved data view.
 
-Dashboard creation may be limited by billing plan or workspace limits.
+Dashboards are created from inside a report. Use **New dashboard** on a report detail page, or use the command menu when a report is active.
 
 > Dashboard creation starts on the Startup plan. Admins can review [Settings \> Billing](https://joinsayless.com/settings/billing) if dashboard creation is unavailable.
 
 ### Open a dashboard
 
-Open a dashboard to review the reports inside it.
+Open a dashboard to review and configure its saved chart or data view.
 
-Dashboard detail pages include navigation controls for moving between dashboards.
+The dashboard detail page includes a back button to return to the parent report or report list. It also includes controls for chart settings and save/revert actions when dashboard settings change.
 
-### Share a dashboard
+### Configure a dashboard
 
-Dashboard access follows the same permission model as reports: general access can make a dashboard visible more broadly, and member-specific access can grant named teammates Read, Read & Write, or Admin access.
+Dashboard configuration is stored on the dashboard itself.
 
-| Permission | What it allows |
-| --- | --- |
-| Read | View the dashboard. |
-| Read & Write | View and edit dashboard layout or contents. |
-| Admin | View, edit, share, and delete the dashboard. |
+Common controls include:
 
-Dashboards can also inherit practical visibility from the reports they contain. If someone can open a dashboard but cannot read a report inside it, they may need access to the underlying report as well.
+- **Data source** for choosing the underlying data.
+- **Filters** for narrowing the data.
+- **Segment and group controls** for splitting results.
+- **Sort** for ordering the output.
+- **Visualization** for selecting the chart type.
+- **Interval** for grouping time-based data.
+- **Aggregation** for deciding how values are summarized.
+- **Description** for explaining the dashboard.
 
-### Navigate dashboards
+### Save dashboard settings
 
-Use dashboard navigation to move between dashboards from the report area.
+When dashboard settings change, the header shows save and revert actions. Save stores the encoded dashboard settings. Revert resets the working chart state to the last saved configuration.
+
+### Duplicate a dashboard
+
+Duplicate a dashboard when you want another tile with the same starting configuration.
+
+Duplicating creates a copy that can be edited separately. The duplicate can remain in the same report or be copied into another report through supported flows.
+
+### Copy or download chart images
+
+Dashboard context menus support copying or downloading the chart as an image where available.
+
+Use this when you need to paste a chart into a customer update, internal review, or leadership summary without rebuilding the view elsewhere.
+
+### Open raw data
+
+Use **Go to raw data** when you need to inspect the records behind a dashboard.
+
+Depending on the dashboard data source, Sayless can route you to tickets, broadcasts, inbox conversations, or metric events with report parameters applied.
 
 ### Delete a dashboard
 
@@ -62,21 +82,25 @@ Delete a dashboard only when it should no longer be available.
 
 ## Dashboard contents
 
-Dashboard content is built from reports.
+Dashboard content is built from a saved chart configuration.
 
-### Add reports
+### Data source
 
-Add reports that belong together in the same review workflow.
+Choose the data source the dashboard should use.
 
-Use dashboards to group reports by team, account segment, operational process, or leadership review.
+Supported raw-data destinations in the current client include tickets, broadcasts, conversations, and metric events.
 
-### Arrange reports
+### Filters and grouping
 
-Organize reports so the most important views are easy to scan.
+Use filters, segments, groups, and sorting to narrow the dashboard to the specific question it should answer.
 
-### Empty states
+### Visualization
 
-If a dashboard is empty, add a report or create a new report first.
+Choose the visualization that best fits the data. Available chart types include line, bar, stacked bar, pie, table, single value, summary, and circle-style visualizations where configured.
+
+### Placement in a report
+
+Dashboard placement is managed from the parent report. Open the report to move or resize dashboard tiles and save the report layout.
 
 ## Dashboard maintenance
 
@@ -84,12 +108,12 @@ Dashboards should stay useful as reporting needs change.
 
 ### Rename or edit dashboards
 
-Update the dashboard name when its purpose changes.
+Update the dashboard name, icon, or description when its purpose changes.
 
-### Remove outdated reports
+### Update stale configuration
 
-Remove reports that no longer answer a current question.
+Change filters, data source, aggregation, interval, or visualization when the saved chart no longer answers the right question.
 
 ### Delete unused dashboards
 
-Delete dashboards that are no longer part of a team workflow.
+Delete dashboards that are no longer part of a report workflow.
