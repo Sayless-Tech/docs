@@ -1,37 +1,247 @@
 ---
-title: "Key Concepts"
+title: "Key concepts"
+description: "Understand the core Sayless concepts so you can navigate the workspace and set up customer workflows with less guesswork."
 ---
 
-Understanding the core model makes every other guide easier to follow. This page explains the four foundational concepts you'll encounter throughout the platform.
+Sayless is built around the flow of customer work: messages come in as conversations, conversations create follow-up work, and records keep the customer context attached. This page explains the main concepts you will see across the app.
 
-## Workspaces
+## Overview
 
-A workspace is the top-level container for your organization. It holds all projects, members, settings, and billing information. Every user belongs to at least one workspace, and each workspace operates independently with its own configuration and data.
+Most Sayless work starts in the inbox.
 
-Workspaces are identified by a unique slug used in URLs and API calls.
+A customer or partner sends a message through a connected channel such as Email, WhatsApp, Telegram, Slack, or Microsoft Teams. That message becomes a conversation. Your team can reply, assign an owner, apply labels, update the status, snooze it, or create a ticket when the work needs more structure.
 
-## Projects
+As the work grows, Sayless keeps the surrounding context in records:
 
-Projects are the primary unit of work within a workspace. Each project has its own members, settings, and data. You can create as many projects as you need, and the same user can belong to multiple projects with different roles in each.
+- **Companies** for accounts and organizations.
+- **Contacts** for people.
+- **Metrics** for event data and charts.
+- **Reports** and **dashboards** for review and visibility.
 
-<Info>
-  Project-level role overrides take precedence over workspace-level roles. A user who is a Viewer at the workspace level can be granted Admin access on a specific project.
-</Info>
+## Basic concepts
 
-## Members and roles
+### Workspace
 
-Every workspace member is assigned a role that controls what they can see and do:
+A workspace is the container for your team’s conversations, tickets, records, integrations, reports, members, settings, and billing.
 
-| Role | Description |
-| --- | --- |
-| **Admin** | Full access to workspace settings, billing, and all projects. Can invite and remove members. |
-| **Member** | Can create and manage projects they belong to. Cannot access billing or workspace-level settings. |
-| **Viewer** | Read-only access to projects they are added to. Cannot create or modify content. |
+Each workspace has its own members, permissions, channels, labels, statuses, API keys, webhooks, and connected apps. If you belong to more than one organization, you may have access to more than one workspace.
 
-Custom roles with granular permissions are available on higher-tier plans. See [roles and permissions](/platform/administration/roles-permissions) for details.
+Admins configure the workspace from settings. Team members usually spend most of their time in the inbox, tickets, records, broadcasts, and reports.
 
-## API credentials
+### Members and roles
 
-API keys allow external tools and services to interact with your workspace programmatically. Each key is scoped to a specific workspace and can be restricted to read-only or read-write access.
+Members are the people who can access a workspace. Roles control what each person can manage.
 
-Treat API keys as secrets—rotate them immediately if they are exposed. See the API reference for authentication details and endpoint documentation.
+Admins can invite teammates, change roles, manage billing, configure integrations, create API keys, set up webhooks, and update workspace-level settings.
+
+Team members can work from the areas available to them, such as conversations, tickets, companies, contacts, metrics, broadcasts, and reports.
+
+### Channels
+
+Channels are the sources Sayless uses to receive and send messages.
+
+Supported conversation channels include Email, WhatsApp, Telegram, Slack, and Microsoft Teams. Each channel has its own setup flow. Some channels require an admin, a workspace integration, a connected personal account, or a plan that includes the feature.
+
+Once a channel is connected, incoming messages appear as conversations in the inbox.
+
+## Conversations
+
+Conversations are inbound message threads from connected channels. They are the starting point for most customer work in Sayless.
+
+A conversation can be replied to directly, assigned to a teammate, linked to a company, labeled, snoozed, marked as spam, or used to create a ticket.
+
+### Inbox views
+
+The inbox gives you focused views for different kinds of conversation work:
+
+- **All conversations** shows active conversations that are not snoozed.
+- **Assigned to me** shows conversations owned by you.
+- **Shared** shows conversations you are subscribed to or participating in.
+- **Unassigned** shows conversations without an owner.
+- **Snoozed** shows conversations paused until a later time.
+
+Use these views to separate team triage from your own assigned work.
+
+### Conversation properties
+
+Conversation properties describe the current state and ownership of a conversation.
+
+Common properties include:
+
+- **Status** for where the conversation sits in the workflow.
+- **Assignee** for who owns the next response or action.
+- **Labels** for categorizing conversations.
+- **Company** for linking the conversation to an account.
+- **Subject** for clarifying the thread.
+- **Snooze** for hiding a conversation until later.
+- **Spam** for removing unwanted conversations from active views.
+
+### Replies
+
+Replies are written from the conversation detail view. Depending on the source channel, replies may support recipients, formatted text, files, inline images, and message history.
+
+Use replies for direct customer communication. Use tickets when the conversation creates work that needs tracking beyond the reply.
+
+## Tickets
+
+Tickets track follow-up work. A ticket is useful when a conversation needs an owner, a due date, a status, comments, external issue links, or a longer-running resolution process.
+
+Tickets can be created from the tickets page or from a conversation, which keeps the original context attached.
+
+### Ticket views
+
+Tickets are organized into views:
+
+- **All tickets** shows the full ticket list.
+- **My tickets** shows tickets assigned to you.
+- **Unassigned tickets** shows tickets without an owner.
+
+Ticket views support filtering, search, sorting, table layouts, and grouped views where available.
+
+### Ticket properties
+
+Ticket properties describe the work and its current state.
+
+Common properties include:
+
+- **Status** for workflow progress.
+- **Assignee** for ownership.
+- **Labels** for categorization.
+- **Due date** for time-sensitive work.
+- **Linked conversations** for customer context.
+- **External links** for Linear or Jira issues.
+
+### Comments and activity
+
+Tickets include comments and activity history. Comments are for team discussion. Activity history records important changes such as status updates, assignee changes, label changes, and linked conversation changes.
+
+Use comments when the work needs internal discussion. Use the ticket description for the durable summary of the task.
+
+## Records
+
+Records keep customer context organized outside individual conversations and tickets.
+
+The main record types are Companies, Contacts, and Metrics.
+
+### Companies
+
+Companies represent accounts or organizations. A company can have conversations, tickets, contacts, files, notes, pricing records, peers, and metrics.
+
+Company pages are useful when you need an account-level view of what has happened, what is open, and what context the team should know before replying or taking action.
+
+### Contacts
+
+Contacts represent people. A contact can be linked to a company and can have related conversations and tickets.
+
+Use contacts when you need to understand who is involved in customer work and how their communication connects to the broader account.
+
+### Metrics
+
+Metrics represent event data your team wants to track. Metrics can have events, details, integration settings, and charts.
+
+Use metrics when customer or product activity should be reviewed over time, compared by company, or visualized in charts.
+
+## Broadcasts
+
+Broadcasts are outbound messages sent through configured destinations.
+
+Use broadcasts when your team needs to send an announcement, update, or message to a connected audience. Broadcasts can be created, edited, duplicated, sent, canceled, or deleted depending on their state and your permissions.
+
+Broadcasts rely on the relevant channel setup. For example, Slack broadcasts use configured Slack workspace settings and broadcast profiles.
+
+## Reports and dashboards
+
+Reports and dashboards help teams review activity and performance across the workspace.
+
+Reports contain the data views your team wants to inspect. Dashboards organize reports into a broader view so teams can monitor related work together.
+
+Use reports for specific analysis. Use dashboards when several reports should be reviewed together.
+
+## Integrations
+
+Integrations connect Sayless to the tools and channels your team already uses.
+
+### Conversation integrations
+
+Conversation integrations bring messages into Sayless:
+
+- Email
+- WhatsApp
+- Telegram
+- Slack
+- Microsoft Teams
+
+These integrations usually require workspace admin setup. Some also require personal account connections or plan access.
+
+### Work tracking integrations
+
+Linear and Jira connect tickets to external issue trackers.
+
+Use these integrations when customer follow-up needs to continue in an engineering, product, or operations workflow outside Sayless. A ticket can create or link to an external issue so the customer context remains connected.
+
+### Developer integrations
+
+API keys, OAuth apps, and webhooks let teams connect Sayless to internal systems.
+
+Admins can create API keys, manage OAuth apps, configure webhooks, and review webhook delivery failures from settings.
+
+## Taking actions
+
+Actions are the changes you make in Sayless: replying to a conversation, assigning work, applying a label, changing a status, creating a ticket, connecting a channel, or deleting a record.
+
+### How actions work
+
+Most actions are available from more than one place.
+
+For example, to assign a ticket you may be able to:
+
+- Open the ticket and change the assignee property.
+- Use a row or context menu from a ticket list.
+- Use the command menu when the ticket is active.
+- Use a keyboard shortcut where one is available.
+
+The same pattern applies across conversations, tickets, companies, contacts, metrics, broadcasts, and reports: open the item, use the visible control, or use a menu for more actions.
+
+### Bulk actions
+
+List and table views support bulk work where available. You can select multiple rows and perform actions such as deleting items, changing properties, or applying updates to several records at once.
+
+Bulk actions are useful for cleanup, triage, and large updates, but they may be limited by your permissions.
+
+### Keyboard shortcuts
+
+Keyboard shortcuts help you move through Sayless quickly.
+
+Press `?` anywhere in the app to open the shortcuts panel and search the full list.
+
+Common navigation shortcuts include:
+
+- `G` then `I` to open the inbox.
+- `G` then `T` to open tickets.
+- `G` then `B` to open broadcasts.
+- `G` then `C` to open companies.
+- `G` then `K` to open contacts.
+- `G` then `M` to open metrics.
+- `G` then `E` to open metric data.
+- `G` then `R` to open reports.
+- `G` then `S` to open settings.
+
+Open shortcuts use `O` then another key:
+
+- `O` then `W` to switch workspace.
+- `O` then `C` to open a company.
+- `O` then `K` to open a contact.
+- `O` then `I` to open an inbox message.
+- `O` then `M` to open a metric.
+- `O` then `T` to open a ticket.
+- `O` then `B` to open a broadcast.
+
+### Command menu
+
+The command menu lets you search for actions that apply to the current page, active item, or selection.
+
+Launch the command menu with `⌘` then `K` on macOS, or `Ctrl` then `K` on Windows and Linux.
+
+Use it when you know what you want to do but do not want to find the exact button or menu. Command menu results change based on where you are in the app and what item is active.
+
+For example, from a ticket you can search for actions like changing status, assigning the ticket, updating labels, setting a due date, linking a conversation, or connecting a Linear or Jira issue. From list pages, the command menu can also show create actions such as new ticket, company, contact, metric, broadcast, report, or dashboard when those actions are available.

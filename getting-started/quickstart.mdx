@@ -1,38 +1,110 @@
 ---
 title: "Quickstart"
+description: "Get from a new workspace to your first customer workflow in Sayless."
 ---
 
-This guide walks you through the essential setup steps—from creating your organization to inviting teammates and launching your first project. Most teams finish in under 20 minutes.
+Sayless helps customer-facing teams manage conversations, follow-up work, account records, and reporting from one workspace. This guide gets you from a new workspace to day-to-day work quickly, with different paths depending on whether you are setting up Sayless for your team or joining an existing workspace.
 
-## Before you begin
+## Overview
 
-- Admin credentials for your organization's identity provider if you plan to enable SSO
-- A list of teammates to invite (names and email addresses)
-- Basic decisions made: workspace name, default timezone, and whether projects are private by default
+Start here if you want to understand how the main parts of Sayless fit together before configuring anything.
 
-## Steps
+- **Conversations** are inbound messages from channels such as Email, WhatsApp, Telegram, Slack, or Microsoft Teams.
+- **Tickets** track work that needs ownership, status, due dates, comments, or links to Linear and Jira.
+- **Records** keep customer context organized across Companies, Contacts, and Metrics.
+- **Broadcasts** let your team send outbound messages through configured channels.
+- **Reports** and **dashboards** help teams review activity and performance across the workspace.
 
-<Steps>
-  <Step title="Create your organization">
-    Sign in and follow the setup prompt to create a new organization. Choose a name your team will recognize in notifications—avoid internal codenames if external collaborators might see it.
-  </Step>
-  <Step title="Configure general settings">
-    Navigate to **Settings → General** and set your workspace name, timezone, and display preferences. These defaults apply to all new members and projects.
-  </Step>
-  <Step title="Invite teammates">
-    Go to **Settings → Users** and invite teammates by email. Assign each person a role—Admin, Member, or Viewer—based on their responsibilities. Start with a small pilot group before rolling out widely.
-  </Step>
-  <Step title="Set up your first project">
-    Create a project from the main dashboard. Give it a clear name and description, then add initial members. Use this first project as a sandbox before standardizing your project template.
-  </Step>
-</Steps>
+Most teams begin in the inbox, create tickets for follow-up, and use company or contact records to keep the customer context attached.
 
-<Note>
-  If any setup step depends on IT (DNS changes, SSO metadata, firewall rules), proceed with the other steps in parallel so you don't lose time.
-</Note>
+## Set up Sayless for your organization
 
-## Next steps
+If you are creating the workspace, configure the basics first. You can add more structure later as your team starts using the product.
 
-- Review [key concepts](/platform/key-concepts) to understand workspaces, projects, roles, and API access.
-- Explore [general settings](/platform/configuration/settings) to fine-tune defaults.
-- Set up [roles and permissions](/platform/administration/roles-permissions) before onboarding a larger team.
+### Create your workspace
+
+- Sign up or log in with your work account.
+- Create a workspace for your organization.
+- Use a workspace name your teammates will recognize.
+- If your organization already has a workspace, join that workspace instead of creating a new one.
+
+### Choose the setup path that fits your role
+
+**Admins**
+
+- Invite teammates from the members settings page.
+- Review member roles before inviting people who need admin access.
+- Configure labels and statuses for conversations and tickets.
+- Review billing and plan limits before enabling paid integrations.
+- Connect at least one conversation channel.
+
+**Team members**
+
+- Join your team’s existing workspace from an invite.
+- Update your profile and preferences.
+- Connect any required personal accounts from Connected Accounts or Apps.
+- Start from the inbox views assigned to your work.
+
+## Connect your first conversation channel
+
+Channels bring messages into the inbox. Once a channel is connected, your team can reply, assign owners, apply labels, update statuses, snooze conversations, mark spam, and create linked tickets.
+
+### Pick a starting channel
+
+- **Email** is best when customers write to a shared support or team address.
+- **WhatsApp** is best when customer work happens in WhatsApp groups.
+- **Telegram** is best when customer work happens in Telegram groups.
+- **Slack** is best when customers, partners, or internal teams already work in Slack channels.
+- **Microsoft Teams** is best when your organization manages conversations in Teams channels.
+
+### Admin setup
+
+For Email, configure domain authentication and forwarding so messages can arrive in Sayless.
+
+For WhatsApp, enable workspace WhatsApp, use the assigned managed line, connect groups with invite links, and map those groups to companies.
+
+For Telegram, connect the workspace bot, connect a personal Telegram account if needed to sync groups, and map groups to companies.
+
+For Slack and Microsoft Teams, connect the workspace integration, connect channels, and assign channels to companies where relevant.
+
+Some channels depend on your workspace plan, and some settings are available only to workspace admins.
+
+## Start working in Sayless
+
+Once a channel is connected, begin with a real conversation and build the workflow around it.
+
+### Reply to a conversation
+
+- Open the inbox.
+- Choose a view such as All conversations, Assigned to me, Shared, Unassigned, or Snoozed.
+- Open a conversation.
+- Write a reply, add recipients if needed, attach files, and send the response.
+- Update properties such as status, assignee, label, company, subject, or snooze state.
+
+### Create a ticket for follow-up
+
+Create a ticket when a conversation needs work beyond a quick reply.
+
+- Create the ticket from the tickets page or directly from a conversation.
+- Add a clear title and description.
+- Link the relevant conversation so the context stays attached.
+- Set the status, assignee, labels, and due date.
+- Link Linear or Jira issues when work continues in an external tracker.
+
+### Add customer context
+
+Use records when your team needs durable context around people, accounts, and product activity.
+
+- Use **Companies** for account-level context, including conversations, tickets, contacts, files, notes, pricing, peers, and metrics.
+- Use **Contacts** for people and their related conversations or tickets.
+- Use **Metrics** to collect events and review charts for customer or product activity.
+
+## Ongoing resources
+
+After the first setup, continue with the guides that match your next task.
+
+- **Inbox**: learn how to reply, assign conversations, and manage conversation properties.
+- **Tickets**: learn how to create, edit, assign, comment on, and link tickets.
+- **Companies and Contacts**: learn how records keep customer context organized.
+- **Integrations**: configure Email, WhatsApp, Telegram, Slack, Microsoft Teams, Linear, and Jira.
+- **Admin**: manage workspaces, members, login methods, API access, webhooks, billing, and plans.
