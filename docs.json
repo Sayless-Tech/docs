@@ -138,6 +138,10 @@
           {
             "tab": "API Reference",
             "openapi": "openapi.json"
+          },
+          {
+            "tab": "Changelog",
+            "href": "https://staging.joinsayless.com/changelog"
           }
         ],
         "directory": "card"
@@ -185,6 +189,11 @@
     {
       "source": "/",
       "destination": "/getting-started/quickstart",
+      "permanent": true
+    },
+    {
+      "source": "/changelog",
+      "destination": "https://staging.joinsayless.com/changelog",
       "permanent": true
     }
   ]
