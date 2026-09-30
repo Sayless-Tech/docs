@@ -1,0 +1,44 @@
+---
+title: Outbound webhooks
+description: Event delivery, signature verification, and retries for Sayless webhooks.
+---
+
+Sayless delivers signed HTTP POSTs to your subscription URL when work-graph events fire.
+
+## Configure in the app
+
+Create and rotate secrets under [Settings → API → Webhooks](/admin/api-and-webhooks). This page covers verifying and consuming deliveries.
+
+## Headers
+
+| Header | Meaning |
+| --- | --- |
+| `Sayless-Signature` | Hex HMAC-SHA256 of `{timestamp}.{rawBody}` |
+| `Sayless-Timestamp` | Unix time in **milliseconds** used in the signed string |
+| `Content-Type` | `application/json` |
+| `User-Agent` | `Sayless-Webhooks` |
+
+## Verify with the SDK
+
+```ts
+import { SaylessWebhooks } from '@sayless/sdk';
+
+SaylessWebhooks.assert({
+  payload: rawBody, // exact bytes received
+  signature: String(req.headers['sayless-signature'] ?? ''),
+  timestamp: String(req.headers['sayless-timestamp'] ?? ''),
+  secret: process.env.SAYLESS_WEBHOOK_SECRET!,
+});
+```
+
+Reject deliveries outside a small timestamp window (SDK default: 5 minutes).
+
+## Retries
+
+Failed deliveries are retried by the gateway worker for transient errors (network / 5xx). Inspect failed attempts in Settings → API → Webhook delivery failures.
+
+## Related
+
+- [Webhook subscriptions API](/developers/api/webhookSubscriptions)
+- [SDK examples](/developers/sdk/examples)
+- [Product Settings guide](/admin/api-and-webhooks)

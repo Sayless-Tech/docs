@@ -1,0 +1,15 @@
+---
+title: Changelog
+description: Notable changes to the Sayless public API and TypeScript SDK.
+---
+
+## 2026-09-30
+
+- **Phase 5**: OAuth **app actor** (`actor=app` + `client_credentials`), resource scopes (`tickets:read`, …) with coarse supersets, and removal of workspace / `metric_data_only` API keys.
+- **Public API Phase 0–3**: curated Broad surface (`@PublicApi`), OpenAPI at `GET /api/v1/openapi.json`, API/OAuth mutation payloads `{ success, data|entityId, …ack }`, and `@sayless/sdk`.
+- **Phase 2**: teams `list` / `info` / `memberships/list`; optional `Idempotency-Key` on create/send for API/OAuth; list request schemas documented in OpenAPI; public payloads keep sync ack fields.
+- Mintlify developer guides for curated resources + outbound webhook verification.
+
+## Policy
+
+Breaking changes on `/api/v1` are announced here before removal. See [Stability and versioning](/developers/stability-and-versioning).

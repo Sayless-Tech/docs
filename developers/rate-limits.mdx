@@ -1,0 +1,39 @@
+---
+title: Rate limits
+description: How Sayless rate-limits public API traffic and which headers to read.
+---
+
+Every response includes standard rate-limit headers. Integrations should honor them before retrying.
+
+## Headers
+
+| Header | Meaning |
+| --- | --- |
+| `RateLimit-Limit` | Max requests in the current window |
+| `RateLimit-Remaining` | Remaining requests in the window |
+| `RateLimit-Reset` | When the window resets (ISO 8601) |
+| `RateLimit-Violation-Count` | Consecutive violations (when present) |
+
+On HTTP **429**:
+
+| Header | Meaning |
+| --- | --- |
+| `Retry-After` | Seconds to wait before retrying |
+
+```http
+HTTP/1.1 429 Too Many Requests
+Retry-After: 120
+RateLimit-Limit: 1000
+RateLimit-Remaining: 0
+RateLimit-Reset: 2026-09-30T14:32:00.000Z
+```
+
+API/OAuth error bodies use the nested [error envelope](/developers/errors); the payload may also include `retryAfter` / violation metadata depending on the path.
+
+## Defaults
+
+- **Default:** about **1000 requests per minute** per authenticated principal (user+IP) or IP for unauthenticated probes.
+- Individual routes may declare stricter decorators (for example auth email send, or high-cost writes).
+- Workspace plan-based hourly caps exist for some product features; curated Broad traffic is primarily gated by the per-route / default limiters above.
+
+Backoff with jitter after 429s. Do not spin on `Retry-After: 0`.

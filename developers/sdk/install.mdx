@@ -1,0 +1,41 @@
+---
+title: Install the SDK
+description: Install @sayless/sdk and authenticate with an API key or OAuth token.
+---
+
+## Requirements
+
+- Node.js **18+** (uses global `fetch`)
+- A personal API key (`sl_api_…`) or OAuth access token (`sl_oat_…`) from [Settings → API](/admin/api-and-webhooks)
+
+## Install
+
+```bash
+npm install @sayless/sdk
+# or
+yarn add @sayless/sdk
+# or
+pnpm add @sayless/sdk
+```
+
+The package lives in the Sayless monorepo at `app-mlp/packages/sdk` and is generated from the gateway OpenAPI contract.
+
+## Authenticate
+
+```ts
+import { SaylessClient } from '@sayless/sdk';
+
+const sayless = new SaylessClient({
+  apiKey: process.env.SAYLESS_API_KEY,
+  // or: accessToken: process.env.SAYLESS_ACCESS_TOKEN,
+  apiUrl: process.env.SAYLESS_API_URL, // optional; defaults to https://api.sayless.ai
+});
+```
+
+Never commit keys. Prefer environment variables in CI and local `.env` files that stay gitignored.
+
+## Next
+
+- [Client options](/developers/sdk/client)
+- [Examples](/developers/sdk/examples)
+- [API overview](/developers/api/overview)

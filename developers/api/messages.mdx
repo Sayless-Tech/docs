@@ -1,0 +1,36 @@
+---
+title: Messages API
+description: List conversation messages and send, edit, or delete messages.
+---
+
+## Auth
+
+Bearer `sl_api_…` / `sl_oat_…`.
+
+## List
+
+```bash
+curl -X POST "$SAYLESS_API_URL/api/v1/messages/list_conversation_messages" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"_id\":\"$CONVERSATION_ID\",\"limit\":50}"
+```
+
+## Send
+
+Honor `Idempotency-Key` on retries.
+
+```ts
+await sayless.messages.sendMessage({
+  workspaceId,
+  conversationId,
+  messageId: crypto.randomUUID(),
+  channel: 'email',
+  content: '…',
+  preview: '…',
+});
+```
+
+Also: `edit_message`, `delete_message`, reaction add/remove.
+
+Related: [Conversations](/developers/api/conversations) · [SDK examples](/developers/sdk/examples)

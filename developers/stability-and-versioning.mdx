@@ -1,0 +1,39 @@
+---
+title: Stability and versioning
+description: How Sayless treats public API stability and breaking changes.
+---
+
+## Current version
+
+The public HTTP surface is URI-versioned as **`/api/v1`**.
+
+Machine-readable contract: `GET /api/v1/openapi.json` (also checked into the gateway as `openapi.json`). CI fails on unintended Broad OpenAPI diffs (`openapi:check`) and on SDK resource drift (`sdk:check`).
+
+## Stability
+
+Routes marked `@PublicApi` in the gateway are the only integration surface:
+
+| Label | Meaning |
+| --- | --- |
+| **stable** (default) | Safe to build on; breaking changes require changelog + migration window |
+| **beta** (`@PublicApi({ stability: 'beta' })`) | May change faster; still documented in OpenAPI |
+
+App-only routes (broadcasts, triggers, analytics, sync, …) may change without a public changelog.
+
+## Breaking changes
+
+Removals or incompatible request/response changes on public routes will be:
+
+1. Announced in the [developer changelog](/developers/changelog)
+2. Guarded in CI against unintentional OpenAPI diffs
+3. Prefer additive changes; avoid relying on undocumented fields
+
+## Auth product notes
+
+Personal API keys and OAuth tokens only. Workspace/service tokens are **not** part of Broad v1 (see authentication docs). Fine-grained resource scopes are a later follow-on.
+
+## Related
+
+- [Developer API overview](/developers/overview)
+- [Authentication](/developers/authentication)
+- [Changelog](/developers/changelog)

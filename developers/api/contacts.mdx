@@ -1,0 +1,29 @@
+---
+title: Contacts API
+description: Company contacts on the public CRM surface.
+---
+
+Contacts are nested under companies:
+
+| Action | Path |
+| --- | --- |
+| List | `POST /api/v1/companies/contacts/list` |
+| Create | `POST /api/v1/companies/contacts/create` |
+| Info | `POST /api/v1/companies/contacts/info` |
+| Update / archive / … | matching `/companies/contacts/…` actions |
+
+```ts
+const contact = await sayless.companies.contactsCreate({
+  _id: crypto.randomUUID(),
+  workspaceId,
+  companyId,
+  firstName: 'Ada',
+  lastName: 'Lovelace',
+  emails: ['ada@acme.example'],
+});
+console.log(contact.contactId);
+```
+
+Send `Idempotency-Key` on create retries. Body always includes `workspaceId` (+ pagination on list).
+
+Related: [Companies](/developers/api/companies)
