@@ -1,0 +1,51 @@
+---
+title: Tickets API
+description: List, create, update, and delete tickets on the public work-graph API.
+---
+
+Tickets are work items on a conversation or standalone follow-ups.
+
+## Auth
+
+Bearer personal API key (`sl_api_…` with `full_access` for writes) or OAuth token (`sl_oat_…` with `write`).
+
+## List
+
+```bash
+curl -X POST "$SAYLESS_API_URL/api/v1/tickets/list" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"limit\":25}"
+```
+
+Body: `workspaceId` (required) + [cursor pagination](/developers/pagination). No additional list filters in v1.
+
+## Create
+
+Send an `Idempotency-Key` header on retries.
+
+```bash
+curl -X POST "$SAYLESS_API_URL/api/v1/tickets/create" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d "{\"_id\":\"$(uuidgen)\",\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"subject\":\"Follow up\",\"content\":\"…\",\"preview\":\"…\",\"statusId\":\"$STATUS_ID\"}"
+```
+
+Response (API/OAuth): `{ "success": true, "data": { "_id": "…", … }, "lastSyncId": … }`.
+
+## Info / update / delete
+
+- `POST /api/v1/tickets/info` — `{ workspaceId, _id }`
+- `POST /api/v1/tickets/update` — `{ workspaceId, _id, …fields }`
+- `POST /api/v1/tickets/delete` — returns `{ success, entityId, … }`
+
+## SDK
+
+```ts
+const created = await sayless.tickets.create({ /* … */ });
+const id = created.ticketId!;
+await sayless.tickets.info({ workspaceId, _id: id });
+```
+
+Related: [API overview](/developers/api/overview) · [SDK examples](/developers/sdk/examples)

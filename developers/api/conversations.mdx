@@ -1,0 +1,35 @@
+---
+title: Conversations API
+description: List and mutate inbox conversations, statuses, and labels.
+---
+
+Conversations are the inbox timeline for a company/contact thread.
+
+## Auth
+
+Bearer `sl_api_…` / `sl_oat_…` as in [Authentication](/developers/authentication).
+
+## List / info
+
+```bash
+curl -X POST "$SAYLESS_API_URL/api/v1/conversations/list" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"limit\":25}"
+```
+
+- `POST /api/v1/conversations/info` — `{ workspaceId, _id }`
+- Statuses: `conversationStatus/list|create|update|delete`
+- Labels: `conversationLabels/list|create|update|delete`
+
+List bodies: `workspaceId` + [pagination](/developers/pagination).
+
+## Mutations
+
+Public writes return `{ success, data|entityId, …ack }`. Prefer `Idempotency-Key` on creates.
+
+```ts
+const page = await sayless.conversations.list({ workspaceId, limit: 25 });
+```
+
+Related: [Messages](/developers/api/messages) · [API overview](/developers/api/overview)

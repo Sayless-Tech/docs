@@ -1,0 +1,30 @@
+---
+title: Teams API
+description: List teams and memberships; create and update org teams.
+---
+
+## Reads
+
+```bash
+curl -X POST "$SAYLESS_API_URL/api/v1/teams/list" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"limit\":50}"
+```
+
+- `POST /api/v1/teams/info` — `{ workspaceId, _id }`
+- `POST /api/v1/teams/memberships/list` — optional `teamId` filter + pagination
+
+Optional list flag: `includeRetired` (boolean).
+
+## Writes
+
+`create`, `update`, `set-parent`, `remove-parent`, `retire`, and `memberships/create|update|delete`.
+
+Public creates return `{ success, data, …ack }` with presented team fields. Use `Idempotency-Key` on `create`.
+
+```ts
+const page = await sayless.teams.list({ workspaceId, limit: 50 });
+```
+
+Related: [API overview](/developers/api/overview)

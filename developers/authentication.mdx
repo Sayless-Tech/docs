@@ -1,0 +1,102 @@
+---
+title: Authentication
+description: Authenticate to the Sayless public API with a personal API key, OAuth user token, or OAuth app actor token.
+---
+
+## Personal API key
+
+Create a key under [Settings → Access](/admin/api-and-webhooks). Default scope is `full_access`. Send it as a Bearer token:
+
+```bash
+curl -X POST "https://<gateway>/api/v1/tickets/list" \
+  -H "Authorization: Bearer sl_api_..." \
+  -H "Content-Type: application/json" \
+  -d '{"workspaceId":"<workspace-id>"}'
+```
+
+Keys act as the workspace profile that owns them. Treat them like passwords; revoke compromised keys from Settings.
+
+Workspace / metric ingest API keys (`metric_data_only`) are removed — use a personal key instead.
+
+## OAuth user token
+
+Third-party OAuth apps receive `sl_oat_...` access tokens after the authorization-code flow (user actor). Send them the same way:
+
+```bash
+curl -X POST "https://<gateway>/api/v1/tickets/list" \
+  -H "Authorization: Bearer sl_oat_..." \
+  -H "Content-Type: application/json" \
+  -d '{"workspaceId":"<workspace-id>"}'
+```
+
+## OAuth app actor
+
+Install an app as a **machine identity** (Linear-style) with `actor=app` on authorize, or mint a token with `grant_type=client_credentials` when the app has client credentials enabled.
+
+- **Authorize**: workspace **admin** only; `POST /api/v1/auth/oauth/authorize` with `actor=app`. Creates an app-scoped token with `profileId: null`.
+- **Client credentials**: `POST /api/v1/auth/oauth/token` with `grant_type=client_credentials`, `client_id`, and `client_secret`. TTL ≈ 30 days. Changing scopes or rotating the secret revokes outstanding machine tokens.
+- App actors run as a synthetic **member** (writer) profile `oauth-app:{appId}` — enough for work-graph reads/writes, not Settings/admin powers.
+- An `admin` OAuth scope is **not** grantable to app actors.
+
+```bash
+curl -X POST "https://<gateway>/api/v1/auth/oauth/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials&client_id=sl_app_...&client_secret=sl_secret_..."
+```
+
+Use the returned `access_token` (`sl_oat_...`) like any other Bearer credential. The TypeScript SDK accepts it via `accessToken`.
+
+## Resource scopes
+
+Coarse scopes remain for back-compat. Resource scopes narrow access per domain.
+
+| Domain | Read | Write |
+| --- | --- | --- |
+| tickets | `tickets:read` | `tickets:write` |
+| conversations | `conversations:read` | `conversations:write` |
+| messages | `messages:read` | `messages:write` |
+| companies (contacts/notes/docs) | `companies:read` | `companies:write` |
+| teams | `teams:read` | `teams:write` |
+| attachments | `attachments:read` | `attachments:write` |
+| webhooks | `webhooks:read` | `webhooks:write` |
+| workspace (profiles / info) | `workspace:read` | — |
+
+**Supersets**
+
+| Credential | Scope | Effective access |
+| --- | --- | --- |
+| Personal API key | `full_access` (default) | All resource read + write |
+| Personal API key | `read` | All `*:read` |
+| OAuth | `write` | All resource read + write |
+| OAuth | `read` | All `*:read` |
+
+Missing a required resource scope returns **401** with `error.type: INSUFFICIENT_SCOPE`.
+
+## App session (not for integrations)
+
+The Sayless web app uses cookie session JWTs. That path is for the official client only (including sync). Integrations should use API keys or OAuth — not scraped cookies.
+
+## Errors
+
+API key and OAuth failures return a nested envelope:
+
+```json
+{
+  "error": {
+    "type": "UNAUTHORIZED",
+    "message": "Authentication required"
+  },
+  "statusCode": 401,
+  "timestamp": "2026-01-01T00:00:00.000Z",
+  "path": "/api/v1/tickets/list"
+}
+```
+
+Branch on `error.type` (including `INSUFFICIENT_SCOPE`). See [Errors](/developers/errors) and [Rate limits](/developers/rate-limits).
+
+## Related
+
+- [Developer API overview](/developers/overview)
+- [API overview](/developers/api/overview)
+- [API and webhooks (product Settings)](/admin/api-and-webhooks)
+- [SDK client](/developers/sdk/client)

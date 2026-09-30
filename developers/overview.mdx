@@ -1,0 +1,71 @@
+---
+title: Developer API overview
+description: Curated Sayless HTTP API for integrations — work graph only.
+---
+
+The Sayless public API lets personal API keys, OAuth user tokens, and OAuth **app actors** read and mutate the **work graph**: conversations, messages, tickets, companies, contacts, documents, teams, attachments, and outbound webhooks.
+
+It is **not** a full clone of every in-app Settings or Analytics screen. Billing, insights dashboards, channel connect wizards, and the official client sync protocol stay in the product (session cookie).
+
+## Base URL
+
+```
+https://<your-gateway-host>/api/v1
+```
+
+Most resources use **POST action routes**, for example `POST /api/v1/tickets/list` and `POST /api/v1/tickets/create`. The TypeScript SDK maps these to methods such as `client.tickets.list()`.
+
+## Resource guides
+
+- [Tickets](/developers/api/tickets)
+- [Conversations](/developers/api/conversations)
+- [Messages](/developers/api/messages)
+- [Companies](/developers/api/companies) · [Contacts](/developers/api/contacts)
+- [Notes](/developers/api/notes) · [Documents](/developers/api/documents)
+- [Teams](/developers/api/teams)
+- [Attachments](/developers/api/attachments)
+- [Webhook subscriptions](/developers/api/webhookSubscriptions)
+- [Outbound webhooks](/developers/webhooks)
+
+## What is in scope
+
+| Area | Examples |
+| --- | --- |
+| Inbox | Conversations, messages, labels, statuses, subscriptions |
+| Tickets | Tickets, comments, statuses, subscriptions |
+| CRM | Companies, contacts, notes, documents, folders, labels |
+| Org | Teams, memberships, workspace member list, workspace info |
+| Files | Attachments |
+| Integrations outbound | Webhook subscriptions and deliveries |
+
+## What is app-only
+
+These stay in the Sayless product (session cookie). API keys cannot call them:
+
+- Sync / bootstrap / delta (official client protocol)
+- Billing and plan checkout
+- Channel connect settings (Slack, Telegram, email domain setup, …)
+- Broadcasts and broadcast profiles
+- Triggers and CSV imports
+- Analytics dashboards and insights
+- Meetings / Gong tooling
+- Issue-tracker **tool proxy** endpoints (browse another tracker through Sayless — use that product’s own APIs; link from the app)
+- Customer portal admin
+- Creating or listing API keys (use [Settings → Access](/admin/api-and-webhooks) for personal keys)
+
+## Auth
+
+See [Authentication](/developers/authentication).
+
+## Stability
+
+See [Stability and versioning](/developers/stability-and-versioning).
+
+## Next
+
+- [Quickstart](/developers/quickstart)
+- [Authentication](/developers/authentication)
+- [API overview](/developers/api/overview) — mutation payloads and OpenAPI
+- [SDK install](/developers/sdk/install)
+- [Pagination](/developers/pagination) · [Errors](/developers/errors) · [Rate limits](/developers/rate-limits)
+- Product guide for managing keys and webhooks in the UI: [API and webhooks](/admin/api-and-webhooks)

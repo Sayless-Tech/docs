@@ -1,0 +1,39 @@
+---
+title: Pagination
+description: Cursor pagination for list endpoints on the Sayless public API.
+---
+
+List endpoints on the curated work graph use **cursor pagination**.
+
+## Request
+
+Send pagination fields in the JSON body of the `POST …/list` (or `…/list_*`) action:
+
+| Field | Default | Notes |
+| --- | --- | --- |
+| `limit` | `25` | Max `100` |
+| `cursor` | omit | Opaque cursor from a previous page |
+| `direction` | forward | `forward` or `backward` |
+
+The gateway applies these on `*/list*` paths via shared pagination middleware.
+
+## Response
+
+```json
+{
+  "data": [/* presented entities */],
+  "pagination": {
+    "nextCursor": "…",
+    "prevCursor": "…",
+    "hasMore": true
+  }
+}
+```
+
+Exact `pagination` keys can vary slightly by resource; always treat `data` as the page of entities.
+
+## SDK mapping
+
+The SDK maps list `data` to connection **`nodes`**, with `fetchNext()` using the returned cursor. See [SDK client](/developers/sdk/client).
+
+v1 does **not** ship a shared filter DSL — resource-specific extras (when any) are listed on each [resource guide](/developers/api/overview).

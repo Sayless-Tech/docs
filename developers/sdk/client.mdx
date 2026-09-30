@@ -1,0 +1,133 @@
+---
+title: SDK client
+description: SaylessClient options, errors, and pagination helpers.
+---
+
+## Options
+
+| Option | Description |
+| --- | --- |
+| `apiKey` | Personal API key (`sl_api_…`) |
+| `accessToken` | OAuth access token (`sl_oat_…`), including app-actor / client-credentials tokens |
+| `apiUrl` | Gateway origin (no trailing slash). Paths already include `/api/v1/...`. Default `https://api.sayless.ai` |
+| `fetch` | Custom `fetch` implementation |
+| `headers` | Extra headers on every request |
+| `userAgent` | Defaults to `@sayless/sdk/<version>` |
+
+Provide **either** `apiKey` or `accessToken`.
+
+## Resources
+
+Generated from OpenAPI tags:
+
+```ts
+sayless.tickets
+sayless.conversations
+sayless.messages
+sayless.companies
+sayless.teams
+sayless.attachments
+sayless.webhooks
+sayless.workspace
+```
+
+Methods map from POST action paths, for example:
+
+- `POST /api/v1/tickets/create` → `sayless.tickets.create(body)`
+- `POST /api/v1/tickets/list` → `sayless.tickets.list(body)`
+- `POST /api/v1/teams/list` → `sayless.teams.list(body)`
+- `POST /api/v1/teams/info` → `sayless.teams.info(body)`
+- `POST /api/v1/messages/send_message` → `sayless.messages.sendMessage(body)`
+- `POST /api/v1/companies/contacts/create` → `sayless.companies.contactsCreate(body)`
+
+## Request options
+
+Every resource method accepts an optional second argument:
+
+```ts
+await sayless.tickets.create(body, {
+  idempotencyKey: crypto.randomUUID(), // sets Idempotency-Key
+  headers: { 'X-Request-Id': '…' },     // this request only
+});
+```
+
+Use `idempotencyKey` on **create** / **sendMessage** retries so the gateway can return the cached success body (24h). Concurrent reuse while in flight throws `IdempotencyConflictError` (HTTP 409).
+
+## Mutation payloads
+
+Public writes return payload objects with `success`, presented `data` (or `entityId` on delete), and sync ack fields:
+
+```ts
+const created = await sayless.tickets.create({ /* … */ });
+created.success; // true
+created.ticketId; // from data._id
+created.ticket; // presented entity
+created.lastSyncId;
+```
+
+Deletes:
+
+```ts
+const deleted = await sayless.tickets.delete({ /* … */ });
+deleted.entityId;
+```
+
+## Lists and `fetchNext`
+
+List helpers return a `Connection` with `nodes` (from wire `data`) and cursor pagination:
+
+```ts
+const page = await sayless.tickets.list({ workspaceId, limit: 50 });
+page.nodes;
+page.hasNextPage;
+const next = await page.fetchNext();
+
+const teams = await sayless.teams.list({ workspaceId, limit: 50 });
+const team = await sayless.teams.info({ workspaceId, _id: teams.nodes[0]!._id });
+```
+
+## Errors
+
+Failed responses throw typed errors:
+
+| Class | When |
+| --- | --- |
+| `AuthenticationError` | 401 / `UNAUTHORIZED` |
+| `RateLimitedError` | 429 — check `retryAfterSeconds` |
+| `IdempotencyConflictError` | 409 / `IDEMPOTENCY_CONFLICT` |
+| `SaylessError` | Other failures — `type`, `userMessage`, `fields` |
+
+```ts
+import {
+  SaylessError,
+  RateLimitedError,
+  IdempotencyConflictError,
+} from '@sayless/sdk';
+
+try {
+  await sayless.tickets.create(body, { idempotencyKey });
+} catch (err) {
+  if (err instanceof IdempotencyConflictError) {
+    // wait and retry the same key, or poll
+  } else if (err instanceof RateLimitedError) {
+    // wait err.retryAfterSeconds
+  } else if (err instanceof SaylessError) {
+    console.error(err.type, err.message);
+  }
+}
+```
+
+## Webhooks
+
+```ts
+import { SaylessWebhooks } from '@sayless/sdk';
+
+SaylessWebhooks.assert({
+  payload: rawBody,
+  signature: req.headers['sayless-signature'],
+  timestamp: req.headers['sayless-timestamp'],
+  secret: process.env.SAYLESS_WEBHOOK_SECRET!,
+});
+```
+
+Signing is `HMAC-SHA256(secret, "{timestamp}.{rawBody}")` hex, matching gateway delivery headers `Sayless-Signature` and `Sayless-Timestamp`.

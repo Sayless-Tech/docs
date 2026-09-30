@@ -1,9 +1,19 @@
 ---
-title: "API and webhooks"
-description: "Manage Sayless API keys, OAuth apps, webhook endpoints, and delivery logs so external services and automations can integrate with your workspace."
+title: API and webhooks
+description: Manage API keys, OAuth apps, webhooks, and webhook deliveries.
 ---
 
 API and webhook settings connect Sayless to external systems.
+
+## Using your key
+
+This page covers managing keys, OAuth apps, and webhooks **in the Sayless app**. To call the HTTP API from an integration, see the developer docs:
+
+- [Developer API overview](/developers/overview) — what keys can access (work graph) vs app-only surfaces
+- [Authentication](/developers/authentication) — Bearer `sl_api_…` / `sl_oat_…`, error envelope
+- [Outbound webhooks](/developers/webhooks) — signature verification for deliveries
+- [Quickstart](/developers/quickstart) — first curl + SDK call
+- [Changelog](/developers/changelog)
 
 ## Overview
 
@@ -11,11 +21,12 @@ Admins can manage API keys, OAuth apps, webhooks, and webhook delivery failures 
 
 Some API features may depend on your workspace plan.
 
+> [!NOTE]
 > API keys, OAuth apps, and webhooks are available on the Startup plan, Business plan, and Enterprise plan.
 
 The API settings page has separate sections for API Keys, OAuth Apps, Webhooks, and Webhook delivery failures. OAuth apps and webhook detail pages have their own nested routes.
 
-Go to [Settings \> API](https://joinsayless.com/settings/api).
+Go to [Settings > API](https://joinsayless.com/settings/api).
 
 | API area | Route pattern | Use it for |
 | --- | --- | --- |
@@ -46,6 +57,7 @@ Revoke keys that are no longer needed or may be exposed.
 
 Rotating a key usually means creating a replacement, updating the external system, then revoking the old key.
 
+> [!NOTE]
 > API keys and OAuth secrets should be treated like passwords. Do not paste them into tickets, comments, notes, or broadcasts.
 
 ## OAuth apps

@@ -1,0 +1,74 @@
+---
+title: Quickstart
+description: Create an API key, call the public API with curl, then use @sayless/sdk.
+---
+
+## 1. Create a key
+
+In the app, open [Settings → API](/admin/api-and-webhooks) and create a personal API key. Copy the `sl_api_…` value once — it is not shown again.
+
+## 2. List tickets with curl
+
+```bash
+export SAYLESS_API_URL="https://<your-gateway-host>"
+export SAYLESS_API_KEY="sl_api_…"
+export SAYLESS_WORKSPACE_ID="<workspace-uuid>"
+
+curl -X POST "$SAYLESS_API_URL/api/v1/tickets/list" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"limit\":25}"
+```
+
+You should receive `{ "data": [ … ], "pagination": { … } }`.
+
+## 3. Same call with the SDK
+
+```bash
+npm install @sayless/sdk
+```
+
+```ts
+import { SaylessClient } from '@sayless/sdk';
+
+const sayless = new SaylessClient({
+  apiKey: process.env.SAYLESS_API_KEY!,
+  apiUrl: process.env.SAYLESS_API_URL,
+});
+
+const page = await sayless.tickets.list({
+  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  limit: 25,
+});
+
+console.log(page.nodes.map((t) => t._id));
+```
+
+## 4. Create and use the returned id
+
+```ts
+import { randomUUID } from 'node:crypto';
+
+const created = await sayless.tickets.create({
+  _id: randomUUID(),
+  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  subject: 'Hello from the SDK',
+  content: '…',
+  preview: 'Hello from the SDK',
+  statusId: process.env.SAYLESS_TICKET_STATUS_ID!,
+});
+
+console.log(created.ticketId);
+await sayless.tickets.info({
+  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  _id: created.ticketId!,
+});
+```
+
+## Next
+
+- [SDK install](/developers/sdk/install)
+- [SDK client](/developers/sdk/client)
+- [SDK examples](/developers/sdk/examples)
+- [API overview](/developers/api/overview)
+- [Errors](/developers/errors) · [Rate limits](/developers/rate-limits)

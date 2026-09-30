@@ -1,0 +1,18 @@
+---
+title: Webhook subscriptions API
+description: Manage outbound webhookSubscriptions for work-graph events.
+---
+
+Plan feature: `integrations.api`.
+
+| Action | Path |
+| --- | --- |
+| List | `POST /api/v1/webhookSubscriptions/list` |
+| Create | `POST /api/v1/webhookSubscriptions/create` |
+| Update | `POST /api/v1/webhookSubscriptions/update` |
+| Delete | `POST /api/v1/webhookSubscriptions/delete` |
+| Deliveries | `POST /api/v1/webhookSubscriptions/deliveries` |
+
+Create/update return presented subscription payloads for API/OAuth. Configure the endpoint URL and secret in [Settings → API](/admin/api-and-webhooks), then verify deliveries with the SDK — see [Outbound webhooks](/developers/webhooks).
+
+Related: [Webhooks guide](/developers/webhooks) · [SDK client](/developers/sdk/client)

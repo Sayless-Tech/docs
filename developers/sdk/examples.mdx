@@ -1,0 +1,119 @@
+---
+title: SDK examples
+description: Common @sayless/sdk workflows for tickets, messages, CRM, pagination, and webhooks.
+---
+
+```ts
+import { SaylessClient, SaylessWebhooks } from '@sayless/sdk';
+import { randomUUID } from 'node:crypto';
+
+const sayless = new SaylessClient({
+  apiKey: process.env.SAYLESS_API_KEY!,
+  apiUrl: process.env.SAYLESS_API_URL,
+});
+
+const workspaceId = process.env.SAYLESS_WORKSPACE_ID!;
+```
+
+## Create a ticket, then load it
+
+```ts
+const created = await sayless.tickets.create(
+  {
+    _id: randomUUID(),
+    workspaceId,
+    subject: 'Customer follow-up',
+    content: '…',
+    preview: 'Customer follow-up',
+    statusId: process.env.SAYLESS_TICKET_STATUS_ID!,
+  },
+  { idempotencyKey: randomUUID() },
+);
+
+const id = created.ticketId!;
+const again = await sayless.tickets.info({ workspaceId, _id: id });
+```
+
+## List tickets with `fetchNext`
+
+```ts
+let page = await sayless.tickets.list({ workspaceId, limit: 50 });
+console.log(page.nodes.length);
+
+while (page.hasNextPage) {
+  const next = await page.fetchNext();
+  if (!next) break;
+  page = next;
+  console.log(page.nodes.length);
+}
+```
+
+## List teams
+
+```ts
+const teams = await sayless.teams.list({ workspaceId, limit: 50 });
+const first = teams.nodes[0];
+if (first) {
+  await sayless.teams.info({ workspaceId, _id: first._id });
+}
+```
+
+## Send a message
+
+```ts
+await sayless.messages.sendMessage(
+  {
+    workspaceId,
+    conversationId: '…',
+    messageId: randomUUID(),
+    channel: 'email',
+    content: '…',
+    preview: '…',
+    // …channel-specific fields
+  },
+  { idempotencyKey: randomUUID() },
+);
+```
+
+## Create a company and contact
+
+```ts
+const companyId = randomUUID();
+const company = await sayless.companies.create({
+  _id: companyId,
+  workspaceId,
+  name: 'Acme',
+  slug: 'acme',
+  urlId: 'acme',
+  website: 'https://acme.example',
+  domains: ['acme.example'],
+});
+
+await sayless.companies.contactsCreate({
+  _id: randomUUID(),
+  workspaceId,
+  companyId: company.companyId ?? companyId,
+  firstName: 'Ada',
+  lastName: 'Lovelace',
+  emails: ['ada@acme.example'],
+}).then((contact) => console.log(contact.contactId));
+```
+
+## Verify a webhook
+
+```ts
+// Express-style raw body + headers from an outbound Sayless delivery
+app.post('/hooks/sayless', (req, res) => {
+  SaylessWebhooks.assert({
+    payload: req.rawBody,
+    signature: String(req.headers['sayless-signature'] ?? ''),
+    timestamp: String(req.headers['sayless-timestamp'] ?? ''),
+    secret: process.env.SAYLESS_WEBHOOK_SECRET!,
+  });
+  res.status(200).end();
+});
+```
+
+## Note on the product app
+
+The Sayless web app uses cookie session + sync. `@sayless/sdk` is for integrations and scripts against the public HTTP API — it does not replace SyncClient.

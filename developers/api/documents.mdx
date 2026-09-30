@@ -1,0 +1,10 @@
+---
+title: Documents API
+description: Company documents and folders on the curated CRM API.
+---
+
+Document and folder actions live under `/api/v1/companies/…` (for example `documents/list`, `documents/create`, `folders/list`).
+
+List: `workspaceId` + [pagination](/developers/pagination). Creates should send `Idempotency-Key` when retrying.
+
+Related: [Companies](/developers/api/companies) · [Attachments](/developers/api/attachments)

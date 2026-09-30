@@ -1,0 +1,86 @@
+---
+title: API overview
+description: POST action style and mutation payloads for the Sayless public API.
+---
+
+## Style
+
+Resources use **POST action routes** under `/api/v1`:
+
+```
+POST /api/v1/tickets/list
+POST /api/v1/tickets/create
+POST /api/v1/tickets/info
+POST /api/v1/tickets/update
+POST /api/v1/tickets/delete
+```
+
+The TypeScript SDK maps these to methods such as `client.tickets.create()` — not HTTP-verb REST.
+
+Machine-readable contract: `GET /api/v1/openapi.json` (also checked into the gateway repo as `openapi.json`).
+
+## Idempotency
+
+For safe retries on **create** and **send_message** (API key / OAuth only), send:
+
+```http
+Idempotency-Key: <opaque-string-up-to-256-chars>
+```
+
+The gateway caches successful responses for **24 hours** (scoped by workspace, principal, and route). Reusing a key while a request is still in flight returns **409** (`IDEMPOTENCY_CONFLICT`). APP session clients continue to use client `mutationId` + sync instead.
+
+## Reads
+
+List and info responses wrap presented entities:
+
+```json
+{
+  "data": { "_id": "…", "subject": "…" },
+  "pagination": { "hasMore": false }
+}
+```
+
+See [Pagination](/developers/pagination).
+
+## Mutations (API key / OAuth)
+
+Public writes always return **identity** (and usually the presented entity) plus sync ack fields when available.
+
+### Create / update
+
+```json
+{
+  "success": true,
+  "data": { "_id": "…", "subject": "…" },
+  "mutationId": "optional-client-id",
+  "lastSyncId": 12345,
+  "syncAckSource": "commit"
+}
+```
+
+Use `data._id` (or the SDK’s typed id accessor) for follow-up `info` / `list` calls — you do not need to re-list to discover the id.
+
+Ticket create may also include `contentLastSyncId` when content is written separately.
+
+### Delete
+
+```json
+{
+  "success": true,
+  "entityId": "…",
+  "mutationId": "optional-client-id",
+  "lastSyncId": 12345,
+  "syncAckSource": "commit"
+}
+```
+
+The SDK will expose convenient accessors (for example `ticket` / `ticketId`) on top of this wire shape.
+
+## Auth
+
+Bearer personal API key (`sl_api_…`) or OAuth access token (`sl_oat_…`). See [Authentication](/developers/authentication).
+
+## Errors and limits
+
+- [Errors](/developers/errors)
+- [Rate limits](/developers/rate-limits)

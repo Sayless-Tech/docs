@@ -136,6 +136,54 @@
             ]
           },
           {
+            "tab": "Developers",
+            "groups": [
+              {
+                "group": "Get started",
+                "pages": [
+                  "developers/overview",
+                  "developers/quickstart",
+                  "developers/authentication",
+                  "developers/api/overview"
+                ]
+              },
+              {
+                "group": "API",
+                "pages": [
+                  "developers/api/tickets",
+                  "developers/api/conversations",
+                  "developers/api/messages",
+                  "developers/api/companies",
+                  "developers/api/contacts",
+                  "developers/api/notes",
+                  "developers/api/documents",
+                  "developers/api/teams",
+                  "developers/api/attachments",
+                  "developers/api/webhookSubscriptions"
+                ]
+              },
+              {
+                "group": "Webhooks & platform",
+                "pages": [
+                  "developers/webhooks",
+                  "developers/pagination",
+                  "developers/errors",
+                  "developers/rate-limits",
+                  "developers/stability-and-versioning",
+                  "developers/changelog"
+                ]
+              },
+              {
+                "group": "SDK",
+                "pages": [
+                  "developers/sdk/install",
+                  "developers/sdk/client",
+                  "developers/sdk/examples"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "API Reference",
             "openapi": "openapi.json"
           },

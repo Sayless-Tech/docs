@@ -1,0 +1,15 @@
+---
+title: Notes API
+description: Company notes on the curated CRM API.
+---
+
+Notes hang off companies:
+
+- `POST /api/v1/companies/notes/list`
+- `POST /api/v1/companies/notes/create`
+- `POST /api/v1/companies/notes/info`
+- `POST /api/v1/companies/notes/update` / `delete`
+
+Bodies require `workspaceId` (and company/note ids as documented on each action). Public writes return `{ success, data|entityId, … }`.
+
+Related: [Companies](/developers/api/companies) · [Documents](/developers/api/documents)
