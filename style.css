@@ -1,9 +1,51 @@
+/* Align Mintlify chrome with sl-marketing tokens (Instrument Sans + brand orange). */
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("/fonts/InstrumentSans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-latin.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --default-border-color: var(--gray-200);
+  --default-border-color: #efeceb;
+  --sayless-brand: #ff5601;
+  --sayless-brand-hover: #d44600;
+  --sayless-paper: #fcfafa;
+  --sayless-paper-secondary: #f9f6f5;
+  --sayless-ink: #1f1f20;
+  --sayless-text-secondary: #49494a;
 }
 
 .dark {
-  --default-border-color: var(--gray-800);
+  --default-border-color: #3b3b3c;
+}
+
+html {
+  font-family: "Instrument Sans", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, sans-serif;
+}
+
+code,
+pre,
+kbd,
+samp,
+#sidebar .nav-anchor span {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace !important;
+}
+
+::selection {
+  background: rgba(255, 86, 1, 0.12);
 }
 
 #sidebar .nav-dropdown-trigger {
@@ -29,12 +71,6 @@
   padding: 0 !important;
 }
 
-.nav-dropdown-content {
-}
-
-.nav-dropdown-content .nav-dropdown-item {
-}
-
 .nav-dropdown-content .nav-dropdown-item-icon {
   border: none !important;
   background: transparent !important;
@@ -48,15 +84,14 @@
 }
 
 #sidebar .nav-anchor span {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] {
-  color: rgb(var(--primary)) !important;
+  color: var(--sayless-brand) !important;
   font-weight: 600 !important;
 }
 
@@ -65,15 +100,15 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] span {
 }
 
 body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
-  background-color: rgb(var(--primary)) !important;
+  background-color: var(--sayless-brand) !important;
 }
 
 .dark body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] {
-  color: rgb(var(--primary-light)/var(--tw-text-opacity,1)) !important;
+  color: #ff8b62 !important;
 }
 
 .dark body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
-  background-color: rgb(var(--primary-light)/var(--tw-text-opacity,1)) !important;
+  background-color: #ff8b62 !important;
 }
 
 :is(#content-area[data-current-path='/'], [data-current-path='/'] #content-area):has([data-product-guide-index]) {
@@ -89,11 +124,13 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
 }
 
 [data-product-guide-index] a:not(.product-guide-feature-card) {
-  background-color: #fafafa !important;
+  background-color: var(--sayless-paper-secondary) !important;
+  border-color: #efeceb !important;
 }
 
 .dark [data-product-guide-index] a:not(.product-guide-feature-card) {
-  background-color: #09090b !important;
+  background-color: #262627 !important;
+  border-color: #3b3b3c !important;
 }
 
 .product-guide-feature-card {
@@ -106,9 +143,10 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
   border: none !important;
   box-shadow: none !important;
   color: white !important;
-  .dark & {
-    background-image: url('/images/sample-feature-dark.png') !important;
-  }
+}
+
+.dark .product-guide-feature-card {
+  background-image: url('/images/sample-feature-dark.png') !important;
 }
 
 .product-guide-feature-card > div {
@@ -138,9 +176,10 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
   font-size: 1.05em;
   font-weight: 400;
   color: rgb(var(--gray-50) / 62.5%) !important;
-  .dark & {
-    color: rgb(var(--gray-50) / 50%) !important;
-  }
+}
+
+.dark .product-guide-feature-card :is(h2, h3, p, span, svg).product-guide-feature-card-description {
+  color: rgb(var(--gray-50) / 50%) !important;
 }
 
 img.nav-logo {

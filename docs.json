@@ -2,11 +2,11 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
   "name": "Sayless",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "description": "Product guides and public API docs for Sayless — post-sales customer work in one workspace.",
   "colors": {
     "primary": "#FF5601",
-    "light": "#FF5601",
-    "dark": "#FF5601"
+    "light": "#FF8B62",
+    "dark": "#D44600"
   },
   "favicon": {
     "light": "/images/favicon.svg",
@@ -17,193 +17,193 @@
   },
   "styling": {
     "eyebrows": "breadcrumbs",
-    "codeblocks": "dark"
+    "codeblocks": "system"
   },
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "navigation": {
-        "tabs": [
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
           {
-            "tab": "Guide",
-            "groups": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "getting-started/quickstart",
-                  "getting-started/key-concepts",
-                  "getting-started/editor"
-                ]
-              },
-              {
-                "group": "Account",
-                "pages": [
-                  "account/profile",
-                  "account/preferences",
-                  "account/notifications",
-                  "account/security-and-access"
-                ]
-              },
-              {
-                "group": "Sidebar",
-                "pages": [
-                  "sidebar/conversations",
-                  "sidebar/broadcasts",
-                  "sidebar/records",
-                  "sidebar/reports"
-                ]
-              },
-              {
-                "group": "Inbox",
-                "pages": [
-                  "inbox/reply-conversation",
-                  "inbox/assign-conversation",
-                  "inbox/properties"
-                ]
-              },
-              {
-                "group": "Tickets",
-                "pages": [
-                  "ticket/create-ticket",
-                  "ticket/edit-ticket",
-                  "ticket/properties",
-                  "ticket/assign-ticket",
-                  "ticket/comments"
-                ]
-              },
-              {
-                "group": "Broadcasts",
-                "pages": [
-                  "broadcasts/create-broadcast",
-                  "broadcasts/edit-broadcast",
-                  "broadcasts/properties"
-                ]
-              },
-              {
-                "group": "Companies",
-                "pages": [
-                  "companies/companies",
-                  "companies/files-and-notes",
-                  "companies/pricing",
-                  "companies/properties"
-                ]
-              },
-              {
-                "group": "Contacts",
-                "pages": [
-                  "contacts",
-                  "contacts/properties"
-                ]
-              },
-              {
-                "group": "Metrics",
-                "pages": [
-                  "metrics",
-                  "metrics/metric-events",
-                  "metrics/metric-charts",
-                  "metrics/properties"
-                ]
-              },
-              {
-                "group": "Reports",
-                "pages": [
-                  "reports",
-                  "reports/dashboards"
-                ]
-              },
-              {
-                "group": "Integrations",
-                "pages": [
-                  "integrations/email",
-                  "integrations/slack",
-                  "integrations/microsoft-teams",
-                  "integrations/whatsapp",
-                  "integrations/telegram",
-                  "integrations/jira",
-                  "integrations/linear"
-                ]
-              },
-              {
-                "group": "Admin",
-                "pages": [
-                  "admin/workspaces",
-                  "admin/login-methods",
-                  "admin/members",
-                  "admin/api-and-webhooks",
-                  "admin/billing-and-plans"
-                ]
-              }
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/quickstart",
+              "getting-started/key-concepts",
+              "getting-started/editor"
             ]
           },
           {
-            "tab": "Developers",
-            "groups": [
-              {
-                "group": "Get started",
-                "pages": [
-                  "developers/overview",
-                  "developers/quickstart",
-                  "developers/authentication",
-                  "developers/api/overview"
-                ]
-              },
-              {
-                "group": "API",
-                "pages": [
-                  "developers/api/tickets",
-                  "developers/api/conversations",
-                  "developers/api/messages",
-                  "developers/api/companies",
-                  "developers/api/contacts",
-                  "developers/api/notes",
-                  "developers/api/documents",
-                  "developers/api/teams",
-                  "developers/api/attachments",
-                  "developers/api/webhookSubscriptions"
-                ]
-              },
-              {
-                "group": "Webhooks & platform",
-                "pages": [
-                  "developers/webhooks",
-                  "developers/pagination",
-                  "developers/errors",
-                  "developers/rate-limits",
-                  "developers/stability-and-versioning",
-                  "developers/changelog"
-                ]
-              },
-              {
-                "group": "SDK",
-                "pages": [
-                  "developers/sdk/install",
-                  "developers/sdk/client",
-                  "developers/sdk/examples"
-                ]
-              }
+            "group": "Account",
+            "pages": [
+              "account/profile",
+              "account/preferences",
+              "account/notifications",
+              "account/security-and-access"
             ]
           },
           {
-            "tab": "API Reference",
-            "openapi": "openapi.json"
+            "group": "Sidebar",
+            "pages": [
+              "sidebar/conversations",
+              "sidebar/broadcasts",
+              "sidebar/records",
+              "sidebar/reports"
+            ]
           },
           {
-            "tab": "Changelog",
-            "href": "https://staging.joinsayless.com/changelog"
+            "group": "Inbox",
+            "pages": [
+              "inbox/reply-conversation",
+              "inbox/assign-conversation",
+              "inbox/properties"
+            ]
+          },
+          {
+            "group": "Tickets",
+            "pages": [
+              "ticket/create-ticket",
+              "ticket/edit-ticket",
+              "ticket/properties",
+              "ticket/assign-ticket",
+              "ticket/comments"
+            ]
+          },
+          {
+            "group": "Broadcasts",
+            "pages": [
+              "broadcasts/create-broadcast",
+              "broadcasts/edit-broadcast",
+              "broadcasts/properties"
+            ]
+          },
+          {
+            "group": "Companies",
+            "pages": [
+              "companies/companies",
+              "companies/files-and-notes",
+              "companies/pricing",
+              "companies/properties"
+            ]
+          },
+          {
+            "group": "Contacts",
+            "pages": ["contacts", "contacts/properties"]
+          },
+          {
+            "group": "Metrics",
+            "pages": [
+              "metrics",
+              "metrics/metric-events",
+              "metrics/metric-charts",
+              "metrics/properties"
+            ]
+          },
+          {
+            "group": "Reports",
+            "pages": ["reports", "reports/dashboards"]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/email",
+              "integrations/slack",
+              "integrations/microsoft-teams",
+              "integrations/whatsapp",
+              "integrations/telegram",
+              "integrations/jira",
+              "integrations/linear"
+            ]
+          },
+          {
+            "group": "Admin",
+            "pages": [
+              "admin/workspaces",
+              "admin/login-methods",
+              "admin/members",
+              "admin/api-and-webhooks",
+              "admin/billing-and-plans"
+            ]
           }
-        ],
-        "directory": "card"
+        ]
+      },
+      {
+        "tab": "Developers",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "developers/overview",
+              "developers/quickstart",
+              "developers/authentication",
+              "developers/api/overview"
+            ]
+          },
+          {
+            "group": "API",
+            "pages": [
+              "developers/api/tickets",
+              "developers/api/conversations",
+              "developers/api/messages",
+              "developers/api/companies",
+              "developers/api/contacts",
+              "developers/api/notes",
+              "developers/api/documents",
+              "developers/api/teams",
+              "developers/api/attachments",
+              "developers/api/webhookSubscriptions"
+            ]
+          },
+          {
+            "group": "Webhooks & platform",
+            "pages": [
+              "developers/webhooks",
+              "developers/pagination",
+              "developers/errors",
+              "developers/rate-limits",
+              "developers/stability-and-versioning",
+              "developers/changelog"
+            ]
+          },
+          {
+            "group": "SDK",
+            "pages": [
+              "developers/sdk/install",
+              "developers/sdk/client",
+              "developers/sdk/examples"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "openapi": "openapi.json"
+      },
+      {
+        "tab": "Changelog",
+        "href": "https://joinsayless.com/changelog"
+      }
+    ],
+    "directory": "card"
   },
   "logo": {
-    "light": "/images/SaylessLogo_1.svg",
-    "dark": "/images/SaylessLogo_1.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://joinsayless.com"
   },
   "navbar": {
-    "links": [],
+    "links": [
+      {
+        "label": "Marketing",
+        "href": "https://joinsayless.com"
+      }
+    ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open app",
+      "href": "https://app.joinsayless.com"
     }
   },
   "footer": {
@@ -219,19 +219,27 @@
     "timestamp": false
   },
   "appearance": {
-    "default": "dark",
-    "strict": true
+    "default": "system",
+    "strict": false
   },
   "background": {
     "color": {
-      "dark": "#0C0C0C"
+      "light": "#FCFAFA",
+      "dark": "#1F1F20"
     }
   },
   "fonts": {
-    "family": "Inter"
+    "heading": {
+      "family": "Instrument Sans",
+      "weight": 500
+    },
+    "body": {
+      "family": "Instrument Sans",
+      "weight": 400
+    }
   },
   "thumbnails": {
-    "appearance": "dark"
+    "appearance": "light"
   },
   "redirects": [
     {
@@ -241,7 +249,12 @@
     },
     {
       "source": "/changelog",
-      "destination": "https://staging.joinsayless.com/changelog",
+      "destination": "https://joinsayless.com/changelog",
+      "permanent": true
+    },
+    {
+      "source": "/developers",
+      "destination": "/developers/overview",
       "permanent": true
     }
   ]
