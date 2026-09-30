@@ -1,0 +1,61 @@
+---
+title: Making requests
+description: POST action routes, request bodies, idempotency, and mutation payloads.
+---
+
+Resources use **POST action routes** under `/api/v1`. The action is the last path segment, not the HTTP verb.
+
+```
+POST /api/v1/tickets/list
+POST /api/v1/tickets/info
+POST /api/v1/tickets/create
+POST /api/v1/tickets/update
+POST /api/v1/tickets/delete
+```
+
+The TypeScript SDK maps these to methods such as `client.tickets.create()`.
+
+Send JSON. Every body includes `workspaceId`. List routes also accept `limit`, `cursor`, and `direction`.
+
+```bash
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/list" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"workspaceId":"'"$SAYLESS_WORKSPACE_ID"'","limit":25}'
+```
+
+## Reads
+
+List and info responses wrap the entity:
+
+```json
+{
+  "data": { "_id": "…", "subject": "…" },
+  "pagination": { "hasMore": false, "nextCursor": null }
+}
+```
+
+## Mutations
+
+Creates and updates return a public mutation payload:
+
+```json
+{
+  "success": true,
+  "data": { "_id": "…" },
+  "mutationId": "…",
+  "lastSyncId": 1204
+}
+```
+
+Deletes return `{ "success": true, "entityId": "…" }`.
+
+## Idempotency
+
+On **create** and **send message**, send an optional header so retries are safe:
+
+```http
+Idempotency-Key: <opaque-string-up-to-256-chars>
+```
+
+The gateway caches a successful response for 24 hours, scoped by workspace, principal, and route. Reusing a key while the first request is still in flight returns **409** (`IDEMPOTENCY_CONFLICT`).

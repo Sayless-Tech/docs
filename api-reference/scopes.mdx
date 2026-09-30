@@ -1,0 +1,34 @@
+---
+title: Scopes
+description: Coarse scopes and per-resource scopes for API keys and OAuth tokens.
+---
+
+Personal API keys and OAuth tokens carry scopes. A missing scope returns **401** with `error.type` of `INSUFFICIENT_SCOPE`.
+
+## Resource scopes
+
+| Domain | Read | Write |
+| --- | --- | --- |
+| Tickets | `tickets:read` | `tickets:write` |
+| Conversations | `conversations:read` | `conversations:write` |
+| Messages | `messages:read` | `messages:write` |
+| Companies, contacts, notes, documents | `companies:read` | `companies:write` |
+| Teams | `teams:read` | `teams:write` |
+| Attachments | `attachments:read` | `attachments:write` |
+| Webhook subscriptions | `webhooks:read` | `webhooks:write` |
+| Workspace profiles and workspace info | `workspace:read` | — |
+
+Write on a resource includes read for that resource. Workspace info is read-only.
+
+## Coarse scopes
+
+These expand to every resource scope.
+
+| Credential | Scope | Effective access |
+| --- | --- | --- |
+| Personal API key | `full_access` (default) | All resource read and write |
+| Personal API key | `read` | All `*:read` |
+| OAuth | `write` | All resource read and write |
+| OAuth | `read` | All `*:read` |
+
+Grant the narrowest resource scopes that the integration needs. `admin` is not grantable to OAuth app actors.

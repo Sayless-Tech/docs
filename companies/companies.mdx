@@ -1,6 +1,6 @@
 ---
 title: "Companies"
-description: "Use Sayless companies to keep account-level context connected to conversations, tickets, contacts, files, notes, pricing, and product metrics."
+description: "Use Sayless companies to keep account-level context connected to conversations, tickets, contacts, files, notes, and pricing."
 ---
 
 Companies represent accounts or organizations. Use them when post-sales customer work needs a shared account record instead of living only inside conversations and tickets.
@@ -9,7 +9,7 @@ Companies represent accounts or organizations. Use them when post-sales customer
 
 A company page brings together the account context your team needs before replying, investigating, or reviewing customer activity.
 
-Companies can include overview details, conversations, tickets, contacts, peers, metrics, files, notes, and pricing records.
+Companies can include overview details, conversations, tickets, contacts, related companies, files, notes, meetings, and pricing.
 
 Company records are also used by channel integrations. Slack, WhatsApp, Telegram, and Microsoft Teams channel mappings can attach group or channel conversations to the right company.
 
@@ -18,7 +18,7 @@ Go to [Companies](https://joinsayless.com/companies).
 | Company tab | Route pattern | What it shows |
 | --- | --- | --- |
 | Overview | `/companies/{companySlug}` | Account summary and related activity. |
-| Metrics | `/companies/{companySlug}/metrics` | Company-level metric activity. |
+| Meetings | `/companies/{companySlug}/meetings` | Meetings on the account. |
 | Conversations | `/companies/{companySlug}/conversations` | Linked conversations. |
 | Tickets | `/companies/{companySlug}/tickets` | Linked tickets. |
 | Contacts | `/companies/{companySlug}/contacts` | People attached to the company. |
@@ -49,7 +49,7 @@ Company edits open in a guide-style panel so you can update details without losi
 
 Delete a company only when the record should be removed. Bulk delete actions may be available from the company list.
 
-Deleting a company can remove the account-level place where related conversations, tickets, files, notes, and metrics are organized. Use labels or ownership changes when the company should remain available but be categorized differently.
+Deleting a company removes the account-level place where related conversations, tickets, files, and notes are organized. Use labels or ownership changes when the company should remain available but be categorized differently.
 
 ## Company details
 
@@ -81,11 +81,11 @@ Company contacts show people associated with the account.
 
 Peers connect related companies.
 
-Use peers for parent-child accounts, partner relationships, or companies that should be reviewed together.
+Use peers for parent, subsidiary, or other company relationships.
 
-### Metrics
+### Meetings
 
-Company metrics show event or product activity connected to the account.
+Meetings on a company are calls and recordings attached to that account.
 
 ## Filtering and views
 

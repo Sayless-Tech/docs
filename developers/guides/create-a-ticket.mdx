@@ -1,0 +1,22 @@
+---
+title: Create a ticket
+description: Open a ticket from an integration, optionally linked to a company and a conversation.
+---
+
+```bash
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/create" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: ticket-from-integration-42" \
+  -d '{
+    "workspaceId": "'"$SAYLESS_WORKSPACE_ID"'",
+    "subject": "Renewal follow-up",
+    "companyId": "<company-id>"
+  }'
+```
+
+A successful create returns `{ "success": true, "data": { … } }`. Send `Idempotency-Key` when the caller might retry.
+
+The key or token needs `tickets:write`. Linking a company also needs `companies:read` when the body includes a company id that the token must be allowed to see.
+
+For the full body, open **Create ticket** under Tickets in the API reference.

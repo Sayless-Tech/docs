@@ -1,0 +1,33 @@
+---
+title: Introduction
+description: What the Sayless public API covers, and how this reference is organized.
+---
+
+The Sayless public API is a curated HTTP API for the work graph: conversations, messages, tickets, companies, contacts, documents, teams, attachments, and outbound webhooks.
+
+Integrations authenticate with a personal API key (`sl_api_…`) or an OAuth access token (`sl_oat_…`), including app-actor tokens from client credentials. The official web app uses a cookie session and is not an integration path.
+
+## Base URL
+
+```
+https://api.joinsayless.com/api/v1
+```
+
+## How this reference is organized
+
+Start with the pages in this group, then open a resource.
+
+| Page | What it covers |
+| --- | --- |
+| [Making requests](/api-reference/making-requests) | POST action routes, bodies, and mutation payloads |
+| [Authentication](/developers/authentication) | API keys, OAuth user tokens, and app actors |
+| [Scopes](/api-reference/scopes) | Coarse scopes and per-resource scopes |
+| [Errors](/api-reference/errors) | Error envelope and `error.type` |
+| [Pagination](/api-reference/pagination) | Cursor pages on list routes |
+| [Rate limits](/api-reference/rate-limits) | Limits and retry behavior |
+
+Resource groups below that (Tickets, Conversations, Companies, and so on) are generated from the OpenAPI document. Each operation page shows the request body, response, and a playground.
+
+## What stays in the product
+
+Billing, channel connect wizards, broadcasts, triggers, analytics, the customer portal admin, and the client sync protocol are session-only. They are not part of this API.

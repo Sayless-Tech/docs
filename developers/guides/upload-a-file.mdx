@@ -1,0 +1,16 @@
+---
+title: Upload a file
+description: Create an attachment, upload the bytes, then complete it so tickets and messages can reference the file.
+---
+
+Attachments are a three-step upload. The API never accepts the file bytes on the create call.
+
+1. `POST /api/v1/attachments/create` with `workspaceId`, file name, and content type. The response includes an upload URL and an attachment id.
+2. `PUT` the file bytes to that upload URL.
+3. `POST /api/v1/attachments/complete` with the attachment id.
+
+After complete, pass the attachment id when you send a message or add ticket content.
+
+To ingest a file Sayless can fetch itself, use `POST /api/v1/attachments/create-from-url` instead of the upload URL.
+
+See the Attachments group in the API reference for the request bodies. The call needs the `attachments:write` scope, or a coarse scope that includes it.

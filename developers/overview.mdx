@@ -1,71 +1,39 @@
 ---
-title: Developer API overview
-description: Curated Sayless HTTP API for integrations — work graph only.
+title: Developers
+description: Build on Sayless with the public API, OAuth, and the TypeScript SDK.
 ---
 
-The Sayless public API lets personal API keys, OAuth user tokens, and OAuth **app actors** read and mutate the **work graph**: conversations, messages, tickets, companies, contacts, documents, teams, attachments, and outbound webhooks.
+Use the public API and TypeScript SDK to read and update the work graph: conversations, messages, tickets, companies, contacts, documents, teams, attachments, and webhooks.
 
-It is **not** a full clone of every in-app Settings or Analytics screen. Billing, insights dashboards, channel connect wizards, and the official client sync protocol stay in the product (session cookie).
+<CardGroup cols={2}>
+  <Card title="API reference" icon="book-open" href="/api-reference/introduction">
+    How requests work, then every endpoint grouped by resource.
+  </Card>
+  <Card title="Authentication" icon="key" href="/developers/authentication">
+    Personal API keys, OAuth user tokens, and app-actor client credentials.
+  </Card>
+  <Card title="TypeScript SDK" icon="braces" href="/developers/sdk/install">
+    Typed client generated from the same OpenAPI contract as the reference.
+  </Card>
+  <Card title="Webhooks" icon="webhook" href="/developers/webhooks">
+    Subscribe to work-graph events and verify delivery signatures.
+  </Card>
+</CardGroup>
 
-## Base URL
+## Start here
 
-```
-https://<your-gateway-host>/api/v1
-```
+1. Create a personal API key in [Settings → API](/admin/api-and-webhooks).
+2. Follow the [quickstart](/developers/quickstart) and list tickets.
+3. Narrow the key with [scopes](/api-reference/scopes) if it should not have full access.
+4. For a product other people install, use [OAuth](/developers/authentication) instead of a personal key.
 
-Most resources use **POST action routes**, for example `POST /api/v1/tickets/list` and `POST /api/v1/tickets/create`. The TypeScript SDK maps these to methods such as `client.tickets.list()`.
+## What you can build
 
-## Resource guides
-
-- [Tickets](/developers/api/tickets)
-- [Conversations](/developers/api/conversations)
-- [Messages](/developers/api/messages)
-- [Companies](/developers/api/companies) · [Contacts](/developers/api/contacts)
-- [Notes](/developers/api/notes) · [Documents](/developers/api/documents)
-- [Teams](/developers/api/teams)
-- [Attachments](/developers/api/attachments)
-- [Webhook subscriptions](/developers/api/webhookSubscriptions)
-- [Outbound webhooks](/developers/webhooks)
-
-## What is in scope
-
-| Area | Examples |
+| You want to | Use |
 | --- | --- |
-| Inbox | Conversations, messages, labels, statuses, subscriptions |
-| Tickets | Tickets, comments, statuses, subscriptions |
-| CRM | Companies, contacts, notes, documents, folders, labels |
-| Org | Teams, memberships, workspace member list, workspace info |
-| Files | Attachments |
-| Integrations outbound | Webhook subscriptions and deliveries |
+| Sync tickets or companies into another system | [Tickets](/api-reference/introduction) and [Companies](/api-reference/introduction) list/info routes, plus [webhooks](/developers/webhooks) |
+| Post a reply or a ticket comment | Messages and ticket comments in the [API reference](/api-reference/making-requests) |
+| Attach a file | [Upload a file](/developers/guides/upload-a-file) |
+| Run a backend without a user present | OAuth app actor (`client_credentials`) in [Authentication](/developers/authentication) |
 
-## What is app-only
-
-These stay in the Sayless product (session cookie). API keys cannot call them:
-
-- Sync / bootstrap / delta (official client protocol)
-- Billing and plan checkout
-- Channel connect settings (Slack, Telegram, email domain setup, …)
-- Broadcasts and broadcast profiles
-- Triggers and CSV imports
-- Analytics dashboards and insights
-- Meetings / Gong tooling
-- Issue-tracker **tool proxy** endpoints (browse another tracker through Sayless — use that product’s own APIs; link from the app)
-- Customer portal admin
-- Creating or listing API keys (use [Settings → Access](/admin/api-and-webhooks) for personal keys)
-
-## Auth
-
-See [Authentication](/developers/authentication).
-
-## Stability
-
-See [Stability and versioning](/developers/stability-and-versioning).
-
-## Next
-
-- [Quickstart](/developers/quickstart)
-- [Authentication](/developers/authentication)
-- [API overview](/developers/api/overview) — mutation payloads and OpenAPI
-- [SDK install](/developers/sdk/install)
-- [Pagination](/developers/pagination) · [Errors](/developers/errors) · [Rate limits](/developers/rate-limits)
-- Product guide for managing keys and webhooks in the UI: [API and webhooks](/admin/api-and-webhooks)
+Billing, channel setup, broadcasts, triggers, analytics, and the customer portal admin stay in the Sayless app. The API does not expose them.

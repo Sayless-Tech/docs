@@ -1,6 +1,6 @@
 ---
 title: "Key concepts"
-description: "Learn the core Sayless concepts — inbox, tickets, companies, contacts, broadcasts, metrics, and reports — so you can set up customer workflows faster."
+description: "Learn the core Sayless concepts — inbox, tickets, companies, contacts, broadcasts, and analytics — so you can set up customer workflows faster."
 ---
 
 Sayless is built around the flow of post-sales customer work: messages come in as conversations, conversations create follow-up work, and records keep the customer context attached. This page explains the main concepts you will see across the app.
@@ -15,17 +15,18 @@ As the work grows, Sayless keeps the surrounding context in records. This is wha
 
 - **Companies** for accounts and organizations.
 - **Contacts** for people.
-- **Metrics** for event data and charts.
-- **Reports** and **dashboards** for review and visibility.
+- **Analytics** for dashboards and charts over conversations, tickets, and broadcasts.
 
-| Concept | Primary page | What it is for |
+| Concept | Where it lives | What it is for |
 | --- | --- | --- |
-| Conversations | [Inbox](https://joinsayless.com/inbox) | Message threads from connected channels. |
-| Tickets | [Tickets](https://joinsayless.com/tickets) | Trackable follow-up work. |
-| Companies | [Companies](https://joinsayless.com/companies) | Account-level context. |
-| Contacts | [Contacts](https://joinsayless.com/contacts) | Person-level context. |
-| Metrics | [Metrics](https://joinsayless.com/metrics) | Event data and charts. |
-| Reports | [Reports](https://joinsayless.com/reports) | Saved analysis and dashboards. |
+| Conversations | Inbox | Message threads from connected channels. |
+| Tickets | Tickets, grouped with Inbox | Trackable follow-up work. |
+| Broadcasts | Broadcasts | Outbound messages to a group of customers. |
+| Companies | Records | Account-level context. |
+| Contacts | Records | Person-level context. |
+| Analytics | Analytics | Dashboards and charts. Paid plans. |
+| Teams | Settings → Teams | Groups of members you can assign work to. |
+| Customer portal | Settings → Customer Portal | A site where that workspace’s customers open and follow tickets. |
 
 > Top-level product links such as `/inbox`, `/tickets`, `/companies`, `/reports`, and `/settings` require an authenticated user. When you are signed in, Sayless opens the route in your active workspace.
 
@@ -45,7 +46,7 @@ Members are the people who can access a workspace. Roles control what each perso
 
 Admins can invite teammates, change roles, manage billing, configure integrations, create API keys, set up webhooks, and update workspace-level settings.
 
-Team members can work from the areas available to them, such as conversations, tickets, companies, contacts, metrics, broadcasts, and reports.
+Team members work from the areas available to them: inbox, tickets, companies, contacts, broadcasts, and analytics when the plan includes it.
 
 ### Channels
 
@@ -148,11 +149,11 @@ Use comments when the work needs internal discussion. Use the ticket description
 
 Records keep customer context organized outside individual conversations and tickets.
 
-The main record types are Companies, Contacts, and Metrics.
+The main record types are Companies and Contacts.
 
 ### Companies
 
-Companies represent accounts or organizations. A company can have conversations, tickets, contacts, files, notes, pricing records, peers, and metrics.
+Companies represent accounts or organizations. A company can have conversations, tickets, contacts, files, notes, meetings, pricing, and related companies.
 
 Company pages are useful when you need an account-level view of what has happened, what is open, and what context the team should know before replying or taking action.
 
@@ -162,11 +163,11 @@ Contacts represent people. A contact can be linked to a company and can have rel
 
 Use contacts when you need to understand who is involved in customer work and how their communication connects to the broader account.
 
-### Metrics
+## Analytics
 
-Metrics represent event data your team wants to track. Metrics can have events, details, integration settings, and charts.
+Analytics is dashboards and charts over conversations, tickets, and broadcasts. It is a paid feature, so the sidebar entry only appears when the workspace has it.
 
-Use metrics when customer or product activity should be reviewed over time, compared by company, or visualized in charts.
+Open a dashboard to arrange charts. Open a chart to change the measure, breakdown, and filters.
 
 ## Broadcasts
 
@@ -236,7 +237,7 @@ For example, to assign a ticket you may be able to:
 - Use the command menu when the ticket is active.
 - Use a keyboard shortcut where one is available.
 
-The same pattern applies across conversations, tickets, companies, contacts, metrics, broadcasts, and reports: open the item, use the visible control, or use a menu for more actions.
+The same pattern applies across conversations, tickets, companies, contacts, broadcasts, and analytics: open the item, use the visible control, or use a menu for more actions.
 
 ### Bulk actions
 
@@ -255,20 +256,14 @@ Common navigation shortcuts include:
 - `G` then `I` to open the inbox.
 - `G` then `T` to open tickets.
 - `G` then `B` to open broadcasts.
-- `G` then `C` to open companies.
-- `G` then `K` to open contacts.
-- `G` then `M` to open metrics.
-- `G` then `E` to open metric data.
-- `G` then `R` to open reports.
-- `G` then `S` to open settings.
+- `G` then `A` to open analytics, when the plan includes it.
+- `G` then `C` to open contacts.
 
 Open shortcuts use `O` then another key:
 
-- `O` then `W` to switch workspace.
 - `O` then `C` to open a company.
 - `O` then `K` to open a contact.
 - `O` then `I` to open an inbox message.
-- `O` then `M` to open a metric.
 - `O` then `T` to open a ticket.
 - `O` then `B` to open a broadcast.
 
@@ -280,4 +275,4 @@ Launch the command menu with `⌘` then `K` on macOS, or `Ctrl` then `K` on Wind
 
 Use it when you know what you want to do but do not want to find the exact button or menu. Command menu results change based on where you are in the app and what item is active.
 
-For example, from a ticket you can search for actions like changing status, assigning the ticket, updating labels, setting a due date, linking a conversation, or connecting a Linear or Jira issue. From list pages, the command menu can also show create actions such as new ticket, company, contact, metric, broadcast, report, or dashboard when those actions are available.
+For example, from a ticket you can search for actions like changing status, assigning the ticket, updating labels, setting a due date, linking a conversation, or connecting a Linear or Jira issue. From list pages, the command menu can also show create actions such as new ticket, company, contact, broadcast, or dashboard when those actions are available.

@@ -1,0 +1,44 @@
+---
+title: Errors
+description: Nested error envelope for API key and OAuth callers.
+---
+
+Personal API keys and OAuth tokens receive a **nested error envelope**. Cookie session (APP) keeps a flatter SPA-compatible shape and is not documented here.
+
+## Envelope
+
+```json
+{
+  "error": {
+    "type": "UNAUTHORIZED",
+    "message": "Authentication required",
+    "userMessage": "optional human-readable copy",
+    "fields": {
+      "subject": ["subject should not be empty"]
+    }
+  },
+  "statusCode": 401,
+  "timestamp": "2026-09-30T12:00:00.000Z",
+  "path": "/api/v1/tickets/create"
+}
+```
+
+Branch on `error.type` (stable machine code). Use `userMessage` when present for UI copy; otherwise `message`.
+
+## Common `type` values
+
+| `type` | Typical status | Meaning |
+| --- | --- | --- |
+| `UNAUTHORIZED` | 401 | Missing/invalid key or token |
+| `INSUFFICIENT_SCOPE` | 401 | Valid credential but missing required resource/coarse scope |
+| `FORBIDDEN` | 403 | Authenticated but not allowed |
+| `NOT_FOUND` | 404 | Resource missing |
+| `VALIDATION_ERROR` / `BAD_REQUEST` | 400 | Invalid or invalid body |
+| `RATE_LIMITED` | 429 | Too many requests — see [Rate limits](/api-reference/rate-limits) |
+| `INTERNAL` | 500 | Unexpected server error |
+
+Exact codes continue to expand; treat unknown types as generic failures.
+
+## Validation
+
+Gateway `ValidationPipe` strips unknown body fields (`whitelist`) and transforms types. Field-level issues appear under `error.fields` when available.
