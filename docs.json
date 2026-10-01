@@ -190,17 +190,6 @@
               "POST /api/v1/tickets/restore",
               "POST /api/v1/tickets/set_sla",
               {
-                "group": "Comments",
-                "pages": [
-                  "POST /api/v1/tickets/ticketComment/info",
-                  "POST /api/v1/tickets/ticketComment/create",
-                  "POST /api/v1/tickets/ticketComment/update",
-                  "POST /api/v1/tickets/ticketComment/delete",
-                  "POST /api/v1/tickets/ticketComment/comment_reaction_add",
-                  "POST /api/v1/tickets/ticketComment/comment_reaction_remove"
-                ]
-              },
-              {
                 "group": "Content",
                 "pages": [
                   "POST /api/v1/tickets/ticketContent/create",
@@ -226,6 +215,17 @@
                   "POST /api/v1/tickets/ticketSubscriptions/delete"
                 ]
               }
+            ]
+          },
+          {
+            "group": "Ticket comments",
+            "pages": [
+              "POST /api/v1/tickets/ticketComment/info",
+              "POST /api/v1/tickets/ticketComment/create",
+              "POST /api/v1/tickets/ticketComment/update",
+              "POST /api/v1/tickets/ticketComment/delete",
+              "POST /api/v1/tickets/ticketComment/comment_reaction_add",
+              "POST /api/v1/tickets/ticketComment/comment_reaction_remove"
             ]
           },
           {
