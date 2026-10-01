@@ -42,13 +42,11 @@ Creates and updates return a public mutation payload:
 ```json
 {
   "success": true,
-  "data": { "_id": "…" },
-  "mutationId": "…",
-  "lastSyncId": 1204
+  "data": { "_id": "…" }
 }
 ```
 
-Deletes return `{ "success": true, "entityId": "…" }`.
+Deletes return `{ "success": true, "entityId": "…" }`. API and OAuth responses do not include sync fields such as `mutationId`.
 
 ## Idempotency
 

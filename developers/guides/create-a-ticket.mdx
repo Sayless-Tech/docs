@@ -11,7 +11,8 @@ curl -X POST "https://api.joinsayless.com/api/v1/tickets/create" \
   -d '{
     "workspaceId": "'"$SAYLESS_WORKSPACE_ID"'",
     "subject": "Renewal follow-up",
-    "companyId": "<company-id>"
+    "description": "Customer asked to review the renewal before Friday.",
+    "statusId": "<status-id>"
   }'
 ```
 

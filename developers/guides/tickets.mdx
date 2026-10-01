@@ -1,0 +1,35 @@
+---
+title: Tickets
+description: Create a ticket with a plain-text body, and how SLA metrics work.
+---
+
+API and OAuth callers create tickets with a plain-text `description`. Sayless stores it as the ticket body and writes the URL id and preview. Do not send Lexical `content`, `preview`, or `mutationId`.
+
+```bash
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/create" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: ticket-from-integration-42" \
+  -d '{
+    "workspaceId": "'"$SAYLESS_WORKSPACE_ID"'",
+    "subject": "Renewal follow-up",
+    "description": "Customer asked to review the renewal before Friday.",
+    "statusId": "<status-id>"
+  }'
+```
+
+`subject` is 1–100 characters. `priority` defaults to `3` (normal). `1` is urgent, `2` high, `4` low.
+
+A successful create returns `{ "success": true, "data": { …ticket } }`.
+
+`POST /tickets/info` accepts either the ticket UUID or the `subject-urlId` slug in `_id`.
+
+## SLA metrics
+
+`POST /tickets/set_sla` sets a custom duration on one metric. `durationSeconds` is a positive number of seconds, at most one year. Send `null` to clear a custom **resolution** SLA.
+
+| Metric | When the clock runs |
+| --- | --- |
+| `firstResponse` | From ticket creation until the first agent reply. |
+| `nextResponse` | From the latest customer reply until the next agent reply. |
+| `resolution` | From ticket creation until the ticket is done. |

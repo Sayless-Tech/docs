@@ -120,7 +120,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Ticket"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -156,7 +161,7 @@
       "post": {
         "operationId": "TicketsController_fetchTicketInfo",
         "summary": "Get ticket",
-        "description": "Returns one ticket.",
+        "description": "Returns one ticket. `_id` may be the ticket UUID or a subject-urlId slug.",
         "tags": [
           "Tickets"
         ],
@@ -174,7 +179,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "$ref": "#/components/schemas/Ticket"
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -206,11 +213,11 @@
         }
       }
     },
-    "/api/v1/tickets/info_by_urlId": {
+    "/api/v1/tickets/create": {
       "post": {
-        "operationId": "TicketsController_FetchByUrlId",
-        "summary": "Info By Url Id Tickets",
-        "description": "Returns a ticket by its URL id.",
+        "operationId": "TicketsController_createTicket",
+        "summary": "Create ticket",
+        "description": "Creates a ticket.",
         "tags": [
           "Tickets"
         ],
@@ -222,15 +229,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Ticket"
                     }
                   }
                 }
@@ -253,55 +269,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TicketByUrlIdRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tickets/create": {
-      "post": {
-        "operationId": "TicketsController_createTicket",
-        "summary": "Create ticket",
-        "description": "Creates a ticket.",
-        "tags": [
-          "Tickets"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public mutation payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateTicketRequest"
+                "$ref": "#/components/schemas/PublicCreateTicketRequest"
               }
             }
           }
@@ -340,7 +308,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Ticket"
+                    }
+                  }
                 }
               }
             }
@@ -361,7 +344,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TicketUpdateRequest"
+                "$ref": "#/components/schemas/PublicUpdateTicketRequest"
               }
             }
           }
@@ -436,7 +419,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Ticket"
+                    }
+                  }
                 }
               }
             }
@@ -484,7 +482,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Ticket"
+                    }
+                  }
                 }
               }
             }
@@ -8981,6 +8994,111 @@
       }
     },
     "schemas": {
+      "Ticket": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "urlId": {
+            "type": "string",
+            "description": "12-character id used in ticket URLs."
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "conversationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "content": {
+            "type": "string",
+            "description": "Lexical document JSON."
+          },
+          "preview": {
+            "type": "string",
+            "description": "Plain-text excerpt of the body."
+          },
+          "statusId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "default": 3,
+            "description": "1 urgent, 2 high, 3 normal, 4 low."
+          },
+          "assigneeId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "contactIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "companyIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ticketNumber": {
+            "type": "integer"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        }
+      },
       "WorkspaceTicketsRequest": {
         "type": "object",
         "properties": {
@@ -9021,10 +9139,8 @@
             "format": "uuid"
           },
           "_id": {
-            "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Ticket UUID, or a `subject-urlId` slug."
           }
         },
         "additionalProperties": false,
@@ -9033,61 +9149,36 @@
           "_id"
         ]
       },
-      "TicketByUrlIdRequest": {
+      "PublicCreateTicketRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "ticketUrlId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId",
-          "ticketUrlId"
-        ]
-      },
-      "CreateTicketRequest": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "attachmentIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "conversationIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "subject": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
           },
-          "content": {
-            "type": "string"
-          },
-          "markdownContent": {
-            "type": "string"
-          },
-          "preview": {
-            "type": "string"
+          "description": {
+            "type": "string",
+            "description": "Plain text. Stored as a Lexical document; preview is derived."
           },
           "statusId": {
             "type": "string",
             "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "description": "1 urgent, 2 high, 3 normal, 4 low. Defaults to 3 when omitted.",
+            "default": 3
           },
           "assigneeId": {
             "type": "string",
@@ -9116,6 +9207,85 @@
           },
           "urlId": {
             "type": "string",
+            "nullable": true,
+            "description": "12-character url id. Omitted values are generated."
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attachmentIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conversationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "subject",
+          "description",
+          "statusId"
+        ]
+      },
+      "PublicUpdateTicketRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "statusId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "description": "1 urgent, 2 high, 3 normal, 4 low."
+          },
+          "assigneeId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "labelIds": {
@@ -9124,49 +9294,22 @@
               "type": "string"
             }
           },
-          "createInLinear": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "linkToExistingLinearIssue": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "createInJira": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "linkToExistingJiraIssue": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "_id",
-          "workspaceId",
-          "subject",
-          "content",
-          "preview",
-          "statusId"
-        ]
-      },
-      "TicketUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "_id": {
+          "companyIds": {
             "type": "array",
-            "items": {}
+            "items": {
+              "type": "string"
+            }
           },
-          "mutationId": {
-            "type": "string"
+          "contactIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -9183,14 +9326,22 @@
             "format": "uuid"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "permanent": {
             "type": "boolean"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9207,9 +9358,6 @@
             "format": "uuid"
           },
           "_id": {
-            "type": "string"
-          },
-          "mutationId": {
             "type": "string"
           }
         },
@@ -9231,14 +9379,20 @@
             "format": "uuid"
           },
           "metric": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "firstResponse",
+              "nextResponse",
+              "resolution"
+            ],
+            "description": "Clock to set. `firstResponse` is the first reply, `nextResponse` is the following reply, and `resolution` is time to resolve."
           },
           "durationSeconds": {
             "type": "integer",
-            "nullable": true
-          },
-          "mutationId": {
-            "type": "string"
+            "nullable": true,
+            "maximum": 31536000,
+            "minimum": 1,
+            "description": "Target length in seconds. Send null to remove the resolution SLA. Maximum is one year."
           }
         },
         "additionalProperties": false,
@@ -9461,7 +9615,14 @@
             "type": "string"
           },
           "category": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "waiting_on_customer",
+              "resolved",
+              "cancelled"
+            ]
           },
           "customerLabel": {
             "type": "string",
@@ -9609,7 +9770,11 @@
             "type": "string"
           },
           "sortDirection": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
           },
           "filters": {
             "type": "string"
@@ -9688,8 +9853,19 @@
             "format": "uuid"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "mutationId": {
             "type": "string"
@@ -9708,8 +9884,19 @@
             "type": "boolean"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -9879,12 +10066,27 @@
             "format": "uuid"
           },
           "type": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "string",
+            "enum": [
+              "contact",
+              "domain",
+              "email"
+            ]
           },
           "conversationId": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -9956,11 +10158,19 @@
             "format": "uuid"
           },
           "metric": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "firstResponse",
+              "nextResponse",
+              "resolution"
+            ]
           },
           "durationSeconds": {
             "type": "integer",
-            "nullable": true
+            "nullable": true,
+            "maximum": 31536000,
+            "minimum": 1,
+            "description": "Send null to remove the selected metric's SLA."
           },
           "mutationId": {
             "type": "string"
@@ -10059,34 +10269,51 @@
             "type": "string"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 140
           },
           "urlId": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 32
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "website": {
             "type": "string",
             "format": "uri"
           },
           "industry": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 100
           },
           "size": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 50
           },
           "require_tld": {
             "type": "string",
@@ -10102,16 +10329,20 @@
             }
           },
           "x": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "linkedin": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "instagram": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "sector": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 100
           },
           "sectorIds": {
             "type": "string",
@@ -10122,10 +10353,12 @@
             "format": "uuid"
           },
           "location1": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "location2": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "fundingRaised": {
             "type": "string",
@@ -10572,8 +10805,19 @@
         "type": "object",
         "properties": {
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -10749,7 +10993,16 @@
             "type": "string"
           },
           "channel": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
           },
           "mutationId": {
             "type": "string"
@@ -10775,7 +11028,16 @@
             "format": "uuid"
           },
           "channel": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
           },
           "mutationId": {
             "type": "string"
@@ -10868,8 +11130,19 @@
             "type": "string"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -10901,27 +11174,32 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 140
           },
           "urlId": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 32
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "website": {
             "type": "string",
             "format": "uri"
           },
           "size": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 50
           },
           "require_tld": {
             "type": "string",
@@ -10937,16 +11215,20 @@
             }
           },
           "x": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "linkedin": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "instagram": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "sector": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 100
           },
           "labelIds": {
             "type": "string",
@@ -10957,10 +11239,12 @@
             "format": "uuid"
           },
           "location1": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "location2": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "fundingRaised": {
             "type": "string",
@@ -11038,8 +11322,19 @@
             "type": "string"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -11063,14 +11358,16 @@
             "format": "uuid"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "emails": {
             "type": "string",
@@ -11083,10 +11380,12 @@
             }
           },
           "username": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "jobTitle": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "buyerTypes": {
             "type": "array",
@@ -11119,18 +11418,31 @@
             "type": "string"
           },
           "_id": {
-            "type": "array",
-            "items": {}
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "emails": {
             "type": "string",
@@ -11143,10 +11455,12 @@
             }
           },
           "username": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "jobTitle": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "buyerTypes": {
             "type": "array",
@@ -11229,7 +11543,8 @@
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 100
           },
           "_id": {
             "type": "string",
@@ -11240,10 +11555,12 @@
             "format": "uuid"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "color": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 20
           }
         },
         "additionalProperties": false,
@@ -11312,14 +11629,16 @@
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           }
         },
         "additionalProperties": false,
@@ -11344,7 +11663,8 @@
           },
           "description": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "maxLength": 1000
           }
         },
         "additionalProperties": false,
@@ -11425,7 +11745,8 @@
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "type": {
             "type": "string"
@@ -11443,16 +11764,19 @@
             "format": "uuid"
           },
           "originalFileName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "fileType": {
             "type": "string"
           },
           "fileSize": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "folderId": {
             "type": "string",
@@ -11511,10 +11835,12 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "folderId": {
             "type": "string",
@@ -11555,6 +11881,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           }
         },
@@ -11610,7 +11941,12 @@
             "format": "uuid"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           }
         },
         "additionalProperties": false,
@@ -11669,7 +12005,8 @@
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "companyId": {
             "type": "string",
@@ -11680,7 +12017,8 @@
             "format": "uuid"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "index": {
             "type": "string"
@@ -11716,10 +12054,12 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1000
           },
           "index": {
             "type": "string"
@@ -11923,7 +12263,8 @@
             "type": "string"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "content": {
             "type": "string"
@@ -11968,7 +12309,8 @@
             "format": "uuid"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 500
           },
           "content": {
             "type": "string"
@@ -12045,6 +12387,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           }
         },
@@ -12100,7 +12447,12 @@
             "format": "uuid"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           }
         },
         "additionalProperties": false,
@@ -12123,7 +12475,21 @@
             "format": "uuid"
           },
           "parentType": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "message",
+              "ticket",
+              "comment",
+              "note",
+              "broadcast",
+              "invoice",
+              "company",
+              "contact",
+              "file",
+              "avatar",
+              "oauth_app",
+              "csv_import"
+            ]
           },
           "parentId": {
             "type": "string",
@@ -12133,10 +12499,12 @@
             "type": "string"
           },
           "size": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 1
           },
           "originalName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "metadata": {
             "type": "object",
@@ -12165,7 +12533,21 @@
             "format": "uuid"
           },
           "parentType": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "message",
+              "ticket",
+              "comment",
+              "note",
+              "broadcast",
+              "invoice",
+              "company",
+              "contact",
+              "file",
+              "avatar",
+              "oauth_app",
+              "csv_import"
+            ]
           },
           "parentId": {
             "type": "string",
@@ -12186,7 +12568,8 @@
             "type": "string"
           },
           "originalName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255
           },
           "metadata": {
             "type": "object",
@@ -12440,8 +12823,11 @@
             "type": "string"
           },
           "direction": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
           }
         },
         "additionalProperties": false,
@@ -12550,23 +12936,9 @@
             ]
           },
           "data": {
+            "type": "object",
+            "additionalProperties": true,
             "description": "Presented entity"
-          },
-          "mutationId": {
-            "type": "string"
-          },
-          "lastSyncId": {
-            "type": "number"
-          },
-          "contentLastSyncId": {
-            "type": "number"
-          },
-          "syncAckSource": {
-            "type": "string",
-            "enum": [
-              "commit",
-              "non_commit"
-            ]
           }
         }
       },
@@ -12594,19 +12966,6 @@
                   "type": "string"
                 }
               }
-            ]
-          },
-          "mutationId": {
-            "type": "string"
-          },
-          "lastSyncId": {
-            "type": "number"
-          },
-          "syncAckSource": {
-            "type": "string",
-            "enum": [
-              "commit",
-              "non_commit"
             ]
           }
         }

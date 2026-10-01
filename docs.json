@@ -156,6 +156,7 @@
             "pages": [
               "developers/guides/upload-a-file",
               "developers/guides/create-a-ticket",
+              "developers/guides/tickets",
               "developers/webhooks",
               "developers/stability-and-versioning"
             ]
