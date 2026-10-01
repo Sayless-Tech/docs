@@ -44,33 +44,25 @@ See [Pagination](/developers/pagination).
 
 ## Mutations (API key / OAuth)
 
-Public writes always return **identity** (and usually the presented entity) plus sync ack fields when available.
+Public writes return the presented entity. They do not accept or return `mutationId`. The app uses that field for sync; API keys and OAuth tokens use `Idempotency-Key` on create and send.
 
 ### Create / update
 
 ```json
 {
   "success": true,
-  "data": { "_id": "…", "subject": "…" },
-  "mutationId": "optional-client-id",
-  "lastSyncId": 12345,
-  "syncAckSource": "commit"
+  "data": { "_id": "…", "subject": "…" }
 }
 ```
 
 Use `data._id` (or the SDK’s typed id accessor) for follow-up `info` / `list` calls — you do not need to re-list to discover the id.
-
-Ticket create may also include `contentLastSyncId` when content is written separately.
 
 ### Delete
 
 ```json
 {
   "success": true,
-  "entityId": "…",
-  "mutationId": "optional-client-id",
-  "lastSyncId": 12345,
-  "syncAckSource": "commit"
+  "entityId": "…"
 }
 ```
 

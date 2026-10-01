@@ -9508,9 +9508,6 @@
           "customerLabel": {
             "type": "string",
             "nullable": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9535,9 +9532,6 @@
           "updateData": {
             "type": "object",
             "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9562,9 +9556,6 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9664,9 +9655,6 @@
           "subscriberId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9933,9 +9921,6 @@
                 }
               }
             ]
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9968,9 +9953,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9989,9 +9971,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10011,9 +9990,6 @@
             "format": "uuid"
           },
           "archivedAt": {
-            "type": "string"
-          },
-          "mutationId": {
             "type": "string"
           }
         },
@@ -10036,9 +10012,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10061,9 +10034,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10087,9 +10057,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10112,9 +10079,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10158,9 +10122,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10181,9 +10142,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10202,9 +10160,6 @@
           "conversationId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10238,9 +10193,6 @@
             "maximum": 31536000,
             "minimum": 1,
             "description": "Send null to remove the selected metric's SLA."
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10263,9 +10215,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10297,9 +10246,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10318,9 +10264,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10332,9 +10275,6 @@
       "UpdateCompanyRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "oneOf": [
               {
@@ -10463,9 +10403,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10488,9 +10425,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10514,9 +10448,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10540,9 +10471,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10643,9 +10571,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10668,9 +10593,6 @@
           "updateData": {
             "type": "object",
             "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10695,9 +10617,6 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -10815,10 +10734,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false,
@@ -10844,10 +10759,6 @@
           "updateData": {
             "type": "object",
             "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false,
@@ -10872,10 +10783,6 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
-          },
-          "mutationId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false,
@@ -10991,9 +10898,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11024,9 +10928,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11072,9 +10973,6 @@
           "preferences": {
             "type": "object",
             "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11098,9 +10996,6 @@
           "preferences": {
             "type": "object",
             "additionalProperties": true
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11256,9 +11151,6 @@
           "previousMessageId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11302,9 +11194,6 @@
               "teams",
               "portal"
             ]
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11337,9 +11226,6 @@
               "teams",
               "portal"
             ]
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11377,9 +11263,6 @@
           },
           "privateNote": {
             "type": "boolean"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -11589,9 +11472,6 @@
       "CompanyIdRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "oneOf": [
               {
@@ -11629,9 +11509,6 @@
       "CreateCompanyRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -11881,9 +11758,6 @@
       "ContactIdRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "oneOf": [
               {
@@ -11913,9 +11787,6 @@
       "CreateContactRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -11977,9 +11848,6 @@
       "UpdateContactRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "oneOf": [
               {
@@ -12143,9 +12011,6 @@
       "CreateCompanyLabelRequestRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "name": {
             "type": "string",
             "maxLength": 100
@@ -12177,9 +12042,6 @@
       "UpdateCompanyLabelRequestRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "labelId": {
             "type": "string",
             "format": "uuid"
@@ -12203,9 +12065,6 @@
       "DeleteCompanyLabelRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -12308,9 +12167,6 @@
       "CreateContractTypeRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "name": {
             "type": "string",
             "maxLength": 255
@@ -12333,9 +12189,6 @@
       "UpdateContractTypeRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "typeId": {
             "type": "string",
             "format": "uuid"
@@ -12525,9 +12378,6 @@
       "DocumentIdRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "documentId": {
             "type": "string",
             "format": "uuid"
@@ -12549,9 +12399,6 @@
       "CreateDocumentRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "name": {
             "type": "string",
             "maxLength": 255
@@ -12635,9 +12482,6 @@
       "UpdateDocumentRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "documentId": {
             "type": "string",
             "format": "uuid"
@@ -12723,9 +12567,6 @@
       "DocumentAddUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "documentId": {
             "type": "string",
             "format": "uuid"
@@ -12758,9 +12599,6 @@
       "DocumentRemoveUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "documentId": {
             "type": "string",
             "format": "uuid"
@@ -12784,9 +12622,6 @@
       "DocumentUpdateUserPermissionRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "documentId": {
             "type": "string",
             "format": "uuid"
@@ -12940,9 +12775,6 @@
       "CreateDocumentFolderRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "name": {
             "type": "string",
             "maxLength": 255
@@ -12985,9 +12817,6 @@
       "UpdateDocumentFolderRequestRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -13029,9 +12858,6 @@
       "DeleteDocumentFolderRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "folderId": {
             "type": "string",
             "format": "uuid"
@@ -13061,9 +12887,6 @@
       "DocumentFolderAddUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
@@ -13115,9 +12938,6 @@
       "DocumentFolderRemoveUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
@@ -13139,9 +12959,6 @@
       "DocumentFolderUpdateUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
@@ -13307,9 +13124,6 @@
       "CreateNoteRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "title": {
             "type": "string",
             "maxLength": 500
@@ -13345,9 +13159,6 @@
       "UpdateNoteRequestRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -13394,9 +13205,6 @@
       "NoteIdRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "noteId": {
             "type": "string",
             "format": "uuid"
@@ -13418,9 +13226,6 @@
       "NoteAddUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "noteId": {
             "type": "string",
             "format": "uuid"
@@ -13453,9 +13258,6 @@
       "NoteRemoveUserRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "noteId": {
             "type": "string",
             "format": "uuid"
@@ -13479,9 +13281,6 @@
       "NoteUpdateUserPermissionRequest": {
         "type": "object",
         "properties": {
-          "mutationId": {
-            "type": "string"
-          },
           "noteId": {
             "type": "string",
             "format": "uuid"
@@ -13995,9 +13794,6 @@
           "_id": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -14034,9 +13830,6 @@
           },
           "secret": {
             "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -14055,9 +13848,6 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
