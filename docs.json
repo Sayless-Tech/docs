@@ -157,8 +157,7 @@
               "developers/guides/upload-a-file",
               "developers/guides/create-a-ticket",
               "developers/webhooks",
-              "developers/stability-and-versioning",
-              "developers/changelog"
+              "developers/stability-and-versioning"
             ]
           }
         ]
@@ -565,6 +564,11 @@
     },
     {
       "source": "/changelog",
+      "destination": "https://joinsayless.com/changelog",
+      "permanent": true
+    },
+    {
+      "source": "/developers/changelog",
       "destination": "https://joinsayless.com/changelog",
       "permanent": true
     },
