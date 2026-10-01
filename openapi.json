@@ -37,9 +37,6 @@
       "name": "Conversation subscriptions"
     },
     {
-      "name": "Conversation views"
-    },
-    {
       "name": "Messages"
     },
     {
@@ -1552,7 +1549,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -1648,7 +1660,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -1696,7 +1723,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -1744,7 +1786,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -1794,7 +1851,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
                   }
                 }
               }
@@ -1843,7 +1902,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -1891,7 +1965,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2028,7 +2117,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2126,7 +2230,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
                   }
                 }
               }
@@ -2175,7 +2281,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2223,7 +2344,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2271,7 +2407,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2378,7 +2529,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2426,7 +2592,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2474,7 +2655,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2522,7 +2718,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2570,7 +2781,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2618,7 +2844,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2666,7 +2907,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
+                  }
                 }
               }
             }
@@ -2773,7 +3029,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationLabel"
+                    }
+                  }
                 }
               }
             }
@@ -2833,7 +3104,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationLabel"
+                    }
+                  }
                 }
               }
             }
@@ -2988,7 +3274,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationStatus"
+                    }
+                  }
                 }
               }
             }
@@ -3048,7 +3349,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationStatus"
+                    }
+                  }
                 }
               }
             }
@@ -3259,7 +3575,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationSubscription"
+                    }
+                  }
                 }
               }
             }
@@ -3397,114 +3728,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ConversationSubscriptionsConversationRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/conversations/viewPreferences/create": {
-      "post": {
-        "operationId": "ConversationsController_createViewPreferences",
-        "summary": "Create view preference",
-        "description": "Creates a view preference.",
-        "tags": [
-          "Conversation views"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public mutation payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ViewPreferencesCreateRequest"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Idempotency-Key",
-            "in": "header",
-            "required": false,
-            "description": "Optional. Safe retries for create/send: same key + route + workspace returns the cached success body for 24h. API/OAuth only.",
-            "schema": {
-              "type": "string",
-              "maxLength": 256
-            }
-          }
-        ]
-      }
-    },
-    "/api/v1/conversations/viewPreferences/update": {
-      "post": {
-        "operationId": "ConversationsController_updateViewPreferences",
-        "summary": "Update view preference",
-        "description": "Updates a view preference.",
-        "tags": [
-          "Conversation views"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public mutation payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ViewPreferencesUpdateRequest"
               }
             }
           }
@@ -3994,7 +4217,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
                 }
               }
             }
@@ -4054,7 +4292,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
                 }
               }
             }
@@ -4150,7 +4403,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
                 }
               }
             }
@@ -4198,7 +4466,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
                 }
               }
             }
@@ -4246,7 +4529,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  }
                 }
               }
             }
@@ -4406,7 +4704,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
                 }
               }
             }
@@ -4466,7 +4779,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
                 }
               }
             }
@@ -4562,7 +4890,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
                 }
               }
             }
@@ -4610,7 +4953,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
                 }
               }
             }
@@ -4658,7 +5016,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
                 }
               }
             }
@@ -5361,7 +5734,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyRelationship"
+                    }
+                  }
                 }
               }
             }
@@ -5432,7 +5820,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyRelationship"
+                    }
+                  }
                 }
               }
             }
@@ -5550,7 +5953,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyUpdate"
+                    }
+                  }
                 }
               }
             }
@@ -5621,7 +6039,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyUpdate"
+                    }
+                  }
                 }
               }
             }
@@ -6037,7 +6470,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Document"
+                    }
+                  }
                 }
               }
             }
@@ -6553,7 +7001,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Folder"
+                    }
+                  }
                 }
               }
             }
@@ -7122,7 +7585,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Note"
+                    }
+                  }
                 }
               }
             }
@@ -7516,7 +7994,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
+                  }
                 }
               }
             }
@@ -7587,7 +8080,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
+                  }
                 }
               }
             }
@@ -7648,7 +8156,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
                   }
                 }
               }
@@ -7704,14 +8214,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public delete payload",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
+                  "$ref": "#/components/schemas/PublicDeletePayload"
                 }
               }
             }
@@ -7772,7 +8279,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
                   }
                 }
               }
@@ -7977,7 +8486,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TeamMembership"
+                    }
+                  }
                 }
               }
             }
@@ -9054,7 +9578,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Plain text. Stored as a Lexical document; preview is derived."
+            "description": "Markdown. Stored as a Lexical document; preview is derived."
           },
           "statusId": {
             "type": "string",
@@ -9204,7 +9728,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Plain text. Replaces the ticket body and its content document."
+            "description": "Markdown. Replaces the ticket body and its content document."
           }
         },
         "additionalProperties": false,
@@ -9327,7 +9851,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Plain text. Stored as a Lexical document."
+            "description": "Markdown. Stored as a Lexical document."
           },
           "entryType": {
             "type": "string",
@@ -9371,7 +9895,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Plain text. Stored as a Lexical document."
+            "description": "Markdown. Stored as a Lexical document."
           }
         },
         "additionalProperties": false,
@@ -10954,56 +11478,6 @@
           "_id"
         ]
       },
-      "ViewPreferencesCreateRequest": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "viewId": {
-            "type": "string"
-          },
-          "viewType": {
-            "type": "string"
-          },
-          "preferences": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "_id",
-          "workspaceId",
-          "viewId",
-          "viewType"
-        ]
-      },
-      "ViewPreferencesUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "preferences": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "_id",
-          "workspaceId"
-        ]
-      },
       "Message": {
         "type": "object",
         "properties": {
@@ -12209,6 +12683,112 @@
           "workspaceId"
         ]
       },
+      "CompanyRelationship": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromCompanyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "toCompanyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "parent",
+              "sister",
+              "subsidiary"
+            ]
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "syncRevision": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CompanyUpdate": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "contactId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sentiment": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ]
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "syncRevision": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "Document": {
         "type": "object",
         "properties": {
@@ -12234,10 +12814,19 @@
             "type": "string"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "file",
+              "contract"
+            ]
           },
           "attachmentId": {
             "type": "string",
@@ -12259,7 +12848,15 @@
             "type": "string"
           },
           "contractStatus": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "draft",
+              "signed_by_us",
+              "signed_by_them",
+              "fully_signed",
+              "expired",
+              "superseded"
+            ]
           },
           "version": {
             "type": "string"
@@ -12452,6 +13049,14 @@
           },
           "contractStatus": {
             "type": "string",
+            "enum": [
+              "draft",
+              "signed_by_us",
+              "signed_by_them",
+              "fully_signed",
+              "expired",
+              "superseded"
+            ],
             "nullable": true
           },
           "expirationDate": {
@@ -12464,6 +13069,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           }
         },
@@ -12508,6 +13118,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           }
         },
@@ -12528,7 +13143,12 @@
             "format": "uuid"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           },
           "documentId": {
             "type": "string",
@@ -12661,13 +13281,22 @@
             "type": "string"
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           },
           "description": {
             "type": "string"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           },
           "companyId": {
             "type": "string",
@@ -12796,6 +13425,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           },
           "subtype": {
@@ -12838,6 +13472,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           },
           "subtype": {
@@ -12893,6 +13532,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           },
           "subtype": {
@@ -12965,6 +13609,11 @@
           },
           "permission": {
             "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ],
             "nullable": true
           },
           "subtype": {
@@ -13016,7 +13665,12 @@
             "format": "uuid"
           },
           "permission": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "read",
+              "readWrite",
+              "admin"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -13129,7 +13783,8 @@
             "maxLength": 500
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "Markdown for API keys and OAuth. The app sends a Lexical document."
           },
           "companyId": {
             "type": "string",
@@ -13172,7 +13827,8 @@
             "maxLength": 500
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "Markdown for API keys and OAuth. The app sends a Lexical document."
           },
           "folderId": {
             "type": "string",
@@ -13887,13 +14543,26 @@
             "type": "string"
           },
           "role": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "admin",
+              "member",
+              "viewer"
+            ]
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "active",
+              "deactivated"
+            ]
           },
           "assignmentAvailability": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "available",
+              "out_of_office"
+            ]
           },
           "isPending": {
             "type": "string"

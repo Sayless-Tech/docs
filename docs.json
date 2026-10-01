@@ -281,13 +281,6 @@
             ]
           },
           {
-            "group": "Conversation views",
-            "pages": [
-              "POST /api/v1/conversations/viewPreferences/create",
-              "POST /api/v1/conversations/viewPreferences/update"
-            ]
-          },
-          {
             "group": "Messages",
             "pages": [
               "POST /api/v1/messages/list_conversation_messages",
