@@ -181,9 +181,6 @@
                   "properties": {
                     "data": {
                       "$ref": "#/components/schemas/Ticket"
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
                     }
                   }
                 }
@@ -547,10 +544,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -757,10 +751,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -811,10 +802,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -1237,10 +1225,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -1507,10 +1492,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -1561,10 +1543,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -1903,10 +1882,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -2053,10 +2029,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -2241,10 +2214,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -3303,10 +3273,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -3465,10 +3432,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -3837,10 +3801,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -3891,10 +3852,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -3999,10 +3957,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -4407,10 +4362,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -4815,10 +4767,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -5754,10 +5703,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6012,10 +5958,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6066,10 +6009,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6120,10 +6060,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6480,10 +6417,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6534,10 +6468,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6588,10 +6519,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -6744,10 +6672,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7002,10 +6927,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7056,10 +6978,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7110,10 +7029,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7266,10 +7182,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7461,10 +7374,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7526,10 +7436,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -7591,10 +7498,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8103,10 +8007,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8147,10 +8048,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8199,10 +8097,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8561,10 +8456,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8615,10 +8507,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8680,10 +8569,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8745,10 +8631,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8810,10 +8693,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8875,10 +8755,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
@@ -8940,10 +8817,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
+                    "data": {}
                   }
                 }
               }
