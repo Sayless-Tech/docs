@@ -2023,18 +2023,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
+          "302": {
+            "description": "Redirects to the file."
           },
           "4XX": {
             "description": "Error",
@@ -2069,7 +2059,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationRead"
+                    }
+                  }
                 }
               }
             }
@@ -2180,7 +2185,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationRead"
+                    }
+                  }
                 }
               }
             }
@@ -5187,22 +5207,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanyLabel"
                     }
@@ -5262,22 +5272,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanyLabel"
                     }
@@ -5373,22 +5373,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanySector"
                     }
@@ -5459,22 +5449,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanySector"
                     }
@@ -5592,22 +5572,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/ContractType"
                     }
@@ -5667,22 +5637,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/ContractType"
                     }
@@ -6280,22 +6240,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Document"
                     }
@@ -6355,22 +6305,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Document"
                     }
@@ -6638,14 +6578,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public delete payload",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
+                  "$ref": "#/components/schemas/PublicDeletePayload"
                 }
               }
             }
@@ -6689,22 +6626,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -6811,22 +6738,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Folder"
                     }
@@ -6886,22 +6803,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Folder"
                     }
@@ -7169,14 +7076,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public delete payload",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
+                  "$ref": "#/components/schemas/PublicDeletePayload"
                 }
               }
             }
@@ -7220,22 +7124,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -7395,22 +7289,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Note"
                     }
@@ -7470,22 +7354,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/Note"
                     }
@@ -7753,14 +7627,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public delete payload",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
+                  "$ref": "#/components/schemas/PublicDeletePayload"
                 }
               }
             }
@@ -7804,22 +7675,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
                   "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -8615,11 +8476,16 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AttachmentUpload"
+                    }
+                  }
                 }
               }
             }
@@ -8675,11 +8541,16 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AttachmentFromUrl"
+                    }
+                  }
                 }
               }
             }
@@ -8771,11 +8642,16 @@
         ],
         "responses": {
           "200": {
-            "description": "Public mutation payload",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AttachmentComplete"
+                    }
+                  }
                 }
               }
             }
@@ -8859,18 +8735,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
+          "302": {
+            "description": "Redirects to the file."
           },
           "4XX": {
             "description": "Error",
@@ -10590,6 +10456,41 @@
           "workspaceId"
         ]
       },
+      "ConversationRead": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "readAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
       "MarkReadRequest": {
         "type": "object",
         "properties": {
@@ -11767,7 +11668,8 @@
             "type": "string"
           },
           "logoUrl": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "domains": {
             "type": "array",
@@ -14101,6 +14003,20 @@
           }
         }
       },
+      "AttachmentUpload": {
+        "type": "object",
+        "properties": {
+          "uploadUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "publicUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        }
+      },
       "CreateAttachmentRequest": {
         "type": "object",
         "properties": {
@@ -14158,6 +14074,22 @@
           "size",
           "originalName"
         ]
+      },
+      "AttachmentFromUrl": {
+        "type": "object",
+        "properties": {
+          "publicUrl": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          }
+        }
       },
       "CreateAttachmentFromUrlRequest": {
         "type": "object",
@@ -14241,6 +14173,14 @@
           "workspaceId",
           "attachmentId"
         ]
+      },
+      "AttachmentComplete": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer"
+          }
+        }
       },
       "CompleteAttachmentRequest": {
         "type": "object",
@@ -14533,7 +14473,8 @@
             "type": "string"
           },
           "avatarUrl": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "attachmentId": {
             "type": "string",
@@ -14652,7 +14593,8 @@
             "type": "string"
           },
           "logoUrl": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "logoAttachmentId": {
             "type": "string",
