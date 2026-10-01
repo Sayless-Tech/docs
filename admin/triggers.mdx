@@ -1,0 +1,39 @@
+---
+title: Triggers
+description: Run rules when tickets, conversations, broadcasts, companies, or contacts change.
+---
+
+Triggers are rules that run inside the workspace. Use them to assign work, set a status or labels, wait, or notify another system when something happens.
+
+Open [Settings → Triggers](https://joinsayless.com/{workspace}/settings/triggers).
+
+## The list
+
+Each trigger can be turned on or off. Drag to change order. Folders group related triggers. Open a trigger to see how many times it has run, then open a run to see what it did.
+
+Your plan limits how many triggers the workspace can have. Actions that leave Sayless — an auto-reply, an internal note, Slack, a webhook, Jira, Linear, or sending a ticket form — need a plan that includes those side effects. Assigning a person or team, and setting status, priority, labels, due date, or an SLA, stay available on the automation allowance.
+
+## Create a trigger
+
+Choose **Create** and start from a template, or start from scratch. Templates are grouped by what they act on:
+
+| Kind | Examples |
+| --- | --- |
+| Ticket | Assign urgent tickets, label security requests, close stale tickets, show tickets in the portal |
+| Conversation | Route a new conversation to a team, label new conversations |
+| Broadcast | Notify Slack when a broadcast fails, call a webhook when one is delivered |
+| Company | Label a new company, set the owner team |
+| Contact | Notify Slack when a contact is created, call a webhook when a contact is linked to a company |
+
+## How a trigger is built
+
+A trigger has a kickoff, then one or more flows.
+
+- **When** is the kickoff. Pick the record type, then the event: created, assigned, status changed, team set, SLA approaching, and others for that type.
+- **If** narrows the run. For a new conversation you can require a channel or a recipient.
+- **Delay** waits minutes, hours, days, or business days. Business days and the support-hours clock follow [Support hours](/admin/support-hours).
+- **Then** is the action.
+
+Ticket and conversation actions include assign to a person, assign to a team, set status, set priority, set labels, apply an SLA policy, and close. Tickets can also set a due date. Conversations can add an internal note or auto-reply. Other actions send a Slack notification, call a webhook, create a Jira issue or a Linear issue, set portal visibility, or send a ticket form.
+
+Save the trigger, then turn it on from the list. A matching change after that starts a run.

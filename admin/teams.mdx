@@ -5,6 +5,24 @@ description: Group workspace members into teams and use those teams on conversat
 
 Teams are groups of members inside a workspace. Use them when ownership should sit with a group rather than one person: a region, a pod, or an on-call rotation.
 
-Admins manage teams in [Settings → Teams](https://app.joinsayless.com). Members can be added, removed, and given a role on the team. A team can sit under a parent team.
+## Manage teams
 
-From a conversation or ticket you can add or remove a team the same way you assign a person. The public API exposes the same membership under Teams in the API reference.
+Admins manage teams in [Settings → Teams](https://joinsayless.com/{workspace}/settings/teams).
+
+- Add or remove members, and set each member’s role on the team.
+- Place a team under a parent team when the org has pods inside a larger group.
+- Retire a team when it should stop receiving new work. Existing conversations and tickets keep their history.
+
+You only see teams you belong to when you assign work.
+
+## Assign a team
+
+A team and an assignee are different fields. The assignee is one person. The team is the group that owns the work with them.
+
+On a conversation, open the thread and use **Team** in the details panel. Pick a team, or clear it to remove the team. Clearing the team does not unassign the person.
+
+On a ticket, set **Team** from the ticket form or the details panel. The ticket list can show a Team column. Filters can narrow the list to one team.
+
+Assignment changes show up in the activity history on the conversation or ticket.
+
+A [trigger](/admin/triggers) can set the team automatically, for example when a conversation is created.

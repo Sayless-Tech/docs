@@ -120,6 +120,13 @@
               "admin/login-methods",
               "admin/members",
               "admin/teams",
+              "admin/labels",
+              "admin/statuses",
+              "admin/triggers",
+              "admin/slas",
+              "admin/support-hours",
+              "admin/customer-portal",
+              "admin/ticket-forms",
               "admin/support",
               "admin/api-and-webhooks",
               "admin/billing-and-plans"
