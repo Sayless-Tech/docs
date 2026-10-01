@@ -269,7 +269,8 @@
       "group": "Workspace",
       "pages": [
         "POST /api/v1/users/workspaceProfiles/list",
-        "POST /api/v1/users/workspaces/info"
+        "POST /api/v1/users/workspaces/info",
+        "GET /api/v1/users/me"
       ]
     }
   ]

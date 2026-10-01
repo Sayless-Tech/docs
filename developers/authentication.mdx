@@ -16,6 +16,32 @@ curl -X POST "https://<gateway>/api/v1/tickets/list" \
 
 Keys act as the workspace profile that owns them. Treat them like passwords; revoke compromised keys from Settings.
 
+The secret does not include your profile id or workspace id. Read them from the key:
+
+```bash
+curl "https://<gateway>/api/v1/users/me" \
+  -H "Authorization: Bearer sl_api_..."
+```
+
+```json
+{
+  "data": {
+    "profileId": "<workspace-profile-uuid>",
+    "workspaceId": "<workspace-uuid>",
+    "userId": "<user-uuid>",
+    "email": "you@company.com",
+    "fullName": "Ada Lovelace",
+    "username": "ada",
+    "role": "admin",
+    "status": "active",
+    "workspaceName": "Acme",
+    "workspaceSlug": "acme"
+  }
+}
+```
+
+Any valid API key or OAuth token may call this. No body and no extra scope are required. An OAuth app actor has no membership, so `profileId`, `userId`, and `email` are null and `workspaceId` is the installed workspace.
+
 Workspace / metric ingest API keys (`metric_data_only`) are removed — use a personal key instead.
 
 ## OAuth user token

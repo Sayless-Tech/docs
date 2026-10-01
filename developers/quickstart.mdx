@@ -7,12 +7,22 @@ description: Create an API key, call the public API with curl, then use @sayless
 
 In the app, open [Settings → API](/admin/api-and-webhooks) and create a personal API key. Copy the `sl_api_…` value once — it is not shown again.
 
-## 2. List tickets with curl
+## 2. Read who the key is
 
 ```bash
 export SAYLESS_API_URL="https://<your-gateway-host>"
 export SAYLESS_API_KEY="sl_api_…"
-export SAYLESS_WORKSPACE_ID="<workspace-uuid>"
+
+curl "$SAYLESS_API_URL/api/v1/users/me" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY"
+```
+
+`data.profileId` is the workspace profile that owns the key. `data.workspaceId` is the workspace. Pass that workspace id on later calls.
+
+## 3. List tickets with curl
+
+```bash
+export SAYLESS_WORKSPACE_ID="<workspace-uuid from /users/me>"
 
 curl -X POST "$SAYLESS_API_URL/api/v1/tickets/list" \
   -H "Authorization: Bearer $SAYLESS_API_KEY" \
@@ -22,7 +32,7 @@ curl -X POST "$SAYLESS_API_URL/api/v1/tickets/list" \
 
 You should receive `{ "data": [ … ], "pagination": { … } }`.
 
-## 3. Same call with the SDK
+## 4. Same call with the SDK
 
 ```bash
 npm install @sayless/sdk
@@ -36,22 +46,25 @@ const sayless = new SaylessClient({
   apiUrl: process.env.SAYLESS_API_URL,
 });
 
+const me = await sayless.workspace.me();
+const workspaceId = me?.workspaceId as string;
+
 const page = await sayless.tickets.list({
-  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  workspaceId,
   limit: 25,
 });
 
 console.log(page.nodes.map((t) => t._id));
 ```
 
-## 4. Create and use the returned id
+## 5. Create and use the returned id
 
 ```ts
 import { randomUUID } from 'node:crypto';
 
 const created = await sayless.tickets.create({
   _id: randomUUID(),
-  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  workspaceId,
   subject: 'Hello from the SDK',
   content: '…',
   preview: 'Hello from the SDK',
@@ -60,7 +73,7 @@ const created = await sayless.tickets.create({
 
 console.log(created.ticketId);
 await sayless.tickets.info({
-  workspaceId: process.env.SAYLESS_WORKSPACE_ID!,
+  workspaceId,
   _id: created.ticketId!,
 });
 ```
