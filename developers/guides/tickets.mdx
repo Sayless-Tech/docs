@@ -24,6 +24,36 @@ A successful create returns `{ "success": true, "data": { …ticket } }`.
 
 `POST /tickets/info` accepts either the ticket UUID or the `subject-urlId` slug in `_id`.
 
+## Comments and reactions
+
+Create a comment with plain-text `description`. Sayless stores the Lexical document. Do not send `content`.
+
+```bash
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/create" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "workspaceId": "'"$SAYLESS_WORKSPACE_ID"'",
+    "ticketId": "<ticket-id>",
+    "description": "We can review this on Thursday."
+  }'
+```
+
+Add or remove a reaction with the Unicode character, the same value the app stores:
+
+```bash
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/comment_reaction_add" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "workspaceId": "'"$SAYLESS_WORKSPACE_ID"'",
+    "_id": "<comment-id>",
+    "emoji": "👍"
+  }'
+```
+
+`comment_reaction_remove` uses the same body. `_id` is the comment id. A successful call returns the comment, including its `reactions`.
+
 ## SLA metrics
 
 `POST /tickets/set_sla` sets a custom duration on one metric. `durationSeconds` is a positive number of seconds, at most one year. Send `null` to clear a custom **resolution** SLA.

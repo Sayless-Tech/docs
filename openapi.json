@@ -582,7 +582,7 @@
       "post": {
         "operationId": "TicketsController_createComment",
         "summary": "Create ticket comment",
-        "description": "Creates a comment. `content` is Lexical JSON. `entryType` is `comment`.",
+        "description": "Creates a comment from plain-text `description`. Sayless stores it as Lexical. The app sends `content` instead.",
         "tags": [
           "Ticket comments"
         ],
@@ -634,7 +634,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateCommentRequest"
+                "$ref": "#/components/schemas/PublicCreateCommentRequest"
               }
             }
           }
@@ -657,7 +657,7 @@
       "post": {
         "operationId": "TicketsController_updateComment",
         "summary": "Update ticket comment",
-        "description": "Updates a comment. `content` is Lexical JSON.",
+        "description": "Replaces a comment from plain-text `description`.",
         "tags": [
           "Ticket comments"
         ],
@@ -709,7 +709,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateCommentRequest"
+                "$ref": "#/components/schemas/PublicUpdateCommentRequest"
               }
             }
           }
@@ -768,7 +768,7 @@
       "post": {
         "operationId": "TicketsController_addCommentReaction",
         "summary": "Add ticket comment reaction",
-        "description": "Adds a reaction to a ticket comment.",
+        "description": "Adds a Unicode emoji reaction to a comment. `emoji` is the character the app stores, for example 👍.",
         "tags": [
           "Ticket comments"
         ],
@@ -820,7 +820,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CommentReactionUpdateRequest"
+                "$ref": "#/components/schemas/PublicCommentReactionRequest"
               }
             }
           }
@@ -831,7 +831,7 @@
       "post": {
         "operationId": "TicketsController_removeCommentReaction",
         "summary": "Remove ticket comment reaction",
-        "description": "Removes a reaction from a ticket comment.",
+        "description": "Removes that Unicode emoji reaction from the comment.",
         "tags": [
           "Ticket comments"
         ],
@@ -883,7 +883,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CommentReactionUpdateRequest"
+                "$ref": "#/components/schemas/PublicCommentReactionRequest"
               }
             }
           }
@@ -9439,7 +9439,7 @@
           "_id"
         ]
       },
-      "CreateCommentRequest": {
+      "PublicCreateCommentRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
@@ -9450,13 +9450,9 @@
             "type": "string",
             "format": "uuid"
           },
-          "_id": {
+          "description": {
             "type": "string",
-            "format": "uuid"
-          },
-          "senderId": {
-            "type": "string",
-            "format": "uuid"
+            "description": "Plain text. Stored as a Lexical document."
           },
           "entryType": {
             "type": "string",
@@ -9464,9 +9460,9 @@
               "comment"
             ]
           },
-          "content": {
+          "_id": {
             "type": "string",
-            "description": "Lexical document JSON."
+            "format": "uuid"
           },
           "quotedCommentId": {
             "type": "string",
@@ -9484,11 +9480,10 @@
         "required": [
           "workspaceId",
           "ticketId",
-          "_id",
-          "content"
+          "description"
         ]
       },
-      "UpdateCommentRequest": {
+      "PublicUpdateCommentRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
@@ -9499,15 +9494,16 @@
             "type": "string",
             "format": "uuid"
           },
-          "content": {
-            "type": "string"
+          "description": {
+            "type": "string",
+            "description": "Plain text. Stored as a Lexical document."
           }
         },
         "additionalProperties": false,
         "required": [
           "workspaceId",
           "_id",
-          "content"
+          "description"
         ]
       },
       "DeleteCommentRequest": {
@@ -9528,7 +9524,7 @@
           "_id"
         ]
       },
-      "CommentReactionUpdateRequest": {
+      "PublicCommentReactionRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
@@ -9537,10 +9533,12 @@
           },
           "_id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "description": "Comment id."
           },
           "emoji": {
-            "type": "string"
+            "type": "string",
+            "description": "Unicode emoji character. Example: 👍"
           }
         },
         "additionalProperties": false,
