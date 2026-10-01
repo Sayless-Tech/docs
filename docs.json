@@ -203,13 +203,6 @@
             ]
           },
           {
-            "group": "Ticket content",
-            "pages": [
-              "POST /api/v1/tickets/ticketContent/create",
-              "POST /api/v1/tickets/ticketContent/update"
-            ]
-          },
-          {
             "group": "Ticket statuses",
             "pages": [
               "POST /api/v1/tickets/ticketStatus/list",

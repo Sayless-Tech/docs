@@ -3,7 +3,9 @@ title: Tickets
 description: Create a ticket with a plain-text body, and how SLA metrics work.
 ---
 
-API and OAuth callers create tickets with a plain-text `description`. Sayless stores it as the ticket body and writes the URL id and preview. Do not send Lexical `content`, `preview`, or `mutationId`.
+API and OAuth callers create a ticket with a plain-text `description`. That one request writes the ticket and its content document, the same way the app does. Sayless stores the body as Lexical and derives the preview and URL id. Do not send Lexical `content`, `preview`, or `mutationId`, and do not call a separate content endpoint.
+
+`POST /tickets/update` accepts `description` to replace that body on one ticket.
 
 ```bash
 curl -X POST "https://api.joinsayless.com/api/v1/tickets/create" \

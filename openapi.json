@@ -19,9 +19,6 @@
       "name": "Ticket comments"
     },
     {
-      "name": "Ticket content"
-    },
-    {
       "name": "Ticket statuses"
     },
     {
@@ -878,144 +875,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PublicCommentReactionRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tickets/ticketContent/create": {
-      "post": {
-        "operationId": "TicketsController_createTicketContent",
-        "summary": "Create ticket content",
-        "description": "Creates a ticket content.",
-        "tags": [
-          "Ticket content"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public mutation payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/TicketContent"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateTicketContentRequest"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Idempotency-Key",
-            "in": "header",
-            "required": false,
-            "description": "Optional. Safe retries for create/send: same key + route + workspace returns the cached success body for 24h. API/OAuth only.",
-            "schema": {
-              "type": "string",
-              "maxLength": 256
-            }
-          }
-        ]
-      }
-    },
-    "/api/v1/tickets/ticketContent/update": {
-      "post": {
-        "operationId": "TicketsController_updateTicketContent",
-        "summary": "Update ticket content",
-        "description": "Updates a ticket content.",
-        "tags": [
-          "Ticket content"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public mutation payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "success",
-                    "data"
-                  ],
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "enum": [
-                        true
-                      ]
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/TicketContent"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTicketContentRequest"
               }
             }
           }
@@ -9342,6 +9201,10 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Plain text. Replaces the ticket body and its content document."
           }
         },
         "additionalProperties": false,
@@ -9558,97 +9421,6 @@
           "workspaceId",
           "_id",
           "emoji"
-        ]
-      },
-      "TicketContent": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "ticketId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "teamId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "contentState": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "CreateTicketContentRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "ticketId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "contentState": {
-            "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId",
-          "ticketId",
-          "_id",
-          "contentState"
-        ]
-      },
-      "UpdateTicketContentRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "ticketId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "contentState": {
-            "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId",
-          "_id",
-          "contentState"
         ]
       },
       "TicketStatus": {
