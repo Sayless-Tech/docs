@@ -34,6 +34,13 @@ const sayless = new SaylessClient({
 
 Never commit keys. Prefer environment variables in CI and local `.env` files that stay gitignored.
 
+The key does not include a workspace id. Read the caller, then reuse `workspaceId` on later calls:
+
+```ts
+const me = await sayless.workspace.me();
+const workspaceId = me?.workspaceId;
+```
+
 ## Next
 
 - [Client options](/developers/sdk/client)

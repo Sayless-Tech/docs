@@ -15,7 +15,16 @@ POST /api/v1/tickets/delete
 
 The TypeScript SDK maps these to methods such as `client.tickets.create()`.
 
-Send JSON. Every body includes `workspaceId`. List routes also accept `limit`, `cursor`, and `direction`.
+Send JSON. Resource bodies include `workspaceId`. List routes also accept `limit`, `cursor`, and `direction`.
+
+The key does not contain that id. Read it first:
+
+```bash
+curl "https://api.joinsayless.com/api/v1/users/me" \
+  -H "Authorization: Bearer $SAYLESS_API_KEY"
+```
+
+`data.workspaceId` and `data.profileId` come back on the caller. With the SDK, `await sayless.workspace.me()`. Any valid key or token may call this; it takes no body.
 
 ```bash
 curl -X POST "https://api.joinsayless.com/api/v1/tickets/list" \

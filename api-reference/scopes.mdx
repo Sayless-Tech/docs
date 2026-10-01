@@ -20,6 +20,8 @@ Personal API keys and OAuth tokens carry scopes. A missing scope returns **401**
 
 Write on a resource includes read for that resource. Workspace info is read-only.
 
+`GET /api/v1/users/me` is not a scoped resource. Any valid API key or OAuth token can read its own profile and workspace.
+
 ## Coarse scopes
 
 These expand to every resource scope.

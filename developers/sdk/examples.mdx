@@ -12,7 +12,8 @@ const sayless = new SaylessClient({
   apiUrl: process.env.SAYLESS_API_URL,
 });
 
-const workspaceId = process.env.SAYLESS_WORKSPACE_ID!;
+const me = await sayless.workspace.me();
+const workspaceId = me?.workspaceId as string;
 ```
 
 ## Create a ticket, then load it

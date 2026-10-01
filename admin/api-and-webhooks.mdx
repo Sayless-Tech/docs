@@ -51,6 +51,8 @@ Copy the key when it is created and store it securely.
 
 If the app only shows the secret once, store it before closing the success modal.
 
+The secret does not include a profile id or workspace id. After you store the key, call `GET /api/v1/users/me` with it as a Bearer token. The response includes `profileId` and `workspaceId`. See [Authentication](/developers/authentication).
+
 ### Revoke API key
 
 Revoke keys that are no longer needed or may be exposed.

@@ -23,9 +23,10 @@ Use the public API and TypeScript SDK to read and update the work graph: convers
 ## Start here
 
 1. Create a personal API key in [Settings → API](/admin/api-and-webhooks).
-2. Follow the [quickstart](/developers/quickstart) and list tickets.
-3. Narrow the key with [scopes](/api-reference/scopes) if it should not have full access.
-4. For a product other people install, use [OAuth](/developers/authentication) instead of a personal key.
+2. Call `GET /api/v1/users/me` to read `profileId` and `workspaceId`. See [Authentication](/developers/authentication).
+3. Follow the [quickstart](/developers/quickstart) and list tickets.
+4. Narrow the key with [scopes](/api-reference/scopes) if it should not have full access.
+5. For a product other people install, use [OAuth](/developers/authentication) instead of a personal key.
 
 ## What you can build
 
