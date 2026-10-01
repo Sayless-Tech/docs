@@ -184,7 +184,6 @@
             "pages": [
               "POST /api/v1/tickets/list",
               "POST /api/v1/tickets/info",
-              "POST /api/v1/tickets/info_by_urlId",
               "POST /api/v1/tickets/create",
               "POST /api/v1/tickets/update",
               "POST /api/v1/tickets/delete",
