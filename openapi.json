@@ -89,12 +89,6 @@
     },
     {
       "name": "Workspace"
-    },
-    {
-      "name": "Channel webhooks"
-    },
-    {
-      "name": "Integration webhooks"
     }
   ],
   "paths": {
@@ -462,7 +456,7 @@
     "/api/v1/tickets/set_sla": {
       "post": {
         "operationId": "TicketsController_setSla",
-        "summary": "Set Sla",
+        "summary": "Set SLA",
         "description": "Sets the SLA on the ticket.",
         "tags": [
           "Tickets"
@@ -893,7 +887,7 @@
     "/api/v1/tickets/ticketContent/create": {
       "post": {
         "operationId": "TicketsController_createTicketContent",
-        "summary": "Create ticket content ticket",
+        "summary": "Create ticket content",
         "description": "Creates a ticket content.",
         "tags": [
           "Ticket content"
@@ -910,7 +904,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketContent"
+                    }
+                  }
                 }
               }
             }
@@ -953,7 +962,7 @@
     "/api/v1/tickets/ticketContent/update": {
       "post": {
         "operationId": "TicketsController_updateTicketContent",
-        "summary": "Update ticket content ticket",
+        "summary": "Update ticket content",
         "description": "Updates a ticket content.",
         "tags": [
           "Ticket content"
@@ -970,7 +979,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketContent"
+                    }
+                  }
                 }
               }
             }
@@ -1001,8 +1025,8 @@
     "/api/v1/tickets/ticketStatus/list": {
       "post": {
         "operationId": "TicketsController_fetchWorkspaceTicketStatus",
-        "summary": "List ticket status tickets",
-        "description": "Returns a page of ticket status.",
+        "summary": "List ticket statuses",
+        "description": "Returns a page of ticket statuses.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1020,7 +1044,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TicketStatus"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -1055,8 +1084,8 @@
     "/api/v1/tickets/ticketStatus/create": {
       "post": {
         "operationId": "TicketsController_createTicketStatus",
-        "summary": "Create ticket status ticket",
-        "description": "Creates a ticket statu.",
+        "summary": "Create ticket status",
+        "description": "Creates a ticket status.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1072,7 +1101,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketStatus"
+                    }
+                  }
                 }
               }
             }
@@ -1115,8 +1159,8 @@
     "/api/v1/tickets/ticketStatus/update": {
       "post": {
         "operationId": "TicketsController_updateTicketStatus",
-        "summary": "Update ticket status ticket",
-        "description": "Updates a ticket statu.",
+        "summary": "Update ticket status",
+        "description": "Updates a ticket status.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1132,7 +1176,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketStatus"
+                    }
+                  }
                 }
               }
             }
@@ -1163,8 +1222,8 @@
     "/api/v1/tickets/ticketStatus/delete": {
       "post": {
         "operationId": "TicketsController_deleteTicketStatus",
-        "summary": "Delete ticket status ticket",
-        "description": "Deletes a ticket statu.",
+        "summary": "Delete ticket status",
+        "description": "Deletes a ticket status.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1211,7 +1270,7 @@
     "/api/v1/tickets/ticketSubscriptions/list": {
       "post": {
         "operationId": "TicketsController_fetchUserTicketSubscriptions",
-        "summary": "List ticket subscriptions tickets",
+        "summary": "List ticket subscriptions",
         "description": "Returns a page of ticket subscriptions.",
         "tags": [
           "Ticket subscriptions"
@@ -1230,7 +1289,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TicketSubscription"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -1262,10 +1326,10 @@
         }
       }
     },
-    "/api/v1/tickets/ticketSubscriptions/info_subscription": {
+    "/api/v1/tickets/ticketSubscriptions/info": {
       "post": {
         "operationId": "TicketsController_fetchTicketSubscriptionInfo",
-        "summary": "Info Subscription Ticket Subscriptions Tickets",
+        "summary": "Get ticket subscription",
         "description": "Returns one ticket subscription.",
         "tags": [
           "Ticket subscriptions"
@@ -1284,7 +1348,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/TicketSubscription"
+                    }
                   }
                 }
               }
@@ -1316,7 +1382,7 @@
     "/api/v1/tickets/ticketSubscriptions/list_ticket_subscriptions": {
       "post": {
         "operationId": "TicketsController_fetchTicketSubscriptions",
-        "summary": "List Ticket Subscriptions Ticket Subscriptions Tickets",
+        "summary": "List subscriptions on a ticket",
         "description": "Lists subscriptions on one ticket.",
         "tags": [
           "Ticket subscriptions"
@@ -1335,7 +1401,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TicketSubscription"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -1370,7 +1441,7 @@
     "/api/v1/tickets/ticketSubscriptions/create": {
       "post": {
         "operationId": "TicketsController_createTicketSubscription",
-        "summary": "Create ticket subscriptions ticket",
+        "summary": "Create ticket subscription",
         "description": "Creates a ticket subscription.",
         "tags": [
           "Ticket subscriptions"
@@ -1387,7 +1458,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketSubscription"
+                    }
+                  }
                 }
               }
             }
@@ -1430,7 +1516,7 @@
     "/api/v1/tickets/ticketSubscriptions/delete": {
       "post": {
         "operationId": "TicketsController_deleteTicketSubscription",
-        "summary": "Delete ticket subscriptions ticket",
+        "summary": "Delete ticket subscription",
         "description": "Deletes a ticket subscription.",
         "tags": [
           "Ticket subscriptions"
@@ -1497,7 +1583,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Conversation"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -1533,7 +1624,7 @@
       "post": {
         "operationId": "ConversationsController_fetchConversationInfo",
         "summary": "Get conversation",
-        "description": "Returns one conversation.",
+        "description": "Returns one conversation. `_id` may be the UUID, a subject-urlId slug, or the conversation number. `conversationNumber` also looks the record up by number.",
         "tags": [
           "Conversations"
         ],
@@ -1551,7 +1642,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Conversation"
+                    }
                   }
                 }
               }
@@ -1574,57 +1667,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/InfoConversationRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/conversations/info_byNumber": {
-      "post": {
-        "operationId": "ConversationsController_fetchConversationInfoByNumber",
-        "summary": "Info By Number Conversations",
-        "description": "Returns a conversation by its number.",
-        "tags": [
-          "Conversations"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InfoConversationByNumberRequest"
               }
             }
           }
@@ -1681,56 +1723,8 @@
     },
     "/api/v1/conversations/delete": {
       "post": {
-        "operationId": "ConversationsController_deleteBulk",
-        "summary": "Delete conversation",
-        "description": "Deletes a conversation.",
-        "tags": [
-          "Conversations"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Public delete payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicDeletePayload"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteConversationRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/conversations/delete_conversation": {
-      "post": {
         "operationId": "ConversationsController_delete",
-        "summary": "Delete Conversation Conversations",
+        "summary": "Delete conversation",
         "description": "Deletes a conversation.",
         "tags": [
           "Conversations"
@@ -1823,10 +1817,10 @@
         }
       }
     },
-    "/api/v1/conversations/archive_conversation": {
+    "/api/v1/conversations/archive": {
       "post": {
         "operationId": "ConversationsController_archiveConversation",
-        "summary": "Archive Conversation Conversations",
+        "summary": "Archive conversation",
         "description": "Archives a conversation.",
         "tags": [
           "Conversations"
@@ -1871,10 +1865,10 @@
         }
       }
     },
-    "/api/v1/conversations/unarchive_conversation": {
+    "/api/v1/conversations/unarchive": {
       "post": {
         "operationId": "ConversationsController_unarchiveConversation",
-        "summary": "Unarchive Conversation Conversations",
+        "summary": "Unarchive conversation",
         "description": "Unarchives a conversation.",
         "tags": [
           "Conversations"
@@ -1922,7 +1916,7 @@
     "/api/v1/conversations/add_team": {
       "post": {
         "operationId": "ConversationsController_assignToTeam",
-        "summary": "Add Team Conversation",
+        "summary": "Add team",
         "description": "Adds a team to the conversation.",
         "tags": [
           "Conversations"
@@ -1973,7 +1967,7 @@
     "/api/v1/conversations/assign_user": {
       "post": {
         "operationId": "ConversationsController_assignToUser",
-        "summary": "Assign User",
+        "summary": "Assign user",
         "description": "Assigns a member to the conversation.",
         "tags": [
           "Conversations"
@@ -2021,7 +2015,7 @@
     "/api/v1/conversations/link_ticket": {
       "post": {
         "operationId": "ConversationsController_linkTicket",
-        "summary": "Link Ticket",
+        "summary": "Link ticket",
         "description": "Links a ticket to the conversation.",
         "tags": [
           "Conversations"
@@ -2069,7 +2063,7 @@
     "/api/v1/conversations/link_track": {
       "get": {
         "operationId": "ConversationsController_handleTestLinkClick",
-        "summary": "Link Track",
+        "summary": "Track conversation link",
         "description": "Tracks a link click from a conversation.",
         "tags": [
           "Conversations"
@@ -2110,7 +2104,7 @@
     "/api/v1/conversations/mark_read": {
       "post": {
         "operationId": "ConversationsController_markAsRead",
-        "summary": "Mark Read",
+        "summary": "Mark conversation read",
         "description": "Marks a conversation as read.",
         "tags": [
           "Conversations"
@@ -2158,7 +2152,7 @@
     "/api/v1/conversations/mark_spam": {
       "post": {
         "operationId": "ConversationsController_markAsSpamConversation",
-        "summary": "Mark Spam",
+        "summary": "Mark conversation as spam",
         "description": "Marks a conversation as spam.",
         "tags": [
           "Conversations"
@@ -2206,7 +2200,7 @@
     "/api/v1/conversations/mark_unread": {
       "post": {
         "operationId": "ConversationsController_markAsUnread",
-        "summary": "Mark Unread",
+        "summary": "Mark conversation unread",
         "description": "Marks a conversation as unread.",
         "tags": [
           "Conversations"
@@ -2254,7 +2248,7 @@
     "/api/v1/conversations/remove_team": {
       "post": {
         "operationId": "ConversationsController_unassignFromTeam",
-        "summary": "Remove Team Conversation",
+        "summary": "Remove team",
         "description": "Removes a team from the conversation.",
         "tags": [
           "Conversations"
@@ -2305,7 +2299,7 @@
     "/api/v1/conversations/restore_spam": {
       "post": {
         "operationId": "ConversationsController_restoreFromSpam",
-        "summary": "Restore Spam Conversations",
+        "summary": "Restore conversation from spam",
         "description": "Restores a conversation from spam.",
         "tags": [
           "Conversations"
@@ -2353,7 +2347,7 @@
     "/api/v1/conversations/set_sla": {
       "post": {
         "operationId": "ConversationsController_setSla",
-        "summary": "Set Sla",
+        "summary": "Set SLA",
         "description": "Sets the SLA on the conversation.",
         "tags": [
           "Conversations"
@@ -2401,7 +2395,7 @@
     "/api/v1/conversations/snooze": {
       "post": {
         "operationId": "ConversationsController_snoozeWorkspaceConversation",
-        "summary": "Snooze Conversation",
+        "summary": "Snooze conversation",
         "description": "Snoozes a conversation until a later time.",
         "tags": [
           "Conversations"
@@ -2449,7 +2443,7 @@
     "/api/v1/conversations/spam": {
       "post": {
         "operationId": "ConversationsController_getSpamConversations",
-        "summary": "Spam Conversations",
+        "summary": "List spam conversations",
         "description": "Returns conversations marked as spam.",
         "tags": [
           "Conversations"
@@ -2468,7 +2462,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Conversation"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -2503,7 +2502,7 @@
     "/api/v1/conversations/unassign_user": {
       "post": {
         "operationId": "ConversationsController_unassignFromUser",
-        "summary": "Unassign User",
+        "summary": "Unassign user",
         "description": "Clears the assignee on the conversation.",
         "tags": [
           "Conversations"
@@ -2551,7 +2550,7 @@
     "/api/v1/conversations/unsnooze": {
       "post": {
         "operationId": "ConversationsController_unsnoozeWorkspaceConversation",
-        "summary": "Unsnooze Conversation",
+        "summary": "Unsnooze conversation",
         "description": "Clears a snooze on a conversation.",
         "tags": [
           "Conversations"
@@ -2599,7 +2598,7 @@
     "/api/v1/conversations/update_company": {
       "post": {
         "operationId": "ConversationsController_updateCompany",
-        "summary": "Update Company Conversations",
+        "summary": "Update conversation company",
         "description": "Sets the company on the conversation.",
         "tags": [
           "Conversations"
@@ -2647,7 +2646,7 @@
     "/api/v1/conversations/update_labels": {
       "post": {
         "operationId": "ConversationsController_updateLabels",
-        "summary": "Update Labels Conversations",
+        "summary": "Update conversation labels",
         "description": "Replaces labels on the conversation.",
         "tags": [
           "Conversations"
@@ -2695,7 +2694,7 @@
     "/api/v1/conversations/update_priority": {
       "post": {
         "operationId": "ConversationsController_updatePriority",
-        "summary": "Update Priority Conversations",
+        "summary": "Update conversation priority",
         "description": "Sets the priority on the conversation.",
         "tags": [
           "Conversations"
@@ -2743,7 +2742,7 @@
     "/api/v1/conversations/update_status": {
       "post": {
         "operationId": "ConversationsController_updateStatus",
-        "summary": "Update Status Conversations",
+        "summary": "Update conversation status",
         "description": "Sets the status on the conversation.",
         "tags": [
           "Conversations"
@@ -2791,7 +2790,7 @@
     "/api/v1/conversations/update_subject": {
       "post": {
         "operationId": "ConversationsController_updateSubject",
-        "summary": "Update Subject Conversations",
+        "summary": "Update conversation subject",
         "description": "Sets the subject on the conversation.",
         "tags": [
           "Conversations"
@@ -2839,7 +2838,7 @@
     "/api/v1/conversations/conversationLabels/list": {
       "post": {
         "operationId": "ConversationsController_fetchConversationLabels",
-        "summary": "List conversation labels conversations",
+        "summary": "List conversation labels",
         "description": "Returns a page of conversation labels.",
         "tags": [
           "Conversation labels"
@@ -2858,7 +2857,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConversationLabel"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -2893,7 +2897,7 @@
     "/api/v1/conversations/conversationLabels/create": {
       "post": {
         "operationId": "ConversationsController_createConversationLabel",
-        "summary": "Create conversation labels conversation",
+        "summary": "Create conversation label",
         "description": "Creates a conversation label.",
         "tags": [
           "Conversation labels"
@@ -2953,7 +2957,7 @@
     "/api/v1/conversations/conversationLabels/update": {
       "post": {
         "operationId": "ConversationsController_updateConversationLabel",
-        "summary": "Update conversation labels conversation",
+        "summary": "Update conversation label",
         "description": "Updates a conversation label.",
         "tags": [
           "Conversation labels"
@@ -3001,7 +3005,7 @@
     "/api/v1/conversations/conversationLabels/delete": {
       "post": {
         "operationId": "ConversationsController_deleteConversationLabel",
-        "summary": "Delete conversation labels conversation",
+        "summary": "Delete conversation label",
         "description": "Deletes a conversation label.",
         "tags": [
           "Conversation labels"
@@ -3049,8 +3053,8 @@
     "/api/v1/conversations/conversationStatus/list": {
       "post": {
         "operationId": "ConversationsController_fetchWorkspaceConversationStatus",
-        "summary": "List conversation status conversations",
-        "description": "Returns a page of conversation status.",
+        "summary": "List conversation statuses",
+        "description": "Returns a page of conversation statuses.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3068,7 +3072,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConversationStatus"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -3103,8 +3112,8 @@
     "/api/v1/conversations/conversationStatus/create": {
       "post": {
         "operationId": "ConversationsController_createConversationStatus",
-        "summary": "Create conversation status conversation",
-        "description": "Creates a conversation statu.",
+        "summary": "Create conversation status",
+        "description": "Creates a conversation status.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3163,8 +3172,8 @@
     "/api/v1/conversations/conversationStatus/update": {
       "post": {
         "operationId": "ConversationsController_updateConversationStatus",
-        "summary": "Update conversation status conversation",
-        "description": "Updates a conversation statu.",
+        "summary": "Update conversation status",
+        "description": "Updates a conversation status.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3211,8 +3220,8 @@
     "/api/v1/conversations/conversationStatus/delete": {
       "post": {
         "operationId": "ConversationsController_deleteConversationStatus",
-        "summary": "Delete conversation status conversation",
-        "description": "Deletes a conversation statu.",
+        "summary": "Delete conversation status",
+        "description": "Deletes a conversation status.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3259,7 +3268,7 @@
     "/api/v1/conversations/conversationSubscriptions/list": {
       "post": {
         "operationId": "ConversationsController_fetchUserConversationSubscriptions",
-        "summary": "List conversation subscriptions conversations",
+        "summary": "List conversation subscriptions",
         "description": "Returns a page of conversation subscriptions.",
         "tags": [
           "Conversation subscriptions"
@@ -3278,7 +3287,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConversationSubscription"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -3310,11 +3324,11 @@
         }
       }
     },
-    "/api/v1/conversations/conversationSubscriptions/conversation.info": {
+    "/api/v1/conversations/conversationSubscriptions/info": {
       "post": {
         "operationId": "ConversationsController_fetchConversationSubscriptionInfo",
-        "summary": "Conversation.info Conversation Subscriptions Conversations",
-        "description": "Returns subscription details for a conversation.",
+        "summary": "Get conversation subscription",
+        "description": "Returns one conversation subscription.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3332,7 +3346,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConversationSubscription"
+                      }
+                    }
                   }
                 }
               }
@@ -3364,7 +3383,7 @@
     "/api/v1/conversations/conversationSubscriptions/create": {
       "post": {
         "operationId": "ConversationsController_createConversationSubscription",
-        "summary": "Create conversation subscriptions conversation",
+        "summary": "Create conversation subscription",
         "description": "Creates a conversation subscription.",
         "tags": [
           "Conversation subscriptions"
@@ -3424,7 +3443,7 @@
     "/api/v1/conversations/conversationSubscriptions/delete": {
       "post": {
         "operationId": "ConversationsController_unsubscribeFromConversation",
-        "summary": "Delete conversation subscriptions conversation",
+        "summary": "Delete conversation subscription",
         "description": "Deletes a conversation subscription.",
         "tags": [
           "Conversation subscriptions"
@@ -3472,7 +3491,7 @@
     "/api/v1/conversations/conversationSubscriptions/conversation": {
       "post": {
         "operationId": "ConversationsController_fetchConversationSubscriptions",
-        "summary": "Conversation Conversation Subscriptions Conversations",
+        "summary": "List subscriptions on a conversation",
         "description": "Returns the conversation for a subscription.",
         "tags": [
           "Conversation subscriptions"
@@ -3491,7 +3510,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConversationSubscription"
+                      }
+                    }
                   }
                 }
               }
@@ -3523,7 +3547,7 @@
     "/api/v1/conversations/viewPreferences/create": {
       "post": {
         "operationId": "ConversationsController_createViewPreferences",
-        "summary": "Create view preferences conversation",
+        "summary": "Create view preference",
         "description": "Creates a view preference.",
         "tags": [
           "Conversation views"
@@ -3583,7 +3607,7 @@
     "/api/v1/conversations/viewPreferences/update": {
       "post": {
         "operationId": "ConversationsController_updateViewPreferences",
-        "summary": "Update view preferences conversation",
+        "summary": "Update view preference",
         "description": "Updates a view preference.",
         "tags": [
           "Conversation views"
@@ -3631,7 +3655,7 @@
     "/api/v1/messages/list_conversation_messages": {
       "post": {
         "operationId": "MessagesController_fetchMessageInfo",
-        "summary": "List Conversation Messages Messages",
+        "summary": "List messages",
         "description": "Returns messages in a conversation.",
         "tags": [
           "Messages"
@@ -3650,7 +3674,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Message"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -3685,7 +3714,7 @@
     "/api/v1/messages/send_message": {
       "post": {
         "operationId": "MessagesController_sendMessage",
-        "summary": "Send Message",
+        "summary": "Send message",
         "description": "Sends a message on a conversation.",
         "tags": [
           "Messages"
@@ -3702,7 +3731,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Message"
+                    }
+                  }
                 }
               }
             }
@@ -3745,7 +3789,7 @@
     "/api/v1/messages/edit_message": {
       "post": {
         "operationId": "MessagesController_editMessage",
-        "summary": "Edit Message",
+        "summary": "Edit message",
         "description": "Edits a message you already sent.",
         "tags": [
           "Messages"
@@ -3762,7 +3806,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Message"
+                    }
+                  }
                 }
               }
             }
@@ -3793,7 +3852,7 @@
     "/api/v1/messages/delete_message": {
       "post": {
         "operationId": "MessagesController_deleteMessage",
-        "summary": "Delete Message Messages",
+        "summary": "Delete message",
         "description": "Deletes a message.",
         "tags": [
           "Messages"
@@ -3841,7 +3900,7 @@
     "/api/v1/messages/add_reaction": {
       "post": {
         "operationId": "MessagesController_addMessageReaction",
-        "summary": "Add Reaction Message",
+        "summary": "Add message reaction",
         "description": "Adds a reaction to a message.",
         "tags": [
           "Messages"
@@ -3860,7 +3919,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Message"
+                    }
                   }
                 }
               }
@@ -3892,7 +3953,7 @@
     "/api/v1/messages/remove_reaction": {
       "post": {
         "operationId": "MessagesController_removeMessageReaction",
-        "summary": "Remove Reaction Message",
+        "summary": "Remove message reaction",
         "description": "Removes a reaction from a message.",
         "tags": [
           "Messages"
@@ -3911,7 +3972,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Message"
+                    }
                   }
                 }
               }
@@ -3962,7 +4025,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Company"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -4016,7 +4084,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Company"
+                    }
                   }
                 }
               }
@@ -4348,7 +4418,7 @@
     "/api/v1/companies/contacts/list": {
       "post": {
         "operationId": "CompaniesController_listContacts",
-        "summary": "List contacts companies",
+        "summary": "List contacts",
         "description": "Returns a page of contacts.",
         "tags": [
           "Contacts"
@@ -4367,7 +4437,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contact"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -4402,7 +4477,7 @@
     "/api/v1/companies/contacts/info": {
       "post": {
         "operationId": "CompaniesController_getContact",
-        "summary": "Get contacts company",
+        "summary": "Get contact",
         "description": "Returns one contact.",
         "tags": [
           "Contacts"
@@ -4421,7 +4496,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
                   }
                 }
               }
@@ -4453,7 +4530,7 @@
     "/api/v1/companies/contacts/create": {
       "post": {
         "operationId": "CompaniesController_createContact",
-        "summary": "Create contacts company",
+        "summary": "Create contact",
         "description": "Creates a contact.",
         "tags": [
           "Contacts"
@@ -4513,7 +4590,7 @@
     "/api/v1/companies/contacts/update": {
       "post": {
         "operationId": "CompaniesController_updateContact",
-        "summary": "Update contacts company",
+        "summary": "Update contact",
         "description": "Updates a contact.",
         "tags": [
           "Contacts"
@@ -4561,7 +4638,7 @@
     "/api/v1/companies/contacts/delete": {
       "post": {
         "operationId": "CompaniesController_deleteContact",
-        "summary": "Delete contacts company",
+        "summary": "Delete contact",
         "description": "Deletes a contact.",
         "tags": [
           "Contacts"
@@ -4609,7 +4686,7 @@
     "/api/v1/companies/contacts/restore": {
       "post": {
         "operationId": "CompaniesController_restoreContact",
-        "summary": "Restore contacts company",
+        "summary": "Restore contact",
         "description": "Restores a deleted contact.",
         "tags": [
           "Contacts"
@@ -4657,7 +4734,7 @@
     "/api/v1/companies/contacts/archive": {
       "post": {
         "operationId": "CompaniesController_archiveContact",
-        "summary": "Archive contacts company",
+        "summary": "Archive contact",
         "description": "Archives a contact.",
         "tags": [
           "Contacts"
@@ -4705,7 +4782,7 @@
     "/api/v1/companies/contacts/unarchive": {
       "post": {
         "operationId": "CompaniesController_unarchiveContact",
-        "summary": "Unarchive contacts company",
+        "summary": "Unarchive contact",
         "description": "Unarchives a contact.",
         "tags": [
           "Contacts"
@@ -4753,7 +4830,7 @@
     "/api/v1/companies/companyLabels/list": {
       "post": {
         "operationId": "CompaniesController_listLabels",
-        "summary": "List company labels companies",
+        "summary": "List company labels",
         "description": "Returns a page of company labels.",
         "tags": [
           "Company labels"
@@ -4772,7 +4849,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CompanyLabel"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -4807,7 +4889,7 @@
     "/api/v1/companies/companyLabels/info": {
       "post": {
         "operationId": "CompaniesController_getLabel",
-        "summary": "Get company labels company",
+        "summary": "Get company label",
         "description": "Returns one company label.",
         "tags": [
           "Company labels"
@@ -4826,7 +4908,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyLabel"
+                    }
                   }
                 }
               }
@@ -4858,7 +4942,7 @@
     "/api/v1/companies/companyLabels/create": {
       "post": {
         "operationId": "CompaniesController_createLabel",
-        "summary": "Create company labels company",
+        "summary": "Create company label",
         "description": "Creates a company label.",
         "tags": [
           "Company labels"
@@ -4875,7 +4959,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyLabel"
+                    }
+                  }
                 }
               }
             }
@@ -4918,7 +5017,7 @@
     "/api/v1/companies/companyLabels/update": {
       "post": {
         "operationId": "CompaniesController_updateLabel",
-        "summary": "Update company labels company",
+        "summary": "Update company label",
         "description": "Updates a company label.",
         "tags": [
           "Company labels"
@@ -4935,7 +5034,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanyLabel"
+                    }
+                  }
                 }
               }
             }
@@ -4966,7 +5080,7 @@
     "/api/v1/companies/companyLabels/delete": {
       "post": {
         "operationId": "CompaniesController_deleteLabel",
-        "summary": "Delete company labels company",
+        "summary": "Delete company label",
         "description": "Deletes a company label.",
         "tags": [
           "Company labels"
@@ -5014,7 +5128,7 @@
     "/api/v1/companies/companySectors/create": {
       "post": {
         "operationId": "CompaniesController_createSector",
-        "summary": "Create company sectors company",
+        "summary": "Create company sector",
         "description": "Creates a company sector.",
         "tags": [
           "Company sectors"
@@ -5031,7 +5145,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanySector"
+                    }
+                  }
                 }
               }
             }
@@ -5085,7 +5214,7 @@
     "/api/v1/companies/companySectors/update": {
       "post": {
         "operationId": "CompaniesController_updateSector",
-        "summary": "Update company sectors company",
+        "summary": "Update company sector",
         "description": "Updates a company sector.",
         "tags": [
           "Company sectors"
@@ -5102,7 +5231,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CompanySector"
+                    }
+                  }
                 }
               }
             }
@@ -5144,7 +5288,7 @@
     "/api/v1/companies/companySectors/delete": {
       "post": {
         "operationId": "CompaniesController_deleteSector",
-        "summary": "Delete company sectors company",
+        "summary": "Delete company sector",
         "description": "Deletes a company sector.",
         "tags": [
           "Company sectors"
@@ -5203,7 +5347,7 @@
     "/api/v1/companies/contractTypes/create": {
       "post": {
         "operationId": "CompaniesController_createContractType",
-        "summary": "Create contract types company",
+        "summary": "Create contract type",
         "description": "Creates a contract type.",
         "tags": [
           "Contract types"
@@ -5220,7 +5364,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ContractType"
+                    }
+                  }
                 }
               }
             }
@@ -5263,7 +5422,7 @@
     "/api/v1/companies/contractTypes/update": {
       "post": {
         "operationId": "CompaniesController_updateContractType",
-        "summary": "Update contract types company",
+        "summary": "Update contract type",
         "description": "Updates a contract type.",
         "tags": [
           "Contract types"
@@ -5280,7 +5439,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ContractType"
+                    }
+                  }
                 }
               }
             }
@@ -5311,7 +5485,7 @@
     "/api/v1/companies/relationships/create": {
       "post": {
         "operationId": "CompaniesController_createCompanyRelationship",
-        "summary": "Create relationships company",
+        "summary": "Create relationship",
         "description": "Creates a relationship.",
         "tags": [
           "Company relationships"
@@ -5382,7 +5556,7 @@
     "/api/v1/companies/relationships/update": {
       "post": {
         "operationId": "CompaniesController_updateCompanyRelationship",
-        "summary": "Update relationships company",
+        "summary": "Update relationship",
         "description": "Updates a relationship.",
         "tags": [
           "Company relationships"
@@ -5441,7 +5615,7 @@
     "/api/v1/companies/relationships/delete": {
       "post": {
         "operationId": "CompaniesController_deleteCompanyRelationship",
-        "summary": "Delete relationships company",
+        "summary": "Delete relationship",
         "description": "Deletes a relationship.",
         "tags": [
           "Company relationships"
@@ -5500,7 +5674,7 @@
     "/api/v1/companies/updates/create": {
       "post": {
         "operationId": "CompaniesController_createCompanyUpdate",
-        "summary": "Create updates company",
+        "summary": "Create update",
         "description": "Creates a update.",
         "tags": [
           "Company updates"
@@ -5571,7 +5745,7 @@
     "/api/v1/companies/updates/update": {
       "post": {
         "operationId": "CompaniesController_updateCompanyUpdate",
-        "summary": "Update updates company",
+        "summary": "Update update",
         "description": "Updates a update.",
         "tags": [
           "Company updates"
@@ -5630,7 +5804,7 @@
     "/api/v1/companies/updates/delete": {
       "post": {
         "operationId": "CompaniesController_deleteCompanyUpdate",
-        "summary": "Delete updates company",
+        "summary": "Delete update",
         "description": "Deletes a update.",
         "tags": [
           "Company updates"
@@ -5689,7 +5863,7 @@
     "/api/v1/companies/documents/list": {
       "post": {
         "operationId": "CompaniesController_listDocuments",
-        "summary": "List documents companies",
+        "summary": "List documents",
         "description": "Returns a page of documents.",
         "tags": [
           "Documents"
@@ -5708,7 +5882,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Document"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -5743,7 +5922,7 @@
     "/api/v1/companies/documents/info": {
       "post": {
         "operationId": "CompaniesController_getDocument",
-        "summary": "Get documents company",
+        "summary": "Get document",
         "description": "Returns one document.",
         "tags": [
           "Documents"
@@ -5762,7 +5941,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Document"
+                    }
                   }
                 }
               }
@@ -5794,7 +5975,7 @@
     "/api/v1/companies/documents/create": {
       "post": {
         "operationId": "CompaniesController_createDocument",
-        "summary": "Create documents company",
+        "summary": "Create document",
         "description": "Creates a document.",
         "tags": [
           "Documents"
@@ -5811,7 +5992,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Document"
+                    }
+                  }
                 }
               }
             }
@@ -5854,7 +6050,7 @@
     "/api/v1/companies/documents/update": {
       "post": {
         "operationId": "CompaniesController_updateDocument",
-        "summary": "Update documents company",
+        "summary": "Update document",
         "description": "Updates a document.",
         "tags": [
           "Documents"
@@ -5871,7 +6067,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Document"
+                    }
+                  }
                 }
               }
             }
@@ -5902,7 +6113,7 @@
     "/api/v1/companies/documents/delete": {
       "post": {
         "operationId": "CompaniesController_deleteDocument",
-        "summary": "Delete documents company",
+        "summary": "Delete document",
         "description": "Deletes a document.",
         "tags": [
           "Documents"
@@ -5950,7 +6161,7 @@
     "/api/v1/companies/documents/restore": {
       "post": {
         "operationId": "CompaniesController_restoreDocument",
-        "summary": "Restore documents company",
+        "summary": "Restore document",
         "description": "Restores a deleted document.",
         "tags": [
           "Documents"
@@ -5998,7 +6209,7 @@
     "/api/v1/companies/documents/add_user": {
       "post": {
         "operationId": "CompaniesController_addUserToDocument",
-        "summary": "Add User Documents",
+        "summary": "Add User",
         "description": "Adds a member to the document.",
         "tags": [
           "Documents"
@@ -6017,7 +6228,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
                   }
                 }
               }
@@ -6049,7 +6262,7 @@
     "/api/v1/companies/documents/profile_memberships": {
       "post": {
         "operationId": "CompaniesController_documentProfileMemberships",
-        "summary": "Profile Memberships Documents Companies",
+        "summary": "List members",
         "description": "Lists members on the document.",
         "tags": [
           "Documents"
@@ -6068,7 +6281,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProfileMembership"
+                      }
+                    }
                   }
                 }
               }
@@ -6100,7 +6318,7 @@
     "/api/v1/companies/documents/remove_user": {
       "post": {
         "operationId": "CompaniesController_removeUserFromDocument",
-        "summary": "Remove User Documents",
+        "summary": "Remove User",
         "description": "Removes a member from the document.",
         "tags": [
           "Documents"
@@ -6151,7 +6369,7 @@
     "/api/v1/companies/documents/update_user_permission": {
       "post": {
         "operationId": "CompaniesController_updateDocumentUserPermission",
-        "summary": "Update User Permission Documents Companies",
+        "summary": "Update User Permission",
         "description": "Changes a member’s permission on the document.",
         "tags": [
           "Documents"
@@ -6168,7 +6386,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
+                  }
                 }
               }
             }
@@ -6199,7 +6432,7 @@
     "/api/v1/companies/folders/list": {
       "post": {
         "operationId": "CompaniesController_listDocumentFolders",
-        "summary": "List folders companies",
+        "summary": "List folders",
         "description": "Returns a page of folders.",
         "tags": [
           "Folders"
@@ -6218,7 +6451,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Folder"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -6253,7 +6491,7 @@
     "/api/v1/companies/folders/create": {
       "post": {
         "operationId": "CompaniesController_createDocumentFolder",
-        "summary": "Create folders company",
+        "summary": "Create folder",
         "description": "Creates a folder.",
         "tags": [
           "Folders"
@@ -6270,7 +6508,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Folder"
+                    }
+                  }
                 }
               }
             }
@@ -6313,7 +6566,7 @@
     "/api/v1/companies/folders/update": {
       "post": {
         "operationId": "CompaniesController_updateDocumentFolder",
-        "summary": "Update folders company",
+        "summary": "Update folder",
         "description": "Updates a folder.",
         "tags": [
           "Folders"
@@ -6330,7 +6583,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Folder"
+                    }
+                  }
                 }
               }
             }
@@ -6361,7 +6629,7 @@
     "/api/v1/companies/folders/delete": {
       "post": {
         "operationId": "CompaniesController_deleteDocumentFolder",
-        "summary": "Delete folders company",
+        "summary": "Delete folder",
         "description": "Deletes a folder.",
         "tags": [
           "Folders"
@@ -6409,7 +6677,7 @@
     "/api/v1/companies/folders/restore": {
       "post": {
         "operationId": "CompaniesController_restoreDocumentFolder",
-        "summary": "Restore folders company",
+        "summary": "Restore folder",
         "description": "Restores a deleted folder.",
         "tags": [
           "Folders"
@@ -6457,7 +6725,7 @@
     "/api/v1/companies/folders/add_user": {
       "post": {
         "operationId": "CompaniesController_addUserToDocumentFolder",
-        "summary": "Add User Folders",
+        "summary": "Add User",
         "description": "Adds a member to the folder.",
         "tags": [
           "Folders"
@@ -6476,7 +6744,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
                   }
                 }
               }
@@ -6508,7 +6778,7 @@
     "/api/v1/companies/folders/profile_memberships": {
       "post": {
         "operationId": "CompaniesController_documentFolderProfileMemberships",
-        "summary": "Profile Memberships Folders Companies",
+        "summary": "List members",
         "description": "Lists members on the folder.",
         "tags": [
           "Folders"
@@ -6527,7 +6797,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProfileMembership"
+                      }
+                    }
                   }
                 }
               }
@@ -6559,7 +6834,7 @@
     "/api/v1/companies/folders/remove_user": {
       "post": {
         "operationId": "CompaniesController_removeUserFromDocumentFolder",
-        "summary": "Remove User Folders",
+        "summary": "Remove User",
         "description": "Removes a member from the folder.",
         "tags": [
           "Folders"
@@ -6610,7 +6885,7 @@
     "/api/v1/companies/folders/update_user_permission": {
       "post": {
         "operationId": "CompaniesController_updateDocumentFolderUserPermission",
-        "summary": "Update User Permission Folders Companies",
+        "summary": "Update User Permission",
         "description": "Changes a member’s permission on the folder.",
         "tags": [
           "Folders"
@@ -6627,7 +6902,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
+                  }
                 }
               }
             }
@@ -6658,7 +6948,7 @@
     "/api/v1/companies/notes/list": {
       "post": {
         "operationId": "CompaniesController_listNotes",
-        "summary": "List notes companies",
+        "summary": "List notes",
         "description": "Returns a page of notes.",
         "tags": [
           "Notes"
@@ -6677,7 +6967,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Note"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -6712,7 +7007,7 @@
     "/api/v1/companies/notes/info": {
       "post": {
         "operationId": "CompaniesController_getNote",
-        "summary": "Get notes company",
+        "summary": "Get note",
         "description": "Returns one note.",
         "tags": [
           "Notes"
@@ -6731,7 +7026,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Note"
+                    }
                   }
                 }
               }
@@ -6763,7 +7060,7 @@
     "/api/v1/companies/notes/create": {
       "post": {
         "operationId": "CompaniesController_createNote",
-        "summary": "Create notes company",
+        "summary": "Create note",
         "description": "Creates a note.",
         "tags": [
           "Notes"
@@ -6780,7 +7077,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Note"
+                    }
+                  }
                 }
               }
             }
@@ -6823,7 +7135,7 @@
     "/api/v1/companies/notes/update": {
       "post": {
         "operationId": "CompaniesController_updateNote",
-        "summary": "Update notes company",
+        "summary": "Update note",
         "description": "Updates a note.",
         "tags": [
           "Notes"
@@ -6840,7 +7152,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Note"
+                    }
+                  }
                 }
               }
             }
@@ -6871,7 +7198,7 @@
     "/api/v1/companies/notes/delete": {
       "post": {
         "operationId": "CompaniesController_deleteNote",
-        "summary": "Delete notes company",
+        "summary": "Delete note",
         "description": "Deletes a note.",
         "tags": [
           "Notes"
@@ -6919,7 +7246,7 @@
     "/api/v1/companies/notes/restore": {
       "post": {
         "operationId": "CompaniesController_restoreNote",
-        "summary": "Restore notes company",
+        "summary": "Restore note",
         "description": "Restores a deleted note.",
         "tags": [
           "Notes"
@@ -6967,7 +7294,7 @@
     "/api/v1/companies/notes/add_user": {
       "post": {
         "operationId": "CompaniesController_addUserToNote",
-        "summary": "Add User Notes",
+        "summary": "Add User",
         "description": "Adds a member to the note.",
         "tags": [
           "Notes"
@@ -6986,7 +7313,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
                   }
                 }
               }
@@ -7018,7 +7347,7 @@
     "/api/v1/companies/notes/profile_memberships": {
       "post": {
         "operationId": "CompaniesController_noteProfileMemberships",
-        "summary": "Profile Memberships Notes Companies",
+        "summary": "List members",
         "description": "Lists members on the note.",
         "tags": [
           "Notes"
@@ -7037,7 +7366,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProfileMembership"
+                      }
+                    }
                   }
                 }
               }
@@ -7069,7 +7403,7 @@
     "/api/v1/companies/notes/remove_user": {
       "post": {
         "operationId": "CompaniesController_removeUserFromNote",
-        "summary": "Remove User Notes",
+        "summary": "Remove User",
         "description": "Removes a member from the note.",
         "tags": [
           "Notes"
@@ -7120,7 +7454,7 @@
     "/api/v1/companies/notes/update_user_permission": {
       "post": {
         "operationId": "CompaniesController_updateNoteUserPermission",
-        "summary": "Update User Permission Notes Companies",
+        "summary": "Update User Permission",
         "description": "Changes a member’s permission on the note.",
         "tags": [
           "Notes"
@@ -7137,7 +7471,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileMembership"
+                    }
+                  }
                 }
               }
             }
@@ -7187,7 +7536,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Team"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -7241,7 +7595,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
                   }
                 }
               }
@@ -7414,7 +7770,7 @@
     "/api/v1/teams/remove-parent": {
       "post": {
         "operationId": "TeamsController_removeParent",
-        "summary": "Remove-parent Teams",
+        "summary": "Remove-parent",
         "description": "Clears a team’s parent.",
         "tags": [
           "Teams"
@@ -7476,7 +7832,7 @@
     "/api/v1/teams/retire": {
       "post": {
         "operationId": "TeamsController_retireTeam",
-        "summary": "Retire Teams",
+        "summary": "Retire team",
         "description": "Retires a team so it can no longer be assigned.",
         "tags": [
           "Teams"
@@ -7538,7 +7894,7 @@
     "/api/v1/teams/set-parent": {
       "post": {
         "operationId": "TeamsController_setParent",
-        "summary": "Set-parent Teams",
+        "summary": "Set-parent",
         "description": "Sets a parent team.",
         "tags": [
           "Teams"
@@ -7600,7 +7956,7 @@
     "/api/v1/teams/memberships/list": {
       "post": {
         "operationId": "TeamsController_listMemberships",
-        "summary": "List memberships teams",
+        "summary": "List memberships",
         "description": "Returns a page of memberships.",
         "tags": [
           "Team memberships"
@@ -7619,7 +7975,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamMembership"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -7654,7 +8015,7 @@
     "/api/v1/teams/memberships/create": {
       "post": {
         "operationId": "TeamsController_joinTeam",
-        "summary": "Create memberships team",
+        "summary": "Create membership",
         "description": "Creates a membership.",
         "tags": [
           "Team memberships"
@@ -7671,7 +8032,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TeamMembership"
+                    }
+                  }
                 }
               }
             }
@@ -7725,7 +8101,7 @@
     "/api/v1/teams/memberships/update": {
       "post": {
         "operationId": "TeamsController_updateMembership",
-        "summary": "Update memberships team",
+        "summary": "Update membership",
         "description": "Updates a membership.",
         "tags": [
           "Team memberships"
@@ -7784,7 +8160,7 @@
     "/api/v1/teams/memberships/delete": {
       "post": {
         "operationId": "TeamsController_leaveTeam",
-        "summary": "Delete memberships team",
+        "summary": "Delete membership",
         "description": "Deletes a membership.",
         "tags": [
           "Team memberships"
@@ -7903,7 +8279,7 @@
     "/api/v1/attachments/create-from-url": {
       "post": {
         "operationId": "AttachmentsController_createAttachmentFromUrl",
-        "summary": "Create-from-url Attachments",
+        "summary": "Create-from-url",
         "description": "Creates an attachment from a URL Sayless can fetch.",
         "tags": [
           "Attachments"
@@ -8047,7 +8423,7 @@
     "/api/v1/attachments/content": {
       "get": {
         "operationId": "AttachmentsController_handleGetContent",
-        "summary": "Content Attachments",
+        "summary": "Content",
         "description": "Returns the bytes for an attachment.",
         "tags": [
           "Attachments"
@@ -8088,7 +8464,7 @@
     "/api/v1/attachments/redirect": {
       "post": {
         "operationId": "AttachmentsController_handlePostRedirect",
-        "summary": "Redirect Attachments",
+        "summary": "Redirect",
         "description": "Redirects to the attachment file URL.",
         "tags": [
           "Attachments"
@@ -8134,45 +8510,6 @@
             }
           }
         }
-      },
-      "get": {
-        "operationId": "AttachmentsController_handleGetRedirect",
-        "summary": "Redirect Attachments",
-        "description": "Redirects to the attachment file URL.",
-        "tags": [
-          "Attachments"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/v1/webhookSubscriptions/list": {
@@ -8197,7 +8534,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WebhookSubscription"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -8232,7 +8574,7 @@
     "/api/v1/webhookSubscriptions/deliveries": {
       "post": {
         "operationId": "WebhookSubscriptionsController_listWebhookDeliveries",
-        "summary": "List webhook subscription deliveries",
+        "summary": "List webhook deliveries",
         "description": "Returns recent deliveries for a webhook subscription.",
         "tags": [
           "Webhook subscriptions"
@@ -8251,7 +8593,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WebhookDelivery"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -8303,7 +8650,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/WebhookSubscription"
+                    }
+                  }
                 }
               }
             }
@@ -8363,7 +8725,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/WebhookSubscription"
+                    }
+                  }
                 }
               }
             }
@@ -8442,7 +8819,7 @@
     "/api/v1/users/workspaceProfiles/list": {
       "post": {
         "operationId": "UsersController_fetchWorkspaceProfile",
-        "summary": "List workspace profiles users",
+        "summary": "List workspace profiles",
         "description": "Returns a page of workspace profiles.",
         "tags": [
           "Workspace"
@@ -8461,7 +8838,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WorkspaceProfile"
+                      }
+                    },
                     "pagination": {
                       "$ref": "#/components/schemas/ListPagination"
                     }
@@ -8496,7 +8878,7 @@
     "/api/v1/users/workspaces/info": {
       "post": {
         "operationId": "UsersController_workspaceInfo",
-        "summary": "Get workspaces user",
+        "summary": "Get workspace",
         "description": "Returns one workspace.",
         "tags": [
           "Workspace"
@@ -8515,7 +8897,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "$ref": "#/components/schemas/Workspace"
+                    }
                   }
                 }
               }
@@ -8538,378 +8922,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/WorkspaceInfoRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/messages/incoming-email": {
-      "post": {
-        "operationId": "MessagesController_newEmail",
-        "summary": "Incoming-email Messages",
-        "description": "Inbound email webhook. Not for API keys.",
-        "tags": [
-          "Channel webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/messages/msteams-subscription": {
-      "post": {
-        "operationId": "MessagesController_msTeamsSubscriptions",
-        "summary": "Msteams-subscription Messages",
-        "description": "Microsoft Teams subscription webhook. Not for API keys.",
-        "tags": [
-          "Channel webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/messages/slack-event": {
-      "post": {
-        "operationId": "MessagesController_slackEvents",
-        "summary": "Slack-event Messages",
-        "description": "Slack event webhook. Not for API keys.",
-        "tags": [
-          "Channel webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/messages/telegram-webhook": {
-      "post": {
-        "operationId": "MessagesController_telegramWebhook",
-        "summary": "Telegram-webhook Messages",
-        "description": "Telegram webhook. Not for API keys.",
-        "tags": [
-          "Channel webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tickets/webhook/jira": {
-      "post": {
-        "operationId": "TicketsController_jiraWebhook",
-        "summary": "Jira Webhook Tickets",
-        "description": "Jira issue webhook. Not for API keys.",
-        "tags": [
-          "Integration webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tickets/webhook/linear": {
-      "post": {
-        "operationId": "TicketsController_linearWebhook",
-        "summary": "Linear Webhook Tickets",
-        "description": "Linear issue webhook. Not for API keys.",
-        "tags": [
-          "Integration webhooks"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {}
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
               }
             }
           }
@@ -9548,6 +9560,38 @@
           "emoji"
         ]
       },
+      "TicketContent": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "contentState": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "CreateTicketContentRequest": {
         "type": "object",
         "properties": {
@@ -9606,6 +9650,61 @@
           "_id",
           "contentState"
         ]
+      },
+      "TicketStatus": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "waiting_on_customer",
+              "resolved",
+              "cancelled"
+            ]
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "color": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "customerLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "index": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
       },
       "TicketStatusCreateRequest": {
         "type": "object",
@@ -9702,6 +9801,38 @@
           "_id"
         ]
       },
+      "TicketSubscription": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subscriberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "TicketSubscriptionListConversationRequest": {
         "type": "object",
         "properties": {
@@ -9773,6 +9904,173 @@
           "subscriberId"
         ]
       },
+      "Conversation": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "firstReplyAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastActivityAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastMessageAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "snoozedUntil": {
+            "type": "string"
+          },
+          "statusId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "description": "1 urgent, 2 high, 3 normal, 4 low."
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assigneeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "contactId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          },
+          "markedAsSpamAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "markedAsSpamById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "conversationNumber": {
+            "type": "integer"
+          },
+          "replyCount": {
+            "type": "integer"
+          },
+          "slaSummaries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "slaNextBreachesAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "preview": {
+            "type": "string"
+          },
+          "additionalAttributes": {
+            "type": "string"
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ticketIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "portalTicketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "urlId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "ListConversationRequest": {
         "type": "object",
         "properties": {
@@ -9829,30 +10127,17 @@
             "format": "uuid"
           },
           "_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId",
-          "_id"
-        ]
-      },
-      "InfoConversationByNumberRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
             "type": "string",
-            "format": "uuid"
+            "description": "Conversation UUID, subject-urlId slug, or conversation number. Omit when `conversationNumber` is set."
           },
           "conversationNumber": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Conversation number, for example 42. Omit when `_id` is set."
           }
         },
         "additionalProperties": false,
         "required": [
-          "workspaceId",
-          "conversationNumber"
+          "workspaceId"
         ]
       },
       "ConversationUpdateRequest": {
@@ -10494,6 +10779,47 @@
           "workspaceId"
         ]
       },
+      "ConversationLabel": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "color": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "ConversationLabelListRequest": {
         "type": "object",
         "properties": {
@@ -10608,6 +10934,57 @@
           "workspaceId"
         ]
       },
+      "ConversationStatus": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "open",
+              "started",
+              "waiting_on_customer",
+              "completed",
+              "cancelled"
+            ]
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "color": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "index": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "WorkspaceRequest": {
         "type": "object",
         "properties": {
@@ -10654,7 +11031,14 @@
             "type": "string"
           },
           "category": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "open",
+              "started",
+              "waiting_on_customer",
+              "completed",
+              "cancelled"
+            ]
           },
           "workspaceId": {
             "type": "string",
@@ -10727,6 +11111,42 @@
           "_id",
           "workspaceId"
         ]
+      },
+      "ConversationSubscription": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subscriberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       },
       "ConversationSubscriptionListRequest": {
         "type": "object",
@@ -10917,6 +11337,95 @@
           "workspaceId"
         ]
       },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "senderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "senderType": {
+            "type": "string",
+            "enum": [
+              "user",
+              "contact",
+              "internal"
+            ]
+          },
+          "subject": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "preview": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "messageType": {
+            "type": "string",
+            "enum": [
+              "incoming",
+              "outgoing",
+              "activity"
+            ]
+          },
+          "contentAttributes": {
+            "type": "string"
+          },
+          "privateNote": {
+            "type": "boolean"
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "SendMessageRequest": {
         "type": "object",
         "properties": {
@@ -10953,8 +11462,16 @@
             "type": "string"
           },
           "channel": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
           },
           "attachments": {
             "type": "array",
@@ -11075,8 +11592,16 @@
             "type": "string"
           },
           "channel": {
-            "type": "object",
-            "additionalProperties": true
+            "type": "string",
+            "enum": [
+              "email",
+              "slack",
+              "telegram",
+              "whatsapp",
+              "chat",
+              "teams",
+              "portal"
+            ]
           },
           "privateNote": {
             "type": "boolean"
@@ -11093,6 +11618,162 @@
           "channel",
           "privateNote"
         ]
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "slug": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": "string"
+          },
+          "previousSlugs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "x": {
+            "type": "string"
+          },
+          "linkedin": {
+            "type": "string"
+          },
+          "instagram": {
+            "type": "string"
+          },
+          "sector": {
+            "type": "string"
+          },
+          "sectorIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "labelIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location1": {
+            "type": "string"
+          },
+          "location2": {
+            "type": "string"
+          },
+          "fundingRaised": {
+            "type": "number"
+          },
+          "ownerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lastModifiedByUserId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          },
+          "lastMessageReceivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastMessageSentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastTicketRaisedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "syncRevision": {
+            "type": "integer"
+          }
+        }
       },
       "CompanyQueryRequest": {
         "type": "object",
@@ -11281,6 +11962,106 @@
           "require_tld",
           "domains"
         ]
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "string"
+          },
+          "phones": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "previousUsernames": {
+            "type": "string"
+          },
+          "jobTitle": {
+            "type": "string"
+          },
+          "buyerTypes": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lastModifiedByUserId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          },
+          "syncRevision": {
+            "type": "integer"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
       },
       "ContactQueryRequest": {
         "type": "object",
@@ -11492,6 +12273,47 @@
           "workspaceId"
         ]
       },
+      "CompanyLabel": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "WorkspaceQueryRequest": {
         "type": "object",
         "properties": {
@@ -11632,6 +12454,85 @@
           "workspaceId"
         ]
       },
+      "CompanySector": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ContractType": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "CreateContractTypeRequest": {
         "type": "object",
         "properties": {
@@ -11682,6 +12583,131 @@
           "typeId",
           "workspaceId"
         ]
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "folderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "permission": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "attachmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "originalFileName": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "string"
+          },
+          "contractType": {
+            "type": "string"
+          },
+          "originalContractName": {
+            "type": "string"
+          },
+          "contractStatus": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "expirationDate": {
+            "type": "string"
+          },
+          "signedByUsDate": {
+            "type": "string"
+          },
+          "signedByThemDate": {
+            "type": "string"
+          },
+          "customIdentifier": {
+            "type": "string"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updatedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          },
+          "index": {
+            "type": "integer"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
       },
       "DocumentQueryRequest": {
         "type": "object",
@@ -11875,6 +12901,53 @@
           "workspaceId"
         ]
       },
+      "ProfileMembership": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "permission": {
+            "type": "string"
+          },
+          "documentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "noteId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentFolderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "noteFolderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "DocumentAddUserRequest": {
         "type": "object",
         "properties": {
@@ -11970,6 +13043,86 @@
           "actorId",
           "permission"
         ]
+      },
+      "Folder": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "subtype": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "permission": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "index": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
       },
       "DocumentFolderQueryRequest": {
         "type": "object",
@@ -12239,6 +13392,87 @@
           "subtype"
         ]
       },
+      "Note": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "urlId": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "folderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "permission": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "trashed": {
+            "type": "boolean"
+          },
+          "trashedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trashedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanentlyDeleted": {
+            "type": "boolean"
+          }
+        }
+      },
       "NoteQueryRequest": {
         "type": "object",
         "properties": {
@@ -12505,6 +13739,141 @@
           "permission"
         ]
       },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "allMembersCanJoin": {
+            "type": "boolean"
+          },
+          "joinByDefault": {
+            "type": "boolean"
+          },
+          "assignmentStrategy": {
+            "type": "string"
+          },
+          "assignOnlyIfAvailable": {
+            "type": "boolean"
+          },
+          "secondaryTeamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "retiredAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "retiredById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        }
+      },
+      "TeamMembership": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "owner": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastRoundRobinAssignedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "CreateAttachmentRequest": {
         "type": "object",
         "properties": {
@@ -12674,6 +14043,42 @@
         },
         "additionalProperties": false
       },
+      "WebhookSubscription": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "events": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "string"
+          },
+          "createdById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "ListWebhookSubscriptionsRequest": {
         "type": "object",
         "properties": {
@@ -12709,6 +14114,48 @@
         "required": [
           "workspaceId"
         ]
+      },
+      "WebhookDelivery": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "webhookSubscriptionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "string"
+          },
+          "requestBody": {
+            "type": "string"
+          },
+          "requestHeaders": {
+            "type": "string"
+          },
+          "responseBody": {
+            "type": "string"
+          },
+          "responseHeaders": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       },
       "ListWebhookDeliveriesRequest": {
         "type": "object",
@@ -12847,6 +14294,86 @@
           "workspaceId"
         ]
       },
+      "WorkspaceProfile": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string"
+          },
+          "attachmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "assignmentAvailability": {
+            "type": "string"
+          },
+          "isPending": {
+            "type": "string"
+          },
+          "invitedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "invitationExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "invitedBy": {
+            "type": "string"
+          },
+          "notificationSettings": {
+            "type": "string"
+          },
+          "deactivatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reactivatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deactivatedBy": {
+            "type": "string"
+          },
+          "reactivatedBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "ListRequest": {
         "type": "object",
         "properties": {
@@ -12877,6 +14404,66 @@
           "workspaceId",
           "limit"
         ]
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "logoAttachmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "suspended": {
+            "type": "string"
+          },
+          "suspensionReason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "addedDate": {
+            "type": "string"
+          },
+          "approximateConversationCount": {
+            "type": "integer"
+          },
+          "approximateTicketCount": {
+            "type": "integer"
+          },
+          "approximateCompanyCount": {
+            "type": "integer"
+          },
+          "approximateBroadcastCount": {
+            "type": "integer"
+          },
+          "approximateContactCount": {
+            "type": "integer"
+          },
+          "approximateDashboardCount": {
+            "type": "integer"
+          },
+          "preferences": {
+            "type": "string"
+          }
+        }
       },
       "WorkspaceInfoRequest": {
         "type": "object",
