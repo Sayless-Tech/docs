@@ -525,8 +525,8 @@
     "/api/v1/tickets/ticketComment/info": {
       "post": {
         "operationId": "TicketsController_timelineInfo",
-        "summary": "Get ticket comment ticket",
-        "description": "Returns one ticket comment.",
+        "summary": "List ticket comments",
+        "description": "Returns comments and activity for one ticket. `_id` is the ticket id.",
         "tags": [
           "Ticket comments"
         ],
@@ -544,7 +544,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {}
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TicketComment"
+                      }
+                    }
                   }
                 }
               }
@@ -576,8 +581,8 @@
     "/api/v1/tickets/ticketComment/create": {
       "post": {
         "operationId": "TicketsController_createComment",
-        "summary": "Create ticket comment ticket",
-        "description": "Creates a ticket comment.",
+        "summary": "Create ticket comment",
+        "description": "Creates a comment. `content` is Lexical JSON. `entryType` is `comment`.",
         "tags": [
           "Ticket comments"
         ],
@@ -593,7 +598,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketComment"
+                    }
+                  }
                 }
               }
             }
@@ -636,8 +656,8 @@
     "/api/v1/tickets/ticketComment/update": {
       "post": {
         "operationId": "TicketsController_updateComment",
-        "summary": "Update ticket comment ticket",
-        "description": "Updates a ticket comment.",
+        "summary": "Update ticket comment",
+        "description": "Updates a comment. `content` is Lexical JSON.",
         "tags": [
           "Ticket comments"
         ],
@@ -653,7 +673,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicMutationPayload"
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketComment"
+                    }
+                  }
                 }
               }
             }
@@ -684,7 +719,7 @@
     "/api/v1/tickets/ticketComment/delete": {
       "post": {
         "operationId": "TicketsController_deleteComment",
-        "summary": "Delete ticket comment ticket",
+        "summary": "Delete ticket comment",
         "description": "Deletes a ticket comment.",
         "tags": [
           "Ticket comments"
@@ -732,7 +767,7 @@
     "/api/v1/tickets/ticketComment/comment_reaction_add": {
       "post": {
         "operationId": "TicketsController_addCommentReaction",
-        "summary": "Comment Reaction Add Ticket Comment Tickets",
+        "summary": "Add ticket comment reaction",
         "description": "Adds a reaction to a ticket comment.",
         "tags": [
           "Ticket comments"
@@ -745,13 +780,25 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
-                    "data": {}
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketComment"
+                    }
                   }
                 }
               }
@@ -783,7 +830,7 @@
     "/api/v1/tickets/ticketComment/comment_reaction_remove": {
       "post": {
         "operationId": "TicketsController_removeCommentReaction",
-        "summary": "Comment Reaction Remove Ticket Comment Tickets",
+        "summary": "Remove ticket comment reaction",
         "description": "Removes a reaction from a ticket comment.",
         "tags": [
           "Ticket comments"
@@ -796,13 +843,25 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
-                    "data": {}
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/TicketComment"
+                    }
                   }
                 }
               }
@@ -8973,6 +9032,93 @@
           }
         }
       },
+      "TicketComment": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "senderId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "description": "Lexical document JSON."
+          },
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentAttributes": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "emoji": {
+                  "type": "string"
+                },
+                "createdById": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "edited": {
+            "type": "boolean"
+          },
+          "quotedCommentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "quotedContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "quotedSenderId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        }
+      },
       "WorkspaceTicketsRequest": {
         "type": "object",
         "properties": {
@@ -9313,13 +9459,14 @@
             "format": "uuid"
           },
           "entryType": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "comment"
+            ]
           },
           "content": {
-            "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
+            "type": "string",
+            "description": "Lexical document JSON."
           },
           "quotedCommentId": {
             "type": "string",
@@ -9354,9 +9501,6 @@
           },
           "content": {
             "type": "string"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9376,9 +9520,6 @@
           "_id": {
             "type": "string",
             "format": "uuid"
-          },
-          "mutationId": {
-            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -9399,9 +9540,6 @@
             "format": "uuid"
           },
           "emoji": {
-            "type": "string"
-          },
-          "mutationId": {
             "type": "string"
           }
         },
@@ -9646,8 +9784,8 @@
           "sortDirection": {
             "type": "string",
             "enum": [
-              "asc",
-              "desc"
+              "desc",
+              "asc"
             ]
           },
           "filters": {
@@ -11623,7 +11761,11 @@
             "maxLength": 255
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "file",
+              "contract"
+            ]
           },
           "companyId": {
             "type": "string",
@@ -11902,7 +12044,11 @@
             "nullable": true
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
@@ -11943,7 +12089,11 @@
             "nullable": true
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
@@ -11968,7 +12118,11 @@
             "format": "uuid"
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           },
           "permanent": {
             "type": "boolean"
@@ -11996,7 +12150,11 @@
             "nullable": true
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
@@ -12017,7 +12175,11 @@
             "format": "uuid"
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
@@ -12038,7 +12200,11 @@
             "format": "uuid"
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
@@ -12062,7 +12228,11 @@
             "nullable": true
           },
           "subtype": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
           }
         },
         "additionalProperties": false,
