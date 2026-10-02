@@ -1,0 +1,61 @@
+---
+title: "Gong integration"
+description: "Connect Gong so call recordings and transcripts land on company meetings in Sayless. Available on Scale and Enterprise."
+---
+
+Gong attaches call recordings, transcripts, and summaries to company meetings in Sayless.
+
+## Overview
+
+Use Gong when your team records customer calls in Gong and wants those calls next to the company record in Sayless.
+
+Workspace admins connect Gong from Apps or Gong settings, then paste a Sayless destination URL into a Gong automation rule so selected calls are sent to Sayless.
+
+> Gong requires the Scale plan or Enterprise plan. Google Calendar and Google Meet meetings are available from Growth and above.
+
+Go to [Settings \> Gong](https://joinsayless.com/settings/gong), or open Gong from [Settings \> Apps](https://joinsayless.com/settings/apps).
+
+| Gong area | Link | Use it for |
+| --- | --- | --- |
+| Workspace integration | [Settings \> Gong](https://joinsayless.com/settings/gong) | Connect Gong and copy the webhook destination URL. |
+| Apps | [Settings \> Apps](https://joinsayless.com/settings/apps) | Find Gong among workspace integrations. |
+| Company meetings | Company Meetings tab | Review matched calls on an account. |
+
+## Connect Gong
+
+Gong is a workspace-level OAuth connection. Only admins can connect or disconnect it.
+
+### Plan requirements
+
+If Gong settings show an upgrade state, the workspace is below Scale. Upgrade to Scale or Enterprise to connect Gong.
+
+### Workspace connection
+
+1. Open [Settings \> Gong](https://joinsayless.com/settings/gong).
+2. Connect Gong and complete OAuth.
+3. Copy the destination URL from the Automation rule section.
+4. In Gong Admin, open Company settings → Ecosystem → Automation rules.
+5. Create a rule, filter the calls you want in Sayless, set the action to Fire webhook, paste the destination URL, enable the rule, then use Test now.
+6. Refresh the Gong settings page in Sayless to see ingested calls.
+
+When you connect Gong, Sayless also imports recent calls from the last 90 days. After that window, new calls arrive through the Gong automation webhook.
+
+Private Gong calls are ignored.
+
+## What gets imported
+
+For each eligible call, Sayless stores:
+
+- Call title, time, and duration
+- Participant emails (used to match a company)
+- Recording media URLs when Gong provides them
+- Transcript when available
+- A link back to the call in Gong
+
+Matched calls also appear on that company’s Meetings tab. Unmatched calls stay on the Gong settings list until they can be tied to a company.
+
+Gong recordings use short-lived media URLs. Sayless refreshes an expired URL when you play the recording in the meeting detail page.
+
+## Disconnect Gong
+
+Admins can disconnect Gong from the Gong settings page. New calls stop ingesting. Meetings already imported stay in Sayless.
