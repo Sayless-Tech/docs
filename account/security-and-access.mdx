@@ -68,3 +68,7 @@ Top-level app links open in your active workspace. If a link opens the wrong wor
 If you no longer need access to a workspace, use member or access settings to leave, when permitted.
 
 Admins should make sure ownership and assignments are handed off before leaving or deactivating members.
+
+## Chat widget identity
+
+HMAC secrets and JWT verification for [chat widgets](/admin/chat-widgets) live on the widget, not on this page. Rotating a secret, turning verification off, and revoking a widget session are recorded as audit events. See [identity verification](/developers/chat/identity-verification).

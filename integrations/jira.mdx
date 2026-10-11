@@ -1,56 +1,49 @@
 ---
 title: "Jira integration"
-description: "Connect Jira to Sayless to create or link Jira issues from tickets, sync status updates, and keep customer follow-up aligned with engineering work."
+description: "Create or link Jira issues from Sayless tickets and follow their progress without leaving the ticket."
 ---
 
-Jira integration connects Sayless tickets to issue work managed in Jira.
+When a customer problem needs work from engineering, product, or operations, the Jira integration lets you raise it in Jira straight from the Sayless ticket, or link an issue that already exists. Changes to the issue in Jira show up on the ticket's timeline.
 
-## Overview
+Available on all plans. Each agent connects their own Jira account; issues are created as that person.
 
-Use Jira when customer follow-up needs engineering, product, or operations work tracked in Jira.
+## How it works
 
-Jira actions appear in ticket workflows when the integration is available and the ticket is active.
+- **Create issue** opens a form on the ticket and creates the issue in Jira.
+- **Link issue** attaches an existing Jira issue to the ticket. You can search, or pick from recent issues.
+- **Linked issues** are listed on the ticket with a link to open each one in Jira.
+- **Updates from Jira** are added to the ticket's timeline: changes to the issue's **status**, **priority**, and **assignee**.
 
-Start from [Settings \> Apps](https://joinsayless.com/{workspace}/settings/apps), then use Jira from a ticket detail page.
-
-> Jira is available on the Free plan and all paid plans.
-
-| Step | Where |
-| --- | --- |
-| Connect Jira | [Settings \> Apps](https://joinsayless.com/{workspace}/settings/apps) |
-| Create a Sayless ticket | [Tickets](https://joinsayless.com/{workspace}/tickets) |
-| Create or link Jira issue | Ticket detail metadata panel |
+A ticket can have several linked issues, and one issue can be linked to several tickets. Linking doesn't change the ticket itself.
 
 ## Connect Jira
 
-Jira is managed from Apps or Connected Accounts depending on your workspace setup.
+1. Open [Settings \> Apps](https://joinsayless.com/settings/apps).
+2. Find **Jira** and click **Add**, then approve access in Atlassian and choose your Jira site.
 
-### Personal connection
+Each teammate who wants to create or link issues connects their own account. The ticket's Jira section shows **No Jira account connected** until you do.
 
-Connect your Jira account when Sayless needs permission to create or link issues on your behalf.
+## Create an issue from a ticket
 
-### Workspace requirements
+1. Open the ticket and find **Jira** in the details panel.
+2. Click **Create issue**.
+3. Choose the **Project** and **Issue type**, then enter a **Title** and **Description**.
+4. Optionally place it on a **Board** (with a **Sprint** and **Board column**) or give it a starting **Status**.
+5. Create the issue. It's linked to the ticket right away.
 
-An admin may need to enable or configure Jira before team members can use it.
+## Link an existing issue
 
-> If Jira actions do not appear on a ticket, check that the app is connected and that you have permission to use it.
+1. In the ticket's **Jira** section, click **Link issue**.
+2. Search by summary or key (for example `SUP-42`), or choose a recent issue.
 
-## Use Jira with tickets
+## What you'll see on the ticket
 
-Jira links keep external work connected to the original customer context.
+When the issue changes in Jira, the ticket timeline gets an entry such as *SUP-42 status updated to Done* or *assignee updated to Sam Lee*.
 
-### Create Jira issues
+## Troubleshooting
 
-Create a Jira issue from a Sayless ticket when work should continue in Jira.
-
-### Link Jira issues
-
-Link an existing Jira issue when the work is already tracked there.
-
-### Sync ticket context
-
-Use the ticket title, description, linked conversations, and comments to preserve customer context.
-
-### Remove links
-
-Remove links when the external issue is no longer related to the ticket.
+| Problem | What to check |
+| --- | --- |
+| No Jira section actions on a ticket | Connect your Jira account in **Settings \> Apps**. |
+| A project or issue type is missing | Your Jira account needs permission to create issues in that project. |
+| Jira changes don't show on the ticket | Only status, priority, and assignee changes are tracked. |

@@ -56,6 +56,12 @@ Use **Connected Accounts** or **Apps** when a workspace requires your personal S
 
 Admins configure workspace channels such as Email, WhatsApp, Telegram, Slack, and Microsoft Teams. These channels control where conversations originate and may affect how your team receives updates.
 
+### Chat follow-up emails
+
+When a verified customer has not seen the first agent reply in a [chat widget](/admin/chat-widgets) conversation, Sayless can email them after a short delay (2–30 minutes). Later agent replies in that window group into the same email. Marking the thread read cancels the job.
+
+Each email includes an unsubscribe link. That sets `chatEmailsOptOut` on the contact so follow-ups stop. Visitors without a verified identity never receive these emails.
+
 ## Keeping notifications useful
 
 Notifications work best when ownership is clear.

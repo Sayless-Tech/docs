@@ -1,0 +1,18 @@
+---
+title: Changelog
+description: Public API and chat widget changes that integrators should know about.
+---
+
+Product releases also land on the [Sayless changelog](https://joinsayless.com/changelog). This page is the integrator-facing record for `/api/v1` and the embeddable chat widget.
+
+## 2026-10-09 — Embedded customer chat
+
+Chat is a first-class channel (`channel: "chat"`). Messages live next to email and Slack in Conversation / Message.
+
+- **Install.** Load `https://widget.joinsayless.com/v1/{appId}/loader.js` or boot from React with [`useSayless`](/developers/chat/react) (`@sayless/chat`).
+- **Identity.** HS256 JWTs only. `aud` is the widget `appId`. See [Identity verification](/developers/chat/identity-verification).
+- **Widget HTTP.** `/api/v1/widget/*` for session, conversations, messages, attachments (5 MB), forms, and requests.
+- **JavaScript API.** `boot`, `identify`, `open`, `startConversation`, `openForm`, `on`, `shutdown`. See the [JavaScript API](/developers/chat/javascript-api).
+- **CSP.** Frame origin plus `connect-src` for widget HTTP and realtime. See [Content security policy](/developers/chat/content-security-policy).
+
+Breaking changes to this surface follow the [stability policy](/developers/stability-and-versioning).

@@ -1,80 +1,77 @@
 ---
 title: "Slack integration"
-description: "Connect Slack channels to Sayless conversations, map channels to companies, and configure Slack broadcasts and sender profiles on eligible plans."
+description: "Bring shared Slack channels with customers into the Sayless inbox, reply from Sayless, and send broadcasts to Slack."
 ---
 
-Slack connects workspace channels to Sayless conversations and, on eligible plans, broadcasts.
+If you talk to customers in shared Slack channels (Slack Connect or your own workspace), the Slack integration brings those channels into the Sayless inbox. Your team assigns, tracks, and answers them like any other conversation, and replies go back to the channel.
 
-## Overview
+Available on the **Growth** plan and above. An admin connects the workspace once; each agent can connect their own Slack account to reply as themselves.
 
-Use Slack when customer or partner communication happens in Slack channels, or when your team sends broadcasts through Slack.
+## How it works
 
-Slack setup is managed by workspace admins from settings. Personal Slack account connections may also be required for some workflows.
+- **The workspace connection** installs the Sayless app in your Slack workspace. It reads messages in the channels you connect and posts replies.
+- **Connected channels** are the only ones Sayless reads. Link each to the customer's company so conversations show on that company's page.
+- **Personal connections** let each agent reply as themselves instead of as the Sayless app.
 
-Slack is also currently tied to broadcast creation. If workspace Slack is not connected, broadcast creation can be blocked.
+### Which conversation a message lands in
 
-> Slack channel conversations require the Business plan or Enterprise plan. Slack broadcasts require the Enterprise plan.
+1. A **thread reply** joins the conversation of the message it replies to.
+2. Otherwise the message joins the channel's recent conversation: one where the **same person** wrote in the last 2 hours, or where **anyone** wrote in the last hour.
+3. Otherwise it starts a **new conversation**.
 
-Go to [Settings \> Slack](https://joinsayless.com/settings/slack).
+Messages posted by bots (including Sayless broadcasts) and join/leave notices don't create conversations.
 
-| Slack area | Link | Use it for |
-| --- | --- | --- |
-| Workspace integration | [Settings \> Slack](https://joinsayless.com/settings/slack) | Connect Slack for the workspace. |
-| Connected channels | [Settings \> Slack \> Channels](https://joinsayless.com/settings/slack/channels) | Review channels and company mappings. |
-| Broadcast profiles | [Settings \> Slack](https://joinsayless.com/settings/slack) | Configure sender profiles for broadcasts. |
+### What syncs
 
-## Connect Slack
+| From Slack to Sayless | From Sayless to Slack |
+| --- | --- |
+| New messages and thread replies, with files | Your replies, with attachments |
+| Edits and deletions | Edits and deletions of your own messages |
+| Reactions | Reactions |
+| Mentions, links, and formatting | Mentions, links, and formatting |
 
-Slack has both workspace-level and personal connection concepts.
+### Contacts and companies
 
-### Workspace connection
+When someone new writes in a connected channel, Sayless creates a contact from their Slack profile (name, email, title, photo). If they use a work email, the contact is linked to the matching company.
 
-The workspace connection allows Sayless to work with Slack for the whole workspace.
+## Set up Slack
 
-Admins connect or disconnect the workspace integration from Slack settings.
+### 1. Connect your Slack workspace (admin)
 
-### Personal connection
+1. Open [Settings \> Slack](https://joinsayless.com/settings/slack).
+2. Under **Workspace Integration**, click **Connect** and approve the Sayless app in Slack.
 
-Personal Slack accounts are connected from Apps or Connected Accounts when a workflow requires the user’s own Slack identity.
+### 2. Connect channels
 
-If a teammate sees an admin connection required message, the workspace Slack connection must be completed before they can add their personal account.
+1. Open [Settings \> Slack \> Channels](https://joinsayless.com/settings/slack/channels) and click **Add from Slack**.
+2. Pick the customer channels to connect.
+3. Open each channel and link it to its company.
 
-### Plan requirements
+Use the **Linked to Company** and **Not Linked** filters to find channels that still need a company. Messages sent after a channel is connected appear in the inbox.
 
-If the Slack settings page shows an upgrade state, the workspace is below the first plan that includes Slack. Upgrade to Business for Slack channel workflows, or Enterprise if the team also needs Slack broadcasts.
+### 3. Reply as yourself (each agent, optional)
 
-## Manage channels
+Open [Settings \> Apps](https://joinsayless.com/settings/apps) and add **Slack** with your own account. Your replies then come from you in Slack instead of the Sayless app. Your personal account must be in the same Slack workspace as the workspace connection; otherwise Sayless keeps sending as the app.
 
-Connected channels determine where Slack conversations can be linked.
+## Broadcasts
 
-### Connected channels
+Slack is also how [broadcasts](/broadcasts/create-broadcast) reach customer channels. **Broadcast profiles** set who a broadcast appears to come from:
 
-Use the Slack channels page to review channels connected to the workspace.
+1. Open [Settings \> Slack](https://joinsayless.com/settings/slack) and find **Broadcast Profiles**.
+2. Click **Create Broadcast Profile**, enter a name, and optionally upload an avatar (5 MB max).
 
-The connected channels page shows channel names, company mappings, and row actions.
+Pick the profile when you send a broadcast. Broadcasts need the workspace Slack connection.
 
-### Assign companies
+## Troubleshooting
 
-Map channels to companies so Slack conversations carry account context.
+| Problem | What to check |
+| --- | --- |
+| Messages from a channel don't appear | The channel is connected in **Settings \> Slack \> Channels**, and the Sayless app is still a member of it. |
+| Conversations don't show on a company | Link the channel to the company. |
+| Replies come from the Sayless app, not you | Connect your personal Slack account in **Settings \> Apps**, using the same Slack workspace. |
+| Slack settings show an upgrade notice | Slack needs the Growth plan or above. |
+| You see "You don't have access to Slack channels" | Only admins manage the workspace connection and channels. |
 
-This mapping keeps Slack-originated work visible from company pages.
+## Disconnect
 
-### Leave a channel
-
-Remove a channel connection when it should no longer be managed through Sayless.
-
-## Broadcast profiles
-
-Broadcast profiles control sender identity for Slack broadcasts.
-
-### Create profile
-
-Create a profile when your team needs a reusable sender for broadcasts.
-
-### Edit profile
-
-Update profiles when sender details change.
-
-### Remove profile
-
-Remove profiles that should no longer be used.
+Disconnecting workspace Slack stops Slack for everyone: no new messages come in, replies can't be sent, and broadcasts to Slack stop. Conversations already in Sayless stay.

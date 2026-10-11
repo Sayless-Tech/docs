@@ -1,80 +1,88 @@
 ---
 title: "Telegram integration"
-description: "Connect Telegram groups to Sayless with a workspace bot, map groups to companies, and keep customer and partner messaging in your shared inbox."
+description: "Bring Telegram group chats with customers into the Sayless inbox, reply from Sayless, and keep each group tied to its company."
 ---
 
-Telegram brings group-based communication into Sayless through a workspace bot and group mappings.
+Many teams run customer relationships in shared Telegram groups. The Telegram integration reads those groups into the Sayless inbox as conversations, so your team can assign, track, and reply to them like any other channel. Replies you send in Sayless are posted back to the group.
 
-## Overview
+Available on all plans. An admin sets it up once; each agent can optionally connect their own Telegram account to reply as themselves.
 
-Use Telegram when customer or partner communication happens in Telegram groups. Admins manage Telegram from workspace settings.
+## How it works
 
-Telegram availability depends on your workspace plan.
+- **A workspace bot** (one you create in Telegram) is added to each customer group. It reads new messages and posts replies.
+- **A personal Telegram account** is used during setup to list your groups and add the bot to them as an admin. Agents who connect their own account also send replies as themselves.
+- **Only groups you connect and link to a company are read.** Private chats with the bot, and groups you haven't connected, are ignored.
 
-> Telegram is available on the Business plan and Enterprise plan.
+### Which conversation a message lands in
 
-Telegram setup has two parts: the shared workspace bot and a personal Telegram connection for group sync.
+Group chat doesn't have tickets, so Sayless groups messages:
 
-Go to [Settings \> Telegram](https://joinsayless.com/settings/telegram).
+1. A Telegram **reply** to a message joins that message's conversation, if it's still open.
+2. Otherwise the message joins the group's recent conversation: one where the **same person** wrote in the last 2 hours, or where **anyone** wrote in the last hour.
+3. Otherwise it starts a **new conversation**.
 
-| Telegram area | Link | Use it for |
-| --- | --- | --- |
-| Workspace bot | [Settings \> Telegram](https://joinsayless.com/settings/telegram) | Connect, reconnect, or disconnect the bot. |
-| Connected groups | [Settings \> Telegram \> Groups](https://joinsayless.com/settings/telegram/groups) | Sync groups and assign companies. |
-| Internal users | [Settings \> Telegram \> Internal users](https://joinsayless.com/settings/telegram/internal-users) | Prevent teammates from becoming contacts. |
+### What syncs
 
-> Telegram groups require the workspace bot. Group sync may also require a personal Telegram connection.
+| From Telegram to Sayless | From Sayless to Telegram |
+| --- | --- |
+| New messages, including photos and files | Your replies, with attachments |
+| Edits and deletions | Edits and deletions of your own text messages |
+| Reactions | Reactions |
 
-## Connect Telegram
+Attachments count toward your workspace's file storage. If storage is full, new Telegram files aren't downloaded.
 
-Telegram setup uses a workspace bot and, when needed, a personal Telegram connection.
+## Set up Telegram
 
-### Workspace bot
+You need to be a workspace admin, and you need a Telegram account that is an admin of the customer groups you want to connect.
 
-Connect the shared Telegram bot for the workspace. If the bot is already connected, admins can reconnect or disconnect it.
+### 1. Create and connect the workspace bot
 
-The bot username appears in settings after connection.
+1. In Telegram, open [@BotFather](https://t.me/BotFather), send `/newbot`, and follow the prompts. Name it after your company, for example *Acme Support*.
+2. Copy the **bot token** BotFather gives you (it looks like `123456:AA…`).
+3. In Sayless, open [Settings \> Telegram](https://joinsayless.com/settings/telegram) and click **Connect** under **Telegram Workspace Bot**.
+4. Enter the bot's username (without `@`) and paste the token.
 
-### Personal Telegram account
+The bot's username appears in settings once it's connected.
 
-Connect a personal Telegram account when Sayless needs to sync available groups for the workspace.
+### 2. Connect your personal Telegram account
 
-The groups page is blocked until the workspace bot is connected. If a personal account is missing, Sayless prompts you to connect one before syncing groups.
+Sayless uses your account to list the groups you're in and to add the bot to them.
 
-### Workspace availability
+1. Open [Settings \> Telegram \> Groups](https://joinsayless.com/settings/telegram/groups).
+2. When prompted, enter your phone number in international format (for example `+44 7700 900123`).
+3. Enter the code Telegram sends you. If your account has two-step verification, enter your Telegram password too.
 
-If Telegram is unavailable, review the workspace plan and upgrade to Business or Enterprise.
+### 3. Connect groups and link them to companies
 
-## Manage Telegram groups
+1. On the **Groups** page, click **Connect Telegram Groups** and pick the groups to connect.
+2. Choose the company each group belongs to.
 
-Groups are connected and mapped from Telegram settings.
+For each group, Sayless adds the bot, makes it an admin so it can read and post, and checks it has access. Messages sent after this point appear in the inbox.
 
-### Connected groups
-
-Review saved Telegram groups from the groups page.
-
-Connected group count appears on the Telegram settings page.
-
-### Auto-join bot
-
-The workspace bot can be used to join or manage connected Telegram groups.
-
-### Assign companies
-
-Link groups to companies so conversation context is attached to the account.
-
-Company mapping keeps Telegram conversations visible in company records.
+You can change a group's company later from its row. **Disconnect** removes the group from Sayless and makes the bot leave it; conversations already in Sayless stay.
 
 ## Internal users
 
-Internal users are teammates in Telegram groups who should not be treated as customer contacts.
+Your teammates are usually in the same groups as customers. Without help, Sayless would treat them as customers and create contacts for them.
 
-### Configure internal users
+Open [Settings \> Telegram \> Internal users](https://joinsayless.com/settings/telegram/internal-users) and add each teammate's Telegram **user ID** (digits only, no `@`), optionally with their username and a display name. Their messages are then attributed to that workspace member, and no contact is created.
 
-Add internal users from Telegram settings.
+To find someone's user ID, ask them to message a bot such as [@userinfobot](https://t.me/userinfobot).
 
-Internal user setup is admin-only when the workspace bot is connected.
+## Reply as yourself
 
-### Contact creation
+By default, replies are posted by the workspace bot. To have customers see your own name, connect your personal Telegram account from [Settings \> Apps](https://joinsayless.com/settings/apps). Sayless then sends your replies from your account. Edits and deletions work on messages you sent, either way.
 
-Use internal users to keep teammate messages from becoming customer contact records.
+## Troubleshooting
+
+| Problem | What to check |
+| --- | --- |
+| Messages from a group don't appear | The group is connected **and** linked to a company. The bot is still in the group and is an admin. |
+| A group isn't listed when connecting | The personal account you connected is a member of the group. Groups need to be groups or supergroups; channels and private chats aren't supported. |
+| A teammate shows up as a customer contact | Add their Telegram user ID under **Internal users**. Messages they already sent stay as they are. |
+| An edit or delete fails | Only your own plain-text messages can be edited. Telegram limits editing and deleting old messages. |
+| Telegram settings show an upgrade or admin notice | Only admins can manage the bot, groups, and internal users. |
+
+## Disconnect
+
+Disconnecting the workspace bot stops Telegram for everyone in the workspace, including replies sent through the bot. Conversations already in Sayless stay.

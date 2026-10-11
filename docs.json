@@ -104,14 +104,15 @@
           {
             "group": "Integrations",
             "pages": [
+              "integrations/overview",
               "integrations/email",
               "integrations/slack",
               "integrations/microsoft-teams",
-              "integrations/whatsapp",
               "integrations/telegram",
-              "integrations/jira",
               "integrations/linear",
-              "integrations/gong"
+              "integrations/jira",
+              "integrations/gong",
+              "integrations/jam"
             ]
           },
           {
@@ -128,6 +129,7 @@
               "admin/support-hours",
               "admin/customer-portal",
               "admin/ticket-forms",
+              "admin/chat-widgets",
               "admin/support",
               "admin/api-and-webhooks",
               "admin/billing-and-plans"
@@ -160,13 +162,26 @@
             ]
           },
           {
+            "group": "Chat widget",
+            "pages": [
+              "developers/chat/install",
+              "developers/chat/identity-verification",
+              "developers/chat/content-security-policy",
+              "developers/chat/javascript-api",
+              "developers/chat/react",
+              "developers/chat/message-actions"
+            ]
+          },
+          {
             "group": "Guides",
             "pages": [
               "developers/guides/upload-a-file",
               "developers/guides/create-a-ticket",
               "developers/guides/tickets",
+              "developers/guides/chat-widget-csp",
               "developers/webhooks",
-              "developers/stability-and-versioning"
+              "developers/stability-and-versioning",
+              "developers/changelog"
             ]
           }
         ]

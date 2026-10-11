@@ -1,0 +1,35 @@
+---
+title: Content security policy
+description: Exact CSP directives for a site that embeds the Sayless chat widget.
+---
+
+The loader runs on your page. The messenger runs in an iframe on the widget origin. Your CSP has to allow both.
+
+Replace `https://widget.joinsayless.com` if you self-host.
+
+## Standard install
+
+```
+script-src 'self' https://widget.joinsayless.com
+frame-src https://widget.joinsayless.com
+img-src 'self' https://widget.joinsayless.com
+```
+
+You do not need `connect-src` to the widget origin. You do not need `style-src 'unsafe-inline'` for the launcher: it uses a closed shadow root and a constructable stylesheet.
+
+## SRI install
+
+The hashed loader fetches config from the widget origin:
+
+```
+script-src 'self' https://widget.joinsayless.com
+frame-src https://widget.joinsayless.com
+img-src 'self' https://widget.joinsayless.com
+connect-src 'self' https://widget.joinsayless.com
+```
+
+## Frame lock
+
+The iframe sets `frame-ancestors` to the origins saved on the widget. A page that is not in **Allowed domains** will not paint the panel.
+
+Identity tokens are posted from the iframe, not from the host page, so host `connect-src` is not required for JWT exchange.

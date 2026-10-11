@@ -35,8 +35,11 @@ If Gong settings show an upgrade state, the workspace is below Scale. Upgrade to
 2. Connect Gong and complete OAuth.
 3. Copy the destination URL from the Automation rule section.
 4. In Gong Admin, open Company settings → Ecosystem → Automation rules.
-5. Create a rule, filter the calls you want in Sayless, set the action to Fire webhook, paste the destination URL, enable the rule, then use Test now.
-6. Refresh the Gong settings page in Sayless to see ingested calls.
+5. Create a rule and filter the calls you want in Sayless.
+6. Set the action to **Fire webhook**.
+7. For authentication, choose **URL includes key** — do not use Signed JWT header. Sayless authenticates with the secure token already in the destination URL.
+8. Paste the destination URL, enable the rule, then use **Test now**.
+9. Refresh the Gong settings page in Sayless to see ingested calls.
 
 When you connect Gong, Sayless also imports recent calls from the last 90 days. After that window, new calls arrive through the Gong automation webhook.
 

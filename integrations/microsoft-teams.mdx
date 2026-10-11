@@ -1,63 +1,55 @@
 ---
 title: "Microsoft Teams integration"
-description: "Connect Microsoft Teams channels to Sayless so customer and partner conversations in Teams stay synced with company records and the inbox."
+description: "Bring Microsoft Teams channel threads with customers into the Sayless inbox and reply from Sayless."
 ---
 
-Microsoft Teams connects Teams channel activity to Sayless.
+If your customers or partners work with you in Microsoft Teams channels, the Teams integration brings those channels into the Sayless inbox. Each Teams post and its replies become one conversation your team can assign, track, and answer. Replies go back to the thread in Teams.
 
-## Overview
+Available on the **Enterprise** plan. Setup needs a Microsoft Teams admin and a short step with Sayless support, because the Sayless Teams app is installed per organization.
 
-Use Microsoft Teams when your team manages customer or partner communication inside Teams channels.
+## How it works
 
-Microsoft Teams must be enabled for the workspace before it appears in settings.
+- **The workspace connection** links Sayless to your Microsoft 365 tenant through an admin account.
+- **The Sayless Teams app** is added to each Team channel you want in Sayless. It reads new posts and replies, and posts your replies.
+- **Each Teams thread is one conversation.** A new post starts a conversation; replies to it land in the same one.
+- **Personal connections** let each agent reply as themselves.
 
-Teams can also be restricted by plan. If the page is unavailable or shows an access state, check both workspace preference and billing plan.
+### What syncs
 
-> Microsoft Teams is available on the Enterprise plan.
+| From Teams to Sayless | From Sayless to Teams |
+| --- | --- |
+| New posts and replies, with attachments | Your replies, with attachments |
+| Edits (the message is refreshed in full) | Your replies, as yourself when connected |
+| Reactions | |
+| Mentions | Mentions |
 
-Go to [Settings \> Microsoft Teams](https://joinsayless.com/settings/teams).
+When someone new writes, Sayless creates a contact from their Teams account; a work email links them to that company. Link each channel to its company so its conversations show on the company's page.
 
-| Teams area | Link | Use it for |
-| --- | --- | --- |
-| Workspace integration | [Settings \> Microsoft Teams](https://joinsayless.com/settings/teams) | Connect Teams for the workspace. |
-| Connected channels | [Settings \> Microsoft Teams \> Channels](https://joinsayless.com/settings/teams/channels) | Review channels and company mappings. |
+## Set up Microsoft Teams
 
-> Microsoft Teams only appears when the workspace enables Teams. If you do not see it, ask an admin to check workspace preferences and Enterprise plan access.
+You need to be a Sayless workspace admin and have a Microsoft Teams admin account. Teams also needs to be turned on for your workspace; if you don't see **Microsoft Teams** in settings, contact [support@joinsayless.com](mailto:support@joinsayless.com).
 
-## Connect Microsoft Teams
+1. Open [Settings \> Microsoft Teams](https://joinsayless.com/settings/teams) and click **Connect**. Sign in with your Microsoft Teams admin account and approve the permissions.
+2. Click **Email support for the Teams app**. Sayless support sends you the Sayless Teams app for your organization.
+3. In Teams, install the app, then add it to each Team channel you want to sync.
+4. Back in Sayless, open [Settings \> Microsoft Teams \> Channels](https://joinsayless.com/settings/teams/channels) and link each channel to its company.
 
-Teams setup is managed from workspace settings.
+Posts made after the app joins a channel appear in the inbox.
 
-### Workspace connection
+### Reply as yourself (each agent, optional)
 
-The workspace connection allows Sayless to manage Teams channel connections for the workspace.
+Open [Settings \> Apps](https://joinsayless.com/settings/apps) and add **Microsoft Teams** with your own account. Your replies then come from you. Your account must be in the same Microsoft tenant as the admin connection; otherwise Sayless keeps sending as the app.
 
-Admins connect Teams from the Microsoft Teams settings page.
+## Troubleshooting
 
-### Personal connection
+| Problem | What to check |
+| --- | --- |
+| Microsoft Teams isn't in settings | Teams needs the Enterprise plan and has to be turned on for your workspace by Sayless support. |
+| A channel doesn't appear | The Sayless Teams app has been added to that channel in Teams. |
+| Messages don't show on a company | Link the channel to the company in **Settings \> Microsoft Teams \> Channels**. |
+| Replies come from the app, not you | Connect your personal Teams account in **Settings \> Apps**, from the same tenant. |
+| "Microsoft Teams temporarily unavailable" | Try again shortly; if it persists, contact support. |
 
-Some workflows may require a personal Microsoft Teams connection from Apps or Connected Accounts.
+## Disconnect
 
-### Workspace availability
-
-If the Teams page is unavailable, the workspace preference or plan may not allow Teams yet. The first plan that includes Teams is Enterprise.
-
-## Manage channels
-
-Connected channels define where Teams conversations can be associated.
-
-### Connected channels
-
-Use the Teams channels page to review connected channels.
-
-The channels page shows channel assignments and available actions.
-
-### Assign companies
-
-Assign companies to channels so conversations carry account context.
-
-Company assignment is what connects Teams activity to the Records area.
-
-### Resubscribe channels
-
-Use resubscribe actions when a channel needs to reconnect to Sayless.
+Disconnecting Microsoft Teams stops it for the whole workspace: new posts stop coming in and replies can't be sent. Conversations already in Sayless stay.

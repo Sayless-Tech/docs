@@ -1,0 +1,111 @@
+---
+title: Identity verification
+description: Sign HS256 JWTs so the chat widget knows who is on the page.
+---
+
+The widget treats host-page JavaScript as untrusted. Identity is a JWT your backend signs with the widget HMAC secret. The iframe posts that token to the widget origin. Do not put the secret in the browser.
+
+Create or rotate the secret in [Settings → Chat widgets](https://joinsayless.com/{workspace}/settings/chat-widgets) → **Identity**. It is shown once.
+
+## Claims
+
+| Claim | Required | Notes |
+| --- | --- | --- |
+| `aud` | yes | Widget `appId` (`app_…`) |
+| `sub` | yes | Stable user id in your system |
+| `iat` / `exp` | yes | Lifetime at most 1 hour. 60s clock skew is allowed. |
+| `kid` | yes when you have more than one active key | Header, not a claim |
+| `jti` | no | Replay-protected in Redis if present |
+| `email` | no | Links the chat to the Sayless contact with this email (created if missing). Without it the chat has no contact, so no follow-up email and no requests. |
+| `name` | no | Display name |
+| `company` | no | `{ id, name, attributes }`. Your own ids, stored on the conversation. The Sayless company comes from the linked contact, not from this claim. |
+| `attributes` | no | Keys must be in **Allowed attributes** |
+
+Algorithm is HS256 only. `aud` must match the widget. The page embedding the widget must match **Allowed domains** (exact origin, or `https://*.example.com` for one extra label); the same rule applies to anonymous sessions. Browsers enforce this through the iframe's `frame-ancestors`. A server-side script can replay a stolen token from anywhere, so keep tokens short-lived and set `jti` if replay matters to you.
+
+## Node
+
+```js
+import { signChatIdentityToken } from '@sayless/sdk';
+
+export function chatToken({ user }) {
+  return signChatIdentityToken({
+    secret: process.env.SAYLESS_CHAT_SECRET,
+    kid: process.env.SAYLESS_CHAT_KID,
+    appId: process.env.SAYLESS_CHAT_APP_ID,
+    sub: user.id,
+    email: user.email,
+    name: user.name,
+    company: user.company,
+    ttlSeconds: 600,
+  });
+}
+```
+
+## Python
+
+```python
+import jwt, time, os
+
+def chat_token(user):
+    now = int(time.time())
+    return jwt.encode(
+        {
+            "aud": os.environ["SAYLESS_CHAT_APP_ID"],
+            "sub": user["id"],
+            "email": user.get("email"),
+            "name": user.get("name"),
+            "iat": now,
+            "exp": now + 600,
+        },
+        os.environ["SAYLESS_CHAT_SECRET"],
+        algorithm="HS256",
+        headers={"kid": os.environ["SAYLESS_CHAT_KID"]},
+    )
+```
+
+## Ruby
+
+```ruby
+require "jwt"
+
+def chat_token(user)
+  now = Time.now.to_i
+  JWT.encode(
+    {
+      aud: ENV.fetch("SAYLESS_CHAT_APP_ID"),
+      sub: user.fetch(:id),
+      email: user[:email],
+      name: user[:name],
+      iat: now,
+      exp: now + 600
+    },
+    ENV.fetch("SAYLESS_CHAT_SECRET"),
+    "HS256",
+    { kid: ENV.fetch("SAYLESS_CHAT_KID") }
+  )
+end
+```
+
+## Go
+
+```go
+token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+    "aud": os.Getenv("SAYLESS_CHAT_APP_ID"),
+    "sub": user.ID,
+    "email": user.Email,
+    "name": user.Name,
+    "iat": time.Now().Unix(),
+    "exp": time.Now().Add(10 * time.Minute).Unix(),
+})
+token.Header["kid"] = os.Getenv("SAYLESS_CHAT_KID")
+signed, err := token.SignedString([]byte(os.Getenv("SAYLESS_CHAT_SECRET")))
+```
+
+## Rotation
+
+**Rotate identity secret** issues a new `kid` and secret and revokes the previous customer key. Tokens signed with the old secret fail as `revoked_kid` or `bad_signature`, and every open widget session ends; visitors reconnect silently, verified users re-identify with a token from your backend. Copy the new secret immediately.
+
+## Without verification
+
+If **Verification required** is off, the widget mints a random visitor id (`v_` plus 24–64 lowercase letters or digits) to start a session. Those conversations are unverified: no contact mapping, no follow-up email, no signed attributes. Leave verification on unless you explicitly want anonymous chat. Anonymous visitors can start at most 10 conversations an hour each, and 20 an hour per IP address.

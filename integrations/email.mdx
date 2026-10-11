@@ -1,70 +1,65 @@
 ---
 title: "Email integration"
-description: "Route email from a shared support, success, or sales address into the Sayless inbox using domain authentication and email forwarding."
+description: "Forward your support address into the Sayless inbox, reply from Sayless, and send from your own domain."
 ---
 
-Email brings messages from a shared address into the Sayless inbox.
+Email turns messages sent to your shared address (for example `support@yourcompany.com`) into Sayless conversations. Your team replies from Sayless, and the customer's answers come back into the same conversation.
 
-## Overview
+Available on all plans. An admin sets it up in two parts: **forwarding** (required, brings email in) and **domain authentication** (recommended, sends replies from your own domain).
 
-Use Email when customers write to a support, success, sales, or team address. Admins configure email from workspace settings.
+## How it works
 
-Go to [Settings \> Email](https://joinsayless.com/{workspace}/settings/email).
+- **Forwarding:** Sayless gives you a private forwarding address. Your mailbox forwards incoming email to it, and each new email becomes a conversation.
+- **Threading:** replies are matched to their conversation by the email's reply headers, so a customer's answer joins the existing thread instead of starting a new one.
+- **Replies:** your replies are sent with a **Reply-To** of your forwarding address, so the customer's next answer always comes back to Sayless.
+- **Contacts:** the sender becomes a contact. A work email domain also links them to a company.
 
-> Email is available on the Free plan and all paid plans.
+### Who replies come from
 
-| Email area | Use it for |
+| Domain authentication | Replies are sent from |
 | --- | --- |
-| Domain Authentication | Verify sending or receiving for a domain. |
-| Email Forwarding | Route incoming email into Sayless. |
-| Domain detail | Review one domain’s records and status. |
+| Not set up | *Agent Name* `<YourWorkspace@joinsayless.com>` |
+| Verified | The agent's own address, for example *Agent Name* `<agent@yourcompany.com>` |
 
-## Domain authentication
+Set up domain authentication so customers see your company's address and your emails are less likely to land in spam.
 
-Domain authentication helps Sayless verify that your workspace can send or receive email for a domain.
+### What's filtered out
 
-### Add a domain
+- **Promotional and bulk email** (newsletters, marketing with unsubscribe links) isn't turned into conversations.
+- **Blocked senders and domains** are ignored. Manage them in [Settings \> Spam](https://joinsayless.com/settings/spam).
 
-Add the domain you want to authenticate from Email settings.
+## Set up email forwarding
 
-### Verify DNS records
+1. Open [Settings \> Email](https://joinsayless.com/settings/email).
+2. Under **Email Forwarding**, enter your support address (for example `support@yourcompany.com`) and save.
+3. Copy the **Forward Address** Sayless shows. It looks like `…@parse.joinsayless.com`.
+4. In your email provider, forward all incoming mail for that address to the forward address:
+   - **Google Workspace / Gmail:** in the mailbox's **Settings → Forwarding and POP/IMAP**, add the forward address and choose **Forward a copy of incoming mail**. For a Google Group, add the forward address as a member instead.
+   - **Microsoft 365 / Outlook:** add a mailbox rule (or an admin mail-flow rule) that forwards or redirects all messages to the forward address. Your admin may need to allow external forwarding.
+5. Send a test email to your support address and check that it appears in the inbox.
 
-Sayless shows DNS records that need to be added with your DNS provider.
+Gmail sends a confirmation code when you add a forwarding address. It arrives in Sayless as a conversation; copy the code from there.
 
-### Validation status
+## Set up domain authentication
 
-Review the domain status to see whether authentication is complete.
+1. In [Settings \> Email](https://joinsayless.com/settings/email), click **Setup Domain Authentication** and enter your domain (for example `yourcompany.com`).
+2. Open the domain to see the DNS records Sayless needs.
+3. Add each record at your DNS provider exactly as shown.
+4. Come back to the domain page and check its status. DNS changes can take from a few minutes to 48 hours to apply.
 
-### Delete a domain
-
-Delete a domain when it should no longer be used by the workspace.
-
-## Email forwarding
-
-Forwarding sends incoming email into Sayless.
-
-### Forwarding address
-
-Use the forwarding address shown in settings with your email provider.
-
-### Test forwarding
-
-Send a test when you want to confirm forwarding is working.
-
-### Incoming conversations
-
-Once forwarding is active, incoming messages appear in the inbox as conversations.
+Once the domain is verified, agents whose Sayless email is on that domain send replies from their own address.
 
 ## Troubleshooting
 
-Most email setup issues happen outside Sayless, usually in DNS or the email provider.
+| Problem | What to check |
+| --- | --- |
+| Emails don't arrive | Forwarding is on in your mail provider and points at the exact forward address. External forwarding is allowed (Microsoft 365 blocks it by default). |
+| A newsletter or automated email didn't arrive | Promotional and bulk email is filtered out on purpose. |
+| A sender's emails don't arrive | The sender or their domain isn't blocked in **Settings \> Spam**. |
+| A customer reply started a new conversation | Their mail client dropped the reply headers, or they wrote a fresh email instead of replying. |
+| Replies come from `@joinsayless.com` | Domain authentication isn't verified yet, or the agent's Sayless email isn't on that domain. |
+| Domain stays unverified | Records match exactly (no extra domain suffix added by your DNS provider), then allow time to propagate before changing them. |
 
-### DNS issues
+## Remove email
 
-If authentication does not validate, confirm the DNS records match exactly and have had time to propagate.
-
-> DNS changes can take time to propagate. If records are correct but validation still fails, wait and retry validation before changing the records again.
-
-### Forwarding failures
-
-If messages do not appear in Sayless, check the forwarding rule, sender address, and spam settings.
+Removing email forwarding stops new emails from syncing. Conversations already in Sayless stay. Also turn off forwarding in your mail provider.

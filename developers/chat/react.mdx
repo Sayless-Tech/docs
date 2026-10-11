@@ -1,0 +1,25 @@
+---
+title: React
+description: Boot the Sayless chat widget from a React app.
+---
+
+Install `@sayless/chat` and boot from a hook. The package queues commands before the per-app loader arrives, same as the vanilla [JavaScript API](/developers/chat/javascript-api).
+
+```tsx
+import { useSayless } from '@sayless/chat';
+
+function Chat({ appId, identityToken }: { appId: string; identityToken: () => Promise<string> }) {
+  const chat = useSayless({ appId, identityToken });
+  return (
+    <button type="button" onClick={() => chat.open()}>
+      Chat with us
+    </button>
+  );
+}
+```
+
+`identityToken` can be a string or `() => Promise<string>`. Pass a function when the JWT is short-lived so the iframe can ask for a fresh one.
+
+You can still queue `window.Sayless('boot', …)` yourself if you are not using React.
+
+See [Identity verification](/developers/chat/identity-verification) for signing.

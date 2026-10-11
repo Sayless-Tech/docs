@@ -10,3 +10,9 @@ Turn **Use support hours** on when [SLA](/admin/slas) time should count only ins
 Set the weekly intervals for each day, and add holidays for a year. Trigger delays that use business days or the support-hours clock follow this schedule.
 
 If the plan does not include editing support hours, the current schedule stays visible and changes are unavailable until you upgrade.
+
+## Chat widgets
+
+Each [chat widget](/admin/chat-widgets) can reuse this workspace schedule, or turn on **Use widget-specific hours** and keep its own weekly windows.
+
+The widget is always online when there is no schedule, or when the schedule is off. The server sends `{online, nextChangeAt}` so the messenger shows the offline message and the next opening time — sending is never blocked.

@@ -1,0 +1,51 @@
+---
+title: JavaScript API
+description: Commands and events for the Sayless chat widget loader.
+---
+
+The loader exposes a command queue that is safe to call before the script arrives. Queue `boot` in the page head, then load the per-app script from [Install](/developers/chat/install).
+
+```html
+<script>
+  window.Sayless = window.Sayless || function () { (Sayless.q = Sayless.q || []).push(arguments); };
+  Sayless('boot', { appId: 'app_…' });
+</script>
+<script src="https://widget.joinsayless.com/v1/app_…/loader.js" async></script>
+```
+
+`appId` is optional when the per-app loader already inlines it.
+
+## Commands
+
+| Command | Payload | What it does |
+| --- | --- | --- |
+| `boot` | `{ appId?, identityToken?, context?, hideLauncher? }` | Start the launcher. `identityToken` can be a JWT string or a function that returns one. |
+| `identify` | `{ identityToken }` | Refresh signed identity after sign-in or attribute changes. |
+| `update` | `{ context }` | Unsigned page context shown to agents as unverified. |
+| `open` | — | Open the messenger. |
+| `close` | — | Close the messenger. |
+| `showHome` | — | Open on the home screen. |
+| `startConversation` | `{ message?, context? }` | Open a new thread, optionally with a first message. |
+| `openConversation` | conversation id | Open a thread the session is allowed to see. |
+| `openForm` | form id | Open a ticket form (Phase 6). |
+| `on` | event name, handler | Subscribe. Returns an unsubscribe function. |
+| `shutdown` | — | Revoke the session, wipe iframe storage, and hide the launcher. |
+
+## Events
+
+| Event | Payload |
+| --- | --- |
+| `unreadCountChange` | `{ count }` |
+| `open` | — |
+| `close` | — |
+| `conversationStarted` | `{ id }` |
+| `messageReceived` | `{ conversationId, id }` |
+| `ticketSubmitted` | `{ id, ref, formId }` |
+
+```js
+const off = Sayless('on', 'unreadCountChange', ({ count }) => {
+  document.title = count ? `(${count}) Support` : 'Support';
+});
+```
+
+Identity tokens belong in `boot` and `identify` only. Do not put HMAC secrets in the page. See [Identity verification](/developers/chat/identity-verification).

@@ -1,0 +1,46 @@
+---
+title: "Integrations overview"
+description: "What each integration does, who sets it up, and which plans include it."
+---
+
+Integrations do two kinds of work in Sayless:
+
+- **Channels** bring customer messages into the inbox and send your replies back: email, Slack, Microsoft Teams, and Telegram. The chat widget and customer portal are built in; see [Chat widgets](/admin/chat-widgets) and [Customer portal](/admin/customer-portal).
+- **Tools** connect work that happens elsewhere: Linear and Jira issues on tickets, Gong calls on companies, and Jam screen recordings in conversations.
+
+## At a glance
+
+| Integration | What it does | Set up by | Plans |
+| --- | --- | --- | --- |
+| [Email](/integrations/email) | Turns email to your support address into conversations and sends replies from it. | Admin | All plans |
+| [Slack](/integrations/slack) | Brings Slack channel messages into the inbox; agents reply from Sayless. Also powers Slack broadcasts. | Admin, then each agent (optional) | Growth and above |
+| [Microsoft Teams](/integrations/microsoft-teams) | Brings Teams channel threads into the inbox. | Admin, with Sayless support | Enterprise |
+| [Telegram](/integrations/telegram) | Brings Telegram group messages into the inbox through a workspace bot. | Admin, then each agent (optional) | All plans |
+| [Linear](/integrations/linear) | Create or link Linear issues from a ticket and follow their progress on the ticket. | Each agent | All plans |
+| [Jira](/integrations/jira) | Create or link Jira issues from a ticket and follow their progress on the ticket. | Each agent | All plans |
+| [Gong](/integrations/gong) | Attaches Gong call recordings and transcripts to company meetings. | Admin | Scale and above |
+| [Jam](/integrations/jam) | Asks customers to record their screen; the recording lands in the conversation. | Admin | All plans |
+
+All integrations live under [Settings \> Apps](https://joinsayless.com/settings/apps). Workspace connections need an admin. Personal connections (Slack, Telegram, Linear, Jira) are per agent and let you act as yourself.
+
+## How channel messages become conversations
+
+Channels that carry ongoing group chat (Slack, Telegram) don't have a natural "ticket" boundary, so Sayless groups messages into conversations:
+
+- A reply to a message (a Slack thread reply, a Telegram reply) joins that message's conversation while it's open.
+- Otherwise, a message joins the channel's recent conversation: the same person within the last 2 hours, or anyone within the last hour.
+- After that, a new message starts a new conversation.
+
+Teams channels already have threads, so each Teams post and its replies are one conversation. Email threads by the email's reply headers.
+
+Messages come in from the channels and groups you've connected. Link each one to a company so its conversations carry that company and show up on the company's page. Telegram only reads groups that are linked to a company.
+
+## Who customers see when you reply
+
+On Slack, Microsoft Teams, and Telegram, your reply goes out as **you** when you've connected your personal account, and as the **workspace bot** otherwise. Connect your personal account from [Settings \> Apps](https://joinsayless.com/settings/apps) if customers should see your name.
+
+## Contacts from channel messages
+
+When someone new writes in a connected channel, Sayless creates a contact for them. On Slack and Teams it uses their account's email, and a work email also links the contact to that company.
+
+Your own team often sits in the same groups as customers. On Telegram, list teammates under **Internal users** so their messages are attributed to them instead of creating customer contacts; see [Telegram](/integrations/telegram#internal-users).

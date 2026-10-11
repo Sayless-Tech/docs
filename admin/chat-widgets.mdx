@@ -1,0 +1,49 @@
+---
+title: Chat widgets
+description: Embed chat on your site. Brand it, copy the install snippet, and talk to customers in the inbox.
+---
+
+Chat widgets are the embed you put on your site. Open [Settings → Chat widgets](https://joinsayless.com/{workspace}/settings/chat-widgets).
+
+Create a widget, then:
+
+- Turn it **on** or **off**. Off serves a no-op loader, so the snippet can stay on the page.
+- Set the brand: name, accent, theme, corner radius, and font.
+- Copy the install snippet and paste it on your site.
+
+The snippet looks like this, with your widget origin and `app_` id:
+
+```html
+<script src="https://widget.joinsayless.com/v1/app_…/loader.js" async></script>
+```
+
+Chat from the widget lands in the [inbox](/inbox/reply-conversation) as a conversation.
+
+The settings have five pages:
+
+- **Overview.** Turn the widget on or off and rename it. Turning it off signs every open widget out.
+- **Branding.** Brand name, logos, accent color, theme, corners, font, greeting, and whether online teammates show in the header.
+- **Home screen.** Quick links (each opens a URL in a new tab), which ticket forms are offered and in what order, whether the customer's recent conversations show, the **Requests** tab, and a **Status page**: paste your Atlassian Statuspage or Instatus address (for example `https://status.yourcompany.com`) and Home shows your current system status and any open incident, updated within a minute.
+- **Conversations.** Welcome, online and offline messages; who can start a conversation; whether customers can reopen resolved conversations, and for how long; emailing unread replies; and hours. Hours reuse workspace [support hours](/admin/support-hours) unless you turn on **Use widget-specific hours**. Offline does not block sending.
+- **Install.** The app ID and snippet, **Allowed domains** (the sites that may embed the widget), **Identity verification**, allowed identity attributes, and the identity secret (shown once; rotating it signs current customers out). See [identity verification](/developers/chat/identity-verification) and [install](/developers/chat/install).
+
+The hashed loader with a `data-app-id` attribute is for teams that require [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+
+**Ticket forms in chat.** A form appears in the widget when its **Chat widget** channel is on in [Ticket forms](/admin/ticket-forms). Turning a form on or off on the **Home screen** page changes that same setting. The Home screen page only sets the order. A quick link only appears once it has a title and an `https://` URL.
+
+From a chat conversation in the inbox, **Send form** posts a form card the customer can open in the widget.
+
+### Requests
+
+Submitting a form files a **request**. The answers (and any files) become the customer's message in a chat conversation: the one the form was sent into, or a new one when it was opened from Home. A ticket is created and linked to that conversation, so you reply in the conversation as usual and track the work on the ticket.
+
+- **Who sees it.** The widget's **Requests** tab lists only the requests that person submitted, the same way **Messages** lists only their conversations. Anyone who can chat can submit, including anonymous visitors. Turn the tab off with the **Requests** switch on the widget's **Home** settings.
+- **Reference.** Customers see a short reference such as `#7KQ2MD`, never your ticket number.
+- **Status.** The request shows the ticket status's customer label and updates live. The conversation and the ticket keep separate statuses: resolving the conversation does not resolve the ticket, and resolving the ticket does not close the conversation. The conversation shows the request's current status at the top.
+- **Removal.** Trashing or deleting the ticket removes the request from the widget. Trashing, deleting or marking the conversation as spam removes it from the widget.
+- **Customer portal.** Requests from chat stay out of the [customer portal](/admin/customer-portal). To show one there, turn on the ticket's portal visibility like any other ticket (the ticket needs a company).
+- **Tickets you create.** A ticket you create or link from a chat conversation in the inbox is internal; only tickets filed from a widget form appear on **Requests**.
+
+On **Follow-up**, email verified customers who have not read an agent reply. The email links back to the page where the chat started and opens that conversation. They can unsubscribe from the email. See [notifications](/account/notifications).
+
+Turning the widget off, deleting it, rotating its secret, or changing **Verification required** ends every open widget session.

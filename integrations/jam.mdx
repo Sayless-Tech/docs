@@ -1,0 +1,62 @@
+---
+title: "Jam integration"
+description: "Ask customers to record their screen with Jam. The recording lands in the conversation as a private note."
+---
+
+"It's broken" is hard to act on. With Jam connected, an agent can ask the customer to record their screen with one click. The customer records in their browser, with no extension or account, and the recording shows up in the conversation for your team.
+
+Available on all plans. An admin connects Jam once; every agent can then request recordings.
+
+## How it works
+
+1. In a conversation, the agent clicks **Request recording** in the reply bar.
+2. The customer gets a recording link:
+   - **Chat widget:** a **Record your screen** card that opens Jam in a new tab.
+   - **Email, customer portal, Slack, Teams, Telegram:** the link is added to the agent's reply, so they can adjust the message before sending.
+3. The customer records and submits in Jam.
+4. Jam tells Sayless, and Sayless adds a **private note** to the conversation with a link to the recording. In the chat widget, the card changes to **Screen recording sent**.
+
+Each request gets its own reference, so the recording always finds the right conversation. A request is filled once; if the customer records again from the same link, the extra recording isn't posted.
+
+### What's in a recording
+
+Jam captures the screen and the customer's browser, OS, and screen size. Console logs and network requests are included only if your own site has Jam's capture script installed; see [Jam's recording links guide](https://jam.dev/docs/recording-links).
+
+Customers can record on desktop Chrome, Edge, Firefox, or Safari.
+
+## Connect Jam
+
+You need to be a workspace admin and have a Jam account with webhooks.
+
+### 1. Add your recording link
+
+1. In Jam, open **Recording Links** and create a link (or copy one you already use).
+2. In Sayless, open [Settings \> Apps](https://joinsayless.com/settings/apps), find **Jam**, and click **Add**.
+3. Paste the link under **Recording link** and click **Connect Jam**.
+
+The **Webhook** section now shows your webhook URL.
+
+### 2. Add the webhook in Jam
+
+1. Copy the webhook URL from the Jam settings page in Sayless.
+2. In Jam, open **Settings → Webhooks → Manage**, and click **Add Endpoint**.
+3. Paste the URL and select the `jam.created` event. Save the endpoint.
+4. Copy the endpoint's **signing secret** (it starts with `whsec_`).
+5. Back in Sayless, paste it into the signing secret field and click **Save**.
+
+Agents now see **Request recording** in the reply bar.
+
+Sayless checks Jam's signature on every delivery, so only your Jam workspace can post recordings into your conversations.
+
+## Troubleshooting
+
+| Problem | What to check |
+| --- | --- |
+| No **Request recording** button | Jam is connected in **Settings \> Apps \> Jam**. The button appears in reply mode, not notes. |
+| The customer recorded but nothing appeared | The webhook endpoint in Jam uses the URL from Sayless and the `jam.created` event, and the signing secret in Sayless matches that endpoint. Jam's webhook portal shows each delivery and its response. |
+| Deliveries fail in Jam's webhook portal | The signing secret was regenerated in Jam: paste the new one into Sayless. |
+| A second recording from the same link didn't appear | Each request is filled once. Click **Request recording** again for a new link. |
+
+## Disconnect
+
+Open [Settings \> Apps](https://joinsayless.com/settings/apps), open **Jam**, and click **Disconnect**. Links already sent stop reporting back to Sayless. Remove the endpoint from Jam's webhook settings too.

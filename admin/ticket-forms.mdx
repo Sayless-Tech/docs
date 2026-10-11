@@ -1,11 +1,24 @@
 ---
 title: Ticket forms
-description: Forms customers submit from the portal. Each submission creates a ticket.
+description: Forms customers submit from the customer portal, the chat widget, or both. Each submission creates a ticket.
 ---
 
-Ticket forms are what customers fill in on the [customer portal](/admin/customer-portal). Open [Settings → Ticket forms](https://joinsayless.com/{workspace}/settings/ticket-forms).
+Ticket forms are what customers fill in on the [customer portal](/admin/customer-portal) and on [chat widgets](/admin/chat-widgets). Open [Settings → Ticket forms](https://joinsayless.com/{workspace}/settings/ticket-forms).
 
 A submission creates a ticket. Build the form in the wizard: the fields you ask for, and where the ticket should land.
+
+**Where a form appears** is set on the **Delivery** step:
+
+| Customer portal | Chat widget | Result |
+| --- | --- | --- |
+| On | Off | Portal only. This is the default for new forms. |
+| Off | On | Chat only: the widget's Home screen and **Send form** from a chat. |
+| On | On | Both. |
+| Off | Off | Hidden. Nobody can submit it until you turn a channel on. |
+
+The forms list shows each form's channels. The order of chat forms is set on the chat widget's **Home screen** page in [chat widget settings](/admin/chat-widgets). Hidden fields use **Show only when** (equals, does not equal, contains, or has any value). The widget and the server evaluate the same conditions, so a hidden field is never required.
+
+Submitting from chat files a [request](/admin/chat-widgets#requests) that only the person who submitted it can see. It does not appear in the customer portal unless you turn on portal visibility for its ticket.
 
 Search the list to find a form, open one to edit it, or delete a form you no longer want customers to use.
 

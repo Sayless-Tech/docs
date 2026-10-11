@@ -1,0 +1,36 @@
+---
+title: Edit, delete, and reactions
+description: Rules for editing, deleting, and reacting to chat widget messages.
+---
+
+Chat messages can be edited, deleted, and reacted to from the widget and from the Sayless inbox. The server enforces the same window and ownership rules on every path.
+
+## Edit and delete
+
+Customers can edit or delete **only their own** messages, and only while the conversation is **open**.
+
+The window is `editWindowMinutes` on the widget (default **15 minutes** from `createdAt`). After that, the widget shows **Edit window closed** and the server rejects the request with `edit_window_closed`.
+
+If the conversation is resolved or closed, the composer is replaced by reopen or start-new, and edit or delete is rejected.
+
+Deleting is soft: `deletedAt` is set and both the widget and the inbox show a tombstone (**This message was deleted**). Agents follow the same ownership and window rules for their own chat replies.
+
+In the widget, **Esc** cancels an in-progress edit. Delete shows an undo toast before the request is sent.
+
+## Reactions
+
+The widget uses a fixed set of emoji: six quick reactions (👍 ❤️ 🎉 😄 👀 🙏) plus a 24-emoji grid in the composer and on the message action bar. The server rejects any other emoji with `invalid_emoji`.
+
+Customers and agents can add or remove a reaction on any non-deleted chat message. Counts are per emoji; the customer view only shows whether the current contact reacted (`mine`).
+
+## Reopen
+
+While a conversation is resolved and inside `reopenWindowDays` (default 7), the widget offers **Reopen conversation** and **Start new**. Reopen restores an open status and keeps the previous assignee. Past that window, or when the conversation is cancelled, only **Start a new conversation** is offered.
+
+## Unread
+
+A message counts as read when the messenger is open, the tab is visible, and the agent message is in view. The widget sends `markRead` (debounced). Unread is stored on the contact's `ConversationRead` row, so the launcher badge stays in sync across devices.
+
+## Typing
+
+Typing is ephemeral and is not stored. Agent note-typing never reaches the customer. Customer typing shows in the inbox reply row as the contact.

@@ -1,0 +1,50 @@
+---
+title: Install the chat widget
+description: Add the Sayless chat widget to your site with the per-app loader, or the hashed SRI loader.
+---
+
+Copy the snippet from [Settings → Chat widgets](https://joinsayless.com/{workspace}/settings/chat-widgets) → **Install**.
+
+## Standard loader
+
+Paste this before `</body>`. Replace the `app_` id with yours.
+
+```html
+<script src="https://widget.joinsayless.com/v1/app_…/loader.js" async></script>
+```
+
+The loader inlines launcher config, so the host page does not fetch widget settings. It paints the launcher after `load` plus idle.
+
+To boot with a signed-in user, queue `boot` before the loader arrives:
+
+```html
+<script>
+  window.Sayless = window.Sayless || function () { (Sayless.q = Sayless.q || []).push(arguments); };
+  Sayless('boot', {
+    identityToken: () => fetch('/api/chat-token').then((res) => res.text()),
+  });
+</script>
+<script src="https://widget.joinsayless.com/v1/app_…/loader.js" async></script>
+```
+
+See [identity verification](/developers/chat/identity-verification) for how to sign that token.
+
+## SRI loader
+
+If you require [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity), use the hashed loader and a `data-app-id` attribute. The hashed file lives at `/v1/loader.{hash}.js` and is listed in `/manifest.json`.
+
+```html
+<script
+  src="https://widget.joinsayless.com/v1/loader.{hash}.js"
+  integrity="sha384-…"
+  crossorigin="anonymous"
+  data-app-id="app_…"
+  async
+></script>
+```
+
+The SRI loader fetches config from the widget origin, so your CSP needs `connect-src` as well as `script-src` and `frame-src`. See [content security policy](/developers/chat/content-security-policy).
+
+## Kill switch
+
+Turn the widget **off** in settings. The same snippet stays on your page and the loader becomes a no-op.
