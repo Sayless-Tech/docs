@@ -1,0 +1,105 @@
+---
+title: "Escalation channels"
+description: "Pull your internal team into a Slack thread from a ticket or conversation, and keep every reply on the record."
+---
+
+When a ticket or conversation needs help from engineering, product, or another team, start an **internal thread** in one of your team's Slack channels. The thread opens in Slack with the record's details, and every reply in Slack comes back to the record as an internal message. Customers never see internal threads.
+
+Available on plans that include Slack. An admin sets up the channels once; anyone who can reply to customers can start and reply to threads.
+
+## How it works
+
+- **Escalation channels** are internal Slack channels you designate for escalations, such as `#eng-escalations`. They are separate from the customer channels Sayless brings into the inbox.
+- **An internal thread** belongs to exactly one ticket or conversation. A record can have threads in several escalation channels at once.
+- **Replies sync both ways.** Reply from Sayless and it posts to the Slack thread; reply in Slack and it appears on the record.
+- **Escalation channels never create conversations or contacts.** Messages posted in them outside a linked thread stay in Slack.
+
+### What syncs
+
+| From Slack to Sayless | From Sayless to Slack |
+| --- | --- |
+| Replies in the thread, with files | Your replies, with files |
+| Edits | Edits to your own thread messages |
+| Deleted replies (shown as deleted) | Reactions |
+| Reactions from people with a Sayless account | Mentions of teammates who are in Slack |
+| Mentions of teammates | |
+
+If someone deletes the thread's first message in Slack, the thread closes: later Slack replies stop syncing, and what was already copied stays on the record.
+
+## Set up escalation channels (admin)
+
+You need the [Slack workspace connection](/integrations/slack#1-connect-your-slack-workspace-admin) first.
+
+1. Open [Settings \> Slack](https://joinsayless.com/settings/slack) and find **Escalation Channels**.
+2. Click **Add Channel** and pick a channel. For a private channel, invite the app first with `/invite @Sayless`.
+
+Every escalation channel can be used from both tickets and conversations. A workspace can have up to 5 escalation channels.
+
+A channel can't be both a customer channel and an escalation channel. Channels shared with another Slack workspace can't be used, because people outside your team would see internal threads.
+
+To stop using a channel, hover its row and click the trash icon. Threads already in that channel keep their history.
+
+## Start an internal thread
+
+1. Open a ticket or conversation.
+2. In the side panel, find **Internal threads** and click **Start internal thread**.
+3. Pick a channel and write what the team should know.
+
+The thread opens in Slack with your message, followed by a card showing the record's title, number, company, status, priority, assignee, and SLA, with **Open in Sayless** and **Change status** buttons. The opening message and a "started an internal thread" entry appear on the record straight away.
+
+If you've connected your own Slack account in Sayless, your messages and reactions come from your account. Otherwise the Sayless app posts them under your name and photo. Files are always uploaded by the Sayless app.
+
+## Reply in a thread
+
+- **From a ticket:** hover a thread message and click **Reply in thread**, then write your comment. It posts to Slack and appears on the ticket.
+- **From a conversation:** switch the composer to **Internal thread**, pick the channel if there's more than one, and send.
+
+Mention a teammate with `@` and they're mentioned in Slack too, as long as their Slack email matches their Sayless email. Attach files the same way you would on any comment or note.
+
+To change a message you posted, hover it and click **Edit**. The Slack message updates too.
+
+To react, hover a thread message and click the emoji button, or click an existing reaction to add or remove yours. Reactions show on the Slack message too.
+
+If Slack doesn't accept a message, it gets a red border on the record with **Retry** and **Remove**, and you'll see an error notice.
+
+## Link an existing Slack thread
+
+A conversation that started in Slack can be linked to a record after the fact:
+
+1. In Slack, open the thread's **More actions** menu and choose **Sync internal thread**.
+2. Under **Type**, choose **Ticket** or **Conversation**, then search by title or number and click **Sync**.
+
+Sayless copies the existing replies onto the record and posts a confirmation in the thread with an **Unlink** button. Your Slack email must match a Sayless member who can update records.
+
+From the thread's first message you can also click **Change status** to update the record's status from Slack.
+
+When the record's status changes, from Sayless or Slack, the status on the thread's first message updates within a few seconds. Other details on the card update when that message is edited.
+
+## Open threads automatically
+
+[Triggers](/admin/triggers) on tickets and conversations have an **Open internal thread** action. Pick an escalation channel, write a message, and optionally mention a teammate. Use `{company}` and `{assignee}` in the message to fill in the record's company and assignee. A trigger opens at most one thread per record in each channel.
+
+## Unlink a thread
+
+In the **Internal threads** card, hover a thread and click **Unlink from Sayless**, or click **Unlink** in Slack. Messages already on the record stay, and nothing syncs either way after that: no new replies, edits, deletions or reactions. The buttons on the thread's first message in Slack stop working until the thread is linked again.
+
+## When Slack is disconnected or your plan changes
+
+- **Slack disconnected or the app uninstalled:** escalation channels are archived and threads stop syncing. Reconnecting the same Slack workspace brings the channels back, except ones archived in Slack.
+- **Plan without Slack:** threads stay on records and can still be unlinked, but you can't start, reply, edit or react, and nothing syncs from Slack. **Change status** in Slack stops working too. Upgrading turns everything back on.
+
+## Hide thread messages
+
+On a record, click **Hide thread messages** in the **Internal threads** card to collapse thread messages in the timeline. This setting is per device.
+
+## Troubleshooting
+
+| Problem | What to check |
+| --- | --- |
+| **Add Channel** is turned off | The workspace already has 5 escalation channels. Remove one first. |
+| A channel isn't in the **Add escalation channel** list | The channel is already an escalation channel, is linked to a company as a customer channel, or is shared with another workspace. A private channel also needs the app invited first. |
+| Your Slack reactions don't show on the record | Your Slack email must match your Sayless email. |
+| Slack replies don't appear on the record | The reply is in the linked thread, not the channel; the thread's first message wasn't deleted; and the thread wasn't unlinked. |
+| A teammate's mention shows as plain text | Their Slack email doesn't match their Sayless email. |
+| **Sync internal thread** isn't in Slack's menu | Reconnect Slack in [Settings \> Slack](https://joinsayless.com/settings/slack) so the app picks up the shortcut. |
+| "Escalation channels are not included in your plan" | Upgrade to a plan that includes Slack. |
