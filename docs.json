@@ -107,6 +107,7 @@
               "integrations/overview",
               "integrations/email",
               "integrations/slack",
+              "integrations/escalation-channels",
               "integrations/microsoft-teams",
               "integrations/telegram",
               "integrations/linear",
