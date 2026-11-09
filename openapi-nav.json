@@ -9,18 +9,18 @@
         "POST /api/v1/tickets/update",
         "POST /api/v1/tickets/delete",
         "POST /api/v1/tickets/restore",
-        "POST /api/v1/tickets/set_sla"
+        "POST /api/v1/tickets/setSla"
       ]
     },
     {
       "group": "Ticket comments",
       "pages": [
-        "POST /api/v1/tickets/ticketComment/info",
+        "POST /api/v1/tickets/ticketComment/list",
         "POST /api/v1/tickets/ticketComment/create",
         "POST /api/v1/tickets/ticketComment/update",
         "POST /api/v1/tickets/ticketComment/delete",
-        "POST /api/v1/tickets/ticketComment/comment_reaction_add",
-        "POST /api/v1/tickets/ticketComment/comment_reaction_remove"
+        "POST /api/v1/tickets/ticketComment/addReaction",
+        "POST /api/v1/tickets/ticketComment/removeReaction"
       ]
     },
     {
@@ -37,7 +37,6 @@
       "pages": [
         "POST /api/v1/tickets/ticketSubscriptions/list",
         "POST /api/v1/tickets/ticketSubscriptions/info",
-        "POST /api/v1/tickets/ticketSubscriptions/list_ticket_subscriptions",
         "POST /api/v1/tickets/ticketSubscriptions/create",
         "POST /api/v1/tickets/ticketSubscriptions/delete"
       ]
@@ -52,25 +51,23 @@
         "POST /api/v1/conversations/restore",
         "POST /api/v1/conversations/archive",
         "POST /api/v1/conversations/unarchive",
-        "POST /api/v1/conversations/add_team",
-        "POST /api/v1/conversations/assign_user",
-        "POST /api/v1/conversations/link_ticket",
-        "GET /api/v1/conversations/link_track",
-        "POST /api/v1/conversations/mark_read",
-        "POST /api/v1/conversations/mark_spam",
-        "POST /api/v1/conversations/mark_unread",
-        "POST /api/v1/conversations/remove_team",
-        "POST /api/v1/conversations/restore_spam",
-        "POST /api/v1/conversations/set_sla",
+        "POST /api/v1/conversations/addTeam",
+        "POST /api/v1/conversations/assignUser",
+        "POST /api/v1/conversations/linkTicket",
+        "POST /api/v1/conversations/markRead",
+        "POST /api/v1/conversations/markSpam",
+        "POST /api/v1/conversations/markUnread",
+        "POST /api/v1/conversations/removeTeam",
+        "POST /api/v1/conversations/restoreSpam",
+        "POST /api/v1/conversations/setSla",
         "POST /api/v1/conversations/snooze",
-        "POST /api/v1/conversations/spam",
-        "POST /api/v1/conversations/unassign_user",
+        "POST /api/v1/conversations/unassignUser",
         "POST /api/v1/conversations/unsnooze",
-        "POST /api/v1/conversations/update_company",
-        "POST /api/v1/conversations/update_labels",
-        "POST /api/v1/conversations/update_priority",
-        "POST /api/v1/conversations/update_status",
-        "POST /api/v1/conversations/update_subject"
+        "POST /api/v1/conversations/updateCompany",
+        "POST /api/v1/conversations/updateLabels",
+        "POST /api/v1/conversations/updatePriority",
+        "POST /api/v1/conversations/updateStatus",
+        "POST /api/v1/conversations/updateSubject"
       ]
     },
     {
@@ -104,12 +101,12 @@
     {
       "group": "Messages",
       "pages": [
-        "POST /api/v1/messages/list_conversation_messages",
-        "POST /api/v1/messages/send_message",
-        "POST /api/v1/messages/edit_message",
-        "POST /api/v1/messages/delete_message",
-        "POST /api/v1/messages/add_reaction",
-        "POST /api/v1/messages/remove_reaction"
+        "POST /api/v1/messages/list",
+        "POST /api/v1/messages/send",
+        "POST /api/v1/messages/edit",
+        "POST /api/v1/messages/delete",
+        "POST /api/v1/messages/addReaction",
+        "POST /api/v1/messages/removeReaction"
       ]
     },
     {
@@ -188,10 +185,9 @@
         "POST /api/v1/companies/documents/update",
         "POST /api/v1/companies/documents/delete",
         "POST /api/v1/companies/documents/restore",
-        "POST /api/v1/companies/documents/add_user",
-        "POST /api/v1/companies/documents/profile_memberships",
-        "POST /api/v1/companies/documents/remove_user",
-        "POST /api/v1/companies/documents/update_user_permission"
+        "POST /api/v1/companies/documents/addUser",
+        "POST /api/v1/companies/documents/removeUser",
+        "POST /api/v1/companies/documents/updateUserPermission"
       ]
     },
     {
@@ -202,10 +198,9 @@
         "POST /api/v1/companies/folders/update",
         "POST /api/v1/companies/folders/delete",
         "POST /api/v1/companies/folders/restore",
-        "POST /api/v1/companies/folders/add_user",
-        "POST /api/v1/companies/folders/profile_memberships",
-        "POST /api/v1/companies/folders/remove_user",
-        "POST /api/v1/companies/folders/update_user_permission"
+        "POST /api/v1/companies/folders/addUser",
+        "POST /api/v1/companies/folders/removeUser",
+        "POST /api/v1/companies/folders/updateUserPermission"
       ]
     },
     {
@@ -217,10 +212,15 @@
         "POST /api/v1/companies/notes/update",
         "POST /api/v1/companies/notes/delete",
         "POST /api/v1/companies/notes/restore",
-        "POST /api/v1/companies/notes/add_user",
-        "POST /api/v1/companies/notes/profile_memberships",
-        "POST /api/v1/companies/notes/remove_user",
-        "POST /api/v1/companies/notes/update_user_permission"
+        "POST /api/v1/companies/notes/addUser",
+        "POST /api/v1/companies/notes/removeUser",
+        "POST /api/v1/companies/notes/updateUserPermission"
+      ]
+    },
+    {
+      "group": "Profile memberships",
+      "pages": [
+        "POST /api/v1/companies/profileMemberships/list"
       ]
     },
     {
@@ -230,9 +230,9 @@
         "POST /api/v1/teams/info",
         "POST /api/v1/teams/create",
         "POST /api/v1/teams/update",
-        "POST /api/v1/teams/remove-parent",
+        "POST /api/v1/teams/removeParent",
         "POST /api/v1/teams/retire",
-        "POST /api/v1/teams/set-parent"
+        "POST /api/v1/teams/setParent"
       ]
     },
     {
@@ -259,18 +259,28 @@
       "group": "Webhooks",
       "pages": [
         "POST /api/v1/webhookSubscriptions/list",
-        "POST /api/v1/webhookSubscriptions/deliveries",
         "POST /api/v1/webhookSubscriptions/create",
         "POST /api/v1/webhookSubscriptions/update",
         "POST /api/v1/webhookSubscriptions/delete"
       ]
     },
     {
+      "group": "Webhook deliveries",
+      "pages": [
+        "POST /api/v1/webhookSubscriptions/deliveries/list"
+      ]
+    },
+    {
       "group": "Workspace",
       "pages": [
-        "POST /api/v1/users/workspaceProfiles/list",
         "POST /api/v1/users/workspaces/info",
         "GET /api/v1/users/me"
+      ]
+    },
+    {
+      "group": "Workspace profiles",
+      "pages": [
+        "POST /api/v1/users/workspaceProfiles/list"
       ]
     }
   ]

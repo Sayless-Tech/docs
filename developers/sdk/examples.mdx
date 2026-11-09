@@ -21,11 +21,9 @@ const workspaceId = me?.workspaceId as string;
 ```ts
 const created = await sayless.tickets.create(
   {
-    _id: randomUUID(),
     workspaceId,
     subject: 'Customer follow-up',
-    content: '…',
-    preview: 'Customer follow-up',
+    description: 'Customer asked for a follow-up call.',
     statusId: process.env.SAYLESS_TICKET_STATUS_ID!,
   },
   { idempotencyKey: randomUUID() },
@@ -62,15 +60,20 @@ if (first) {
 ## Send a message
 
 ```ts
-await sayless.messages.sendMessage(
+await sayless.messages.send(
   {
     workspaceId,
-    conversationId: '…',
+    conversationId,
     messageId: randomUUID(),
+    previousMessageId,
+    senderId: me.profileId,
+    statusId,
     channel: 'email',
-    content: '…',
-    preview: '…',
-    // …channel-specific fields
+    privateNote: false,
+    subject: 'Re: Renewal',
+    content: '<p>Thanks, we will review it.</p>',
+    preview: 'Thanks, we will review it.',
+    contentAttributes: {},
   },
   { idempotencyKey: randomUUID() },
 );
@@ -90,12 +93,13 @@ const company = await sayless.companies.create({
   domains: ['acme.example'],
 });
 
-await sayless.companies.contactsCreate({
+await sayless.contacts.contactsCreate({
   _id: randomUUID(),
   workspaceId,
   companyId: company.companyId ?? companyId,
   firstName: 'Ada',
   lastName: 'Lovelace',
+  username: 'ada',
   emails: ['ada@acme.example'],
 }).then((contact) => console.log(contact.contactId));
 ```

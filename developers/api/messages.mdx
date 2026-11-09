@@ -10,10 +10,10 @@ Bearer `sl_api_…` / `sl_oat_…`.
 ## List
 
 ```bash
-curl -X POST "$SAYLESS_API_URL/api/v1/messages/list_conversation_messages" \
+curl -X POST "$SAYLESS_API_URL/api/v1/messages/list" \
   -H "Authorization: Bearer $SAYLESS_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"_id\":\"$CONVERSATION_ID\",\"limit\":50}"
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"conversationId\":\"$CONVERSATION_ID\",\"limit\":50}"
 ```
 
 ## Send
@@ -21,16 +21,25 @@ curl -X POST "$SAYLESS_API_URL/api/v1/messages/list_conversation_messages" \
 Honor `Idempotency-Key` on retries.
 
 ```ts
-await sayless.messages.sendMessage({
+await sayless.messages.send({
   workspaceId,
   conversationId,
   messageId: crypto.randomUUID(),
+  previousMessageId,
+  senderId: me.profileId,
+  statusId,
   channel: 'email',
-  content: '…',
-  preview: '…',
+  privateNote: false,
+  subject: 'Re: Renewal',
+  content: '<p>Thanks, we will review it.</p>',
+  preview: 'Thanks, we will review it.',
+  contentAttributes: {},
 });
 ```
 
-Also: `edit_message`, `delete_message`, reaction add/remove.
+Every field above is required. `previousMessageId` is the message you are replying to, and `senderId` is your workspace profile (from `GET /api/v1/users/me`).
+
+
+Also: `edit`, `delete`, `addReaction`, and `removeReaction`.
 
 Related: [Conversations](/developers/api/conversations) · [SDK examples](/developers/sdk/examples)

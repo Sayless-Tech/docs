@@ -63,11 +63,9 @@ console.log(page.nodes.map((t) => t._id));
 import { randomUUID } from 'node:crypto';
 
 const created = await sayless.tickets.create({
-  _id: randomUUID(),
   workspaceId,
   subject: 'Hello from the SDK',
-  content: '…',
-  preview: 'Hello from the SDK',
+  description: 'Created from the **SDK quickstart**.',
   statusId: process.env.SAYLESS_TICKET_STATUS_ID!,
 });
 

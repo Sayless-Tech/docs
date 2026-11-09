@@ -70,6 +70,9 @@
       "name": "Notes"
     },
     {
+      "name": "Profile memberships"
+    },
+    {
       "name": "Teams"
     },
     {
@@ -82,15 +85,21 @@
       "name": "Webhook subscriptions"
     },
     {
+      "name": "Webhook deliveries"
+    },
+    {
       "name": "Workspace"
+    },
+    {
+      "name": "Workspace profiles"
     }
   ],
   "paths": {
     "/api/v1/tickets/list": {
       "post": {
-        "operationId": "TicketsController_fetchWorkspaceTickets",
+        "operationId": "TicketRoutesController_Ticket_list",
         "summary": "List tickets",
-        "description": "Returns a page of tickets.",
+        "description": "Returns the workspace's tickets.",
         "tags": [
           "Tickets"
         ],
@@ -147,9 +156,9 @@
     },
     "/api/v1/tickets/info": {
       "post": {
-        "operationId": "TicketsController_fetchTicketInfo",
+        "operationId": "TicketRoutesController_Ticket_info",
         "summary": "Get ticket",
-        "description": "Returns one ticket. `_id` may be the ticket UUID or a subject-urlId slug.",
+        "description": "Returns one ticket by id.",
         "tags": [
           "Tickets"
         ],
@@ -200,9 +209,9 @@
     },
     "/api/v1/tickets/create": {
       "post": {
-        "operationId": "TicketsController_createTicket",
+        "operationId": "TicketRoutesController_Ticket_create",
         "summary": "Create ticket",
-        "description": "Creates a ticket.",
+        "description": "Create ticket. Returns the saved ticket.",
         "tags": [
           "Tickets"
         ],
@@ -275,9 +284,9 @@
     },
     "/api/v1/tickets/update": {
       "post": {
-        "operationId": "TicketsController_updateTicket",
+        "operationId": "TicketRoutesController_Ticket_update",
         "summary": "Update ticket",
-        "description": "Updates a ticket.",
+        "description": "Update ticket. Returns the saved ticket.",
         "tags": [
           "Tickets"
         ],
@@ -338,9 +347,9 @@
     },
     "/api/v1/tickets/delete": {
       "post": {
-        "operationId": "TicketsController_deleteTicket",
+        "operationId": "TicketRoutesController_Ticket_delete",
         "summary": "Delete ticket",
-        "description": "Deletes a ticket.",
+        "description": "Delete ticket. Returns the removed id.",
         "tags": [
           "Tickets"
         ],
@@ -386,9 +395,9 @@
     },
     "/api/v1/tickets/restore": {
       "post": {
-        "operationId": "TicketsController_restoreTicket",
+        "operationId": "TicketRoutesController_Ticket_restore",
         "summary": "Restore ticket",
-        "description": "Restores a deleted ticket.",
+        "description": "Restore ticket. Returns the saved ticket.",
         "tags": [
           "Tickets"
         ],
@@ -447,11 +456,11 @@
         }
       }
     },
-    "/api/v1/tickets/set_sla": {
+    "/api/v1/tickets/setSla": {
       "post": {
-        "operationId": "TicketsController_setSla",
-        "summary": "Set SLA",
-        "description": "Sets the SLA on the ticket.",
+        "operationId": "TicketRoutesController_Ticket_setSla",
+        "summary": "Set sla ticket",
+        "description": "Set sla ticket. Returns the saved ticket.",
         "tags": [
           "Tickets"
         ],
@@ -510,11 +519,11 @@
         }
       }
     },
-    "/api/v1/tickets/ticketComment/info": {
+    "/api/v1/tickets/ticketComment/list": {
       "post": {
-        "operationId": "TicketsController_timelineInfo",
+        "operationId": "TicketRoutesController_TicketComment_list",
         "summary": "List ticket comments",
-        "description": "Returns comments and activity for one ticket. `_id` is the ticket id.",
+        "description": "Returns the workspace's ticket comments.",
         "tags": [
           "Ticket comments"
         ],
@@ -559,7 +568,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TicketTimelineInfoRequest"
+                "$ref": "#/components/schemas/TicketCommentListInputRequest"
               }
             }
           }
@@ -568,9 +577,9 @@
     },
     "/api/v1/tickets/ticketComment/create": {
       "post": {
-        "operationId": "TicketsController_createComment",
+        "operationId": "TicketRoutesController_TicketComment_create",
         "summary": "Create ticket comment",
-        "description": "Creates a comment from plain-text `description`. Sayless stores it as Lexical. The app sends `content` instead.",
+        "description": "Create ticket comment. Returns the saved ticket comment.",
         "tags": [
           "Ticket comments"
         ],
@@ -643,9 +652,9 @@
     },
     "/api/v1/tickets/ticketComment/update": {
       "post": {
-        "operationId": "TicketsController_updateComment",
+        "operationId": "TicketRoutesController_TicketComment_update",
         "summary": "Update ticket comment",
-        "description": "Replaces a comment from plain-text `description`.",
+        "description": "Update ticket comment. Returns the saved ticket comment.",
         "tags": [
           "Ticket comments"
         ],
@@ -706,9 +715,9 @@
     },
     "/api/v1/tickets/ticketComment/delete": {
       "post": {
-        "operationId": "TicketsController_deleteComment",
+        "operationId": "TicketRoutesController_TicketComment_delete",
         "summary": "Delete ticket comment",
-        "description": "Deletes a ticket comment.",
+        "description": "Delete ticket comment. Returns the removed id.",
         "tags": [
           "Ticket comments"
         ],
@@ -752,11 +761,11 @@
         }
       }
     },
-    "/api/v1/tickets/ticketComment/comment_reaction_add": {
+    "/api/v1/tickets/ticketComment/addReaction": {
       "post": {
-        "operationId": "TicketsController_addCommentReaction",
-        "summary": "Add ticket comment reaction",
-        "description": "Adds a Unicode emoji reaction to a comment. `emoji` is the character the app stores, for example 👍.",
+        "operationId": "TicketRoutesController_TicketComment_addReaction",
+        "summary": "Add reaction ticket comment",
+        "description": "Add reaction ticket comment. Returns the saved ticket comment.",
         "tags": [
           "Ticket comments"
         ],
@@ -815,11 +824,11 @@
         }
       }
     },
-    "/api/v1/tickets/ticketComment/comment_reaction_remove": {
+    "/api/v1/tickets/ticketComment/removeReaction": {
       "post": {
-        "operationId": "TicketsController_removeCommentReaction",
-        "summary": "Remove ticket comment reaction",
-        "description": "Removes that Unicode emoji reaction from the comment.",
+        "operationId": "TicketRoutesController_TicketComment_removeReaction",
+        "summary": "Remove reaction ticket comment",
+        "description": "Remove reaction ticket comment. Returns the saved ticket comment.",
         "tags": [
           "Ticket comments"
         ],
@@ -880,9 +889,9 @@
     },
     "/api/v1/tickets/ticketStatus/list": {
       "post": {
-        "operationId": "TicketsController_fetchWorkspaceTicketStatus",
+        "operationId": "TicketRoutesController_TicketStatus_list",
         "summary": "List ticket statuses",
-        "description": "Returns a page of ticket statuses.",
+        "description": "Returns the workspace's ticket statuses.",
         "tags": [
           "Ticket statuses"
         ],
@@ -939,9 +948,9 @@
     },
     "/api/v1/tickets/ticketStatus/create": {
       "post": {
-        "operationId": "TicketsController_createTicketStatus",
+        "operationId": "TicketRoutesController_TicketStatus_create",
         "summary": "Create ticket status",
-        "description": "Creates a ticket status.",
+        "description": "Create ticket status. Returns the saved ticket status.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1014,9 +1023,9 @@
     },
     "/api/v1/tickets/ticketStatus/update": {
       "post": {
-        "operationId": "TicketsController_updateTicketStatus",
+        "operationId": "TicketRoutesController_TicketStatus_update",
         "summary": "Update ticket status",
-        "description": "Updates a ticket status.",
+        "description": "Update ticket status. Returns the saved ticket status.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1077,9 +1086,9 @@
     },
     "/api/v1/tickets/ticketStatus/delete": {
       "post": {
-        "operationId": "TicketsController_deleteTicketStatus",
+        "operationId": "TicketRoutesController_TicketStatus_delete",
         "summary": "Delete ticket status",
-        "description": "Deletes a ticket status.",
+        "description": "Delete ticket status. Returns the removed id.",
         "tags": [
           "Ticket statuses"
         ],
@@ -1125,9 +1134,9 @@
     },
     "/api/v1/tickets/ticketSubscriptions/list": {
       "post": {
-        "operationId": "TicketsController_fetchUserTicketSubscriptions",
+        "operationId": "TicketRoutesController_TicketSubscription_list",
         "summary": "List ticket subscriptions",
-        "description": "Returns a page of ticket subscriptions.",
+        "description": "Returns the workspace's ticket subscriptions.",
         "tags": [
           "Ticket subscriptions"
         ],
@@ -1175,7 +1184,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WorkspaceTicketsRequest"
+                "$ref": "#/components/schemas/TicketSubscriptionListInputRequest"
               }
             }
           }
@@ -1184,9 +1193,9 @@
     },
     "/api/v1/tickets/ticketSubscriptions/info": {
       "post": {
-        "operationId": "TicketsController_fetchTicketSubscriptionInfo",
+        "operationId": "TicketRoutesController_TicketSubscription_info",
         "summary": "Get ticket subscription",
-        "description": "Returns one ticket subscription.",
+        "description": "Returns one ticket subscription by id.",
         "tags": [
           "Ticket subscriptions"
         ],
@@ -1235,70 +1244,11 @@
         }
       }
     },
-    "/api/v1/tickets/ticketSubscriptions/list_ticket_subscriptions": {
-      "post": {
-        "operationId": "TicketsController_fetchTicketSubscriptions",
-        "summary": "List subscriptions on a ticket",
-        "description": "Lists subscriptions on one ticket.",
-        "tags": [
-          "Ticket subscriptions"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/TicketSubscription"
-                      }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TicketSubscriptionListConversationRequest"
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/tickets/ticketSubscriptions/create": {
       "post": {
-        "operationId": "TicketsController_createTicketSubscription",
+        "operationId": "TicketRoutesController_TicketSubscription_create",
         "summary": "Create ticket subscription",
-        "description": "Creates a ticket subscription.",
+        "description": "Create ticket subscription. Returns the saved ticket subscription.",
         "tags": [
           "Ticket subscriptions"
         ],
@@ -1371,9 +1321,9 @@
     },
     "/api/v1/tickets/ticketSubscriptions/delete": {
       "post": {
-        "operationId": "TicketsController_deleteTicketSubscription",
+        "operationId": "TicketRoutesController_TicketSubscription_delete",
         "summary": "Delete ticket subscription",
-        "description": "Deletes a ticket subscription.",
+        "description": "Delete ticket subscription. Returns the removed id.",
         "tags": [
           "Ticket subscriptions"
         ],
@@ -1410,7 +1360,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TicketInfoRequest"
+                "$ref": "#/components/schemas/TicketSubscriptionDeleteRequest"
               }
             }
           }
@@ -1419,9 +1369,9 @@
     },
     "/api/v1/conversations/list": {
       "post": {
-        "operationId": "ConversationsController_fetchWorkspaceConversations",
+        "operationId": "ConversationRoutesController_Conversation_list",
         "summary": "List conversations",
-        "description": "Returns a page of conversations.",
+        "description": "Returns the workspace's conversations.",
         "tags": [
           "Conversations"
         ],
@@ -1478,9 +1428,9 @@
     },
     "/api/v1/conversations/info": {
       "post": {
-        "operationId": "ConversationsController_fetchConversationInfo",
+        "operationId": "ConversationRoutesController_Conversation_info",
         "summary": "Get conversation",
-        "description": "Returns one conversation. `_id` may be the UUID, a subject-urlId slug, or the conversation number. `conversationNumber` also looks the record up by number.",
+        "description": "Returns one conversation by id.",
         "tags": [
           "Conversations"
         ],
@@ -1531,9 +1481,9 @@
     },
     "/api/v1/conversations/update": {
       "post": {
-        "operationId": "ConversationsController_updateConversation",
+        "operationId": "ConversationRoutesController_Conversation_update",
         "summary": "Update conversation",
-        "description": "Updates a conversation.",
+        "description": "Update conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1594,9 +1544,9 @@
     },
     "/api/v1/conversations/delete": {
       "post": {
-        "operationId": "ConversationsController_delete",
+        "operationId": "ConversationRoutesController_Conversation_delete",
         "summary": "Delete conversation",
-        "description": "Deletes a conversation.",
+        "description": "Delete conversation. Returns the removed id.",
         "tags": [
           "Conversations"
         ],
@@ -1642,9 +1592,9 @@
     },
     "/api/v1/conversations/restore": {
       "post": {
-        "operationId": "ConversationsController_restoreDeletedConversation",
+        "operationId": "ConversationRoutesController_Conversation_restore",
         "summary": "Restore conversation",
-        "description": "Restores a deleted conversation.",
+        "description": "Restore conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1705,9 +1655,9 @@
     },
     "/api/v1/conversations/archive": {
       "post": {
-        "operationId": "ConversationsController_archiveConversation",
+        "operationId": "ConversationRoutesController_Conversation_archive",
         "summary": "Archive conversation",
-        "description": "Archives a conversation.",
+        "description": "Archive conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1768,9 +1718,9 @@
     },
     "/api/v1/conversations/unarchive": {
       "post": {
-        "operationId": "ConversationsController_unarchiveConversation",
+        "operationId": "ConversationRoutesController_Conversation_unarchive",
         "summary": "Unarchive conversation",
-        "description": "Unarchives a conversation.",
+        "description": "Unarchive conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1829,11 +1779,11 @@
         }
       }
     },
-    "/api/v1/conversations/add_team": {
+    "/api/v1/conversations/addTeam": {
       "post": {
-        "operationId": "ConversationsController_assignToTeam",
-        "summary": "Add team",
-        "description": "Adds a team to the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_addTeam",
+        "summary": "Add team conversation",
+        "description": "Add team conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1845,12 +1795,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Conversation"
                     }
@@ -1882,11 +1842,11 @@
         }
       }
     },
-    "/api/v1/conversations/assign_user": {
+    "/api/v1/conversations/assignUser": {
       "post": {
-        "operationId": "ConversationsController_assignToUser",
-        "summary": "Assign user",
-        "description": "Assigns a member to the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_assignUser",
+        "summary": "Assign user conversation",
+        "description": "Assign user conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -1945,11 +1905,11 @@
         }
       }
     },
-    "/api/v1/conversations/link_ticket": {
+    "/api/v1/conversations/linkTicket": {
       "post": {
-        "operationId": "ConversationsController_linkTicket",
-        "summary": "Link ticket",
-        "description": "Links a ticket to the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_linkTicket",
+        "summary": "Link ticket conversation",
+        "description": "Link ticket conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2008,42 +1968,11 @@
         }
       }
     },
-    "/api/v1/conversations/link_track": {
-      "get": {
-        "operationId": "ConversationsController_handleTestLinkClick",
-        "summary": "Track conversation link",
-        "description": "Tracks a link click from a conversation.",
-        "tags": [
-          "Conversations"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "302": {
-            "description": "Redirects to the file."
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/conversations/mark_read": {
+    "/api/v1/conversations/markRead": {
       "post": {
-        "operationId": "ConversationsController_markAsRead",
-        "summary": "Mark conversation read",
-        "description": "Marks a conversation as read.",
+        "operationId": "ConversationRoutesController_Conversation_markRead",
+        "summary": "Mark read conversation",
+        "description": "Mark read conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2102,11 +2031,11 @@
         }
       }
     },
-    "/api/v1/conversations/mark_spam": {
+    "/api/v1/conversations/markSpam": {
       "post": {
-        "operationId": "ConversationsController_markAsSpamConversation",
-        "summary": "Mark conversation as spam",
-        "description": "Marks a conversation as spam.",
+        "operationId": "ConversationRoutesController_Conversation_markSpam",
+        "summary": "Mark spam conversation",
+        "description": "Mark spam conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2165,11 +2094,11 @@
         }
       }
     },
-    "/api/v1/conversations/mark_unread": {
+    "/api/v1/conversations/markUnread": {
       "post": {
-        "operationId": "ConversationsController_markAsUnread",
-        "summary": "Mark conversation unread",
-        "description": "Marks a conversation as unread.",
+        "operationId": "ConversationRoutesController_Conversation_markUnread",
+        "summary": "Mark unread conversation",
+        "description": "Mark unread conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2228,11 +2157,11 @@
         }
       }
     },
-    "/api/v1/conversations/remove_team": {
+    "/api/v1/conversations/removeTeam": {
       "post": {
-        "operationId": "ConversationsController_unassignFromTeam",
-        "summary": "Remove team",
-        "description": "Removes a team from the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_removeTeam",
+        "summary": "Remove team conversation",
+        "description": "Remove team conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2244,12 +2173,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Conversation"
                     }
@@ -2281,11 +2220,11 @@
         }
       }
     },
-    "/api/v1/conversations/restore_spam": {
+    "/api/v1/conversations/restoreSpam": {
       "post": {
-        "operationId": "ConversationsController_restoreFromSpam",
-        "summary": "Restore conversation from spam",
-        "description": "Restores a conversation from spam.",
+        "operationId": "ConversationRoutesController_Conversation_restoreSpam",
+        "summary": "Restore spam conversation",
+        "description": "Restore spam conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2344,11 +2283,11 @@
         }
       }
     },
-    "/api/v1/conversations/set_sla": {
+    "/api/v1/conversations/setSla": {
       "post": {
-        "operationId": "ConversationsController_setSla",
-        "summary": "Set SLA",
-        "description": "Sets the SLA on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_setSla",
+        "summary": "Set sla conversation",
+        "description": "Set sla conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2409,9 +2348,9 @@
     },
     "/api/v1/conversations/snooze": {
       "post": {
-        "operationId": "ConversationsController_snoozeWorkspaceConversation",
+        "operationId": "ConversationRoutesController_Conversation_snooze",
         "summary": "Snooze conversation",
-        "description": "Snoozes a conversation until a later time.",
+        "description": "Snooze conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2470,70 +2409,11 @@
         }
       }
     },
-    "/api/v1/conversations/spam": {
+    "/api/v1/conversations/unassignUser": {
       "post": {
-        "operationId": "ConversationsController_getSpamConversations",
-        "summary": "List spam conversations",
-        "description": "Returns conversations marked as spam.",
-        "tags": [
-          "Conversations"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Conversation"
-                      }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ListSpamConversationsRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/conversations/unassign_user": {
-      "post": {
-        "operationId": "ConversationsController_unassignFromUser",
-        "summary": "Unassign user",
-        "description": "Clears the assignee on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_unassignUser",
+        "summary": "Unassign user conversation",
+        "description": "Unassign user conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2594,9 +2474,9 @@
     },
     "/api/v1/conversations/unsnooze": {
       "post": {
-        "operationId": "ConversationsController_unsnoozeWorkspaceConversation",
+        "operationId": "ConversationRoutesController_Conversation_unsnooze",
         "summary": "Unsnooze conversation",
-        "description": "Clears a snooze on a conversation.",
+        "description": "Unsnooze conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2655,11 +2535,11 @@
         }
       }
     },
-    "/api/v1/conversations/update_company": {
+    "/api/v1/conversations/updateCompany": {
       "post": {
-        "operationId": "ConversationsController_updateCompany",
-        "summary": "Update conversation company",
-        "description": "Sets the company on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_updateCompany",
+        "summary": "Update company conversation",
+        "description": "Update company conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2718,11 +2598,11 @@
         }
       }
     },
-    "/api/v1/conversations/update_labels": {
+    "/api/v1/conversations/updateLabels": {
       "post": {
-        "operationId": "ConversationsController_updateLabels",
-        "summary": "Update conversation labels",
-        "description": "Replaces labels on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_updateLabels",
+        "summary": "Update labels conversation",
+        "description": "Update labels conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2781,11 +2661,11 @@
         }
       }
     },
-    "/api/v1/conversations/update_priority": {
+    "/api/v1/conversations/updatePriority": {
       "post": {
-        "operationId": "ConversationsController_updatePriority",
-        "summary": "Update conversation priority",
-        "description": "Sets the priority on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_updatePriority",
+        "summary": "Update priority conversation",
+        "description": "Update priority conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2844,11 +2724,11 @@
         }
       }
     },
-    "/api/v1/conversations/update_status": {
+    "/api/v1/conversations/updateStatus": {
       "post": {
-        "operationId": "ConversationsController_updateStatus",
-        "summary": "Update conversation status",
-        "description": "Sets the status on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_updateStatus",
+        "summary": "Update status conversation",
+        "description": "Update status conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2907,11 +2787,11 @@
         }
       }
     },
-    "/api/v1/conversations/update_subject": {
+    "/api/v1/conversations/updateSubject": {
       "post": {
-        "operationId": "ConversationsController_updateSubject",
-        "summary": "Update conversation subject",
-        "description": "Sets the subject on the conversation.",
+        "operationId": "ConversationRoutesController_Conversation_updateSubject",
+        "summary": "Update subject conversation",
+        "description": "Update subject conversation. Returns the saved conversation.",
         "tags": [
           "Conversations"
         ],
@@ -2972,9 +2852,9 @@
     },
     "/api/v1/conversations/conversationLabels/list": {
       "post": {
-        "operationId": "ConversationsController_fetchConversationLabels",
+        "operationId": "ConversationRoutesController_ConversationLabel_list",
         "summary": "List conversation labels",
-        "description": "Returns a page of conversation labels.",
+        "description": "Returns the workspace's conversation labels.",
         "tags": [
           "Conversation labels"
         ],
@@ -2997,9 +2877,6 @@
                       "items": {
                         "$ref": "#/components/schemas/ConversationLabel"
                       }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
                     }
                   }
                 }
@@ -3022,7 +2899,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationLabelListRequest"
+                "$ref": "#/components/schemas/SyncedModelListInputRequest"
               }
             }
           }
@@ -3031,9 +2908,9 @@
     },
     "/api/v1/conversations/conversationLabels/create": {
       "post": {
-        "operationId": "ConversationsController_createConversationLabel",
+        "operationId": "ConversationRoutesController_ConversationLabel_create",
         "summary": "Create conversation label",
-        "description": "Creates a conversation label.",
+        "description": "Create conversation label. Returns the saved conversation label.",
         "tags": [
           "Conversation labels"
         ],
@@ -3085,7 +2962,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationLabelCreateRequest"
+                "$ref": "#/components/schemas/ConversationLabelCreateInputRequest"
               }
             }
           }
@@ -3106,9 +2983,9 @@
     },
     "/api/v1/conversations/conversationLabels/update": {
       "post": {
-        "operationId": "ConversationsController_updateConversationLabel",
+        "operationId": "ConversationRoutesController_ConversationLabel_update",
         "summary": "Update conversation label",
-        "description": "Updates a conversation label.",
+        "description": "Update conversation label. Returns the saved conversation label.",
         "tags": [
           "Conversation labels"
         ],
@@ -3160,7 +3037,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationLabelUpdateRequest"
+                "$ref": "#/components/schemas/ConversationLabelUpdateInputRequest"
               }
             }
           }
@@ -3169,9 +3046,9 @@
     },
     "/api/v1/conversations/conversationLabels/delete": {
       "post": {
-        "operationId": "ConversationsController_deleteConversationLabel",
+        "operationId": "ConversationRoutesController_ConversationLabel_delete",
         "summary": "Delete conversation label",
-        "description": "Deletes a conversation label.",
+        "description": "Delete conversation label. Returns the removed id.",
         "tags": [
           "Conversation labels"
         ],
@@ -3208,7 +3085,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationLabelDeleteRequest"
+                "$ref": "#/components/schemas/ConversationLabelDeleteInputRequest"
               }
             }
           }
@@ -3217,9 +3094,9 @@
     },
     "/api/v1/conversations/conversationStatus/list": {
       "post": {
-        "operationId": "ConversationsController_fetchWorkspaceConversationStatus",
+        "operationId": "ConversationRoutesController_ConversationStatus_list",
         "summary": "List conversation statuses",
-        "description": "Returns a page of conversation statuses.",
+        "description": "Returns the workspace's conversation statuses.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3242,9 +3119,6 @@
                       "items": {
                         "$ref": "#/components/schemas/ConversationStatus"
                       }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
                     }
                   }
                 }
@@ -3267,7 +3141,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WorkspaceRequest"
+                "$ref": "#/components/schemas/SyncedModelListInputRequest"
               }
             }
           }
@@ -3276,9 +3150,9 @@
     },
     "/api/v1/conversations/conversationStatus/create": {
       "post": {
-        "operationId": "ConversationsController_createConversationStatus",
+        "operationId": "ConversationRoutesController_ConversationStatus_create",
         "summary": "Create conversation status",
-        "description": "Creates a conversation status.",
+        "description": "Create conversation status. Returns the saved conversation status.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3330,7 +3204,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationStatusCreateRequest"
+                "$ref": "#/components/schemas/ConversationStatusCreateInputRequest"
               }
             }
           }
@@ -3351,9 +3225,9 @@
     },
     "/api/v1/conversations/conversationStatus/update": {
       "post": {
-        "operationId": "ConversationsController_updateConversationStatus",
+        "operationId": "ConversationRoutesController_ConversationStatus_update",
         "summary": "Update conversation status",
-        "description": "Updates a conversation status.",
+        "description": "Update conversation status. Returns the saved conversation status.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3405,7 +3279,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationStatusUpdateRequest"
+                "$ref": "#/components/schemas/ConversationStatusUpdateInputRequest"
               }
             }
           }
@@ -3414,9 +3288,9 @@
     },
     "/api/v1/conversations/conversationStatus/delete": {
       "post": {
-        "operationId": "ConversationsController_deleteConversationStatus",
+        "operationId": "ConversationRoutesController_ConversationStatus_delete",
         "summary": "Delete conversation status",
-        "description": "Deletes a conversation status.",
+        "description": "Delete conversation status. Returns the removed id.",
         "tags": [
           "Conversation statuses"
         ],
@@ -3453,7 +3327,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationStatusDeleteRequest"
+                "$ref": "#/components/schemas/ConversationStatusDeleteInputRequest"
               }
             }
           }
@@ -3462,9 +3336,9 @@
     },
     "/api/v1/conversations/conversationSubscriptions/list": {
       "post": {
-        "operationId": "ConversationsController_fetchUserConversationSubscriptions",
+        "operationId": "ConversationRoutesController_ConversationSubscription_list",
         "summary": "List conversation subscriptions",
-        "description": "Returns a page of conversation subscriptions.",
+        "description": "Returns the workspace's conversation subscriptions.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3521,9 +3395,9 @@
     },
     "/api/v1/conversations/conversationSubscriptions/info": {
       "post": {
-        "operationId": "ConversationsController_fetchConversationSubscriptionInfo",
+        "operationId": "ConversationRoutesController_ConversationSubscription_info",
         "summary": "Get conversation subscription",
-        "description": "Returns one conversation subscription.",
+        "description": "Returns one conversation subscription by id.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3542,10 +3416,7 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ConversationSubscription"
-                      }
+                      "$ref": "#/components/schemas/ConversationSubscription"
                     }
                   }
                 }
@@ -3577,9 +3448,9 @@
     },
     "/api/v1/conversations/conversationSubscriptions/create": {
       "post": {
-        "operationId": "ConversationsController_createConversationSubscription",
+        "operationId": "ConversationRoutesController_ConversationSubscription_create",
         "summary": "Create conversation subscription",
-        "description": "Creates a conversation subscription.",
+        "description": "Create conversation subscription. Returns the saved conversation subscription.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3652,9 +3523,9 @@
     },
     "/api/v1/conversations/conversationSubscriptions/delete": {
       "post": {
-        "operationId": "ConversationsController_unsubscribeFromConversation",
+        "operationId": "ConversationRoutesController_ConversationSubscription_delete",
         "summary": "Delete conversation subscription",
-        "description": "Deletes a conversation subscription.",
+        "description": "Delete conversation subscription. Returns the removed id.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3700,9 +3571,9 @@
     },
     "/api/v1/conversations/conversationSubscriptions/conversation": {
       "post": {
-        "operationId": "ConversationsController_fetchConversationSubscriptions",
-        "summary": "List subscriptions on a conversation",
-        "description": "Returns the conversation for a subscription.",
+        "operationId": "ConversationRoutesController_listSubscriptionsForConversation",
+        "summary": "List conversation subscriptions",
+        "description": "Returns the workspace's conversation subscriptions.",
         "tags": [
           "Conversation subscriptions"
         ],
@@ -3725,6 +3596,9 @@
                       "items": {
                         "$ref": "#/components/schemas/ConversationSubscription"
                       }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/ListPagination"
                     }
                   }
                 }
@@ -3747,18 +3621,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConversationSubscriptionsConversationRequest"
+                "$ref": "#/components/schemas/ConversationSubscriptionListRequest"
               }
             }
           }
         }
       }
     },
-    "/api/v1/messages/list_conversation_messages": {
+    "/api/v1/messages/list": {
       "post": {
-        "operationId": "MessagesController_fetchMessageInfo",
+        "operationId": "MessageRoutesController_Message_list",
         "summary": "List messages",
-        "description": "Returns messages in a conversation.",
+        "description": "Returns the workspace's messages.",
         "tags": [
           "Messages"
         ],
@@ -3806,18 +3680,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ListRequestBody"
+                "$ref": "#/components/schemas/ListConversationMessagesRequest"
               }
             }
           }
         }
       }
     },
-    "/api/v1/messages/send_message": {
+    "/api/v1/messages/send": {
       "post": {
-        "operationId": "MessagesController_sendMessage",
+        "operationId": "MessageRoutesController_Message_send",
         "summary": "Send message",
-        "description": "Sends a message on a conversation.",
+        "description": "Send message. Returns the saved message.",
         "tags": [
           "Messages"
         ],
@@ -3888,11 +3762,11 @@
         ]
       }
     },
-    "/api/v1/messages/edit_message": {
+    "/api/v1/messages/edit": {
       "post": {
-        "operationId": "MessagesController_editMessage",
+        "operationId": "MessageRoutesController_Message_edit",
         "summary": "Edit message",
-        "description": "Edits a message you already sent.",
+        "description": "Edit message. Returns the saved message.",
         "tags": [
           "Messages"
         ],
@@ -3951,11 +3825,11 @@
         }
       }
     },
-    "/api/v1/messages/delete_message": {
+    "/api/v1/messages/delete": {
       "post": {
-        "operationId": "MessagesController_deleteMessage",
+        "operationId": "MessageRoutesController_Message_delete",
         "summary": "Delete message",
-        "description": "Deletes a message.",
+        "description": "Delete message. Returns the removed id.",
         "tags": [
           "Messages"
         ],
@@ -3999,11 +3873,11 @@
         }
       }
     },
-    "/api/v1/messages/add_reaction": {
+    "/api/v1/messages/addReaction": {
       "post": {
-        "operationId": "MessagesController_addMessageReaction",
-        "summary": "Add message reaction",
-        "description": "Adds a reaction to a message.",
+        "operationId": "MessageRoutesController_Message_addReaction",
+        "summary": "Add reaction message",
+        "description": "Add reaction message. Returns the saved message.",
         "tags": [
           "Messages"
         ],
@@ -4015,12 +3889,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Message"
                     }
@@ -4052,11 +3936,11 @@
         }
       }
     },
-    "/api/v1/messages/remove_reaction": {
+    "/api/v1/messages/removeReaction": {
       "post": {
-        "operationId": "MessagesController_removeMessageReaction",
-        "summary": "Remove message reaction",
-        "description": "Removes a reaction from a message.",
+        "operationId": "MessageRoutesController_Message_removeReaction",
+        "summary": "Remove reaction message",
+        "description": "Remove reaction message. Returns the saved message.",
         "tags": [
           "Messages"
         ],
@@ -4068,12 +3952,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Message"
                     }
@@ -4107,9 +4001,9 @@
     },
     "/api/v1/companies/list": {
       "post": {
-        "operationId": "CompaniesController_listCompanies",
+        "operationId": "CompanyRoutesController_Company_list",
         "summary": "List companies",
-        "description": "Returns a page of companies.",
+        "description": "Returns the workspace's companies.",
         "tags": [
           "Companies"
         ],
@@ -4166,9 +4060,9 @@
     },
     "/api/v1/companies/info": {
       "post": {
-        "operationId": "CompaniesController_getCompany",
+        "operationId": "CompanyRoutesController_Company_info",
         "summary": "Get company",
-        "description": "Returns one company.",
+        "description": "Returns one company by id.",
         "tags": [
           "Companies"
         ],
@@ -4219,9 +4113,9 @@
     },
     "/api/v1/companies/create": {
       "post": {
-        "operationId": "CompaniesController_createCompany",
+        "operationId": "CompanyRoutesController_Company_create",
         "summary": "Create company",
-        "description": "Creates a company.",
+        "description": "Create company. Returns the saved company.",
         "tags": [
           "Companies"
         ],
@@ -4294,9 +4188,9 @@
     },
     "/api/v1/companies/update": {
       "post": {
-        "operationId": "CompaniesController_updateCompany",
+        "operationId": "CompanyRoutesController_Company_update",
         "summary": "Update company",
-        "description": "Updates a company.",
+        "description": "Update company. Returns the saved company.",
         "tags": [
           "Companies"
         ],
@@ -4357,9 +4251,9 @@
     },
     "/api/v1/companies/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteCompany",
+        "operationId": "CompanyRoutesController_Company_delete",
         "summary": "Delete company",
-        "description": "Deletes a company.",
+        "description": "Delete company. Returns the removed id.",
         "tags": [
           "Companies"
         ],
@@ -4405,9 +4299,9 @@
     },
     "/api/v1/companies/restore": {
       "post": {
-        "operationId": "CompaniesController_restoreCompany",
+        "operationId": "CompanyRoutesController_Company_restore",
         "summary": "Restore company",
-        "description": "Restores a deleted company.",
+        "description": "Restore company. Returns the saved company.",
         "tags": [
           "Companies"
         ],
@@ -4468,9 +4362,9 @@
     },
     "/api/v1/companies/archive": {
       "post": {
-        "operationId": "CompaniesController_archiveCompany",
+        "operationId": "CompanyRoutesController_Company_archive",
         "summary": "Archive company",
-        "description": "Archives a company.",
+        "description": "Archive company. Returns the saved company.",
         "tags": [
           "Companies"
         ],
@@ -4531,9 +4425,9 @@
     },
     "/api/v1/companies/unarchive": {
       "post": {
-        "operationId": "CompaniesController_unarchiveCompany",
+        "operationId": "CompanyRoutesController_Company_unarchive",
         "summary": "Unarchive company",
-        "description": "Unarchives a company.",
+        "description": "Unarchive company. Returns the saved company.",
         "tags": [
           "Companies"
         ],
@@ -4594,9 +4488,9 @@
     },
     "/api/v1/companies/contacts/list": {
       "post": {
-        "operationId": "CompaniesController_listContacts",
+        "operationId": "CompanyRoutesController_Contact_list",
         "summary": "List contacts",
-        "description": "Returns a page of contacts.",
+        "description": "Returns the workspace's contacts.",
         "tags": [
           "Contacts"
         ],
@@ -4653,9 +4547,9 @@
     },
     "/api/v1/companies/contacts/info": {
       "post": {
-        "operationId": "CompaniesController_getContact",
+        "operationId": "CompanyRoutesController_Contact_info",
         "summary": "Get contact",
-        "description": "Returns one contact.",
+        "description": "Returns one contact by id.",
         "tags": [
           "Contacts"
         ],
@@ -4706,9 +4600,9 @@
     },
     "/api/v1/companies/contacts/create": {
       "post": {
-        "operationId": "CompaniesController_createContact",
+        "operationId": "CompanyRoutesController_Contact_create",
         "summary": "Create contact",
-        "description": "Creates a contact.",
+        "description": "Create contact. Returns the saved contact.",
         "tags": [
           "Contacts"
         ],
@@ -4781,9 +4675,9 @@
     },
     "/api/v1/companies/contacts/update": {
       "post": {
-        "operationId": "CompaniesController_updateContact",
+        "operationId": "CompanyRoutesController_Contact_update",
         "summary": "Update contact",
-        "description": "Updates a contact.",
+        "description": "Update contact. Returns the saved contact.",
         "tags": [
           "Contacts"
         ],
@@ -4844,9 +4738,9 @@
     },
     "/api/v1/companies/contacts/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteContact",
+        "operationId": "CompanyRoutesController_Contact_delete",
         "summary": "Delete contact",
-        "description": "Deletes a contact.",
+        "description": "Delete contact. Returns the removed id.",
         "tags": [
           "Contacts"
         ],
@@ -4892,9 +4786,9 @@
     },
     "/api/v1/companies/contacts/restore": {
       "post": {
-        "operationId": "CompaniesController_restoreContact",
+        "operationId": "CompanyRoutesController_Contact_restore",
         "summary": "Restore contact",
-        "description": "Restores a deleted contact.",
+        "description": "Restore contact. Returns the saved contact.",
         "tags": [
           "Contacts"
         ],
@@ -4955,9 +4849,9 @@
     },
     "/api/v1/companies/contacts/archive": {
       "post": {
-        "operationId": "CompaniesController_archiveContact",
+        "operationId": "CompanyRoutesController_Contact_archive",
         "summary": "Archive contact",
-        "description": "Archives a contact.",
+        "description": "Archive contact. Returns the saved contact.",
         "tags": [
           "Contacts"
         ],
@@ -5018,9 +4912,9 @@
     },
     "/api/v1/companies/contacts/unarchive": {
       "post": {
-        "operationId": "CompaniesController_unarchiveContact",
+        "operationId": "CompanyRoutesController_Contact_unarchive",
         "summary": "Unarchive contact",
-        "description": "Unarchives a contact.",
+        "description": "Unarchive contact. Returns the saved contact.",
         "tags": [
           "Contacts"
         ],
@@ -5081,9 +4975,9 @@
     },
     "/api/v1/companies/companyLabels/list": {
       "post": {
-        "operationId": "CompaniesController_listLabels",
+        "operationId": "CompanyRoutesController_CompanyLabel_list",
         "summary": "List company labels",
-        "description": "Returns a page of company labels.",
+        "description": "Returns the workspace's company labels.",
         "tags": [
           "Company labels"
         ],
@@ -5106,9 +5000,6 @@
                       "items": {
                         "$ref": "#/components/schemas/CompanyLabel"
                       }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
                     }
                   }
                 }
@@ -5131,7 +5022,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WorkspaceQueryRequest"
+                "$ref": "#/components/schemas/SyncedModelListInputRequest"
               }
             }
           }
@@ -5140,9 +5031,9 @@
     },
     "/api/v1/companies/companyLabels/info": {
       "post": {
-        "operationId": "CompaniesController_getLabel",
+        "operationId": "CompanyRoutesController_CompanyLabel_info",
         "summary": "Get company label",
-        "description": "Returns one company label.",
+        "description": "Returns one company label by id.",
         "tags": [
           "Company labels"
         ],
@@ -5184,7 +5075,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LabelIdRequest"
+                "$ref": "#/components/schemas/SyncedModelInfoInputRequest"
               }
             }
           }
@@ -5193,9 +5084,9 @@
     },
     "/api/v1/companies/companyLabels/create": {
       "post": {
-        "operationId": "CompaniesController_createLabel",
+        "operationId": "CompanyRoutesController_CompanyLabel_create",
         "summary": "Create company label",
-        "description": "Creates a company label.",
+        "description": "Create company label. Returns the saved company label.",
         "tags": [
           "Company labels"
         ],
@@ -5207,12 +5098,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanyLabel"
                     }
@@ -5237,7 +5138,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateCompanyLabelRequestRequest"
+                "$ref": "#/components/schemas/CompanyLabelCreateInputRequest"
               }
             }
           }
@@ -5258,9 +5159,9 @@
     },
     "/api/v1/companies/companyLabels/update": {
       "post": {
-        "operationId": "CompaniesController_updateLabel",
+        "operationId": "CompanyRoutesController_CompanyLabel_update",
         "summary": "Update company label",
-        "description": "Updates a company label.",
+        "description": "Update company label. Returns the saved company label.",
         "tags": [
           "Company labels"
         ],
@@ -5272,12 +5173,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanyLabel"
                     }
@@ -5302,7 +5213,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateCompanyLabelRequestRequest"
+                "$ref": "#/components/schemas/CompanyLabelUpdateInputRequest"
               }
             }
           }
@@ -5311,9 +5222,9 @@
     },
     "/api/v1/companies/companyLabels/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteLabel",
+        "operationId": "CompanyRoutesController_CompanyLabel_delete",
         "summary": "Delete company label",
-        "description": "Deletes a company label.",
+        "description": "Delete company label. Returns the removed id.",
         "tags": [
           "Company labels"
         ],
@@ -5350,7 +5261,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteCompanyLabelRequest"
+                "$ref": "#/components/schemas/CompanyLabelDeleteInputRequest"
               }
             }
           }
@@ -5359,9 +5270,9 @@
     },
     "/api/v1/companies/companySectors/create": {
       "post": {
-        "operationId": "CompaniesController_createSector",
+        "operationId": "CompanyRoutesController_CompanySector_create",
         "summary": "Create company sector",
-        "description": "Creates a company sector.",
+        "description": "Create company sector. Returns the saved company sector.",
         "tags": [
           "Company sectors"
         ],
@@ -5373,12 +5284,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanySector"
                     }
@@ -5403,18 +5324,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanySectorCreateInputRequest"
               }
             }
           }
@@ -5435,9 +5345,9 @@
     },
     "/api/v1/companies/companySectors/update": {
       "post": {
-        "operationId": "CompaniesController_updateSector",
+        "operationId": "CompanyRoutesController_CompanySector_update",
         "summary": "Update company sector",
-        "description": "Updates a company sector.",
+        "description": "Update company sector. Returns the saved company sector.",
         "tags": [
           "Company sectors"
         ],
@@ -5449,12 +5359,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/CompanySector"
                     }
@@ -5479,18 +5399,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanySectorUpdateInputRequest"
               }
             }
           }
@@ -5499,9 +5408,9 @@
     },
     "/api/v1/companies/companySectors/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteSector",
+        "operationId": "CompanyRoutesController_CompanySector_delete",
         "summary": "Delete company sector",
-        "description": "Deletes a company sector.",
+        "description": "Delete company sector. Returns the removed id.",
         "tags": [
           "Company sectors"
         ],
@@ -5538,18 +5447,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanySectorDeleteInputRequest"
               }
             }
           }
@@ -5558,9 +5456,9 @@
     },
     "/api/v1/companies/contractTypes/create": {
       "post": {
-        "operationId": "CompaniesController_createContractType",
+        "operationId": "CompanyRoutesController_ContractType_create",
         "summary": "Create contract type",
-        "description": "Creates a contract type.",
+        "description": "Create contract type. Returns the saved contract type.",
         "tags": [
           "Contract types"
         ],
@@ -5572,12 +5470,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/ContractType"
                     }
@@ -5602,7 +5510,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateContractTypeRequest"
+                "$ref": "#/components/schemas/ContractTypeCreateInputRequest"
               }
             }
           }
@@ -5623,9 +5531,9 @@
     },
     "/api/v1/companies/contractTypes/update": {
       "post": {
-        "operationId": "CompaniesController_updateContractType",
+        "operationId": "CompanyRoutesController_ContractType_update",
         "summary": "Update contract type",
-        "description": "Updates a contract type.",
+        "description": "Update contract type. Returns the saved contract type.",
         "tags": [
           "Contract types"
         ],
@@ -5637,12 +5545,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/ContractType"
                     }
@@ -5667,7 +5585,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateContractTypeRequest"
+                "$ref": "#/components/schemas/ContractTypeUpdateInputRequest"
               }
             }
           }
@@ -5676,9 +5594,9 @@
     },
     "/api/v1/companies/relationships/create": {
       "post": {
-        "operationId": "CompaniesController_createCompanyRelationship",
-        "summary": "Create relationship",
-        "description": "Creates a relationship.",
+        "operationId": "CompanyRoutesController_CompanyRelationship_create",
+        "summary": "Create company relationship",
+        "description": "Create company relationship. Returns the saved company relationship.",
         "tags": [
           "Company relationships"
         ],
@@ -5730,18 +5648,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanyRelationshipCreateInputRequest"
               }
             }
           }
@@ -5762,9 +5669,9 @@
     },
     "/api/v1/companies/relationships/update": {
       "post": {
-        "operationId": "CompaniesController_updateCompanyRelationship",
-        "summary": "Update relationship",
-        "description": "Updates a relationship.",
+        "operationId": "CompanyRoutesController_CompanyRelationship_update",
+        "summary": "Update company relationship",
+        "description": "Update company relationship. Returns the saved company relationship.",
         "tags": [
           "Company relationships"
         ],
@@ -5816,18 +5723,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanyRelationshipUpdateInputRequest"
               }
             }
           }
@@ -5836,9 +5732,9 @@
     },
     "/api/v1/companies/relationships/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteCompanyRelationship",
-        "summary": "Delete relationship",
-        "description": "Deletes a relationship.",
+        "operationId": "CompanyRoutesController_CompanyRelationship_delete",
+        "summary": "Delete company relationship",
+        "description": "Delete company relationship. Returns the removed id.",
         "tags": [
           "Company relationships"
         ],
@@ -5875,18 +5771,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/RowInputRequest"
               }
             }
           }
@@ -5895,9 +5780,9 @@
     },
     "/api/v1/companies/updates/create": {
       "post": {
-        "operationId": "CompaniesController_createCompanyUpdate",
-        "summary": "Create update",
-        "description": "Creates a update.",
+        "operationId": "CompanyRoutesController_CompanyUpdate_create",
+        "summary": "Create company update",
+        "description": "Create company update. Returns the saved company update.",
         "tags": [
           "Company updates"
         ],
@@ -5949,18 +5834,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanyUpdateCreateInputRequest"
               }
             }
           }
@@ -5981,9 +5855,9 @@
     },
     "/api/v1/companies/updates/update": {
       "post": {
-        "operationId": "CompaniesController_updateCompanyUpdate",
-        "summary": "Update update",
-        "description": "Updates a update.",
+        "operationId": "CompanyRoutesController_CompanyUpdate_update",
+        "summary": "Update company update",
+        "description": "Update company update. Returns the saved company update.",
         "tags": [
           "Company updates"
         ],
@@ -6035,18 +5909,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanyUpdateUpdateInputRequest"
               }
             }
           }
@@ -6055,9 +5918,9 @@
     },
     "/api/v1/companies/updates/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteCompanyUpdate",
-        "summary": "Delete update",
-        "description": "Deletes a update.",
+        "operationId": "CompanyRoutesController_CompanyUpdate_delete",
+        "summary": "Delete company update",
+        "description": "Delete company update. Returns the removed id.",
         "tags": [
           "Company updates"
         ],
@@ -6094,18 +5957,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/CompanyUpdateDeleteInputRequest"
               }
             }
           }
@@ -6114,9 +5966,9 @@
     },
     "/api/v1/companies/documents/list": {
       "post": {
-        "operationId": "CompaniesController_listDocuments",
+        "operationId": "CompanyRoutesController_Document_list",
         "summary": "List documents",
-        "description": "Returns a page of documents.",
+        "description": "Returns the workspace's documents.",
         "tags": [
           "Documents"
         ],
@@ -6173,9 +6025,9 @@
     },
     "/api/v1/companies/documents/info": {
       "post": {
-        "operationId": "CompaniesController_getDocument",
+        "operationId": "CompanyRoutesController_Document_info",
         "summary": "Get document",
-        "description": "Returns one document.",
+        "description": "Returns one document by id.",
         "tags": [
           "Documents"
         ],
@@ -6226,9 +6078,9 @@
     },
     "/api/v1/companies/documents/create": {
       "post": {
-        "operationId": "CompaniesController_createDocument",
+        "operationId": "CompanyRoutesController_Document_create",
         "summary": "Create document",
-        "description": "Creates a document.",
+        "description": "Create document. Returns the saved document.",
         "tags": [
           "Documents"
         ],
@@ -6240,12 +6092,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Document"
                     }
@@ -6291,9 +6153,9 @@
     },
     "/api/v1/companies/documents/update": {
       "post": {
-        "operationId": "CompaniesController_updateDocument",
+        "operationId": "CompanyRoutesController_Document_update",
         "summary": "Update document",
-        "description": "Updates a document.",
+        "description": "Update document. Returns the saved document.",
         "tags": [
           "Documents"
         ],
@@ -6305,12 +6167,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Document"
                     }
@@ -6344,9 +6216,9 @@
     },
     "/api/v1/companies/documents/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteDocument",
+        "operationId": "CompanyRoutesController_Document_delete",
         "summary": "Delete document",
-        "description": "Deletes a document.",
+        "description": "Delete document. Returns the removed id.",
         "tags": [
           "Documents"
         ],
@@ -6392,9 +6264,9 @@
     },
     "/api/v1/companies/documents/restore": {
       "post": {
-        "operationId": "CompaniesController_restoreDocument",
+        "operationId": "CompanyRoutesController_Document_restore",
         "summary": "Restore document",
-        "description": "Restores a deleted document.",
+        "description": "Restore document. Returns the saved document.",
         "tags": [
           "Documents"
         ],
@@ -6453,11 +6325,11 @@
         }
       }
     },
-    "/api/v1/companies/documents/add_user": {
+    "/api/v1/companies/documents/addUser": {
       "post": {
-        "operationId": "CompaniesController_addUserToDocument",
-        "summary": "Add User",
-        "description": "Adds a member to the document.",
+        "operationId": "CompanyRoutesController_Document_addUser",
+        "summary": "Add user document",
+        "description": "Add user document. Returns the saved document.",
         "tags": [
           "Documents"
         ],
@@ -6506,67 +6378,11 @@
         }
       }
     },
-    "/api/v1/companies/documents/profile_memberships": {
+    "/api/v1/companies/documents/removeUser": {
       "post": {
-        "operationId": "CompaniesController_documentProfileMemberships",
-        "summary": "List members",
-        "description": "Lists members on the document.",
-        "tags": [
-          "Documents"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProfileMembership"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DocumentIdRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/companies/documents/remove_user": {
-      "post": {
-        "operationId": "CompaniesController_removeUserFromDocument",
-        "summary": "Remove User",
-        "description": "Removes a member from the document.",
+        "operationId": "CompanyRoutesController_Document_removeUser",
+        "summary": "Remove user document",
+        "description": "Remove user document. Returns the removed id.",
         "tags": [
           "Documents"
         ],
@@ -6610,11 +6426,11 @@
         }
       }
     },
-    "/api/v1/companies/documents/update_user_permission": {
+    "/api/v1/companies/documents/updateUserPermission": {
       "post": {
-        "operationId": "CompaniesController_updateDocumentUserPermission",
-        "summary": "Update User Permission",
-        "description": "Changes a member’s permission on the document.",
+        "operationId": "CompanyRoutesController_Document_updateUserPermission",
+        "summary": "Update user permission document",
+        "description": "Update user permission document. Returns the saved document.",
         "tags": [
           "Documents"
         ],
@@ -6626,12 +6442,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -6665,9 +6491,9 @@
     },
     "/api/v1/companies/folders/list": {
       "post": {
-        "operationId": "CompaniesController_listDocumentFolders",
+        "operationId": "CompanyRoutesController_Folder_list",
         "summary": "List folders",
-        "description": "Returns a page of folders.",
+        "description": "Returns the workspace's folders.",
         "tags": [
           "Folders"
         ],
@@ -6724,9 +6550,9 @@
     },
     "/api/v1/companies/folders/create": {
       "post": {
-        "operationId": "CompaniesController_createDocumentFolder",
+        "operationId": "CompanyRoutesController_Folder_create",
         "summary": "Create folder",
-        "description": "Creates a folder.",
+        "description": "Create folder. Returns the saved folder.",
         "tags": [
           "Folders"
         ],
@@ -6738,12 +6564,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Folder"
                     }
@@ -6789,9 +6625,9 @@
     },
     "/api/v1/companies/folders/update": {
       "post": {
-        "operationId": "CompaniesController_updateDocumentFolder",
+        "operationId": "CompanyRoutesController_Folder_update",
         "summary": "Update folder",
-        "description": "Updates a folder.",
+        "description": "Update folder. Returns the saved folder.",
         "tags": [
           "Folders"
         ],
@@ -6803,12 +6639,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Folder"
                     }
@@ -6842,9 +6688,9 @@
     },
     "/api/v1/companies/folders/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteDocumentFolder",
+        "operationId": "CompanyRoutesController_Folder_delete",
         "summary": "Delete folder",
-        "description": "Deletes a folder.",
+        "description": "Delete folder. Returns the removed id.",
         "tags": [
           "Folders"
         ],
@@ -6890,9 +6736,9 @@
     },
     "/api/v1/companies/folders/restore": {
       "post": {
-        "operationId": "CompaniesController_restoreDocumentFolder",
+        "operationId": "CompanyRoutesController_Folder_restore",
         "summary": "Restore folder",
-        "description": "Restores a deleted folder.",
+        "description": "Restore folder. Returns the saved folder.",
         "tags": [
           "Folders"
         ],
@@ -6951,11 +6797,11 @@
         }
       }
     },
-    "/api/v1/companies/folders/add_user": {
+    "/api/v1/companies/folders/addUser": {
       "post": {
-        "operationId": "CompaniesController_addUserToDocumentFolder",
-        "summary": "Add User",
-        "description": "Adds a member to the folder.",
+        "operationId": "CompanyRoutesController_Folder_addUser",
+        "summary": "Add user folder",
+        "description": "Add user folder. Returns the saved folder.",
         "tags": [
           "Folders"
         ],
@@ -7004,67 +6850,11 @@
         }
       }
     },
-    "/api/v1/companies/folders/profile_memberships": {
+    "/api/v1/companies/folders/removeUser": {
       "post": {
-        "operationId": "CompaniesController_documentFolderProfileMemberships",
-        "summary": "List members",
-        "description": "Lists members on the folder.",
-        "tags": [
-          "Folders"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProfileMembership"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DocumentFolderMembershipsRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/companies/folders/remove_user": {
-      "post": {
-        "operationId": "CompaniesController_removeUserFromDocumentFolder",
-        "summary": "Remove User",
-        "description": "Removes a member from the folder.",
+        "operationId": "CompanyRoutesController_Folder_removeUser",
+        "summary": "Remove user folder",
+        "description": "Remove user folder. Returns the removed id.",
         "tags": [
           "Folders"
         ],
@@ -7108,11 +6898,11 @@
         }
       }
     },
-    "/api/v1/companies/folders/update_user_permission": {
+    "/api/v1/companies/folders/updateUserPermission": {
       "post": {
-        "operationId": "CompaniesController_updateDocumentFolderUserPermission",
-        "summary": "Update User Permission",
-        "description": "Changes a member’s permission on the folder.",
+        "operationId": "CompanyRoutesController_Folder_updateUserPermission",
+        "summary": "Update user permission folder",
+        "description": "Update user permission folder. Returns the saved folder.",
         "tags": [
           "Folders"
         ],
@@ -7124,12 +6914,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -7163,9 +6963,9 @@
     },
     "/api/v1/companies/notes/list": {
       "post": {
-        "operationId": "CompaniesController_listNotes",
+        "operationId": "CompanyRoutesController_Note_list",
         "summary": "List notes",
-        "description": "Returns a page of notes.",
+        "description": "Returns the workspace's notes.",
         "tags": [
           "Notes"
         ],
@@ -7222,9 +7022,9 @@
     },
     "/api/v1/companies/notes/info": {
       "post": {
-        "operationId": "CompaniesController_getNote",
+        "operationId": "CompanyRoutesController_Note_info",
         "summary": "Get note",
-        "description": "Returns one note.",
+        "description": "Returns one note by id.",
         "tags": [
           "Notes"
         ],
@@ -7275,9 +7075,9 @@
     },
     "/api/v1/companies/notes/create": {
       "post": {
-        "operationId": "CompaniesController_createNote",
+        "operationId": "CompanyRoutesController_Note_create",
         "summary": "Create note",
-        "description": "Creates a note.",
+        "description": "Create note. Returns the saved note.",
         "tags": [
           "Notes"
         ],
@@ -7289,12 +7089,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Note"
                     }
@@ -7340,9 +7150,9 @@
     },
     "/api/v1/companies/notes/update": {
       "post": {
-        "operationId": "CompaniesController_updateNote",
+        "operationId": "CompanyRoutesController_Note_update",
         "summary": "Update note",
-        "description": "Updates a note.",
+        "description": "Update note. Returns the saved note.",
         "tags": [
           "Notes"
         ],
@@ -7354,12 +7164,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/Note"
                     }
@@ -7393,9 +7213,9 @@
     },
     "/api/v1/companies/notes/delete": {
       "post": {
-        "operationId": "CompaniesController_deleteNote",
+        "operationId": "CompanyRoutesController_Note_delete",
         "summary": "Delete note",
-        "description": "Deletes a note.",
+        "description": "Delete note. Returns the removed id.",
         "tags": [
           "Notes"
         ],
@@ -7441,9 +7261,9 @@
     },
     "/api/v1/companies/notes/restore": {
       "post": {
-        "operationId": "CompaniesController_restoreNote",
+        "operationId": "CompanyRoutesController_Note_restore",
         "summary": "Restore note",
-        "description": "Restores a deleted note.",
+        "description": "Restore note. Returns the saved note.",
         "tags": [
           "Notes"
         ],
@@ -7502,11 +7322,11 @@
         }
       }
     },
-    "/api/v1/companies/notes/add_user": {
+    "/api/v1/companies/notes/addUser": {
       "post": {
-        "operationId": "CompaniesController_addUserToNote",
-        "summary": "Add User",
-        "description": "Adds a member to the note.",
+        "operationId": "CompanyRoutesController_Note_addUser",
+        "summary": "Add user note",
+        "description": "Add user note. Returns the saved note.",
         "tags": [
           "Notes"
         ],
@@ -7555,67 +7375,11 @@
         }
       }
     },
-    "/api/v1/companies/notes/profile_memberships": {
+    "/api/v1/companies/notes/removeUser": {
       "post": {
-        "operationId": "CompaniesController_noteProfileMemberships",
-        "summary": "List members",
-        "description": "Lists members on the note.",
-        "tags": [
-          "Notes"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProfileMembership"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NoteIdRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/companies/notes/remove_user": {
-      "post": {
-        "operationId": "CompaniesController_removeUserFromNote",
-        "summary": "Remove User",
-        "description": "Removes a member from the note.",
+        "operationId": "CompanyRoutesController_Note_removeUser",
+        "summary": "Remove user note",
+        "description": "Remove user note. Returns the removed id.",
         "tags": [
           "Notes"
         ],
@@ -7659,11 +7423,11 @@
         }
       }
     },
-    "/api/v1/companies/notes/update_user_permission": {
+    "/api/v1/companies/notes/updateUserPermission": {
       "post": {
-        "operationId": "CompaniesController_updateNoteUserPermission",
-        "summary": "Update User Permission",
-        "description": "Changes a member’s permission on the note.",
+        "operationId": "CompanyRoutesController_Note_updateUserPermission",
+        "summary": "Update user permission note",
+        "description": "Update user permission note. Returns the saved note.",
         "tags": [
           "Notes"
         ],
@@ -7675,12 +7439,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Public mutation payload",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "success",
+                    "data"
+                  ],
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
                     "data": {
                       "$ref": "#/components/schemas/ProfileMembership"
                     }
@@ -7712,11 +7486,67 @@
         }
       }
     },
+    "/api/v1/companies/profileMemberships/list": {
+      "post": {
+        "operationId": "CompanyRoutesController_ProfileMembership_list",
+        "summary": "List profile memberships",
+        "description": "Returns the workspace's profile memberships.",
+        "tags": [
+          "Profile memberships"
+        ],
+        "x-stability": "stable",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProfileMembership"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicErrorEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileMembershipListInputRequest"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/teams/list": {
       "post": {
-        "operationId": "TeamsController_listTeams",
+        "operationId": "TeamRoutesController_Team_list",
         "summary": "List teams",
-        "description": "Returns a page of teams.",
+        "description": "Returns the workspace's teams.",
         "tags": [
           "Teams"
         ],
@@ -7764,7 +7594,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ListRequestBody"
+                "$ref": "#/components/schemas/TeamListInputRequest"
               }
             }
           }
@@ -7773,9 +7603,9 @@
     },
     "/api/v1/teams/info": {
       "post": {
-        "operationId": "TeamsController_teamInfo",
+        "operationId": "TeamRoutesController_Team_info",
         "summary": "Get team",
-        "description": "Returns one team.",
+        "description": "Returns one team by id.",
         "tags": [
           "Teams"
         ],
@@ -7817,18 +7647,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamInfoInputRequest"
               }
             }
           }
@@ -7837,9 +7656,9 @@
     },
     "/api/v1/teams/create": {
       "post": {
-        "operationId": "TeamsController_createTeam",
+        "operationId": "TeamRoutesController_Team_create",
         "summary": "Create team",
-        "description": "Creates a team.",
+        "description": "Create team. Returns the saved team.",
         "tags": [
           "Teams"
         ],
@@ -7891,18 +7710,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamCreateInputRequest"
               }
             }
           }
@@ -7923,9 +7731,9 @@
     },
     "/api/v1/teams/update": {
       "post": {
-        "operationId": "TeamsController_updateTeam",
+        "operationId": "TeamRoutesController_Team_update",
         "summary": "Update team",
-        "description": "Updates a team.",
+        "description": "Update team. Returns the saved team.",
         "tags": [
           "Teams"
         ],
@@ -7977,29 +7785,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamUpdateInputRequest"
               }
             }
           }
         }
       }
     },
-    "/api/v1/teams/remove-parent": {
+    "/api/v1/teams/removeParent": {
       "post": {
-        "operationId": "TeamsController_removeParent",
-        "summary": "Remove-parent",
-        "description": "Clears a team’s parent.",
+        "operationId": "TeamRoutesController_Team_removeParent",
+        "summary": "Remove parent team",
+        "description": "Remove parent team. Returns the saved team.",
         "tags": [
           "Teams"
         ],
@@ -8061,9 +7858,9 @@
     },
     "/api/v1/teams/retire": {
       "post": {
-        "operationId": "TeamsController_retireTeam",
+        "operationId": "TeamRoutesController_Team_retire",
         "summary": "Retire team",
-        "description": "Retires a team so it can no longer be assigned.",
+        "description": "Retire team. Returns the removed id.",
         "tags": [
           "Teams"
         ],
@@ -8118,11 +7915,11 @@
         }
       }
     },
-    "/api/v1/teams/set-parent": {
+    "/api/v1/teams/setParent": {
       "post": {
-        "operationId": "TeamsController_setParent",
-        "summary": "Set-parent",
-        "description": "Sets a parent team.",
+        "operationId": "TeamRoutesController_Team_setParent",
+        "summary": "Set parent team",
+        "description": "Set parent team. Returns the saved team.",
         "tags": [
           "Teams"
         ],
@@ -8164,18 +7961,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamSetParentInputRequest"
               }
             }
           }
@@ -8184,9 +7970,9 @@
     },
     "/api/v1/teams/memberships/list": {
       "post": {
-        "operationId": "TeamsController_listMemberships",
-        "summary": "List memberships",
-        "description": "Returns a page of memberships.",
+        "operationId": "TeamRoutesController_TeamMembership_list",
+        "summary": "List team memberships",
+        "description": "Returns the workspace's team memberships.",
         "tags": [
           "Team memberships"
         ],
@@ -8234,7 +8020,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ListRequestBody"
+                "$ref": "#/components/schemas/TeamMembershipListInputRequest"
               }
             }
           }
@@ -8243,9 +8029,9 @@
     },
     "/api/v1/teams/memberships/create": {
       "post": {
-        "operationId": "TeamsController_joinTeam",
-        "summary": "Create membership",
-        "description": "Creates a membership.",
+        "operationId": "TeamRoutesController_TeamMembership_create",
+        "summary": "Create team membership",
+        "description": "Create team membership. Returns the saved team membership.",
         "tags": [
           "Team memberships"
         ],
@@ -8297,18 +8083,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamMembershipCreateInputRequest"
               }
             }
           }
@@ -8329,9 +8104,9 @@
     },
     "/api/v1/teams/memberships/update": {
       "post": {
-        "operationId": "TeamsController_updateMembership",
-        "summary": "Update membership",
-        "description": "Updates a membership.",
+        "operationId": "TeamRoutesController_TeamMembership_update",
+        "summary": "Update team membership",
+        "description": "Update team membership. Returns the saved team membership.",
         "tags": [
           "Team memberships"
         ],
@@ -8383,18 +8158,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamMembershipUpdateInputRequest"
               }
             }
           }
@@ -8403,9 +8167,9 @@
     },
     "/api/v1/teams/memberships/delete": {
       "post": {
-        "operationId": "TeamsController_leaveTeam",
-        "summary": "Delete membership",
-        "description": "Deletes a membership.",
+        "operationId": "TeamRoutesController_TeamMembership_delete",
+        "summary": "Delete team membership",
+        "description": "Delete team membership. Returns the removed id.",
         "tags": [
           "Team memberships"
         ],
@@ -8442,18 +8206,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "workspaceId"
-                ],
-                "properties": {
-                  "workspaceId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Workspace id"
-                  }
-                },
-                "additionalProperties": true
+                "$ref": "#/components/schemas/TeamMembershipDeleteInputRequest"
               }
             }
           }
@@ -8763,9 +8516,9 @@
     },
     "/api/v1/webhookSubscriptions/list": {
       "post": {
-        "operationId": "WebhookSubscriptionsController_listWebhookSubscriptions",
+        "operationId": "WebhookSubscriptionRoutesController_WebhookSubscription_list",
         "summary": "List webhook subscriptions",
-        "description": "Returns a page of webhook subscriptions.",
+        "description": "Returns the workspace's webhook subscriptions.",
         "tags": [
           "Webhook subscriptions"
         ],
@@ -8820,70 +8573,11 @@
         }
       }
     },
-    "/api/v1/webhookSubscriptions/deliveries": {
-      "post": {
-        "operationId": "WebhookSubscriptionsController_listWebhookDeliveries",
-        "summary": "List webhook deliveries",
-        "description": "Returns recent deliveries for a webhook subscription.",
-        "tags": [
-          "Webhook subscriptions"
-        ],
-        "x-stability": "stable",
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/WebhookDelivery"
-                      }
-                    },
-                    "pagination": {
-                      "$ref": "#/components/schemas/ListPagination"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicErrorEnvelope"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ListWebhookDeliveriesRequest"
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/webhookSubscriptions/create": {
       "post": {
-        "operationId": "WebhookSubscriptionsController_createWebhookSubscriptions",
+        "operationId": "WebhookSubscriptionRoutesController_WebhookSubscription_create",
         "summary": "Create webhook subscription",
-        "description": "Creates a webhook subscription.",
+        "description": "Create webhook subscription. Returns the saved webhook subscription.",
         "tags": [
           "Webhook subscriptions"
         ],
@@ -8956,9 +8650,9 @@
     },
     "/api/v1/webhookSubscriptions/update": {
       "post": {
-        "operationId": "WebhookSubscriptionsController_updateWebhookSubscriptions",
+        "operationId": "WebhookSubscriptionRoutesController_WebhookSubscription_update",
         "summary": "Update webhook subscription",
-        "description": "Updates a webhook subscription.",
+        "description": "Update webhook subscription. Returns the saved webhook subscription.",
         "tags": [
           "Webhook subscriptions"
         ],
@@ -9019,9 +8713,9 @@
     },
     "/api/v1/webhookSubscriptions/delete": {
       "post": {
-        "operationId": "WebhookSubscriptionsController_deleteWebhookSubscriptions",
+        "operationId": "WebhookSubscriptionRoutesController_WebhookSubscription_delete",
         "summary": "Delete webhook subscription",
-        "description": "Deletes a webhook subscription.",
+        "description": "Delete webhook subscription. Returns the removed id.",
         "tags": [
           "Webhook subscriptions"
         ],
@@ -9065,13 +8759,13 @@
         }
       }
     },
-    "/api/v1/users/workspaceProfiles/list": {
+    "/api/v1/webhookSubscriptions/deliveries/list": {
       "post": {
-        "operationId": "UsersController_fetchWorkspaceProfile",
-        "summary": "List workspace profiles",
-        "description": "Returns a page of workspace profiles.",
+        "operationId": "WebhookSubscriptionRoutesController_WebhookDelivery_list",
+        "summary": "List webhook deliveries",
+        "description": "Returns the workspace's webhook deliveries.",
         "tags": [
-          "Workspace"
+          "Webhook deliveries"
         ],
         "x-stability": "stable",
         "security": [
@@ -9090,7 +8784,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/WorkspaceProfile"
+                        "$ref": "#/components/schemas/WebhookDelivery"
                       }
                     },
                     "pagination": {
@@ -9117,7 +8811,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ListRequest"
+                "$ref": "#/components/schemas/ListWebhookDeliveriesRequest"
               }
             }
           }
@@ -9214,6 +8908,65 @@
                 "schema": {
                   "$ref": "#/components/schemas/PublicErrorEnvelope"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/workspaceProfiles/list": {
+      "post": {
+        "operationId": "UserRoutesController_WorkspaceProfile_list",
+        "summary": "List workspace profiles",
+        "description": "Returns the workspace's workspace profiles.",
+        "tags": [
+          "Workspace profiles"
+        ],
+        "x-stability": "stable",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WorkspaceProfile"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/ListPagination"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicErrorEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceProfileListInputRequest"
               }
             }
           }
@@ -9419,6 +9172,19 @@
           "quotedSenderId": {
             "type": "string",
             "format": "uuid",
+            "nullable": true
+          },
+          "internalThreadId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "platformChannelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "platformMessageId": {
+            "type": "string",
             "nullable": true
           }
         }
@@ -9730,21 +9496,41 @@
           "metric"
         ]
       },
-      "TicketTimelineInfoRequest": {
+      "TicketCommentListInputRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
-          "_id": {
-            "type": "string"
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
+          },
+          "cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "forward",
+              "backward",
+              "ASC",
+              "DESC"
+            ]
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false,
         "required": [
           "workspaceId",
-          "_id"
+          "ticketId"
         ]
       },
       "PublicCreateCommentRequest": {
@@ -10029,14 +9815,10 @@
           }
         }
       },
-      "TicketSubscriptionListConversationRequest": {
+      "TicketSubscriptionListInputRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "_id": {
             "type": "string",
             "format": "uuid"
           },
@@ -10058,12 +9840,16 @@
               "ASC",
               "DESC"
             ]
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Only this ticket's subscriptions, for every subscriber."
           }
         },
         "additionalProperties": false,
         "required": [
-          "workspaceId",
-          "_id"
+          "workspaceId"
         ]
       },
       "TicketSubscriptionRequest": {
@@ -10095,6 +9881,35 @@
           "workspaceId",
           "ticketId",
           "subscriberId"
+        ]
+      },
+      "TicketSubscriptionDeleteRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id"
         ]
       },
       "Conversation": {
@@ -10186,6 +10001,26 @@
             "format": "uuid",
             "nullable": true
           },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "waitingOnCustomerSince": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "canceledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "trashed": {
             "type": "boolean"
           },
@@ -10251,6 +10086,11 @@
             "format": "uuid",
             "nullable": true
           },
+          "chatWidgetId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "urlId": {
             "type": "string"
           },
@@ -10261,6 +10101,9 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "syncRevision": {
+            "type": "integer"
           }
         }
       },
@@ -10282,6 +10125,10 @@
           },
           "statusId": {
             "type": "string"
+          },
+          "spam": {
+            "type": "boolean",
+            "description": "Only conversations marked as spam."
           },
           "workspaceId": {
             "type": "string",
@@ -10692,19 +10539,6 @@
           "workspaceId"
         ]
       },
-      "ListSpamConversationsRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId"
-        ]
-      },
       "RemoveUserRequest": {
         "type": "object",
         "properties": {
@@ -10790,12 +10624,9 @@
             "type": "string",
             "maxLength": 50
           },
-          "require_tld": {
+          "logoUrl": {
             "type": "string",
             "format": "uri"
-          },
-          "logoUrl": {
-            "type": "string"
           },
           "domains": {
             "type": "array",
@@ -10853,8 +10684,7 @@
         "additionalProperties": false,
         "required": [
           "_id",
-          "workspaceId",
-          "require_tld"
+          "workspaceId"
         ]
       },
       "UpdateLabelsRequest": {
@@ -10988,31 +10818,12 @@
           }
         }
       },
-      "ConversationLabelListRequest": {
+      "SyncedModelListInputRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
             "type": "string",
             "format": "uuid"
-          },
-          "limit": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100,
-            "default": 25
-          },
-          "cursor": {
-            "type": "string",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "enum": [
-              "forward",
-              "backward",
-              "ASC",
-              "DESC"
-            ]
           }
         },
         "additionalProperties": false,
@@ -11020,10 +10831,14 @@
           "workspaceId"
         ]
       },
-      "ConversationLabelCreateRequest": {
+      "ConversationLabelCreateInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
@@ -11031,46 +10846,50 @@
             "type": "string"
           },
           "color": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "name"
+        ]
+      },
+      "ConversationLabelUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
           },
           "workspaceId": {
             "type": "string",
             "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "required": [
           "_id",
-          "name",
           "workspaceId"
         ]
       },
-      "ConversationLabelUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "labelId": {
-            "type": "string"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "updateData": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "labelId",
-          "workspaceId",
-          "updateData"
-        ]
-      },
-      "ConversationLabelDeleteRequest": {
+      "ConversationLabelDeleteInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
@@ -11084,7 +10903,8 @@
           "replacementLabelId": {
             "type": "string",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "description": "Conversations that used the deleted label move to this one."
           }
         },
         "additionalProperties": false,
@@ -11144,42 +10964,14 @@
           }
         }
       },
-      "WorkspaceRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "limit": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100,
-            "default": 25
-          },
-          "cursor": {
-            "type": "string",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "enum": [
-              "forward",
-              "backward",
-              "ASC",
-              "DESC"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId"
-        ]
-      },
-      "ConversationStatusCreateRequest": {
+      "ConversationStatusCreateInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
@@ -11198,22 +10990,17 @@
               "completed",
               "cancelled"
             ]
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false,
         "required": [
-          "_id",
+          "workspaceId",
           "name",
           "color",
-          "category",
-          "workspaceId"
+          "category"
         ]
       },
-      "ConversationStatusUpdateRequest": {
+      "ConversationStatusUpdateInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
@@ -11224,19 +11011,24 @@
             "type": "string",
             "format": "uuid"
           },
-          "updateData": {
-            "type": "object",
-            "additionalProperties": true
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "index": {
+            "type": "string",
+            "description": "Fractional sort key, e.g. \"a0\"."
           }
         },
         "additionalProperties": false,
         "required": [
           "_id",
-          "workspaceId",
-          "updateData"
+          "workspaceId"
         ]
       },
-      "ConversationStatusDeleteRequest": {
+      "ConversationStatusDeleteInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
@@ -11250,7 +11042,8 @@
           "replacementStatusId": {
             "type": "string",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "description": "Conversations in the deleted status move to this one."
           }
         },
         "additionalProperties": false,
@@ -11301,6 +11094,11 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Only this conversation's subscriptions, for every subscriber."
           },
           "limit": {
             "type": "integer",
@@ -11404,24 +11202,6 @@
           "workspaceId"
         ]
       },
-      "ConversationSubscriptionsConversationRequest": {
-        "type": "object",
-        "properties": {
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "_id": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId",
-          "_id"
-        ]
-      },
       "Message": {
         "type": "object",
         "properties": {
@@ -11494,6 +11274,11 @@
           "privateNote": {
             "type": "boolean"
           },
+          "internalThreadId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "reactions": {
             "type": "array",
             "items": {
@@ -11510,6 +11295,43 @@
             "format": "date-time"
           }
         }
+      },
+      "ListConversationMessagesRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
+          },
+          "cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "forward",
+              "backward",
+              "ASC",
+              "DESC"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "conversationId"
+        ]
       },
       "SendMessageRequest": {
         "type": "object",
@@ -11914,8 +11736,13 @@
             "type": "boolean"
           },
           "archivedAt": {
-            "type": "object",
-            "additionalProperties": true,
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
             "nullable": true
           }
         },
@@ -11960,12 +11787,9 @@
             "type": "string",
             "maxLength": 50
           },
-          "require_tld": {
+          "logoUrl": {
             "type": "string",
             "format": "uri"
-          },
-          "logoUrl": {
-            "type": "string"
           },
           "domains": {
             "type": "array",
@@ -12027,7 +11851,6 @@
           "urlId",
           "workspaceId",
           "website",
-          "require_tld",
           "domains"
         ]
       },
@@ -12128,6 +11951,14 @@
           },
           "urlId": {
             "type": "string"
+          },
+          "communication": {
+            "type": "object",
+            "properties": {
+              "chatEmailsOptOut": {
+                "type": "boolean"
+              }
+            }
           }
         }
       },
@@ -12195,6 +12026,19 @@
           "workspaceId": {
             "type": "string",
             "format": "uuid"
+          },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archivedById": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "permanent": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
@@ -12373,67 +12217,27 @@
           }
         }
       },
-      "WorkspaceQueryRequest": {
+      "SyncedModelInfoInputRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
-          "filter": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "limit": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100,
-            "default": 25
-          },
-          "cursor": {
-            "type": "string",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "enum": [
-              "forward",
-              "backward",
-              "ASC",
-              "DESC"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "workspaceId"
-        ]
-      },
-      "LabelIdRequest": {
-        "type": "object",
-        "properties": {
-          "labelId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "workspaceId": {
+          "_id": {
             "type": "string",
             "format": "uuid"
           }
         },
         "additionalProperties": false,
         "required": [
-          "labelId",
-          "workspaceId"
+          "workspaceId",
+          "_id"
         ]
       },
-      "CreateCompanyLabelRequestRequest": {
+      "CompanyLabelCreateInputRequest": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "maxLength": 100
-          },
           "_id": {
             "type": "string",
             "format": "uuid"
@@ -12442,26 +12246,31 @@
             "type": "string",
             "format": "uuid"
           },
+          "name": {
+            "type": "string",
+            "maxLength": 100
+          },
           "description": {
             "type": "string",
+            "nullable": true,
             "maxLength": 500
           },
           "color": {
             "type": "string",
+            "nullable": true,
             "maxLength": 20
           }
         },
         "additionalProperties": false,
         "required": [
-          "name",
-          "_id",
-          "workspaceId"
+          "workspaceId",
+          "name"
         ]
       },
-      "UpdateCompanyLabelRequestRequest": {
+      "CompanyLabelUpdateInputRequest": {
         "type": "object",
         "properties": {
-          "labelId": {
+          "_id": {
             "type": "string",
             "format": "uuid"
           },
@@ -12469,19 +12278,28 @@
             "type": "string",
             "format": "uuid"
           },
-          "updateData": {
-            "type": "object",
-            "additionalProperties": true
+          "name": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 500
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20
           }
         },
         "additionalProperties": false,
         "required": [
-          "labelId",
-          "workspaceId",
-          "updateData"
+          "_id",
+          "workspaceId"
         ]
       },
-      "DeleteCompanyLabelRequest": {
+      "CompanyLabelDeleteInputRequest": {
         "type": "object",
         "properties": {
           "_id": {
@@ -12495,7 +12313,8 @@
           "replacementLabelId": {
             "type": "string",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "description": "Rows that used the deleted label move to this one."
           }
         },
         "additionalProperties": false,
@@ -12545,6 +12364,88 @@
           }
         }
       },
+      "CompanySectorCreateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1000
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "name"
+        ]
+      },
+      "CompanySectorUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1000
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "workspaceId"
+        ]
+      },
+      "CompanySectorDeleteInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "workspaceId"
+        ]
+      },
       "ContractType": {
         "type": "object",
         "properties": {
@@ -12583,38 +12484,20 @@
           }
         }
       },
-      "CreateContractTypeRequest": {
+      "ContractTypeCreateInputRequest": {
         "type": "object",
         "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "name": {
             "type": "string",
             "maxLength": 255
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "description": {
-            "type": "string",
-            "maxLength": 1000
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "name",
-          "workspaceId"
-        ]
-      },
-      "UpdateContractTypeRequest": {
-        "type": "object",
-        "properties": {
-          "typeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
           },
           "description": {
             "type": "string",
@@ -12624,7 +12507,34 @@
         },
         "additionalProperties": false,
         "required": [
-          "typeId",
+          "workspaceId",
+          "name"
+        ]
+      },
+      "ContractTypeUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1000
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
           "workspaceId"
         ]
       },
@@ -12671,6 +12581,84 @@
             "format": "date-time"
           }
         }
+      },
+      "CompanyRelationshipCreateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromCompanyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "toCompanyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "inverseId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Id for the inverse row; the server picks one when absent."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "fromCompanyId",
+          "toCompanyId",
+          "type"
+        ]
+      },
+      "CompanyRelationshipUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "workspaceId",
+          "type"
+        ]
+      },
+      "RowInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "workspaceId"
+        ]
       },
       "CompanyUpdate": {
         "type": "object",
@@ -12733,6 +12721,114 @@
             "format": "uuid"
           }
         }
+      },
+      "CompanyUpdateCreateInputRequest": {
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "The update text. API keys send markdown; the app sends Lexical JSON."
+          },
+          "sentiment": {
+            "type": "string"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The server picks one when absent."
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "companyId"
+        ]
+      },
+      "CompanyUpdateUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "The update text. API keys send markdown; the app sends Lexical JSON."
+          },
+          "sentiment": {
+            "type": "string"
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id"
+        ]
+      },
+      "CompanyUpdateDeleteInputRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "contactId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "workspaceId"
+        ]
       },
       "Document": {
         "type": "object",
@@ -12873,6 +12969,9 @@
           },
           "urlId": {
             "type": "string"
+          },
+          "syncRevision": {
+            "type": "integer"
           }
         }
       },
@@ -13302,6 +13401,9 @@
           },
           "urlId": {
             "type": "string"
+          },
+          "syncRevision": {
+            "type": "integer"
           }
         }
       },
@@ -13498,32 +13600,6 @@
           "subtype"
         ]
       },
-      "DocumentFolderMembershipsRequest": {
-        "type": "object",
-        "properties": {
-          "folderId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "subtype": {
-            "type": "string",
-            "enum": [
-              "document",
-              "note"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "folderId",
-          "workspaceId",
-          "subtype"
-        ]
-      },
       "DocumentFolderRemoveUserRequest": {
         "type": "object",
         "properties": {
@@ -13658,6 +13734,9 @@
           },
           "permanentlyDeleted": {
             "type": "boolean"
+          },
+          "syncRevision": {
+            "type": "integer"
           }
         }
       },
@@ -13706,8 +13785,7 @@
         "type": "object",
         "properties": {
           "_id": {
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           "workspaceId": {
             "type": "string",
@@ -13911,6 +13989,38 @@
           "permission"
         ]
       },
+      "ProfileMembershipListInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "noteId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "folderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subtype": {
+            "type": "string",
+            "enum": [
+              "document",
+              "note"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId"
+        ]
+      },
       "Team": {
         "type": "object",
         "properties": {
@@ -13999,6 +14109,224 @@
           }
         }
       },
+      "TeamListInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "includeRetired": {
+            "type": "boolean"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
+          },
+          "cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "forward",
+              "backward",
+              "ASC",
+              "DESC"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId"
+        ]
+      },
+      "TeamInfoInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id"
+        ]
+      },
+      "TeamCreateInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20
+          },
+          "parentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "allMembersCanJoin": {
+            "type": "boolean"
+          },
+          "joinByDefault": {
+            "type": "boolean"
+          },
+          "assignmentStrategy": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "round_robin"
+            ]
+          },
+          "assignOnlyIfAvailable": {
+            "type": "boolean"
+          },
+          "secondaryTeamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The server picks one when absent."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 48
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 7,
+            "description": "Short identifier, e.g. \"ENG\". The server derives one when absent."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "name"
+        ]
+      },
+      "TeamUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20
+          },
+          "parentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "allMembersCanJoin": {
+            "type": "boolean"
+          },
+          "joinByDefault": {
+            "type": "boolean"
+          },
+          "assignmentStrategy": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "round_robin"
+            ]
+          },
+          "assignOnlyIfAvailable": {
+            "type": "boolean"
+          },
+          "secondaryTeamId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 48
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 7
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id"
+        ]
+      },
+      "TeamSetParentInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parentId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id",
+          "parentId"
+        ]
+      },
       "TeamMembership": {
         "type": "object",
         "properties": {
@@ -14045,6 +14373,137 @@
             "format": "date-time"
           }
         }
+      },
+      "TeamMembershipListInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
+          },
+          "cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "forward",
+              "backward",
+              "ASC",
+              "DESC"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId"
+        ]
+      },
+      "TeamMembershipCreateInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The server picks one when absent."
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The member. Defaults to the caller."
+          },
+          "owner": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "teamId"
+        ]
+      },
+      "TeamMembershipUpdateInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "owner": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer"
+          },
+          "capacity": {
+            "type": "integer",
+            "nullable": true,
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId",
+          "_id"
+        ]
+      },
+      "TeamMembershipDeleteInputRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "teamId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "alsoLeaveParentTeams": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "workspaceId"
+        ]
       },
       "AttachmentUpload": {
         "type": "object",
@@ -14166,16 +14625,9 @@
             "type": "string",
             "format": "uuid"
           },
-          "protocols": {
+          "url": {
             "type": "string",
             "format": "uri"
-          },
-          "require_protocol": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "url": {
-            "type": "string"
           },
           "contentTypeHint": {
             "type": "string"
@@ -14194,8 +14646,6 @@
           "workspaceId",
           "attachmentId",
           "parentType",
-          "protocols",
-          "require_protocol",
           "url"
         ]
       },
@@ -14325,88 +14775,6 @@
           "workspaceId"
         ]
       },
-      "WebhookDelivery": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "webhookSubscriptionId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "type": "string"
-          },
-          "statusCode": {
-            "type": "string"
-          },
-          "requestBody": {
-            "type": "string"
-          },
-          "requestHeaders": {
-            "type": "string"
-          },
-          "responseBody": {
-            "type": "string"
-          },
-          "responseHeaders": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "ListWebhookDeliveriesRequest": {
-        "type": "object",
-        "properties": {
-          "webhookSubscriptionId": {
-            "type": "string"
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "pagination": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "limit": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 100,
-            "default": 25
-          },
-          "cursor": {
-            "type": "string",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "enum": [
-              "forward",
-              "backward",
-              "ASC",
-              "DESC"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "webhookSubscriptionId",
-          "workspaceId"
-        ]
-      },
       "CreateWebhookSubscriptionRequest": {
         "type": "object",
         "properties": {
@@ -14494,6 +14862,231 @@
           "_id",
           "workspaceId"
         ]
+      },
+      "WebhookDelivery": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "webhookSubscriptionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "string"
+          },
+          "requestBody": {
+            "type": "string"
+          },
+          "requestHeaders": {
+            "type": "string"
+          },
+          "responseBody": {
+            "type": "string"
+          },
+          "responseHeaders": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ListWebhookDeliveriesRequest": {
+        "type": "object",
+        "properties": {
+          "webhookSubscriptionId": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pagination": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
+          },
+          "cursor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "forward",
+              "backward",
+              "ASC",
+              "DESC"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "webhookSubscriptionId",
+          "workspaceId"
+        ]
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "logoAttachmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "suspended": {
+            "type": "string"
+          },
+          "suspensionReason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "verifiedDomains": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "addedDate": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          },
+          "approximateConversationCount": {
+            "type": "integer"
+          },
+          "approximateTicketCount": {
+            "type": "integer"
+          },
+          "approximateCompanyCount": {
+            "type": "integer"
+          },
+          "approximateBroadcastCount": {
+            "type": "integer"
+          },
+          "approximateContactCount": {
+            "type": "integer"
+          },
+          "approximateDashboardCount": {
+            "type": "integer"
+          },
+          "preferences": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkspaceInfoRequest": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "slug"
+        ]
+      },
+      "PublicIdentity": {
+        "type": "object",
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "member",
+              "viewer"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "deactivated"
+            ]
+          },
+          "workspaceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "workspaceSlug": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "WorkspaceProfile": {
         "type": "object",
@@ -14589,26 +15182,28 @@
           }
         }
       },
-      "ListRequest": {
+      "WorkspaceProfileListInputRequest": {
         "type": "object",
         "properties": {
           "workspaceId": {
             "type": "string",
             "format": "uuid"
           },
-          "profileId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "limit": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 25
           },
           "cursor": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "direction": {
             "type": "string",
             "enum": [
+              "forward",
+              "backward",
               "ASC",
               "DESC"
             ]
@@ -14616,137 +15211,8 @@
         },
         "additionalProperties": false,
         "required": [
-          "workspaceId",
-          "limit"
+          "workspaceId"
         ]
-      },
-      "Workspace": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "slug": {
-            "type": "string"
-          },
-          "domain": {
-            "type": "string"
-          },
-          "logoUrl": {
-            "type": "string",
-            "format": "uri"
-          },
-          "logoAttachmentId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "creator": {
-            "type": "string"
-          },
-          "suspended": {
-            "type": "string"
-          },
-          "suspensionReason": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "addedDate": {
-            "type": "string"
-          },
-          "approximateConversationCount": {
-            "type": "integer"
-          },
-          "approximateTicketCount": {
-            "type": "integer"
-          },
-          "approximateCompanyCount": {
-            "type": "integer"
-          },
-          "approximateBroadcastCount": {
-            "type": "integer"
-          },
-          "approximateContactCount": {
-            "type": "integer"
-          },
-          "approximateDashboardCount": {
-            "type": "integer"
-          },
-          "preferences": {
-            "type": "string"
-          }
-        }
-      },
-      "WorkspaceInfoRequest": {
-        "type": "object",
-        "properties": {
-          "slug": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "slug"
-        ]
-      },
-      "PublicIdentity": {
-        "type": "object",
-        "properties": {
-          "profileId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "workspaceId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "userId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "username": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "member",
-              "viewer"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "deactivated"
-            ]
-          },
-          "workspaceName": {
-            "type": "string",
-            "nullable": true
-          },
-          "workspaceSlug": {
-            "type": "string",
-            "nullable": true
-          }
-        }
       },
       "ListRequestBody": {
         "type": "object",
