@@ -97,7 +97,7 @@
   "paths": {
     "/api/v1/tickets/list": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_list",
+        "operationId": "TicketsController_Ticket_list",
         "summary": "List tickets",
         "description": "Returns the workspace's tickets.",
         "tags": [
@@ -156,7 +156,7 @@
     },
     "/api/v1/tickets/info": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_info",
+        "operationId": "TicketsController_Ticket_info",
         "summary": "Get ticket",
         "description": "Returns one ticket by id.",
         "tags": [
@@ -209,7 +209,7 @@
     },
     "/api/v1/tickets/create": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_create",
+        "operationId": "TicketsController_Ticket_create",
         "summary": "Create ticket",
         "description": "Create ticket. Returns the saved ticket.",
         "tags": [
@@ -284,7 +284,7 @@
     },
     "/api/v1/tickets/update": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_update",
+        "operationId": "TicketsController_Ticket_update",
         "summary": "Update ticket",
         "description": "Update ticket. Returns the saved ticket.",
         "tags": [
@@ -347,7 +347,7 @@
     },
     "/api/v1/tickets/delete": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_delete",
+        "operationId": "TicketsController_Ticket_delete",
         "summary": "Delete ticket",
         "description": "Delete ticket. Returns the removed id.",
         "tags": [
@@ -395,7 +395,7 @@
     },
     "/api/v1/tickets/restore": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_restore",
+        "operationId": "TicketsController_Ticket_restore",
         "summary": "Restore ticket",
         "description": "Restore ticket. Returns the saved ticket.",
         "tags": [
@@ -458,7 +458,7 @@
     },
     "/api/v1/tickets/setSla": {
       "post": {
-        "operationId": "TicketRoutesController_Ticket_setSla",
+        "operationId": "TicketsController_Ticket_setSla",
         "summary": "Set sla ticket",
         "description": "Set sla ticket. Returns the saved ticket.",
         "tags": [
@@ -521,7 +521,7 @@
     },
     "/api/v1/tickets/ticketComment/list": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_list",
+        "operationId": "TicketsController_TicketComment_list",
         "summary": "List ticket comments",
         "description": "Returns the workspace's ticket comments.",
         "tags": [
@@ -577,7 +577,7 @@
     },
     "/api/v1/tickets/ticketComment/create": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_create",
+        "operationId": "TicketsController_TicketComment_create",
         "summary": "Create ticket comment",
         "description": "Create ticket comment. Returns the saved ticket comment.",
         "tags": [
@@ -652,7 +652,7 @@
     },
     "/api/v1/tickets/ticketComment/update": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_update",
+        "operationId": "TicketsController_TicketComment_update",
         "summary": "Update ticket comment",
         "description": "Update ticket comment. Returns the saved ticket comment.",
         "tags": [
@@ -715,7 +715,7 @@
     },
     "/api/v1/tickets/ticketComment/delete": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_delete",
+        "operationId": "TicketsController_TicketComment_delete",
         "summary": "Delete ticket comment",
         "description": "Delete ticket comment. Returns the removed id.",
         "tags": [
@@ -763,7 +763,7 @@
     },
     "/api/v1/tickets/ticketComment/addReaction": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_addReaction",
+        "operationId": "TicketsController_TicketComment_addReaction",
         "summary": "Add reaction ticket comment",
         "description": "Add reaction ticket comment. Returns the saved ticket comment.",
         "tags": [
@@ -826,7 +826,7 @@
     },
     "/api/v1/tickets/ticketComment/removeReaction": {
       "post": {
-        "operationId": "TicketRoutesController_TicketComment_removeReaction",
+        "operationId": "TicketsController_TicketComment_removeReaction",
         "summary": "Remove reaction ticket comment",
         "description": "Remove reaction ticket comment. Returns the saved ticket comment.",
         "tags": [
@@ -889,7 +889,7 @@
     },
     "/api/v1/tickets/ticketStatus/list": {
       "post": {
-        "operationId": "TicketRoutesController_TicketStatus_list",
+        "operationId": "TicketsController_TicketStatus_list",
         "summary": "List ticket statuses",
         "description": "Returns the workspace's ticket statuses.",
         "tags": [
@@ -948,7 +948,7 @@
     },
     "/api/v1/tickets/ticketStatus/create": {
       "post": {
-        "operationId": "TicketRoutesController_TicketStatus_create",
+        "operationId": "TicketsController_TicketStatus_create",
         "summary": "Create ticket status",
         "description": "Create ticket status. Returns the saved ticket status.",
         "tags": [
@@ -1023,7 +1023,7 @@
     },
     "/api/v1/tickets/ticketStatus/update": {
       "post": {
-        "operationId": "TicketRoutesController_TicketStatus_update",
+        "operationId": "TicketsController_TicketStatus_update",
         "summary": "Update ticket status",
         "description": "Update ticket status. Returns the saved ticket status.",
         "tags": [
@@ -1086,7 +1086,7 @@
     },
     "/api/v1/tickets/ticketStatus/delete": {
       "post": {
-        "operationId": "TicketRoutesController_TicketStatus_delete",
+        "operationId": "TicketsController_TicketStatus_delete",
         "summary": "Delete ticket status",
         "description": "Delete ticket status. Returns the removed id.",
         "tags": [
@@ -1134,7 +1134,7 @@
     },
     "/api/v1/tickets/ticketSubscriptions/list": {
       "post": {
-        "operationId": "TicketRoutesController_TicketSubscription_list",
+        "operationId": "TicketsController_TicketSubscription_list",
         "summary": "List ticket subscriptions",
         "description": "Returns the workspace's ticket subscriptions.",
         "tags": [
@@ -1193,7 +1193,7 @@
     },
     "/api/v1/tickets/ticketSubscriptions/info": {
       "post": {
-        "operationId": "TicketRoutesController_TicketSubscription_info",
+        "operationId": "TicketsController_TicketSubscription_info",
         "summary": "Get ticket subscription",
         "description": "Returns one ticket subscription by id.",
         "tags": [
@@ -1246,7 +1246,7 @@
     },
     "/api/v1/tickets/ticketSubscriptions/create": {
       "post": {
-        "operationId": "TicketRoutesController_TicketSubscription_create",
+        "operationId": "TicketsController_TicketSubscription_create",
         "summary": "Create ticket subscription",
         "description": "Create ticket subscription. Returns the saved ticket subscription.",
         "tags": [
@@ -1321,7 +1321,7 @@
     },
     "/api/v1/tickets/ticketSubscriptions/delete": {
       "post": {
-        "operationId": "TicketRoutesController_TicketSubscription_delete",
+        "operationId": "TicketsController_TicketSubscription_delete",
         "summary": "Delete ticket subscription",
         "description": "Delete ticket subscription. Returns the removed id.",
         "tags": [
@@ -1369,7 +1369,7 @@
     },
     "/api/v1/conversations/list": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_list",
+        "operationId": "ConversationsController_Conversation_list",
         "summary": "List conversations",
         "description": "Returns the workspace's conversations.",
         "tags": [
@@ -1428,7 +1428,7 @@
     },
     "/api/v1/conversations/info": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_info",
+        "operationId": "ConversationsController_Conversation_info",
         "summary": "Get conversation",
         "description": "Returns one conversation by id.",
         "tags": [
@@ -1481,7 +1481,7 @@
     },
     "/api/v1/conversations/update": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_update",
+        "operationId": "ConversationsController_Conversation_update",
         "summary": "Update conversation",
         "description": "Update conversation. Returns the saved conversation.",
         "tags": [
@@ -1544,7 +1544,7 @@
     },
     "/api/v1/conversations/delete": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_delete",
+        "operationId": "ConversationsController_Conversation_delete",
         "summary": "Delete conversation",
         "description": "Delete conversation. Returns the removed id.",
         "tags": [
@@ -1592,7 +1592,7 @@
     },
     "/api/v1/conversations/restore": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_restore",
+        "operationId": "ConversationsController_Conversation_restore",
         "summary": "Restore conversation",
         "description": "Restore conversation. Returns the saved conversation.",
         "tags": [
@@ -1655,7 +1655,7 @@
     },
     "/api/v1/conversations/archive": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_archive",
+        "operationId": "ConversationsController_Conversation_archive",
         "summary": "Archive conversation",
         "description": "Archive conversation. Returns the saved conversation.",
         "tags": [
@@ -1718,7 +1718,7 @@
     },
     "/api/v1/conversations/unarchive": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_unarchive",
+        "operationId": "ConversationsController_Conversation_unarchive",
         "summary": "Unarchive conversation",
         "description": "Unarchive conversation. Returns the saved conversation.",
         "tags": [
@@ -1781,7 +1781,7 @@
     },
     "/api/v1/conversations/addTeam": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_addTeam",
+        "operationId": "ConversationsController_Conversation_addTeam",
         "summary": "Add team conversation",
         "description": "Add team conversation. Returns the saved conversation.",
         "tags": [
@@ -1844,7 +1844,7 @@
     },
     "/api/v1/conversations/assignUser": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_assignUser",
+        "operationId": "ConversationsController_Conversation_assignUser",
         "summary": "Assign user conversation",
         "description": "Assign user conversation. Returns the saved conversation.",
         "tags": [
@@ -1907,7 +1907,7 @@
     },
     "/api/v1/conversations/linkTicket": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_linkTicket",
+        "operationId": "ConversationsController_Conversation_linkTicket",
         "summary": "Link ticket conversation",
         "description": "Link ticket conversation. Returns the saved conversation.",
         "tags": [
@@ -1970,7 +1970,7 @@
     },
     "/api/v1/conversations/markRead": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_markRead",
+        "operationId": "ConversationsController_Conversation_markRead",
         "summary": "Mark read conversation",
         "description": "Mark read conversation. Returns the saved conversation.",
         "tags": [
@@ -2033,7 +2033,7 @@
     },
     "/api/v1/conversations/markSpam": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_markSpam",
+        "operationId": "ConversationsController_Conversation_markSpam",
         "summary": "Mark spam conversation",
         "description": "Mark spam conversation. Returns the saved conversation.",
         "tags": [
@@ -2096,7 +2096,7 @@
     },
     "/api/v1/conversations/markUnread": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_markUnread",
+        "operationId": "ConversationsController_Conversation_markUnread",
         "summary": "Mark unread conversation",
         "description": "Mark unread conversation. Returns the saved conversation.",
         "tags": [
@@ -2159,7 +2159,7 @@
     },
     "/api/v1/conversations/removeTeam": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_removeTeam",
+        "operationId": "ConversationsController_Conversation_removeTeam",
         "summary": "Remove team conversation",
         "description": "Remove team conversation. Returns the saved conversation.",
         "tags": [
@@ -2222,7 +2222,7 @@
     },
     "/api/v1/conversations/restoreSpam": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_restoreSpam",
+        "operationId": "ConversationsController_Conversation_restoreSpam",
         "summary": "Restore spam conversation",
         "description": "Restore spam conversation. Returns the saved conversation.",
         "tags": [
@@ -2285,7 +2285,7 @@
     },
     "/api/v1/conversations/setSla": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_setSla",
+        "operationId": "ConversationsController_Conversation_setSla",
         "summary": "Set sla conversation",
         "description": "Set sla conversation. Returns the saved conversation.",
         "tags": [
@@ -2348,7 +2348,7 @@
     },
     "/api/v1/conversations/snooze": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_snooze",
+        "operationId": "ConversationsController_Conversation_snooze",
         "summary": "Snooze conversation",
         "description": "Snooze conversation. Returns the saved conversation.",
         "tags": [
@@ -2411,7 +2411,7 @@
     },
     "/api/v1/conversations/unassignUser": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_unassignUser",
+        "operationId": "ConversationsController_Conversation_unassignUser",
         "summary": "Unassign user conversation",
         "description": "Unassign user conversation. Returns the saved conversation.",
         "tags": [
@@ -2474,7 +2474,7 @@
     },
     "/api/v1/conversations/unsnooze": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_unsnooze",
+        "operationId": "ConversationsController_Conversation_unsnooze",
         "summary": "Unsnooze conversation",
         "description": "Unsnooze conversation. Returns the saved conversation.",
         "tags": [
@@ -2537,7 +2537,7 @@
     },
     "/api/v1/conversations/updateCompany": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_updateCompany",
+        "operationId": "ConversationsController_Conversation_updateCompany",
         "summary": "Update company conversation",
         "description": "Update company conversation. Returns the saved conversation.",
         "tags": [
@@ -2600,7 +2600,7 @@
     },
     "/api/v1/conversations/updateLabels": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_updateLabels",
+        "operationId": "ConversationsController_Conversation_updateLabels",
         "summary": "Update labels conversation",
         "description": "Update labels conversation. Returns the saved conversation.",
         "tags": [
@@ -2663,7 +2663,7 @@
     },
     "/api/v1/conversations/updatePriority": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_updatePriority",
+        "operationId": "ConversationsController_Conversation_updatePriority",
         "summary": "Update priority conversation",
         "description": "Update priority conversation. Returns the saved conversation.",
         "tags": [
@@ -2726,7 +2726,7 @@
     },
     "/api/v1/conversations/updateStatus": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_updateStatus",
+        "operationId": "ConversationsController_Conversation_updateStatus",
         "summary": "Update status conversation",
         "description": "Update status conversation. Returns the saved conversation.",
         "tags": [
@@ -2789,7 +2789,7 @@
     },
     "/api/v1/conversations/updateSubject": {
       "post": {
-        "operationId": "ConversationRoutesController_Conversation_updateSubject",
+        "operationId": "ConversationsController_Conversation_updateSubject",
         "summary": "Update subject conversation",
         "description": "Update subject conversation. Returns the saved conversation.",
         "tags": [
@@ -2852,7 +2852,7 @@
     },
     "/api/v1/conversations/conversationLabels/list": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationLabel_list",
+        "operationId": "ConversationsController_ConversationLabel_list",
         "summary": "List conversation labels",
         "description": "Returns the workspace's conversation labels.",
         "tags": [
@@ -2908,7 +2908,7 @@
     },
     "/api/v1/conversations/conversationLabels/create": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationLabel_create",
+        "operationId": "ConversationsController_ConversationLabel_create",
         "summary": "Create conversation label",
         "description": "Create conversation label. Returns the saved conversation label.",
         "tags": [
@@ -2983,7 +2983,7 @@
     },
     "/api/v1/conversations/conversationLabels/update": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationLabel_update",
+        "operationId": "ConversationsController_ConversationLabel_update",
         "summary": "Update conversation label",
         "description": "Update conversation label. Returns the saved conversation label.",
         "tags": [
@@ -3046,7 +3046,7 @@
     },
     "/api/v1/conversations/conversationLabels/delete": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationLabel_delete",
+        "operationId": "ConversationsController_ConversationLabel_delete",
         "summary": "Delete conversation label",
         "description": "Delete conversation label. Returns the removed id.",
         "tags": [
@@ -3094,7 +3094,7 @@
     },
     "/api/v1/conversations/conversationStatus/list": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationStatus_list",
+        "operationId": "ConversationsController_ConversationStatus_list",
         "summary": "List conversation statuses",
         "description": "Returns the workspace's conversation statuses.",
         "tags": [
@@ -3150,7 +3150,7 @@
     },
     "/api/v1/conversations/conversationStatus/create": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationStatus_create",
+        "operationId": "ConversationsController_ConversationStatus_create",
         "summary": "Create conversation status",
         "description": "Create conversation status. Returns the saved conversation status.",
         "tags": [
@@ -3225,7 +3225,7 @@
     },
     "/api/v1/conversations/conversationStatus/update": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationStatus_update",
+        "operationId": "ConversationsController_ConversationStatus_update",
         "summary": "Update conversation status",
         "description": "Update conversation status. Returns the saved conversation status.",
         "tags": [
@@ -3288,7 +3288,7 @@
     },
     "/api/v1/conversations/conversationStatus/delete": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationStatus_delete",
+        "operationId": "ConversationsController_ConversationStatus_delete",
         "summary": "Delete conversation status",
         "description": "Delete conversation status. Returns the removed id.",
         "tags": [
@@ -3336,7 +3336,7 @@
     },
     "/api/v1/conversations/conversationSubscriptions/list": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationSubscription_list",
+        "operationId": "ConversationsController_ConversationSubscription_list",
         "summary": "List conversation subscriptions",
         "description": "Returns the workspace's conversation subscriptions.",
         "tags": [
@@ -3395,7 +3395,7 @@
     },
     "/api/v1/conversations/conversationSubscriptions/info": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationSubscription_info",
+        "operationId": "ConversationsController_ConversationSubscription_info",
         "summary": "Get conversation subscription",
         "description": "Returns one conversation subscription by id.",
         "tags": [
@@ -3448,7 +3448,7 @@
     },
     "/api/v1/conversations/conversationSubscriptions/create": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationSubscription_create",
+        "operationId": "ConversationsController_ConversationSubscription_create",
         "summary": "Create conversation subscription",
         "description": "Create conversation subscription. Returns the saved conversation subscription.",
         "tags": [
@@ -3523,7 +3523,7 @@
     },
     "/api/v1/conversations/conversationSubscriptions/delete": {
       "post": {
-        "operationId": "ConversationRoutesController_ConversationSubscription_delete",
+        "operationId": "ConversationsController_ConversationSubscription_delete",
         "summary": "Delete conversation subscription",
         "description": "Delete conversation subscription. Returns the removed id.",
         "tags": [
@@ -3571,7 +3571,7 @@
     },
     "/api/v1/conversations/conversationSubscriptions/conversation": {
       "post": {
-        "operationId": "ConversationRoutesController_listSubscriptionsForConversation",
+        "operationId": "ConversationsController_listSubscriptionsForConversation",
         "summary": "List conversation subscriptions",
         "description": "Returns the workspace's conversation subscriptions.",
         "tags": [
@@ -3630,7 +3630,7 @@
     },
     "/api/v1/messages/list": {
       "post": {
-        "operationId": "MessageRoutesController_Message_list",
+        "operationId": "MessagesController_Message_list",
         "summary": "List messages",
         "description": "Returns the workspace's messages.",
         "tags": [
@@ -3689,7 +3689,7 @@
     },
     "/api/v1/messages/send": {
       "post": {
-        "operationId": "MessageRoutesController_Message_send",
+        "operationId": "MessagesController_Message_send",
         "summary": "Send message",
         "description": "Send message. Returns the saved message.",
         "tags": [
@@ -3764,7 +3764,7 @@
     },
     "/api/v1/messages/edit": {
       "post": {
-        "operationId": "MessageRoutesController_Message_edit",
+        "operationId": "MessagesController_Message_edit",
         "summary": "Edit message",
         "description": "Edit message. Returns the saved message.",
         "tags": [
@@ -3827,7 +3827,7 @@
     },
     "/api/v1/messages/delete": {
       "post": {
-        "operationId": "MessageRoutesController_Message_delete",
+        "operationId": "MessagesController_Message_delete",
         "summary": "Delete message",
         "description": "Delete message. Returns the removed id.",
         "tags": [
@@ -3875,7 +3875,7 @@
     },
     "/api/v1/messages/addReaction": {
       "post": {
-        "operationId": "MessageRoutesController_Message_addReaction",
+        "operationId": "MessagesController_Message_addReaction",
         "summary": "Add reaction message",
         "description": "Add reaction message. Returns the saved message.",
         "tags": [
@@ -3938,7 +3938,7 @@
     },
     "/api/v1/messages/removeReaction": {
       "post": {
-        "operationId": "MessageRoutesController_Message_removeReaction",
+        "operationId": "MessagesController_Message_removeReaction",
         "summary": "Remove reaction message",
         "description": "Remove reaction message. Returns the saved message.",
         "tags": [
@@ -4001,7 +4001,7 @@
     },
     "/api/v1/companies/list": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_list",
+        "operationId": "CompaniesController_Company_list",
         "summary": "List companies",
         "description": "Returns the workspace's companies.",
         "tags": [
@@ -4060,7 +4060,7 @@
     },
     "/api/v1/companies/info": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_info",
+        "operationId": "CompaniesController_Company_info",
         "summary": "Get company",
         "description": "Returns one company by id.",
         "tags": [
@@ -4113,7 +4113,7 @@
     },
     "/api/v1/companies/create": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_create",
+        "operationId": "CompaniesController_Company_create",
         "summary": "Create company",
         "description": "Create company. Returns the saved company.",
         "tags": [
@@ -4188,7 +4188,7 @@
     },
     "/api/v1/companies/update": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_update",
+        "operationId": "CompaniesController_Company_update",
         "summary": "Update company",
         "description": "Update company. Returns the saved company.",
         "tags": [
@@ -4251,7 +4251,7 @@
     },
     "/api/v1/companies/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_delete",
+        "operationId": "CompaniesController_Company_delete",
         "summary": "Delete company",
         "description": "Delete company. Returns the removed id.",
         "tags": [
@@ -4299,7 +4299,7 @@
     },
     "/api/v1/companies/restore": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_restore",
+        "operationId": "CompaniesController_Company_restore",
         "summary": "Restore company",
         "description": "Restore company. Returns the saved company.",
         "tags": [
@@ -4362,7 +4362,7 @@
     },
     "/api/v1/companies/archive": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_archive",
+        "operationId": "CompaniesController_Company_archive",
         "summary": "Archive company",
         "description": "Archive company. Returns the saved company.",
         "tags": [
@@ -4425,7 +4425,7 @@
     },
     "/api/v1/companies/unarchive": {
       "post": {
-        "operationId": "CompanyRoutesController_Company_unarchive",
+        "operationId": "CompaniesController_Company_unarchive",
         "summary": "Unarchive company",
         "description": "Unarchive company. Returns the saved company.",
         "tags": [
@@ -4488,7 +4488,7 @@
     },
     "/api/v1/companies/contacts/list": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_list",
+        "operationId": "CompaniesController_Contact_list",
         "summary": "List contacts",
         "description": "Returns the workspace's contacts.",
         "tags": [
@@ -4547,7 +4547,7 @@
     },
     "/api/v1/companies/contacts/info": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_info",
+        "operationId": "CompaniesController_Contact_info",
         "summary": "Get contact",
         "description": "Returns one contact by id.",
         "tags": [
@@ -4600,7 +4600,7 @@
     },
     "/api/v1/companies/contacts/create": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_create",
+        "operationId": "CompaniesController_Contact_create",
         "summary": "Create contact",
         "description": "Create contact. Returns the saved contact.",
         "tags": [
@@ -4675,7 +4675,7 @@
     },
     "/api/v1/companies/contacts/update": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_update",
+        "operationId": "CompaniesController_Contact_update",
         "summary": "Update contact",
         "description": "Update contact. Returns the saved contact.",
         "tags": [
@@ -4738,7 +4738,7 @@
     },
     "/api/v1/companies/contacts/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_delete",
+        "operationId": "CompaniesController_Contact_delete",
         "summary": "Delete contact",
         "description": "Delete contact. Returns the removed id.",
         "tags": [
@@ -4786,7 +4786,7 @@
     },
     "/api/v1/companies/contacts/restore": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_restore",
+        "operationId": "CompaniesController_Contact_restore",
         "summary": "Restore contact",
         "description": "Restore contact. Returns the saved contact.",
         "tags": [
@@ -4849,7 +4849,7 @@
     },
     "/api/v1/companies/contacts/archive": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_archive",
+        "operationId": "CompaniesController_Contact_archive",
         "summary": "Archive contact",
         "description": "Archive contact. Returns the saved contact.",
         "tags": [
@@ -4912,7 +4912,7 @@
     },
     "/api/v1/companies/contacts/unarchive": {
       "post": {
-        "operationId": "CompanyRoutesController_Contact_unarchive",
+        "operationId": "CompaniesController_Contact_unarchive",
         "summary": "Unarchive contact",
         "description": "Unarchive contact. Returns the saved contact.",
         "tags": [
@@ -4975,7 +4975,7 @@
     },
     "/api/v1/companies/companyLabels/list": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyLabel_list",
+        "operationId": "CompaniesController_CompanyLabel_list",
         "summary": "List company labels",
         "description": "Returns the workspace's company labels.",
         "tags": [
@@ -5031,7 +5031,7 @@
     },
     "/api/v1/companies/companyLabels/info": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyLabel_info",
+        "operationId": "CompaniesController_CompanyLabel_info",
         "summary": "Get company label",
         "description": "Returns one company label by id.",
         "tags": [
@@ -5084,7 +5084,7 @@
     },
     "/api/v1/companies/companyLabels/create": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyLabel_create",
+        "operationId": "CompaniesController_CompanyLabel_create",
         "summary": "Create company label",
         "description": "Create company label. Returns the saved company label.",
         "tags": [
@@ -5159,7 +5159,7 @@
     },
     "/api/v1/companies/companyLabels/update": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyLabel_update",
+        "operationId": "CompaniesController_CompanyLabel_update",
         "summary": "Update company label",
         "description": "Update company label. Returns the saved company label.",
         "tags": [
@@ -5222,7 +5222,7 @@
     },
     "/api/v1/companies/companyLabels/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyLabel_delete",
+        "operationId": "CompaniesController_CompanyLabel_delete",
         "summary": "Delete company label",
         "description": "Delete company label. Returns the removed id.",
         "tags": [
@@ -5270,7 +5270,7 @@
     },
     "/api/v1/companies/companySectors/create": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanySector_create",
+        "operationId": "CompaniesController_CompanySector_create",
         "summary": "Create company sector",
         "description": "Create company sector. Returns the saved company sector.",
         "tags": [
@@ -5345,7 +5345,7 @@
     },
     "/api/v1/companies/companySectors/update": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanySector_update",
+        "operationId": "CompaniesController_CompanySector_update",
         "summary": "Update company sector",
         "description": "Update company sector. Returns the saved company sector.",
         "tags": [
@@ -5408,7 +5408,7 @@
     },
     "/api/v1/companies/companySectors/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanySector_delete",
+        "operationId": "CompaniesController_CompanySector_delete",
         "summary": "Delete company sector",
         "description": "Delete company sector. Returns the removed id.",
         "tags": [
@@ -5456,7 +5456,7 @@
     },
     "/api/v1/companies/contractTypes/create": {
       "post": {
-        "operationId": "CompanyRoutesController_ContractType_create",
+        "operationId": "CompaniesController_ContractType_create",
         "summary": "Create contract type",
         "description": "Create contract type. Returns the saved contract type.",
         "tags": [
@@ -5531,7 +5531,7 @@
     },
     "/api/v1/companies/contractTypes/update": {
       "post": {
-        "operationId": "CompanyRoutesController_ContractType_update",
+        "operationId": "CompaniesController_ContractType_update",
         "summary": "Update contract type",
         "description": "Update contract type. Returns the saved contract type.",
         "tags": [
@@ -5594,7 +5594,7 @@
     },
     "/api/v1/companies/relationships/create": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyRelationship_create",
+        "operationId": "CompaniesController_CompanyRelationship_create",
         "summary": "Create company relationship",
         "description": "Create company relationship. Returns the saved company relationship.",
         "tags": [
@@ -5669,7 +5669,7 @@
     },
     "/api/v1/companies/relationships/update": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyRelationship_update",
+        "operationId": "CompaniesController_CompanyRelationship_update",
         "summary": "Update company relationship",
         "description": "Update company relationship. Returns the saved company relationship.",
         "tags": [
@@ -5732,7 +5732,7 @@
     },
     "/api/v1/companies/relationships/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyRelationship_delete",
+        "operationId": "CompaniesController_CompanyRelationship_delete",
         "summary": "Delete company relationship",
         "description": "Delete company relationship. Returns the removed id.",
         "tags": [
@@ -5780,7 +5780,7 @@
     },
     "/api/v1/companies/updates/create": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyUpdate_create",
+        "operationId": "CompaniesController_CompanyUpdate_create",
         "summary": "Create company update",
         "description": "Create company update. Returns the saved company update.",
         "tags": [
@@ -5855,7 +5855,7 @@
     },
     "/api/v1/companies/updates/update": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyUpdate_update",
+        "operationId": "CompaniesController_CompanyUpdate_update",
         "summary": "Update company update",
         "description": "Update company update. Returns the saved company update.",
         "tags": [
@@ -5918,7 +5918,7 @@
     },
     "/api/v1/companies/updates/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_CompanyUpdate_delete",
+        "operationId": "CompaniesController_CompanyUpdate_delete",
         "summary": "Delete company update",
         "description": "Delete company update. Returns the removed id.",
         "tags": [
@@ -5966,7 +5966,7 @@
     },
     "/api/v1/companies/documents/list": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_list",
+        "operationId": "CompaniesController_Document_list",
         "summary": "List documents",
         "description": "Returns the workspace's documents.",
         "tags": [
@@ -6025,7 +6025,7 @@
     },
     "/api/v1/companies/documents/info": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_info",
+        "operationId": "CompaniesController_Document_info",
         "summary": "Get document",
         "description": "Returns one document by id.",
         "tags": [
@@ -6078,7 +6078,7 @@
     },
     "/api/v1/companies/documents/create": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_create",
+        "operationId": "CompaniesController_Document_create",
         "summary": "Create document",
         "description": "Create document. Returns the saved document.",
         "tags": [
@@ -6153,7 +6153,7 @@
     },
     "/api/v1/companies/documents/update": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_update",
+        "operationId": "CompaniesController_Document_update",
         "summary": "Update document",
         "description": "Update document. Returns the saved document.",
         "tags": [
@@ -6216,7 +6216,7 @@
     },
     "/api/v1/companies/documents/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_delete",
+        "operationId": "CompaniesController_Document_delete",
         "summary": "Delete document",
         "description": "Delete document. Returns the removed id.",
         "tags": [
@@ -6264,7 +6264,7 @@
     },
     "/api/v1/companies/documents/restore": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_restore",
+        "operationId": "CompaniesController_Document_restore",
         "summary": "Restore document",
         "description": "Restore document. Returns the saved document.",
         "tags": [
@@ -6327,7 +6327,7 @@
     },
     "/api/v1/companies/documents/addUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_addUser",
+        "operationId": "CompaniesController_Document_addUser",
         "summary": "Add user document",
         "description": "Add user document. Returns the saved document.",
         "tags": [
@@ -6380,7 +6380,7 @@
     },
     "/api/v1/companies/documents/removeUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_removeUser",
+        "operationId": "CompaniesController_Document_removeUser",
         "summary": "Remove user document",
         "description": "Remove user document. Returns the removed id.",
         "tags": [
@@ -6428,7 +6428,7 @@
     },
     "/api/v1/companies/documents/updateUserPermission": {
       "post": {
-        "operationId": "CompanyRoutesController_Document_updateUserPermission",
+        "operationId": "CompaniesController_Document_updateUserPermission",
         "summary": "Update user permission document",
         "description": "Update user permission document. Returns the saved document.",
         "tags": [
@@ -6491,7 +6491,7 @@
     },
     "/api/v1/companies/folders/list": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_list",
+        "operationId": "CompaniesController_Folder_list",
         "summary": "List folders",
         "description": "Returns the workspace's folders.",
         "tags": [
@@ -6550,7 +6550,7 @@
     },
     "/api/v1/companies/folders/create": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_create",
+        "operationId": "CompaniesController_Folder_create",
         "summary": "Create folder",
         "description": "Create folder. Returns the saved folder.",
         "tags": [
@@ -6625,7 +6625,7 @@
     },
     "/api/v1/companies/folders/update": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_update",
+        "operationId": "CompaniesController_Folder_update",
         "summary": "Update folder",
         "description": "Update folder. Returns the saved folder.",
         "tags": [
@@ -6688,7 +6688,7 @@
     },
     "/api/v1/companies/folders/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_delete",
+        "operationId": "CompaniesController_Folder_delete",
         "summary": "Delete folder",
         "description": "Delete folder. Returns the removed id.",
         "tags": [
@@ -6736,7 +6736,7 @@
     },
     "/api/v1/companies/folders/restore": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_restore",
+        "operationId": "CompaniesController_Folder_restore",
         "summary": "Restore folder",
         "description": "Restore folder. Returns the saved folder.",
         "tags": [
@@ -6799,7 +6799,7 @@
     },
     "/api/v1/companies/folders/addUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_addUser",
+        "operationId": "CompaniesController_Folder_addUser",
         "summary": "Add user folder",
         "description": "Add user folder. Returns the saved folder.",
         "tags": [
@@ -6852,7 +6852,7 @@
     },
     "/api/v1/companies/folders/removeUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_removeUser",
+        "operationId": "CompaniesController_Folder_removeUser",
         "summary": "Remove user folder",
         "description": "Remove user folder. Returns the removed id.",
         "tags": [
@@ -6900,7 +6900,7 @@
     },
     "/api/v1/companies/folders/updateUserPermission": {
       "post": {
-        "operationId": "CompanyRoutesController_Folder_updateUserPermission",
+        "operationId": "CompaniesController_Folder_updateUserPermission",
         "summary": "Update user permission folder",
         "description": "Update user permission folder. Returns the saved folder.",
         "tags": [
@@ -6963,7 +6963,7 @@
     },
     "/api/v1/companies/notes/list": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_list",
+        "operationId": "CompaniesController_Note_list",
         "summary": "List notes",
         "description": "Returns the workspace's notes.",
         "tags": [
@@ -7022,7 +7022,7 @@
     },
     "/api/v1/companies/notes/info": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_info",
+        "operationId": "CompaniesController_Note_info",
         "summary": "Get note",
         "description": "Returns one note by id.",
         "tags": [
@@ -7075,7 +7075,7 @@
     },
     "/api/v1/companies/notes/create": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_create",
+        "operationId": "CompaniesController_Note_create",
         "summary": "Create note",
         "description": "Create note. Returns the saved note.",
         "tags": [
@@ -7150,7 +7150,7 @@
     },
     "/api/v1/companies/notes/update": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_update",
+        "operationId": "CompaniesController_Note_update",
         "summary": "Update note",
         "description": "Update note. Returns the saved note.",
         "tags": [
@@ -7213,7 +7213,7 @@
     },
     "/api/v1/companies/notes/delete": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_delete",
+        "operationId": "CompaniesController_Note_delete",
         "summary": "Delete note",
         "description": "Delete note. Returns the removed id.",
         "tags": [
@@ -7261,7 +7261,7 @@
     },
     "/api/v1/companies/notes/restore": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_restore",
+        "operationId": "CompaniesController_Note_restore",
         "summary": "Restore note",
         "description": "Restore note. Returns the saved note.",
         "tags": [
@@ -7324,7 +7324,7 @@
     },
     "/api/v1/companies/notes/addUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_addUser",
+        "operationId": "CompaniesController_Note_addUser",
         "summary": "Add user note",
         "description": "Add user note. Returns the saved note.",
         "tags": [
@@ -7377,7 +7377,7 @@
     },
     "/api/v1/companies/notes/removeUser": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_removeUser",
+        "operationId": "CompaniesController_Note_removeUser",
         "summary": "Remove user note",
         "description": "Remove user note. Returns the removed id.",
         "tags": [
@@ -7425,7 +7425,7 @@
     },
     "/api/v1/companies/notes/updateUserPermission": {
       "post": {
-        "operationId": "CompanyRoutesController_Note_updateUserPermission",
+        "operationId": "CompaniesController_Note_updateUserPermission",
         "summary": "Update user permission note",
         "description": "Update user permission note. Returns the saved note.",
         "tags": [
@@ -7488,7 +7488,7 @@
     },
     "/api/v1/companies/profileMemberships/list": {
       "post": {
-        "operationId": "CompanyRoutesController_ProfileMembership_list",
+        "operationId": "CompaniesController_ProfileMembership_list",
         "summary": "List profile memberships",
         "description": "Returns the workspace's profile memberships.",
         "tags": [
@@ -8916,7 +8916,7 @@
     },
     "/api/v1/users/workspaceProfiles/list": {
       "post": {
-        "operationId": "UserRoutesController_WorkspaceProfile_list",
+        "operationId": "UsersController_WorkspaceProfile_list",
         "summary": "List workspace profiles",
         "description": "Returns the workspace's workspace profiles.",
         "tags": [
