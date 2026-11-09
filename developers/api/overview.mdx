@@ -21,7 +21,7 @@ Machine-readable contract: `GET /api/v1/openapi.json` (also checked into the gat
 
 ## Idempotency
 
-For safe retries on **create** and **send_message** (API key / OAuth only), send:
+For safe retries on **create** and **messages/send** (API key / OAuth only), send:
 
 ```http
 Idempotency-Key: <opaque-string-up-to-256-chars>

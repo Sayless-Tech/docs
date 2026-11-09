@@ -29,16 +29,18 @@ curl -X POST "$SAYLESS_API_URL/api/v1/tickets/create" \
   -H "Authorization: Bearer $SAYLESS_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: $(uuidgen)" \
-  -d "{\"_id\":\"$(uuidgen)\",\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"subject\":\"Follow up\",\"content\":\"…\",\"preview\":\"…\",\"statusId\":\"$STATUS_ID\"}"
+  -d "{\"workspaceId\":\"$SAYLESS_WORKSPACE_ID\",\"subject\":\"Follow up\",\"description\":\"Customer asked for a call back.\",\"statusId\":\"$STATUS_ID\"}"
 ```
 
-Response (API/OAuth): `{ "success": true, "data": { "_id": "…", … }, "lastSyncId": … }`.
+`description` is markdown; Sayless stores it as the ticket body. The server picks the ticket id.
+
+Response: `{ "success": true, "data": { "_id": "…", … } }`.
 
 ## Info / update / delete
 
 - `POST /api/v1/tickets/info` — `{ workspaceId, _id }`
 - `POST /api/v1/tickets/update` — `{ workspaceId, _id, …fields }`
-- `POST /api/v1/tickets/delete` — returns `{ success, entityId, … }`
+- `POST /api/v1/tickets/delete` — `{ workspaceId, _id }`, where `_id` may be a list; returns `{ success, entityId }`
 
 ## SDK
 

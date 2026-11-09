@@ -13,17 +13,18 @@ Contacts are nested under companies:
 | Update / archive / … | matching `/companies/contacts/…` actions |
 
 ```ts
-const contact = await sayless.companies.contactsCreate({
+const contact = await sayless.contacts.contactsCreate({
   _id: crypto.randomUUID(),
   workspaceId,
   companyId,
   firstName: 'Ada',
   lastName: 'Lovelace',
+  username: 'ada',
   emails: ['ada@acme.example'],
 });
 console.log(contact.contactId);
 ```
 
-Send `Idempotency-Key` on create retries. Body always includes `workspaceId` (+ pagination on list).
+Create needs `workspaceId`, `firstName`, `lastName`, and `username`. Send `Idempotency-Key` on create retries. List takes `workspaceId` plus [pagination](/developers/pagination).
 
 Related: [Companies](/developers/api/companies)

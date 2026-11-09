@@ -44,7 +44,7 @@ curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/create" \
 Add or remove a reaction with the Unicode character, the same value the app stores:
 
 ```bash
-curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/comment_reaction_add" \
+curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/addReaction" \
   -H "Authorization: Bearer $SAYLESS_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -54,11 +54,11 @@ curl -X POST "https://api.joinsayless.com/api/v1/tickets/ticketComment/comment_r
   }'
 ```
 
-`comment_reaction_remove` uses the same body. `_id` is the comment id. A successful call returns the comment, including its `reactions`.
+`removeReaction` uses the same body. `_id` is the comment id. A successful call returns the comment, including its `reactions`.
 
 ## SLA metrics
 
-`POST /tickets/set_sla` sets a custom duration on one metric. `durationSeconds` is a positive number of seconds, at most one year. Send `null` to clear a custom **resolution** SLA.
+`POST /tickets/setSla` sets a custom duration on one metric. `durationSeconds` is a positive number of seconds, at most one year. Send `null` to clear a custom **resolution** SLA.
 
 | Metric | When the clock runs |
 | --- | --- |

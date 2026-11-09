@@ -37,8 +37,9 @@ Methods map from POST action paths, for example:
 - `POST /api/v1/tickets/list` → `sayless.tickets.list(body)`
 - `POST /api/v1/teams/list` → `sayless.teams.list(body)`
 - `POST /api/v1/teams/info` → `sayless.teams.info(body)`
-- `POST /api/v1/messages/send_message` → `sayless.messages.sendMessage(body)`
-- `POST /api/v1/companies/contacts/create` → `sayless.companies.contactsCreate(body)`
+- `POST /api/v1/messages/send` → `sayless.messages.send(body)`
+- `POST /api/v1/companies/contacts/create` → `sayless.contacts.contactsCreate(body)`
+- `POST /api/v1/tickets/ticketComment/create` → `sayless.ticketComments.ticketCommentCreate(body)`
 - `GET /api/v1/users/me` → `sayless.workspace.me()` — profile id and workspace id for this key or token
 
 ## Request options
@@ -52,7 +53,7 @@ await sayless.tickets.create(body, {
 });
 ```
 
-Use `idempotencyKey` on **create** / **sendMessage** retries so the gateway can return the cached success body (24h). Concurrent reuse while in flight throws `IdempotencyConflictError` (HTTP 409).
+Use `idempotencyKey` on **create** / **send** retries so the gateway can return the cached success body (24h). Concurrent reuse while in flight throws `IdempotencyConflictError` (HTTP 409).
 
 ## Mutation payloads
 
